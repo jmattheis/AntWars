@@ -33,22 +33,22 @@ namespace AntWars.Board
                 if (obj.isAnt())
                 {
                     Ant ant = (Ant)obj;
-                    // TODO filter boardobjects for view range of the ant
-                    ant.Owner.AI.antTick(ant, BoardObjects);
+                    ant.Owner.AI.antTick(ant, getBoardObjectsInView(ant));
                 }
             }
         }
 
+        // Nicht getestet
         private List<BoardObject> getBoardObjectsInView(Ant ant)
         {
-            int box_min_x = ant.Coords.X - ant.ViewRange;
-            int box_min_y = ant.Coords.Y - ant.ViewRange;
+            int boxMinX = ant.Coords.X - ant.ViewRange;
+            int boxMinY = ant.Coords.Y - ant.ViewRange;
             int boxMaxX = ant.Coords.X + ant.ViewRange;
             int boxMaxY = ant.Coords.Y + ant.ViewRange;
             List<Coordinates> coordinatesInsideView = new List<Coordinates>();
-            for(int x = box_min_x; x <= boxMaxX; x++)
+            for(int x = boxMinX; x <= boxMaxX; x++)
             {
-                for (int y = box_min_y; x <= boxMaxY; x++)
+                for (int y = boxMinY; y <= boxMaxY; y++)
                 {
                     double abstand = Math.Sqrt((ant.Coords.X - x) ^ 2 + (ant.Coords.Y - y) ^ 2);
                     if(abstand <= ant.ViewRange)
