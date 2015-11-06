@@ -44,18 +44,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board\Ant\Ant.cs" />
+    <Compile Include="AIs\IAI.cs" />
+    <Compile Include="Board\Ants\Ant.cs" />
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardObject.cs" />
     <Compile Include="Board\Base.cs" />
-    <Compile Include="Board\Ant\Carry.cs" />
-    <Compile Include="Board\Ant\Scout.cs" />
-    <Compile Include="RuntimeException.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Board\Ants\Carry.cs" />
+    <Compile Include="Board\Ants\Scout.cs" />
+    <Compile Include="Board\Coordinates.cs" />
+    <Compile Include="Config\ConfigurationLoader.cs" />
+    <Compile Include="Config\PlayerConfig.cs" />
+    <Compile Include="Exception\InvalidConfigurationException.cs" />
+    <Compile Include="Exception\RuntimeException.cs" />
+    <Compile Include="Config\Configuration.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="KI\KI.cs" />
-    <Compile Include="KI\Player1.cs" />
-    <Compile Include="KI\Player2.cs" />
+    <Compile Include="Helper\Utils.cs" />
+    <Compile Include="AIs\AIBase.cs" />
+    <Compile Include="AIs\Player1.cs" />
+    <Compile Include="AIs\Player2.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Board\Sugar.cs" />
     <Compile Include="Form1.cs">

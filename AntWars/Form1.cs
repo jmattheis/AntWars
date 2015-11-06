@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AntWars.Board;
 
 namespace AntWars
 {
@@ -17,10 +18,15 @@ namespace AntWars
         public Form1()
         {
             InitializeComponent();
-            this.game = new Game();
+            // TODO Config tralala
 
         }
 
+        // TODO startbutton
+        // TODO new Game(conf);
+        // TODO game.Start();
+
+        
         public void print()
         {
             List<BoardObject> objects = game.Board.BoardObjects;
@@ -35,6 +41,11 @@ namespace AntWars
         }
 
         private void timer1_Tick()
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
