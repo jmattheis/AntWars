@@ -13,6 +13,7 @@ namespace AntWars.Helper
 
         public static Coordinates generateBaseCords(int boardWidth, int boardHeight)
         {
+            // TODO keine base nochmal an der gleichen himmelsrichtig generieren
             switch(random.Next(0,4))
             {
                 case 0:
