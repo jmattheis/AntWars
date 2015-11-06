@@ -27,6 +27,7 @@ namespace AntWars.Board
         public void nextTick()
         {
             randomizeBoardObjects();
+
             foreach (BoardObject obj in BoardObjects)
             {
                 if (obj.isAnt())
@@ -38,6 +39,44 @@ namespace AntWars.Board
             }
         }
 
+        private List<BoardObject> getBoardObjectsInView(Ant ant)
+        {
+            int box_min_x = ant.Coords.X - ant.ViewRange;
+            int box_min_y = ant.Coords.Y - ant.ViewRange;
+            int boxMaxX = ant.Coords.X + ant.ViewRange;
+            int boxMaxY = ant.Coords.Y + ant.ViewRange;
+            List<Coordinates> coordinatesInsideView = new List<Coordinates>();
+            for(int x = box_min_x; x <= boxMaxX; x++)
+            {
+                for (int y = box_min_y; x <= boxMaxY; x++)
+                {
+                    double abstand = Math.Sqrt((ant.Coords.X - x) ^ 2 + (ant.Coords.Y - y) ^ 2);
+                    if(abstand <= ant.ViewRange)
+                    {
+                        coordinatesInsideView.Add(new Coordinates(x, y));
+                    }
+                }
+            }
+            List<BoardObject> result = new List<BoardObject>();
+            foreach (Coordinates coords in coordinatesInsideView)
+            {
+                result.AddRange(getBoardObjectsForCoordinates(coords));
+            }
+            return result;
+        }
+
+        private List<BoardObject> getBoardObjectsForCoordinates(Coordinates coords)
+        {
+            List<BoardObject> results = new List<BoardObject>();
+            foreach (BoardObject obj in BoardObjects)
+            {
+                if (obj.Coords.Equals(coords))
+                {
+                    results.Add(obj);
+                }
+            }
+            return results;
+        }
         public void nullTick(Player player1, Player player2)
         {
             nullTick(player1);

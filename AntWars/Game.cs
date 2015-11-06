@@ -19,6 +19,7 @@ namespace AntWars
         public Player Player2 { get; set; }
         public Configuration Conf { get; set; } 
         private bool started = false;
+        private int currentTick = 0;
 
         public Game(Configuration config)
         {
@@ -35,6 +36,12 @@ namespace AntWars
             Board = new Board.Board(Conf);
             Board.nullTick(Player1, Player2);
             started = true;
+        }
+
+        public void nextTick()
+        {
+            currentTick++;
+            Board.nextTick();
         }
 
         public bool isStarted()
