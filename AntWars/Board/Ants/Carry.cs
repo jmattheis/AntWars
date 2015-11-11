@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AntWars.KI
+namespace AntWars.Board.Ants
 {
-    class Player1 : KI
+    class Carry : Ant
     {
-        public void a()
-        {
-            this.ga
-        }
     }
 }

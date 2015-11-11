@@ -5,22 +5,49 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using AntWars.Config;
 namespace AntWars
 {
+    /// <summary>
+    /// Das Game startpunkt für alles was nicht visuell ist.
+    /// Händelt das Board und enthält die Globale Configuration.
+    /// </summary>
     class Game
     {
-        public Board Board { get; set; }
+        public Board.Board Board { get; set; }
+        public Player Player1 { get; set; }
+        public Player Player2 { get; set; }
+        public Configuration Conf { get; set; } 
+        private bool started = false;
+        private int currentTick = 0;
 
-        public Game()
+        public Game(Configuration config)
         {
-            // XML read
-            // PLayer set
-            Board = new Board();
-            Board.nullTick();
+            Player1 = new Player();
+            Player2 = new Player();
+            Player1.PlayerConfig = config.Player1;
+            Player2.PlayerConfig = config.Player2;
+            Player1.AI = new AI.Player1();
+            Player2.AI = new AI.Player2();
         }
 
-        public Player player1 { get; set; }
-        public Player player2 { get; set; }
-        public Timer timer { get; set; }
+        public void start()
+        {
+            Board = new Board.Board(Conf);
+            Board.nullTick(Player1, Player2);
+            started = true;
+        }
+
+        public void nextTick()
+        {
+            currentTick++;
+            Board.nextTick();
+        }
+
+        public bool isStarted()
+        {
+            return started;
+        }
+        
     }
 }

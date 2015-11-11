@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AntWars
+namespace AntWars.Board
 {
+    /// <summary>
+    /// Die Base hier "spawnen" die Ameisen, wird generell am rand des spielfeldes generiert.
+    /// </summary>
     class Base : BoardObject
     {
         public Base(Player p)

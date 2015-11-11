@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AntWars.KI
+namespace AntWars.Board.Ants
 {
-    class Player2 : KI
+    class Scout : Ant
     {
     }
 }

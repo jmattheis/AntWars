@@ -3,47 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AntWars.Board.Ants;
 
-namespace AntWars
+namespace AntWars.Board
 {
+    /// <summary>
+    /// Das BoardObject der startpunkt für alles was auf dem board ist.
+    /// </summary>
     class BoardObject
     {
-        public int x { get; set; }
-        public int y { get; set; }
+        public Coordinates Coords { get; set; }
         public bool signalPlayer1 { get; set; }
         public bool signalPlayer2 { get; set; }
 
         public bool isAnt()
         {
-            return this.GetType() == typeof(Ant);
+            return GetType() == typeof(Ant);
         }
 
         public bool isSugar()
         {
-            return this.GetType() == typeof(Sugar);
+            return GetType() == typeof(Sugar);
         }
 
         public bool isBase()
         {
-            return this.GetType() == typeof(Base);
-        }
-
-        public Ant getAnt()
-        {
-            if (!isAnt()) { return null; }
-            return (Ant)this;
-        }
-
-        public Base getBase()
-        {
-            if (!isBase()) { return null; }
-            return (Base)this;
-        }
-
-        public Sugar getSugar()
-        {
-            if (!isSugar()) { return null; }
-            return (Sugar)this;
+            return GetType() == typeof(Base);
         }
     }
 }
