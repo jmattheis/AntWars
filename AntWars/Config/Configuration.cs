@@ -11,10 +11,7 @@ namespace AntWars.Config
     /// </summary>
     class Configuration
     {
-        //  TODO Game config
-        public int BoardWidth { get; set; }
-        public int BoardHeight { get; set; }
-        public int StartMoney { get; set; }
+        public GameConfig Game { get; set; }
         public PlayerConfig Player1 { get; set; }
         public PlayerConfig Player2 { get; set; }
     }
