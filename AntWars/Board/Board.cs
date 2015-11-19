@@ -16,12 +16,16 @@ namespace AntWars.Board
     {
         public List<BoardObject> BoardObjects  { get; set; }
         private Configuration conf;
+        private PictureBox GamePanel;
 
 
-        public Board(Configuration conf)
+        public Board(Configuration conf, PictureBox GamePanel)
         {
             this.conf = conf;
             BoardObjects = new List<BoardObject>();
+            this.GamePanel = GamePanel;
+            this.GamePanel.Height = conf.Game.boardHeigth;
+            this.GamePanel.Width = conf.Game.boardWidth;
         }
 
         public void nextTick()
@@ -92,7 +96,7 @@ namespace AntWars.Board
         private Base generateBase(Player player)
         {
             Base b = new Base(player);
-            b.Coords = Utils.generateBaseCords(conf.BoardWidth, conf.BoardHeight);
+            b.Coords = Utils.generateBaseCords(conf.Game.boardWidth, conf.Game.boardHeigth);
             return b;
         }
 
