@@ -16,6 +16,7 @@ namespace AntWars.Config
         public int boardWidth { get; set; }
         public int boardHeigth { get; set; }
         public int startMoney { get; set; }
-        //TODO Gewinnbedingungen
+        public int time { get; set; }
+        public int points { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AntWars.Exception;
+using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 
@@ -28,18 +29,18 @@ namespace AntWars.Config
                     throw new InvalidConfigurationException();
                 }
             }
+
+            XmlSerializer serial = new XmlSerializer(typeof(Configuration));
+            FileStream file = new FileStream(path, FileMode.Open);
+            XmlReader xmlread = XmlReader.Create(file);
+            config = (Configuration)serial.Deserialize(xmlread);
+            file.Close();
             return config;
         }
         public static void writeConfig(Configuration config, string gamefilepath, string player1filepath, string player2filepath)
         {
             XmlSerializer gameSerial = new XmlSerializer(typeof(GameConfig));
             XmlSerializer playerSerial = new XmlSerializer(typeof(PlayerConfig));
-
-
-
-            FileStream file = new FileStream(gamefilepath, FileMode.Create);
-            gameSerial.Serialize(file, config.Game);
-            file.Close();
 
             writeToFile(gamefilepath, gameSerial, config.Game);
             writeToFile(player1filepath, playerSerial, config.Player1); 
