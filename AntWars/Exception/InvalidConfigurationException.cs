@@ -8,5 +8,6 @@ namespace AntWars.Exception
 {
     class InvalidConfigurationException : System.Exception
     {
+        public InvalidConfigurationException(String message) : base(message) {}
     }
 }

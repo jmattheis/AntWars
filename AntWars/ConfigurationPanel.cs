@@ -16,13 +16,9 @@ namespace AntWars
     public partial class ConfigurationPanel : Form
     {
 
-
-        private string Player1Config_Path { get; set; }
-        private string Player2Config_Path { get; set; }
-        private string GameConfig_Path { get; set; }
-
         private Game game { get; set; }
-        private Configuration conf { get; set; }
+        private ConfigurationLoader configLoader = new ConfigurationLoader();
+
         public ConfigurationPanel()
         {
             InitializeComponent();
@@ -30,9 +26,15 @@ namespace AntWars
 
         private void Start_Click(object sender, EventArgs e)
         {
-            game = new Game(conf);
-            game.start();
-            GameTick.Start();
+            if (configLoader.isAllLoaded())
+            {
+                game = new Game(configLoader.get());
+                game.start();
+                GameTick.Start();
+            } else
+            {
+                // TODO FEHLERMELDUNG
+            }
         }
 
         private void GameTick_Tick(object sender, EventArgs e)
@@ -46,8 +48,7 @@ namespace AntWars
             dia.ShowDialog();
             if (!string.IsNullOrEmpty(dia.FileName))
             {
-                ConfigurationLoader.loadConfig(dia.FileName);
-                Player1Config_Path = dia.FileName;
+                configLoader.loadPlayer1(dia.FileName);
             }
         }
 
@@ -57,8 +58,7 @@ namespace AntWars
             dia.ShowDialog();
             if (!string.IsNullOrEmpty(dia.FileName))
             {
-                ConfigurationLoader.loadConfig(dia.FileName);
-                Player2Config_Path = dia.FileName;
+                configLoader.loadPlayer2(dia.FileName);
             }
         }
 
@@ -68,26 +68,13 @@ namespace AntWars
             dia.ShowDialog();
             if (!string.IsNullOrEmpty(dia.FileName))
             {
-                ConfigurationLoader.loadConfig(dia.FileName);
-                GameConfig_Path = dia.FileName;
+                configLoader.loadGame(dia.FileName);
             }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(Player1Config_Path) && string.IsNullOrEmpty(Player2Config_Path) && !string.IsNullOrEmpty(GameConfig_Path))
-            {
-                ConfigurationLoader.writeConfig(conf, GameConfig_Path, Player1Config_Path, Player2Config_Path);
-            }
-            else
-            {
-                FolderBrowserDialog dia = new FolderBrowserDialog();
-                dia.ShowDialog();
-                if(!string.IsNullOrEmpty(dia.SelectedPath))
-                {
-                    ConfigurationLoader.writeConfig(conf, dia.SelectedPath + "/Player1_Config.xml", dia.SelectedPath + "/Player2_Config.xml", dia.SelectedPath + "/Game_Config.xml");
-                }
-            }
+            configLoader.save();
         }
     }
 }
