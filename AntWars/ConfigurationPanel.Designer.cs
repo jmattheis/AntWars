@@ -31,18 +31,38 @@
             this.components = new System.ComponentModel.Container();
             this.Start = new System.Windows.Forms.Button();
             this.GameTick = new System.Windows.Forms.Timer(this.components);
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.playerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.player2ConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gameConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.ppppanel = new System.Windows.Forms.GroupBox();
+            this.ppanel = new System.Windows.Forms.GroupBox();
+            this.panel = new System.Windows.Forms.GroupBox();
+            this.btn_gameConfigLoad = new System.Windows.Forms.Button();
+            this.btn_gameConfigSave = new System.Windows.Forms.Button();
+            this.btn_player1ConfigLoad = new System.Windows.Forms.Button();
+            this.btn_player1ConfigSave = new System.Windows.Forms.Button();
+            this.btn_player2ConfigLoad = new System.Windows.Forms.Button();
+            this.btn_player2ConfigSave = new System.Windows.Forms.Button();
+            this.btn_player1ConfigNew = new System.Windows.Forms.Button();
+            this.pnl_player1Config = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numeric_gameConfigSugarMin = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numeric_gameConfigSugarMax = new System.Windows.Forms.NumericUpDown();
+            this.pnl_GameConfig = new System.Windows.Forms.Panel();
+            this.btn_gameConfigNew = new System.Windows.Forms.Button();
+            this.btn_player2ConfigNew = new System.Windows.Forms.Button();
+            this.textbox_player1Name = new System.Windows.Forms.TextBox();
+            this.ppppanel.SuspendLayout();
+            this.ppanel.SuspendLayout();
+            this.panel.SuspendLayout();
+            this.pnl_player1Config.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMax)).BeginInit();
+            this.pnl_GameConfig.SuspendLayout();
             this.SuspendLayout();
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(197, 227);
+            this.Start.Location = new System.Drawing.Point(594, 12);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(75, 23);
             this.Start.TabIndex = 0;
@@ -54,69 +74,222 @@
             // 
             this.GameTick.Tick += new System.EventHandler(this.GameTick_Tick);
             // 
-            // menuStrip1
+            // ppppanel
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.saveToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(490, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.ppppanel.Controls.Add(this.pnl_player1Config);
+            this.ppppanel.Controls.Add(this.btn_player1ConfigNew);
+            this.ppppanel.Controls.Add(this.btn_player1ConfigSave);
+            this.ppppanel.Controls.Add(this.btn_player1ConfigLoad);
+            this.ppppanel.Location = new System.Drawing.Point(12, 42);
+            this.ppppanel.Name = "ppppanel";
+            this.ppppanel.Size = new System.Drawing.Size(215, 408);
+            this.ppppanel.TabIndex = 5;
+            this.ppppanel.TabStop = false;
+            this.ppppanel.Text = "Player 1 Configuration";
             // 
-            // toolStripMenuItem1
+            // ppanel
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.playerToolStripMenuItem,
-            this.player2ConfigToolStripMenuItem,
-            this.gameConfigToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(57, 20);
-            this.toolStripMenuItem1.Text = "Load ...";
+            this.ppanel.Controls.Add(this.btn_gameConfigNew);
+            this.ppanel.Controls.Add(this.pnl_GameConfig);
+            this.ppanel.Controls.Add(this.btn_gameConfigSave);
+            this.ppanel.Controls.Add(this.btn_gameConfigLoad);
+            this.ppanel.Location = new System.Drawing.Point(233, 42);
+            this.ppanel.Name = "ppanel";
+            this.ppanel.Size = new System.Drawing.Size(215, 408);
+            this.ppanel.TabIndex = 6;
+            this.ppanel.TabStop = false;
+            this.ppanel.Text = "Game Configuration";
             // 
-            // playerToolStripMenuItem
+            // panel
             // 
-            this.playerToolStripMenuItem.Name = "playerToolStripMenuItem";
-            this.playerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.playerToolStripMenuItem.Text = "... Player 1 config";
-            this.playerToolStripMenuItem.Click += new System.EventHandler(this.player1ToolStripMenuItem_Click);
+            this.panel.Controls.Add(this.btn_player2ConfigNew);
+            this.panel.Controls.Add(this.btn_player2ConfigSave);
+            this.panel.Controls.Add(this.btn_player2ConfigLoad);
+            this.panel.Location = new System.Drawing.Point(454, 42);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(215, 408);
+            this.panel.TabIndex = 6;
+            this.panel.TabStop = false;
+            this.panel.Text = "Player 2 Configuration";
             // 
-            // player2ConfigToolStripMenuItem
+            // btn_gameConfigLoad
             // 
-            this.player2ConfigToolStripMenuItem.Name = "player2ConfigToolStripMenuItem";
-            this.player2ConfigToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.player2ConfigToolStripMenuItem.Text = "... Player 2 config";
-            this.player2ConfigToolStripMenuItem.Click += new System.EventHandler(this.player2ConfigToolStripMenuItem_Click);
+            this.btn_gameConfigLoad.Location = new System.Drawing.Point(62, 19);
+            this.btn_gameConfigLoad.Name = "btn_gameConfigLoad";
+            this.btn_gameConfigLoad.Size = new System.Drawing.Size(66, 23);
+            this.btn_gameConfigLoad.TabIndex = 0;
+            this.btn_gameConfigLoad.Text = "Load";
+            this.btn_gameConfigLoad.UseVisualStyleBackColor = true;
             // 
-            // gameConfigToolStripMenuItem
+            // btn_gameConfigSave
             // 
-            this.gameConfigToolStripMenuItem.Name = "gameConfigToolStripMenuItem";
-            this.gameConfigToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.gameConfigToolStripMenuItem.Text = "... Game config";
-            this.gameConfigToolStripMenuItem.Click += new System.EventHandler(this.gameConfigToolStripMenuItem_Click);
+            this.btn_gameConfigSave.Location = new System.Drawing.Point(134, 19);
+            this.btn_gameConfigSave.Name = "btn_gameConfigSave";
+            this.btn_gameConfigSave.Size = new System.Drawing.Size(75, 23);
+            this.btn_gameConfigSave.TabIndex = 1;
+            this.btn_gameConfigSave.Text = "Save";
+            this.btn_gameConfigSave.UseVisualStyleBackColor = true;
             // 
-            // saveToolStripMenuItem
+            // btn_player1ConfigLoad
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.saveToolStripMenuItem.Text = "Save all";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.btn_player1ConfigLoad.Location = new System.Drawing.Point(62, 19);
+            this.btn_player1ConfigLoad.Name = "btn_player1ConfigLoad";
+            this.btn_player1ConfigLoad.Size = new System.Drawing.Size(66, 23);
+            this.btn_player1ConfigLoad.TabIndex = 2;
+            this.btn_player1ConfigLoad.Text = "Load";
+            this.btn_player1ConfigLoad.UseVisualStyleBackColor = true;
+            this.btn_player1ConfigLoad.Click += new System.EventHandler(this.btn_player1ConfigLoad_Click);
+            // 
+            // btn_player1ConfigSave
+            // 
+            this.btn_player1ConfigSave.Enabled = false;
+            this.btn_player1ConfigSave.Location = new System.Drawing.Point(134, 19);
+            this.btn_player1ConfigSave.Name = "btn_player1ConfigSave";
+            this.btn_player1ConfigSave.Size = new System.Drawing.Size(75, 23);
+            this.btn_player1ConfigSave.TabIndex = 2;
+            this.btn_player1ConfigSave.Text = "Save";
+            this.btn_player1ConfigSave.UseVisualStyleBackColor = true;
+            this.btn_player1ConfigSave.Click += new System.EventHandler(this.btn_player1ConfigSave_Click);
+            // 
+            // btn_player2ConfigLoad
+            // 
+            this.btn_player2ConfigLoad.Location = new System.Drawing.Point(62, 19);
+            this.btn_player2ConfigLoad.Name = "btn_player2ConfigLoad";
+            this.btn_player2ConfigLoad.Size = new System.Drawing.Size(66, 23);
+            this.btn_player2ConfigLoad.TabIndex = 2;
+            this.btn_player2ConfigLoad.Text = "Load";
+            this.btn_player2ConfigLoad.UseVisualStyleBackColor = true;
+            // 
+            // btn_player2ConfigSave
+            // 
+            this.btn_player2ConfigSave.Location = new System.Drawing.Point(134, 19);
+            this.btn_player2ConfigSave.Name = "btn_player2ConfigSave";
+            this.btn_player2ConfigSave.Size = new System.Drawing.Size(75, 23);
+            this.btn_player2ConfigSave.TabIndex = 2;
+            this.btn_player2ConfigSave.Text = "Save";
+            this.btn_player2ConfigSave.UseVisualStyleBackColor = true;
+            // 
+            // btn_player1ConfigNew
+            // 
+            this.btn_player1ConfigNew.Location = new System.Drawing.Point(6, 19);
+            this.btn_player1ConfigNew.Name = "btn_player1ConfigNew";
+            this.btn_player1ConfigNew.Size = new System.Drawing.Size(50, 23);
+            this.btn_player1ConfigNew.TabIndex = 3;
+            this.btn_player1ConfigNew.Text = "New";
+            this.btn_player1ConfigNew.UseVisualStyleBackColor = true;
+            this.btn_player1ConfigNew.Click += new System.EventHandler(this.btn_player1ConfigNew_Click);
+            // 
+            // pnl_player1Config
+            // 
+            this.pnl_player1Config.Controls.Add(this.textbox_player1Name);
+            this.pnl_player1Config.Controls.Add(this.label1);
+            this.pnl_player1Config.Enabled = false;
+            this.pnl_player1Config.Location = new System.Drawing.Point(3, 48);
+            this.pnl_player1Config.Name = "pnl_player1Config";
+            this.pnl_player1Config.Size = new System.Drawing.Size(209, 354);
+            this.pnl_player1Config.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Name";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "SugarMin";
+            // 
+            // numeric_gameConfigSugarMin
+            // 
+            this.numeric_gameConfigSugarMin.Location = new System.Drawing.Point(64, 12);
+            this.numeric_gameConfigSugarMin.Name = "numeric_gameConfigSugarMin";
+            this.numeric_gameConfigSugarMin.Size = new System.Drawing.Size(44, 20);
+            this.numeric_gameConfigSugarMin.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "SugarMax";
+            // 
+            // numeric_gameConfigSugarMax
+            // 
+            this.numeric_gameConfigSugarMax.Location = new System.Drawing.Point(64, 39);
+            this.numeric_gameConfigSugarMax.Name = "numeric_gameConfigSugarMax";
+            this.numeric_gameConfigSugarMax.Size = new System.Drawing.Size(44, 20);
+            this.numeric_gameConfigSugarMax.TabIndex = 6;
+            // 
+            // pnl_GameConfig
+            // 
+            this.pnl_GameConfig.Controls.Add(this.label3);
+            this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigSugarMin);
+            this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigSugarMax);
+            this.pnl_GameConfig.Controls.Add(this.label2);
+            this.pnl_GameConfig.Enabled = false;
+            this.pnl_GameConfig.Location = new System.Drawing.Point(4, 48);
+            this.pnl_GameConfig.Name = "pnl_GameConfig";
+            this.pnl_GameConfig.Size = new System.Drawing.Size(200, 354);
+            this.pnl_GameConfig.TabIndex = 7;
+            // 
+            // btn_gameConfigNew
+            // 
+            this.btn_gameConfigNew.Location = new System.Drawing.Point(6, 19);
+            this.btn_gameConfigNew.Name = "btn_gameConfigNew";
+            this.btn_gameConfigNew.Size = new System.Drawing.Size(50, 23);
+            this.btn_gameConfigNew.TabIndex = 5;
+            this.btn_gameConfigNew.Text = "New";
+            this.btn_gameConfigNew.UseVisualStyleBackColor = true;
+            // 
+            // btn_player2ConfigNew
+            // 
+            this.btn_player2ConfigNew.Location = new System.Drawing.Point(6, 19);
+            this.btn_player2ConfigNew.Name = "btn_player2ConfigNew";
+            this.btn_player2ConfigNew.Size = new System.Drawing.Size(50, 23);
+            this.btn_player2ConfigNew.TabIndex = 8;
+            this.btn_player2ConfigNew.Text = "New";
+            this.btn_player2ConfigNew.UseVisualStyleBackColor = true;
+            // 
+            // textbox_player1Name
+            // 
+            this.textbox_player1Name.Location = new System.Drawing.Point(44, 11);
+            this.textbox_player1Name.Name = "textbox_player1Name";
+            this.textbox_player1Name.Size = new System.Drawing.Size(162, 20);
+            this.textbox_player1Name.TabIndex = 2;
+            this.textbox_player1Name.TextChanged += new System.EventHandler(this.textbox_player1Name_TextChanged);
             // 
             // ConfigurationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 474);
+            this.ClientSize = new System.Drawing.Size(772, 676);
+            this.Controls.Add(this.ppanel);
+            this.Controls.Add(this.panel);
+            this.Controls.Add(this.ppppanel);
             this.Controls.Add(this.Start);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "ConfigurationPanel";
             this.Text = "ConfigurationPanel";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Load += new System.EventHandler(this.ConfigurationPanel_Load);
+            this.ppppanel.ResumeLayout(false);
+            this.ppanel.ResumeLayout(false);
+            this.panel.ResumeLayout(false);
+            this.pnl_player1Config.ResumeLayout(false);
+            this.pnl_player1Config.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMax)).EndInit();
+            this.pnl_GameConfig.ResumeLayout(false);
+            this.pnl_GameConfig.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -124,11 +297,25 @@
 
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.Timer GameTick;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem playerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem player2ConfigToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gameConfigToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.GroupBox ppppanel;
+        private System.Windows.Forms.Button btn_player1ConfigSave;
+        private System.Windows.Forms.Button btn_player1ConfigLoad;
+        private System.Windows.Forms.GroupBox ppanel;
+        private System.Windows.Forms.Button btn_gameConfigSave;
+        private System.Windows.Forms.Button btn_gameConfigLoad;
+        private System.Windows.Forms.GroupBox panel;
+        private System.Windows.Forms.Button btn_player2ConfigSave;
+        private System.Windows.Forms.Button btn_player2ConfigLoad;
+        private System.Windows.Forms.Button btn_player1ConfigNew;
+        private System.Windows.Forms.Panel pnl_player1Config;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_gameConfigNew;
+        private System.Windows.Forms.Panel pnl_GameConfig;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numeric_gameConfigSugarMin;
+        private System.Windows.Forms.NumericUpDown numeric_gameConfigSugarMax;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_player2ConfigNew;
+        private System.Windows.Forms.TextBox textbox_player1Name;
     }
 }

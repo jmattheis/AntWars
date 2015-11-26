@@ -33,7 +33,7 @@ namespace AntWars
                 GameTick.Start();
             } else
             {
-                // TODO FEHLERMELDUNG
+                MessageBox.Show("There are not all configs loaded/created.", "Error: Could not start.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -42,39 +42,81 @@ namespace AntWars
             game.nextTick();
         }
 
-        private void player1ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btn_player1ConfigNew_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dia = new OpenFileDialog();
-            dia.ShowDialog();
-            if (!string.IsNullOrEmpty(dia.FileName))
+            configLoader.newPlayer1();
+            configLoadedOrNewCreated();
+        }
+
+        private void btn_player1ConfigLoad_Click(object sender, EventArgs e)
+        {
+            String res = openDialog();
+            if(res != null)
             {
-                configLoader.loadPlayer1(dia.FileName);
+                configLoader.loadPlayer1(res);
+                configLoadedOrNewCreated();
+                loadPlayer1(configLoader.get().Player1);
             }
         }
 
-        private void player2ConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        private void configLoadedOrNewCreated()
         {
-            OpenFileDialog dia = new OpenFileDialog();
-            dia.ShowDialog();
-            if (!string.IsNullOrEmpty(dia.FileName))
-            {
-                configLoader.loadPlayer2(dia.FileName);
-            }
+            btn_player1ConfigLoad.Enabled = false;
+            btn_player1ConfigNew.Enabled = false;
+            btn_player1ConfigSave.Enabled = true;
+            pnl_player1Config.Enabled = true;
         }
 
-        private void gameConfigToolStripMenuItem_Click(object sender, EventArgs e)
+        private void loadPlayer1(PlayerConfig conf)
         {
-            OpenFileDialog dia = new OpenFileDialog();
-            dia.ShowDialog();
-            if (!string.IsNullOrEmpty(dia.FileName))
-            {
-                configLoader.loadGame(dia.FileName);
-            }
+            textbox_player1Name.Text = conf.playername;
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btn_player1ConfigSave_Click(object sender, EventArgs e)
         {
-            configLoader.save();
+            if(configLoader.isNeededPathPlayer1())
+            {
+                String path = openSaveDialog();
+                if(path != null)
+                {
+                    configLoader.setPlayer1Path(path);
+                } else
+                {
+                    return;
+                }
+            }
+            MessageBox.Show("Successfully saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            configLoader.savePlayer1();
+        }
+
+        private void ConfigurationPanel_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private String openDialog()
+        { 
+            OpenFileDialog dia = new OpenFileDialog();
+            if (dia.ShowDialog() == DialogResult.OK)
+            {
+                return dia.FileName;
+            }
+            return null;
+        }
+
+        private String openSaveDialog()
+        {
+            SaveFileDialog dia = new SaveFileDialog();
+            if (dia.ShowDialog() == DialogResult.OK)
+            {
+                return dia.FileName;
+            }
+            return null;
+        }
+
+        private void textbox_player1Name_TextChanged(object sender, EventArgs e)
+        {
+            configLoader.get().Player1.playername = textbox_player1Name.Text;
         }
     }
 }

@@ -40,30 +40,12 @@ namespace AntWars.Config
 
         public bool isAllLoaded()
         {
-            return player1Path != null && player2Path != null && gamePath != null;
+            return configuration.Player1 != null && configuration.Player2 != null && configuration.Game != null;
         }
 
         public Configuration get()
         {
             return configuration;
-        }
-
-        public void setPlayer1Config(PlayerConfig player1, String pathToFile)
-        {
-            configuration.Player1 = player1;
-            player1Path = pathToFile;
-        }
-
-        public void setPlayer2Config(PlayerConfig player2, String pathToFile)
-        {
-            configuration.Player2 = player2;
-            player2Path = pathToFile;
-        }
-
-        public void setGameConfig(GameConfig game, String pathToFile)
-        {
-            configuration.Game = game;
-            gamePath = pathToFile;
         }
 
         public void save(Configuration conf)
@@ -74,22 +56,14 @@ namespace AntWars.Config
             writeToFile(player2Path, playerConfSerializer, conf.Player2);
         }
 
+        public void savePlayer1()
+        {
+            writeToFile(player1Path, playerConfSerializer, get().Player1);
+        }
+
         public void save()
         {
             save(get());
-        }
-
-        public void save(String path, Object config)
-        {
-            if(config.GetType() == typeof(PlayerConfig)) {
-                writeToFile(path, playerConfSerializer, config);
-            } else if(config.GetType() == typeof(GameConfig))
-            {
-                writeToFile(path, gameConfSerializer, config);
-            } else
-            {
-                throw new RuntimeException(config.GetType() + " is not a valid type for saving");
-            }
         }
 
         private PlayerConfig deserializePlayer(String path)
@@ -107,10 +81,54 @@ namespace AntWars.Config
 
         private void writeToFile(string path, XmlSerializer serializer, object config)
         {
-            // TODO check if exists and then create or edit the file.
             FileStream file = new FileStream(path, FileMode.Create);
             serializer.Serialize(file, config);
             file.Close();
+        }
+
+        public void newPlayer1()
+        {
+            configuration.Player1 = new PlayerConfig();
+        } 
+
+        public void newPlayer2()
+        {
+            configuration.Player2 = new PlayerConfig();
+        }
+
+        public void newGame()
+        {
+            configuration.Game = new GameConfig();
+        }
+
+        public void setPlayer1Path(String path)
+        {
+            player1Path = path;
+        }
+
+        public void setGamePath(String path)
+        {
+            gamePath = path;
+        }
+
+        public void setPlayer2Path(String path)
+        {
+            player2Path = path;
+        }
+
+        public bool isNeededPathPlayer1()
+        {
+            return player1Path == null;
+        }
+
+        public bool isNeededPathPlayer2()
+        {
+            return player2Path == null;
+        }
+
+        public bool isNeededPathGame()
+        {
+            return gamePath == null;
         }
     }
 }
