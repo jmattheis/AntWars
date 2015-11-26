@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AntWars.Config;
 using System.IO;
+using AntWars.Exception;
 
 
 namespace AntWars
@@ -53,7 +54,13 @@ namespace AntWars
             String res = openDialog();
             if(res != null)
             {
-                configLoader.loadPlayer1(res);
+                try {
+                    configLoader.loadPlayer1(res);
+                } catch(InvalidConfigurationException exception)
+                {
+                    MessageBox.Show("Cannot load this configuration because of: \n" + exception.Message, "Error: Invalid configuration.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 configLoadedOrNewCreated();
                 loadPlayer1(configLoader.get().Player1);
             }
@@ -79,7 +86,7 @@ namespace AntWars
                 String path = openSaveDialog();
                 if(path != null)
                 {
-                    configLoader.setPlayer1Path(path);
+                    configLoader.player1Path = path;
                 } else
                 {
                     return;

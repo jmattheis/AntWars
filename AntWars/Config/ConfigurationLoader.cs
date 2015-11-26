@@ -16,9 +16,9 @@ namespace AntWars.Config
         private XmlSerializer playerConfSerializer = new XmlSerializer(typeof(PlayerConfig));
 
         private Configuration configuration = new Configuration();
-        private String player1Path = null;
-        private String player2Path = null;
-        private String gamePath = null;
+        public String player1Path { get; set; }
+        public String player2Path { get; set; }
+        public String gamePath { get; set; }
 
         public void loadPlayer1(String path)
         {
@@ -73,10 +73,15 @@ namespace AntWars.Config
 
         private Object deserialize(String path, XmlSerializer ser)
         {
-            FileStream file = new FileStream(path, FileMode.Open);
-            Object obj = ser.Deserialize(file);
-            file.Close();
-            return obj;
+            try {
+                FileStream file = new FileStream(path, FileMode.Open);
+                Object obj = ser.Deserialize(file);
+                file.Close();
+                return obj;
+            } catch (System.Exception e)
+            {
+                throw new InvalidConfigurationException(e.Message);
+            }
         }
 
         private void writeToFile(string path, XmlSerializer serializer, object config)
@@ -99,21 +104,6 @@ namespace AntWars.Config
         public void newGame()
         {
             configuration.Game = new GameConfig();
-        }
-
-        public void setPlayer1Path(String path)
-        {
-            player1Path = path;
-        }
-
-        public void setGamePath(String path)
-        {
-            gamePath = path;
-        }
-
-        public void setPlayer2Path(String path)
-        {
-            player2Path = path;
         }
 
         public bool isNeededPathPlayer1()
