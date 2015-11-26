@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntWars.Config
 {
-    class GameConfig
+    public class GameConfig
     {
         public int sugarMin { get; set; }
         public int sugarMax { get; set; }

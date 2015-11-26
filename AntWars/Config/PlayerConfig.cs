@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntWars.Config
 {
-    class PlayerConfig
+    public class PlayerConfig
     {
         public string playername { get; set; }
         public int scoutViewRange { get; set;}

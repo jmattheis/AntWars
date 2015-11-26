@@ -12,46 +12,113 @@ namespace AntWars.Config
 {
     class ConfigurationLoader
     {
-        static string configPath = AppDomain.CurrentDomain.BaseDirectory;
-        /// <summary>
-        /// Erstellt ein Config object mithilfe des pfades zur config.xml
-        /// </summary>
-        /// <param name="path">der Pfad zu config</param>
-        /// <returns>ein Config object</returns>
-        /// <exception cref="InvalidConfigurationException">Wird geworfen wenn eine Invalide configuration datei gesetzt wurde.</exception>
-        public static Configuration loadConfig(String path)
+        private XmlSerializer gameConfSerializer = new XmlSerializer(typeof(GameConfig));
+        private XmlSerializer playerConfSerializer = new XmlSerializer(typeof(PlayerConfig));
+
+        private Configuration configuration = new Configuration();
+        public String player1Path { get; set; }
+        public String player2Path { get; set; }
+        public String gamePath { get; set; }
+
+        public void loadPlayer1(String path)
         {
-            Configuration config = new Configuration();
-            if (!string.IsNullOrEmpty(path))
+            player1Path = path;
+            configuration.Player1 = deserializePlayer(path);
+        }
+
+        public void loadPlayer2(String path)
+        {
+            player2Path = path;
+            configuration.Player2 = deserializePlayer(path);
+        }
+
+        public void loadGame(String path)
+        {
+            gamePath = path;
+            configuration.Game = (GameConfig)deserialize(path, gameConfSerializer);
+        }
+
+        public bool isAllLoaded()
+        {
+            return configuration.Player1 != null && configuration.Player2 != null && configuration.Game != null;
+        }
+
+        public Configuration get()
+        {
+            return configuration;
+        }
+
+        public void save(Configuration conf)
+        {
+            // TODO Check which files are given and only save them
+            writeToFile(gamePath, gameConfSerializer, conf.Game);
+            writeToFile(player1Path, playerConfSerializer, conf.Player1);
+            writeToFile(player2Path, playerConfSerializer, conf.Player2);
+        }
+
+        public void savePlayer1()
+        {
+            writeToFile(player1Path, playerConfSerializer, get().Player1);
+        }
+
+        public void save()
+        {
+            save(get());
+        }
+
+        private PlayerConfig deserializePlayer(String path)
+        {
+            return (PlayerConfig)deserialize(path, playerConfSerializer);
+        }
+
+        private Object deserialize(String path, XmlSerializer ser)
+        {
+            try {
+                FileStream file = new FileStream(path, FileMode.Open);
+                Object obj = ser.Deserialize(file);
+                file.Close();
+                return obj;
+            } catch (System.Exception e)
             {
-                if (false)
-                {
-                    throw new InvalidConfigurationException();
-                }
+                throw new InvalidConfigurationException(e.Message);
             }
-
-            XmlSerializer serial = new XmlSerializer(typeof(Configuration));
-            FileStream file = new FileStream(path, FileMode.Open);
-            XmlReader xmlread = XmlReader.Create(file);
-            config = (Configuration)serial.Deserialize(xmlread);
-            file.Close();
-            return config;
-        }
-        public static void writeConfig(Configuration config, string gamefilepath, string player1filepath, string player2filepath)
-        {
-            XmlSerializer gameSerial = new XmlSerializer(typeof(GameConfig));
-            XmlSerializer playerSerial = new XmlSerializer(typeof(PlayerConfig));
-
-            writeToFile(gamefilepath, gameSerial, config.Game);
-            writeToFile(player1filepath, playerSerial, config.Player1); 
-            writeToFile(player2filepath, playerSerial, config.Player2);
         }
 
-        private static void writeToFile(string path, XmlSerializer serializer, object config)
+        private void writeToFile(string path, XmlSerializer serializer, object config)
         {
             FileStream file = new FileStream(path, FileMode.Create);
             serializer.Serialize(file, config);
             file.Close();
+        }
+
+        public void newPlayer1()
+        {
+            configuration.Player1 = new PlayerConfig();
+        } 
+
+        public void newPlayer2()
+        {
+            configuration.Player2 = new PlayerConfig();
+        }
+
+        public void newGame()
+        {
+            configuration.Game = new GameConfig();
+        }
+
+        public bool isNeededPathPlayer1()
+        {
+            return player1Path == null;
+        }
+
+        public bool isNeededPathPlayer2()
+        {
+            return player2Path == null;
+        }
+
+        public bool isNeededPathGame()
+        {
+            return gamePath == null;
         }
     }
 }
