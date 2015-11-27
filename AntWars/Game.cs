@@ -54,42 +54,8 @@ namespace AntWars
 
         public void print()
         {
-            foreach (BoardObject obj in Board.BoardObjects)
-            {
-                if (obj.isAnt())
-                {
-                    Graphics gra = GamePanel.CreateGraphics();
-                    Pen pen = new Pen(System.Drawing.Color.Black);
-                    gra.DrawEllipse(pen, obj.Coords.X, obj.Coords.Y, 1, 1);
-                }
-                else if (obj.isSugar())
-                {
-                    Graphics gra = GamePanel.CreateGraphics();
-                    Pen pen = new Pen(System.Drawing.Color.Red);
-                    gra.DrawEllipse(pen, obj.Coords.X, obj.Coords.Y, 1, 1);
-                }
-                else if (obj.isBase())
-                {
-                    Base baseObject = (Base)obj;
-
-                    Graphics gra = GamePanel.CreateGraphics();
-                    if (baseObject.Player == Player1)
-                    {
-                        Pen pen = new Pen(System.Drawing.Color.Blue);
-                        gra.DrawEllipse(pen, obj.Coords.X, obj.Coords.Y, 1, 1);
-                    }
-                    else
-                    {
-                        Pen pen = new Pen(System.Drawing.Color.Green);
-                        gra.DrawEllipse(pen, obj.Coords.X, obj.Coords.Y, 1, 1);
-                    }
-                }
-                else
-                {
-
-                }
-
-            }
+            
+            
         }   
         
     }

@@ -13,12 +13,10 @@ namespace AntWars.Board
     class BoardObject
     {
         public Coordinates Coords { get; set; }
-        public bool signalPlayer1 { get; set; }
-        public bool signalPlayer2 { get; set; }
 
         public bool isAnt()
         {
-            return GetType() == typeof(Ant);
+            return GetType() == typeof(Ant) || isScout() || isCarry();
         }
 
         public bool isSugar()
@@ -29,6 +27,21 @@ namespace AntWars.Board
         public bool isBase()
         {
             return GetType() == typeof(Base);
+        }
+
+        public bool isCarry()
+        {
+            return GetType() == typeof(Carry);
+        }
+
+        public bool isScout()
+        {
+            return GetType() == typeof(Scout);
+        }
+
+        public bool isSignal()
+        {
+            return GetType() == typeof(Signal);
         }
     }
 }
