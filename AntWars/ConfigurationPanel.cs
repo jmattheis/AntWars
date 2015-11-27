@@ -19,6 +19,7 @@ namespace AntWars
 
         private Game game { get; set; }
         private ConfigurationLoader configLoader = new ConfigurationLoader();
+        private GamePanel gamePanel = new GamePanel();
 
         public ConfigurationPanel()
         {
@@ -27,6 +28,8 @@ namespace AntWars
 
         private void Start_Click(object sender, EventArgs e)
         {
+            gamePanel.startWithTestData();
+            return;
             if (configLoader.isAllLoaded())
             {
                 game = new Game(configLoader.get());
@@ -98,7 +101,7 @@ namespace AntWars
 
         private void ConfigurationPanel_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private String openDialog()

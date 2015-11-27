@@ -17,6 +17,7 @@ namespace AntWars.Board
         public List<BoardObject> BoardObjects  { get; set; }
         private Configuration conf;
         private PictureBox GamePanel;
+        // TODO speichern von nur ant?
 
 
         public Board(Configuration conf, PictureBox GamePanel)
@@ -42,7 +43,7 @@ namespace AntWars.Board
             }
         }
 
-        // Nicht getestet
+        // TODO testen
         private List<BoardObject> getBoardObjectsInView(Ant ant)
         {
             int boxMinX = ant.Coords.X - ant.ViewRange;
