@@ -17,7 +17,5 @@ namespace AntWars.Config
         public int carryInventory { get; set;}
         public int scoutSpeed { get; set;}
         public int carrySpeed { get; set;}
-        public int scoutCost { get; set; }
-        public int carryCost { get; set; }
     }
 }
