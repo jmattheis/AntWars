@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurationPanel));
             this.Start = new System.Windows.Forms.Button();
             this.GameTick = new System.Windows.Forms.Timer(this.components);
             this.ppppanel = new System.Windows.Forms.GroupBox();
@@ -743,6 +744,7 @@
             this.Controls.Add(this.panel);
             this.Controls.Add(this.ppppanel);
             this.Controls.Add(this.Start);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigurationPanel";
             this.Text = "ConfigurationPanel";
             this.Load += new System.EventHandler(this.ConfigurationPanel_Load);

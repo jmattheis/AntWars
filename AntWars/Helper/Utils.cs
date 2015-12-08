@@ -11,7 +11,7 @@ namespace AntWars.Helper
     {
         public static Random random = new Random();
 
-        public static Coordinates generateBaseCords(int boardWidth, int boardHeight)
+        public static Coordinates generateBaseCoords(int boardWidth, int boardHeight)
         {
             // TODO keine base nochmal an der gleichen himmelsrichtig generieren
             switch(random.Next(0,4))
@@ -27,6 +27,11 @@ namespace AntWars.Helper
                 default:
                     throw new RuntimeException("NO WAY");
             }
+        }
+
+        public static Coordinates generateCoords(int boardWidth, int boardHeight)
+        {
+            return new Coordinates(random.Next(boardWidth + 1), random.Next(boardHeight + 1));
         }
 
         public static void RandomizeBoardObjects(List<BoardObject> list)
