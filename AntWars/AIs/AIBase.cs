@@ -11,7 +11,7 @@ namespace AntWars.AI
     abstract class AIBase : IAI
     {
 
-        private Player Player { get; set; }
+        public Player Player {private get; set; }
 
         public Game Game {private get; set; }
 

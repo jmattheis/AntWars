@@ -32,8 +32,10 @@ namespace AntWars
             Player2.PlayerConfig = config.Player2;
             Player1.AI = new AI.Player1();
             Player1.AI.Game = this;
+            Player1.AI.Player = Player1;
             Player2.AI = new AI.Player2();
             Player2.AI.Game = this;
+            Player2.AI.Player = Player2;
         }
 
         public void start()
