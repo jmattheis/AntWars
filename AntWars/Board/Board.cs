@@ -82,6 +82,7 @@ namespace AntWars.Board
         {
             nullTick(player1);
             nullTick(player2);
+            generateSugar(conf.Game.sugarMin, conf.Game.sugarMax);
         }
 
         private void nullTick(Player player)
@@ -90,10 +91,21 @@ namespace AntWars.Board
             player.AI.nextTick();
         }
 
+        private void generateSugar(int min, int max)
+        {
+            int count = new Random().Next(min, max + 1);
+            for (int i = 0; i < count; i++)
+            {
+                Sugar s = new Sugar();
+                s.Coords = Utils.generateCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
+                BoardObjects.Add(s);
+            }
+        }
+
         private Base generateBase(Player player)
         {
             Base b = new Base(player);
-            b.Coords = Utils.generateBaseCords(conf.Game.boardWidth, conf.Game.boardHeigth);
+            b.Coords = Utils.generateBaseCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
             return b;
         }
 
