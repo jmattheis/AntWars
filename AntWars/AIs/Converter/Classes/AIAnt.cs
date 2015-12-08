@@ -4,39 +4,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board.Ants;
+using AntWars.Board;
 
 namespace AntWars.AIs.Converter.Classes
 {
     class AIAnt : AIBoardObject
     {
-        enum Direction
+        private Board.Board board;
+        public AIAnt(Ant ant, Board.Board board) : base(ant)
         {
-            LEFT, RIGHT, UP, DOWN
-        }
-
-        public AIAnt(Ant ant) : base(ant)
-        {
+            this.board = board;
             Owner = ant.Owner;
         }
         public Player Owner { get; private set; }
 
-        public void move(Direction d)
+        protected bool checkCollision(Coordinates coords)
         {
-            switch (d)
+            List<BoardObject> coordObjects = board.getBoardObjectsForCoordinates(coords);
+            foreach (BoardObject coordObject in coordObjects)
             {
-                case Direction.DOWN:
-                    Coords.Y--;
-                    break;
-                case Direction.UP:
-                    Coords.Y++;
-                    break;
-                case Direction.LEFT:
-                    Coords.X--;
-                    break;
-                case Direction.RIGHT:
-                    Coords.X++;
-                    break;
+                if (coordObject.isAnt())
+                    return false;               
             }
+            return true;
+        }
+        public void moveLeft()
+        {
+            Coordinates newCoords = Coords.clone();
+            newCoords.X--;
+            if (!checkCollision(newCoords))
+                Coords.X--;
+        }
+
+        public void moveRight()
+        {
+            Coordinates newCoords = Coords.clone();
+            newCoords.X++;
+            if (!checkCollision(newCoords))
+                Coords.X++;
+        }
+        public void moveUp()
+        {
+            Coordinates newCoords = Coords.clone();
+            newCoords.Y++;
+            if (!checkCollision(newCoords))
+                Coords.Y++;
+        }
+
+        public void moveDown()
+        {
+            Coordinates newCoords = Coords.clone();
+            newCoords.Y--;
+            if (!checkCollision(newCoords))
+                Coords.Y--;
         }
 
     }
