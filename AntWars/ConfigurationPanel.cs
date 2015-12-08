@@ -128,5 +128,10 @@ namespace AntWars
         {
             configLoader.get().Player1.playername = textbox_player1Name.Text;
         }
+
+        private void Cost_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

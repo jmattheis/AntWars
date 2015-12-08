@@ -12,5 +12,6 @@ namespace AntWars.AI
     {
         void nextTick();
         void antTick(Ant ant, List<BoardObject> view);
+        Game Game {set;}
     }
 }
