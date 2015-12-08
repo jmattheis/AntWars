@@ -58,7 +58,6 @@ namespace AntWars.Board
 
         public Coordinates clone()
         {
-
             return new Coordinates(X, Y);
         }
     }
