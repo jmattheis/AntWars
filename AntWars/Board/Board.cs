@@ -7,6 +7,7 @@ using AntWars.Config;
 using AntWars.Helper;
 using AntWars.Board.Ants;
 using AntWars.AIs.Converter;
+using AntWars.AIs.Converter.Classes;
 
 namespace AntWars.Board
 {
@@ -47,7 +48,7 @@ namespace AntWars.Board
         }
 
         // TODO testen
-        private List<BoardObject> getBoardObjectsInView(Ant ant)
+        private List<AIBoardObject> getBoardObjectsInView(Ant ant)
         {
             int boxMinX = ant.Coords.X - ant.ViewRange;
             int boxMinY = ant.Coords.Y - ant.ViewRange;
@@ -65,12 +66,14 @@ namespace AntWars.Board
                     }
                 }
             }
+
             List<BoardObject> result = new List<BoardObject>();
             foreach (Coordinates coords in coordinatesInsideView)
             {
                 result.AddRange(getBoardObjectsForCoordinates(coords));
             }
-            return result;
+            List<AIBoardObject> AIresult = converter.getAIObjects(result);
+            return AIresult;
         }
 
         public List<BoardObject> getBoardObjectsForCoordinates(Coordinates coords)
