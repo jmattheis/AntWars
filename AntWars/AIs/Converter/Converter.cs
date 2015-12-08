@@ -39,6 +39,10 @@ namespace AntWars.AIs.Converter
                 {
                     AIboardObject = new AISugar((Sugar)boardObject);
                 }
+                else if (boardObject.isSignal())
+                {
+                    AIboardObject = new AISignal((Signal)boardObject);
+                }
                 else //?
                 {
                     AIboardObject = new AIBoardObject((BoardObject)boardObject);
