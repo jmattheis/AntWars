@@ -33,12 +33,13 @@ namespace AntWars
             Player1.AI = new AI.Player1();
             Player1.AI.Game = this;
             Player2.AI = new AI.Player2();
+            Conf = config;
             Player2.AI.Game = this;
         }
 
         public void start()
         {
-            Board = new Board.Board(Conf, GamePanel);
+            Board = new Board.Board(Conf);
             Board.nullTick(Player1, Player2);
             started = true;
         }

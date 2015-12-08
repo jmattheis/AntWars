@@ -16,17 +16,13 @@ namespace AntWars.Board
     {
         public List<BoardObject> BoardObjects  { get; set; }
         private Configuration conf;
-        private PictureBox GamePanel;
         // TODO speichern von nur ant?
 
 
-        public Board(Configuration conf, PictureBox GamePanel)
+        public Board(Configuration conf)
         {
             this.conf = conf;
             BoardObjects = new List<BoardObject>();
-            this.GamePanel = GamePanel;
-            this.GamePanel.Height = conf.Game.boardHeigth;
-            this.GamePanel.Width = conf.Game.boardWidth;
         }
 
         public void nextTick()

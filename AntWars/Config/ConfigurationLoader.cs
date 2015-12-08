@@ -61,9 +61,14 @@ namespace AntWars.Config
             writeToFile(player1Path, playerConfSerializer, get().Player1);
         }
 
-        public void save()
+        public void savePlayer2()
         {
-            save(get());
+            writeToFile(player2Path, playerConfSerializer, get().Player2);
+        }
+
+        public void saveGame()
+        {
+            writeToFile(gamePath, gameConfSerializer, get().Game);
         }
 
         private PlayerConfig deserializePlayer(String path)
