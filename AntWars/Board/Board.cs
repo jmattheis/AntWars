@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using AntWars.Config;
 using AntWars.Helper;
 using AntWars.Board.Ants;
+using AntWars.AIs.Converter;
 
 namespace AntWars.Board
 {
@@ -18,10 +19,12 @@ namespace AntWars.Board
         private Configuration conf;
         private PictureBox GamePanel;
         // TODO speichern von nur ant?
+        private Converter converter;
 
 
         public Board(Configuration conf, PictureBox GamePanel)
         {
+            converter = new Converter(this);
             this.conf = conf;
             BoardObjects = new List<BoardObject>();
             this.GamePanel = GamePanel;
@@ -70,7 +73,7 @@ namespace AntWars.Board
             return result;
         }
 
-        private List<BoardObject> getBoardObjectsForCoordinates(Coordinates coords)
+        public List<BoardObject> getBoardObjectsForCoordinates(Coordinates coords)
         {
             List<BoardObject> results = new List<BoardObject>();
             foreach (BoardObject obj in BoardObjects)

@@ -11,27 +11,29 @@ namespace AntWars.AIs.Converter
 {
     class Converter
     {
+        private Board.Board board;
+        public Converter(Board.Board board)
+        {
+            this.board = board;
+        }
         public List<AIBoardObject> getAIObjects(List<BoardObject> boardObjects)
         {
             List<AIBoardObject> AIboardObjects = new List<AIBoardObject>();
             foreach (BoardObject boardObject in boardObjects)
             {
                 AIBoardObject AIboardObject;
-                if (boardObject.isAnt())
-                {
-                    AIboardObject = new AIAnt((Ant)boardObject);
-                }
-                else if (boardObject.isBase())
+               
+                if (boardObject.isBase())
                 {
                     AIboardObject = new AIBase((Base)boardObject);
                 }           
                 else if (boardObject.isCarry())
                 {
-                    AIboardObject = new AICarry((Carry)boardObject);
+                    AIboardObject = new AICarry((Carry)boardObject, board);
                 }
                 else if (boardObject.isScout())
                 {
-                    AIboardObject = new AIScout((Scout)boardObject);
+                    AIboardObject = new AIScout((Scout)boardObject, board);
                 }
                 else if (boardObject.isSugar())
                 {
