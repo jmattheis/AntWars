@@ -13,24 +13,47 @@ namespace AntWars.AI
 
         private Player Player { get; set; }
 
-        private Game Game { get; set; }
+        public Game Game {private get; set; }
 
         public AIBase() { }
 
         private Base Base = null;
 
 
-        protected void buyScout() {
+        protected bool buyScout() {
             Scout s = new Scout();
-            s.Owner = Player;
-            // TODO währung abziehen
-            BoardObject b = Game.Board.getBase(Player);
-            s.Coords = b.Coords;
+
+            if (Player.money < Player.scoutCost)
+                return false;
+            else
+                Player.money -= Player.scoutCost;
+
+            buyAnt(s);
+
+            return true;
         }
 
-        protected void buyCarrier() {
+        protected bool buyCarrier() {
+            Carry c = new Carry();
 
+            if (Player.money < Player.carryCost)
+                return false;
+            else
+                Player.money -= Player.carryCost;
+
+            buyAnt(c);
+
+            return true;
         }
+
+        private void buyAnt(Ant ant)
+        {
+            Base b = Game.Board.getBase(Player);
+            ant.Owner = Player;
+            ant.Coords = b.Coords;
+            Game.Board.BoardObjects.Add(ant);
+        }
+
 
         protected Base getBase()
         {
