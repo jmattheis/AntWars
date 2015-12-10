@@ -18,7 +18,6 @@ namespace AntWars.Board
     {
         public List<BoardObject> BoardObjects  { get; set; }
         private Configuration conf;
-        // TODO speichern von nur ant?
         private Converter converter;
 
 
@@ -99,13 +98,31 @@ namespace AntWars.Board
 
         private void generateSugar(int min, int max)
         {
-            int count = new Random().Next(min, max + 1);
+            Random rand =  new Random();
+            int count = rand.Next(min, max + 1);
             for (int i = 0; i < count; i++)
             {
                 Sugar s = new Sugar();
                 s.Coords = Utils.generateCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
+                if(hasSugarOnCoords(s.Coords)) {
+                    i--;
+                    continue;
+                }
+                s.amount = rand.Next(conf.Game.sugarAmountMin, conf.Game.sugarAmountMax + 1);
                 BoardObjects.Add(s);
             }
+        }
+
+        private bool hasSugarOnCoords(Coordinates coords)
+        {
+            foreach (BoardObject obj in getBoardObjectsForCoordinates(coords))
+            {
+                if (obj.isSugar() || obj.isBase())
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private Base generateBase(Player player)

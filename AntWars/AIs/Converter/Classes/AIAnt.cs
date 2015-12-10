@@ -11,9 +11,11 @@ namespace AntWars.AIs.Converter.Classes
     class AIAnt : AIBoardObject
     {
         private Board.Board board;
+        private Ant ant; 
         public AIAnt(Ant ant, Board.Board board) : base(ant)
         {
             this.board = board;
+            this.ant = ant;
             Owner = ant.Owner;
         }
         public Player Owner { get; private set; }
