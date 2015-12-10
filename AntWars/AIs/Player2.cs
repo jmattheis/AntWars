@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board;
 using AntWars.Board.Ants;
+using AntWars.AIs.Converter.Classes;
+
 
 namespace AntWars.AI
 {
     class Player2 : AIBase
     {
-        public override void antTick(Ant ant, List<BoardObject> view)
+        public override void antTick(Ant ant, List<AIBoardObject> view)
         {
             throw new NotImplementedException();
         }
