@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AntWars.Board.Ants;
 
 namespace AntWars.AIs.Converter.Classes
 {
-    class AICarry : AIAnt
+    class AISignal : AIBoardObject
     {
-        public AICarry(Carry carry, Board.Board board)
-            : base(carry, board)
+        public AISignal(AntWars.Board.Signal signal)
+            : base(signal)
         {
 
         }

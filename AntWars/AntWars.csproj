@@ -49,6 +49,7 @@
     <Compile Include="AIs\Converter\Classes\AIBoardObject.cs" />
     <Compile Include="AIs\Converter\Classes\AICarry.cs" />
     <Compile Include="AIs\Converter\Classes\AIScout.cs" />
+    <Compile Include="AIs\Converter\Classes\AISignal.cs" />
     <Compile Include="AIs\Converter\Classes\AISugar.cs" />
     <Compile Include="AIs\Converter\Converter.cs" />
     <Compile Include="AIs\IAI.cs" />
