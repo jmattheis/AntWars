@@ -53,10 +53,10 @@ namespace AntWars
 
         public void print()
         {
-            print(game.Board.BoardObjects);
+            print(game.Board.BoardObjects.get());
         }
 
-        private void print(List<BoardObject> boardObjects)
+        private void print(IList<BoardObject> boardObjects)
         {
             // TODO was ist wenn welche übereinander sind
             // TODO signal anzeigen?

@@ -16,7 +16,7 @@ namespace AntWars.Board
     /// </summary>
     class Board
     {
-        public List<BoardObject> BoardObjects  { get; set; }
+        public BoardObjects BoardObjects  { get; private set; }
         private Configuration conf;
         private Converter converter;
 
@@ -25,20 +25,16 @@ namespace AntWars.Board
         {
             converter = new Converter(this);
             this.conf = conf;
-            BoardObjects = new List<BoardObject>();
+            BoardObjects = new BoardObjects();
         }
 
         public void nextTick()
         {
-            randomizeBoardObjects();
-
-            foreach (BoardObject obj in BoardObjects)
+            // TODO Gewinnbedingungen
+            // TODO zucker check ob der weg kann
+            foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                if (obj.isAnt())
-                {
-                    Ant ant = (Ant)obj;
-                    ant.Owner.AI.antTick(ant, getBoardObjectsInView(ant));
-                }
+                ant.Owner.AI.antTick(ant, getBoardObjectsInView(ant));
             }
         }
 
@@ -74,7 +70,7 @@ namespace AntWars.Board
         public List<BoardObject> getBoardObjectsForCoordinates(Coordinates coords)
         {
             List<BoardObject> results = new List<BoardObject>();
-            foreach (BoardObject obj in BoardObjects)
+            foreach (BoardObject obj in BoardObjects.get())
             {
                 if (obj.Coords.Equals(coords))
                 {
@@ -92,7 +88,7 @@ namespace AntWars.Board
 
         private void nullTick(Player player)
         {
-            BoardObjects.Add(generateBase(player));
+            BoardObjects.add(generateBase(player));
             player.AI.nextTick();
         }
 
@@ -109,7 +105,7 @@ namespace AntWars.Board
                     continue;
                 }
                 s.amount = rand.Next(conf.Game.sugarAmountMin, conf.Game.sugarAmountMax + 1);
-                BoardObjects.Add(s);
+                BoardObjects.add(s);
             }
         }
 
@@ -132,15 +128,10 @@ namespace AntWars.Board
             return b;
         }
 
-        private void randomizeBoardObjects()
-        {
-            Utils.RandomizeBoardObjects(BoardObjects);
-        }
-
 
         public Base getBase(Player p)
         {
-            foreach (BoardObject item in BoardObjects)
+            foreach (BoardObject item in BoardObjects.getBases())
             {
                 if (item.isBase() && ((Base) item).Player == p)
                     return (Base)item;

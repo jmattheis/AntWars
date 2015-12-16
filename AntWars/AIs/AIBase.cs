@@ -52,7 +52,7 @@ namespace AntWars.AI
             Base b = Game.Board.getBase(Player);
             ant.Owner = Player;
             ant.Coords = b.Coords;
-            Game.Board.BoardObjects.Add(ant);
+            Game.Board.BoardObjects.add(ant);
         }
 
 

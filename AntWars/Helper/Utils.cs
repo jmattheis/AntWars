@@ -34,14 +34,14 @@ namespace AntWars.Helper
             return new Coordinates(random.Next(boardWidth + 1), random.Next(boardHeight + 1));
         }
 
-        public static void RandomizeBoardObjects(List<BoardObject> list)
+        public static void RandomizeBoardObjects<T>(IList<T> list)
         {
             int n = list.Count;
             while (n > 1)
             {
                 int k = (random.Next(0, n) % n);
                 n--;
-                BoardObject value = list[k];
+                T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
           
