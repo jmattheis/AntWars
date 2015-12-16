@@ -22,14 +22,9 @@ namespace AntWars.AIs.Converter.Classes
 
         protected bool checkCollision(Coordinates coords)
         {
-            List<BoardObject> coordObjects = board.getBoardObjectsForCoordinates(coords);
-            foreach (BoardObject coordObject in coordObjects)
-            {
-                if (coordObject.isAnt())
-                    return false;               
-            }
-            return true;
+            return !board.BoardObjects.hasAntOnCoords(coords);
         }
+
         public void moveLeft()
         {
             Coordinates newCoords = Coords.clone();

@@ -49,7 +49,7 @@ namespace AntWars.AI
 
         private void buyAnt(Ant ant)
         {
-            Base b = Game.Board.getBase(Player);
+            Base b = Game.Board.BoardObjects.getBase(Player);
             ant.Owner = Player;
             ant.Coords = b.Coords;
             Game.Board.BoardObjects.add(ant);
@@ -59,7 +59,7 @@ namespace AntWars.AI
         protected Base getBase()
         {
             if(Base == null)
-                Base = Game.Board.getBase(Player);
+                Base = Game.Board.BoardObjects.getBase(Player);
             
             return Base;
         }

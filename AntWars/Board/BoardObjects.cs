@@ -104,15 +104,14 @@ namespace AntWars.Board
             return new ReadOnlyCollection<Coordinates>(coordsToObjects.Keys.ToArray());
         }
 
-        public List<BoardObject> getBoardObjectsFromCoords(Coordinates coords)
+        public IList<BoardObject> getBoardObjectsFromCoords(Coordinates coords)
         {
-
             List<BoardObject> objsInCoords;
             if (!coordsToObjects.TryGetValue(coords, out objsInCoords))
             {
                 objsInCoords = new List<BoardObject>();
             }
-            return objsInCoords;
+            return new ReadOnlyCollection<BoardObject>(objsInCoords);
         }
 
         public void move(BoardObject obj, Coordinates coords)
@@ -147,6 +146,52 @@ namespace AntWars.Board
                 sugars.Remove((Sugar)boardObject);
             }
             removeFromMap(boardObject);
+        }
+
+        public bool hasSugarOnCoords(Coordinates coords)
+        {
+            foreach (BoardObject obj in getBoardObjectsFromCoords(coords))
+            {
+                if(obj.isSugar())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool hasBaseOnCoords(Coordinates coords)
+        {
+            foreach (BoardObject obj in getBoardObjectsFromCoords(coords))
+            {
+                if (obj.isBase())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool hasAntOnCoords(Coordinates coords)
+        {
+            foreach (BoardObject obj in getBoardObjectsFromCoords(coords))
+            {
+                if (obj.isAnt())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Base getBase(Player p)
+        {
+            foreach (BoardObject item in getBases())
+            {
+                if (item.isBase() && ((Base)item).Player == p)
+                    return (Base)item;
+            }
+            throw new RuntimeException("Could not find base.");
         }
     }
 }

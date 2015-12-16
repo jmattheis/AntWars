@@ -61,24 +61,12 @@ namespace AntWars.Board
             List<BoardObject> result = new List<BoardObject>();
             foreach (Coordinates coords in coordinatesInsideView)
             {
-                result.AddRange(getBoardObjectsForCoordinates(coords));
+                result.AddRange(BoardObjects.getBoardObjectsFromCoords(coords));
             }
             List<AIBoardObject> AIresult = converter.getAIObjects(result);
             return AIresult;
         }
 
-        public List<BoardObject> getBoardObjectsForCoordinates(Coordinates coords)
-        {
-            List<BoardObject> results = new List<BoardObject>();
-            foreach (BoardObject obj in BoardObjects.get())
-            {
-                if (obj.Coords.Equals(coords))
-                {
-                    results.Add(obj);
-                }
-            }
-            return results;
-        }
         public void nullTick(Player player1, Player player2)
         {
             nullTick(player1);
@@ -88,7 +76,14 @@ namespace AntWars.Board
 
         private void nullTick(Player player)
         {
-            BoardObjects.add(generateBase(player));
+            Base b = generateBase(player);
+
+            if(BoardObjects.hasBaseOnCoords(b.Coords))
+            {
+                nullTick(player);
+                return;
+            }
+            BoardObjects.add(b);
             player.AI.nextTick();
         }
 
@@ -100,25 +95,13 @@ namespace AntWars.Board
             {
                 Sugar s = new Sugar();
                 s.Coords = Utils.generateCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
-                if(hasSugarOnCoords(s.Coords)) {
+                if(BoardObjects.hasBaseOnCoords(s.Coords) || BoardObjects.hasSugarOnCoords(s.Coords)) {
                     i--;
                     continue;
                 }
                 s.amount = rand.Next(conf.Game.sugarAmountMin, conf.Game.sugarAmountMax + 1);
                 BoardObjects.add(s);
             }
-        }
-
-        private bool hasSugarOnCoords(Coordinates coords)
-        {
-            foreach (BoardObject obj in getBoardObjectsForCoordinates(coords))
-            {
-                if (obj.isSugar() || obj.isBase())
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         private Base generateBase(Player player)
@@ -128,15 +111,5 @@ namespace AntWars.Board
             return b;
         }
 
-
-        public Base getBase(Player p)
-        {
-            foreach (BoardObject item in BoardObjects.getBases())
-            {
-                if (item.isBase() && ((Base) item).Player == p)
-                    return (Base)item;
-            }
-            throw new RuntimeException("Could not find base.");
-        }
     }
 }
