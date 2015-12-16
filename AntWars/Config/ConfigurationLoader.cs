@@ -48,14 +48,6 @@ namespace AntWars.Config
             return configuration;
         }
 
-        public void save(Configuration conf)
-        {
-            // TODO Check which files are given and only save them
-            writeToFile(gamePath, gameConfSerializer, conf.Game);
-            writeToFile(player1Path, playerConfSerializer, conf.Player1);
-            writeToFile(player2Path, playerConfSerializer, conf.Player2);
-        }
-
         public void savePlayer1()
         {
             writeToFile(player1Path, playerConfSerializer, get().Player1);

@@ -25,35 +25,55 @@ namespace AntWars.AIs.Converter.Classes
             return !board.BoardObjects.hasAntOnCoords(coords);
         }
 
-        public void moveLeft()
+        public bool moveLeft()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X--;
             if (!checkCollision(newCoords))
+            {
+                board.BoardObjects.move(ant, newCoords);
                 Coords.X--;
+                return true;
+            }
+            return false;
         }
 
-        public void moveRight()
+        public bool moveRight()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X++;
             if (!checkCollision(newCoords))
+            {
+                board.BoardObjects.move(ant, newCoords);
                 Coords.X++;
+                return true;
+            }
+            return false;
         }
-        public void moveUp()
+        public bool moveUp()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y++;
             if (!checkCollision(newCoords))
+            {
+                board.BoardObjects.move(ant, newCoords);
                 Coords.Y++;
+                return true;
+            }
+            return false;
         }
 
-        public void moveDown()
+        public bool moveDown()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y--;
             if (!checkCollision(newCoords))
+            {
+                board.BoardObjects.move(ant, newCoords);
                 Coords.Y--;
+                return true;
+            }
+            return false;
         }
 
     }
