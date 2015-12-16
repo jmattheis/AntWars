@@ -20,60 +20,31 @@ namespace AntWars.AIs.Converter.Classes
         }
         public Player Owner { get; private set; }
 
-        protected bool checkCollision(Coordinates coords)
-        {
-            return !board.BoardObjects.hasAntOnCoords(coords);
-        }
-
         public bool moveLeft()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X--;
-            if (!checkCollision(newCoords))
-            {
-                board.BoardObjects.move(ant, newCoords);
-                Coords.X--;
-                return true;
-            }
-            return false;
+            return board.BoardObjects.move(ant, newCoords);
         }
 
         public bool moveRight()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X++;
-            if (!checkCollision(newCoords))
-            {
-                board.BoardObjects.move(ant, newCoords);
-                Coords.X++;
-                return true;
-            }
-            return false;
+            return board.BoardObjects.move(ant, newCoords);
         }
         public bool moveUp()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y++;
-            if (!checkCollision(newCoords))
-            {
-                board.BoardObjects.move(ant, newCoords);
-                Coords.Y++;
-                return true;
-            }
-            return false;
+            return board.BoardObjects.move(ant, newCoords);
         }
 
         public bool moveDown()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y--;
-            if (!checkCollision(newCoords))
-            {
-                board.BoardObjects.move(ant, newCoords);
-                Coords.Y--;
-                return true;
-            }
-            return false;
+            return board.BoardObjects.move(ant, newCoords);
         }
 
     }

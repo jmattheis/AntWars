@@ -18,8 +18,16 @@ namespace AntWars.Board
         private IList<Sugar> sugars = new List<Sugar>();
         private IDictionary<Coordinates, List<BoardObject>> coordsToObjects = new Dictionary<Coordinates, List<BoardObject>>();
 
-        public void add(BoardObject boardObject)
+        /// <summary>
+        /// Adds a entry to the boardobjects
+        /// </summary>
+        /// <returns>true when added false when there a already a entry with the type on this coordinate</returns>
+        public bool add(BoardObject boardObject)
         {
+            if(!addToMap(boardObject))
+            {
+                return false;
+            }
             boardObjects.Add(boardObject);
             if (boardObject.isAnt())
             {
@@ -37,11 +45,10 @@ namespace AntWars.Board
             {
                 sugars.Add((Sugar)boardObject);
             }
-            addToMap(boardObject);
-
+            return true;
         }
 
-        private void addToMap(BoardObject boardObject)
+        private bool addToMap(BoardObject boardObject)
         {
             List<BoardObject> objsInCoords;
             if (!coordsToObjects.TryGetValue(boardObject.Coords, out objsInCoords))
@@ -49,7 +56,24 @@ namespace AntWars.Board
                 objsInCoords = new List<BoardObject>();
                 coordsToObjects.Add(boardObject.Coords, objsInCoords);
             }
-            objsInCoords.Add(boardObject);
+            if(!containsType(objsInCoords, boardObject))
+            {
+                objsInCoords.Add(boardObject);
+                return true;
+            }
+            return false;
+        }
+
+        private bool containsType(IList<BoardObject> objs, BoardObject objectToCheck)
+        {
+            foreach (BoardObject obj in objs)
+            {
+                // the OR is a workaround due to Carry != Scout in type so we use our isAnt() method
+                if(obj.GetType() == objectToCheck.GetType() || (obj.isAnt() && objectToCheck.isAnt())) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void removeFromMap(BoardObject boardObject)
@@ -114,8 +138,16 @@ namespace AntWars.Board
             return new ReadOnlyCollection<BoardObject>(objsInCoords);
         }
 
-        public void move(BoardObject obj, Coordinates coords)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>true when moved false when the way is blocked</returns>
+        public bool move(BoardObject obj, Coordinates coords)
         {
+            if(containsType(getBoardObjectsFromCoords(coords), obj))
+            {
+                return false;
+            }
             List<BoardObject> objsInCoords;
             if (!coordsToObjects.TryGetValue(obj.Coords, out objsInCoords))
             {
@@ -124,6 +156,7 @@ namespace AntWars.Board
             objsInCoords.Remove(obj);
             obj.Coords = coords;
             addToMap(obj);
+            return true;
         }
 
         public void remove(BoardObject boardObject)
@@ -177,6 +210,18 @@ namespace AntWars.Board
             foreach (BoardObject obj in getBoardObjectsFromCoords(coords))
             {
                 if (obj.isAnt())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool hasSignalOnCoords(Coordinates coords)
+        {
+            foreach (BoardObject obj in getBoardObjectsFromCoords(coords))
+            {
+                if (obj.isSignal())
                 {
                     return true;
                 }
