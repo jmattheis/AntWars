@@ -65,7 +65,7 @@ namespace AntWars.AI
         }
 
         public abstract void nextTick(int currentMoney);
-        public abstract void antTick(Ant ant, List<AIBoardObject> view);
+        public abstract void antTick(AIAnt ant, List<AIBoardObject> view);
 
         public void nextTick()
         {

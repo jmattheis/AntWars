@@ -24,8 +24,11 @@ namespace AntWars
 
         public void start(Config.Configuration config)
         {
+            pb_Game.Size = new Size(config.Game.boardWidth, config.Game.boardHeigth);
+            ClientSize = new Size(pb_Game.Right, pb_Game.Bottom);
             game = new Game(config);
             game.start();
+            timer_GameTick.Start();
             Show();
         }
 
@@ -64,7 +67,7 @@ namespace AntWars
 
             //Graphics gra = pb_Game.CreateGraphics();
 
-            Bitmap bitmap = new Bitmap(/*this.game.Conf.Game.boardWidth*/200, /*this.game.Conf.Game.boardHeigth*/200); //TODO gameConf Höhe, Länge
+            Bitmap bitmap = new Bitmap(this.game.Conf.Game.boardWidth + 1, this.game.Conf.Game.boardHeigth + 1);
 
             foreach (BoardObject obj in boardObjects)
             {

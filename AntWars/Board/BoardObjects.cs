@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board.Ants;
 using AntWars.Helper;
-
+using AntWars.Config;
 namespace AntWars.Board
 {
     class BoardObjects
@@ -17,6 +17,12 @@ namespace AntWars.Board
         private IList<Base> bases = new List<Base>();
         private IList<Sugar> sugars = new List<Sugar>();
         private IDictionary<Coordinates, List<BoardObject>> coordsToObjects = new Dictionary<Coordinates, List<BoardObject>>();
+        private GameConfig conf;
+
+        public BoardObjects(GameConfig conf)
+        {
+            this.conf = conf;
+        }
 
         /// <summary>
         /// Adds a entry to the boardobjects
@@ -144,7 +150,7 @@ namespace AntWars.Board
         /// <returns>true when moved false when the way is blocked</returns>
         public bool move(BoardObject obj, Coordinates coords)
         {
-            if(containsType(getBoardObjectsFromCoords(coords), obj))
+            if(!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords), obj))
             {
                 return false;
             }
@@ -156,6 +162,15 @@ namespace AntWars.Board
             objsInCoords.Remove(obj);
             obj.Coords = coords;
             addToMap(obj);
+            return true;
+        }
+
+        public bool isValidCoords(Coordinates coords)
+        {
+            if (coords.X < 0) return false;
+            if (coords.X > conf.boardWidth) return false;
+            if (coords.Y < 0) return false;
+            if (coords.Y > conf.boardHeigth) return false;
             return true;
         }
 

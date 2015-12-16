@@ -25,16 +25,20 @@ namespace AntWars.Board
         {
             converter = new Converter(this);
             this.conf = conf;
-            BoardObjects = new BoardObjects();
+            BoardObjects = new BoardObjects(conf.Game);
         }
 
         public void nextTick()
         {
             // TODO Gewinnbedingungen
             // TODO zucker check ob der weg kann
+            foreach (Base playerbase in BoardObjects.getBases()) 
+            {
+                playerbase.Player.AI.nextTick();
+            }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                ant.Owner.AI.antTick(ant, getBoardObjectsInView(ant));
+                ant.Owner.AI.antTick(new AIAnt(ant, this), getBoardObjectsInView(ant));
             }
         }
 
@@ -83,7 +87,10 @@ namespace AntWars.Board
                 nullTick(player);
                 return;
             }
-            BoardObjects.add(b);
+            if(!BoardObjects.add(b))
+            {
+                throw new RuntimeException("Could not add base");
+            }
             player.AI.nextTick();
         }
 
