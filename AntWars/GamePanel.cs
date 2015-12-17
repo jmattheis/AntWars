@@ -61,9 +61,8 @@ namespace AntWars
         {
             // TODO was ist wenn welche übereinander sind
             // TODO signal anzeigen?
-            // TODO immer alles neu bauen? --> performance base sugar muss nicht immer neu gemacht werden
-
-            //Graphics gra = pb_Game.CreateGraphics();
+            // TODO sowas wie 'inferiorElement.Name == "ff000000"' kann doch mit 'inferiorElement == Color.Black' ausgetauscht werden
+            // Das würde besser im code aussehen.
 
             Bitmap bitmap = new Bitmap(game.Conf.Game.boardWidth + 1, game.Conf.Game.boardHeigth + 1);
 
