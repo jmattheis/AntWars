@@ -26,6 +26,7 @@ namespace AntWars
         {
             game = new Game(config);
             game.start();
+            timer_GameTick.Start();
             Show();
         }
 
@@ -53,10 +54,10 @@ namespace AntWars
 
         public void print()
         {
-            print(game.Board.BoardObjects);
+            print(game.Board.BoardObjects.get());
         }
 
-        private void print(List<BoardObject> boardObjects)
+        private void print(IList<BoardObject> boardObjects)
         {
             // TODO was ist wenn welche übereinander sind
             // TODO signal anzeigen?
@@ -64,14 +65,14 @@ namespace AntWars
 
             //Graphics gra = pb_Game.CreateGraphics();
 
-            Bitmap bitmap = new Bitmap(/*this.game.Conf.Game.boardWidth*/200, /*this.game.Conf.Game.boardHeigth*/200); //TODO gameConf Höhe, Länge
+            Bitmap bitmap = new Bitmap(this.game.Conf.Game.boardWidth + 1, this.game.Conf.Game.boardHeigth + 1);
 
             foreach (BoardObject obj in boardObjects)
             {
                 Color inferiorElement = bitmap.GetPixel(obj.Coords.X, obj.Coords.Y);
                 if (obj.isCarry())
                 {
-                    if (true)//((Carry)obj).Owner == this.game.Player1) //TODO
+                    if (((Ant)obj).Owner == this.game.Player1)
                     {
                         if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
                             bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
@@ -88,7 +89,7 @@ namespace AntWars
                 }
                 else if (obj.isScout())
                 {
-                    if (true)//((Scout)obj).Owner == this.game.Player1) //TODO
+                    if (((Scout)obj).Owner == this.game.Player1)
                     {
                         if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
                             bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);

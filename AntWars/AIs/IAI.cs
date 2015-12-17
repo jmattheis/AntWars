@@ -12,7 +12,7 @@ namespace AntWars.AI
     interface IAI
     {
         void nextTick();
-        void antTick(Ant ant, List<AIBoardObject> view);
+        void antTick(AIAnt ant, List<AIBoardObject> view);
         Game Game {set;}
         Player Player { set;}
     }

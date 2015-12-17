@@ -32,6 +32,8 @@ namespace AntWars
             {
                 if (checkGameConfig())
                 {
+                    gamePanel.start(configLoader.get());
+                    return;
                     game = new Game(configLoader.get());
                     game.start();
                     GameTick.Start();                    

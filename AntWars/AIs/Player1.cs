@@ -11,14 +11,30 @@ namespace AntWars.AI
 {
     class Player1 : AIBase
     {
-        public override void antTick(Ant ant, List<AIBoardObject> view)
+        private Random rand = new Random();
+        public override void antTick(AIAnt ant, List<AIBoardObject> view)
         {
-            throw new NotImplementedException();
+            // RANDOM FTW
+            switch(rand.Next(0, 4))
+            {
+                case 1:
+                    ant.moveDown();
+                    break;
+                case 2:
+                    ant.moveLeft();
+                    break;
+                case 3:
+                    ant.moveRight();
+                    break;
+                case 0:
+                    ant.moveUp();
+                    break;
+            }
         }
 
         public override void nextTick(int currentMoney)
         {
-            throw new NotImplementedException();
+            buyCarrier();
         }
 
     }

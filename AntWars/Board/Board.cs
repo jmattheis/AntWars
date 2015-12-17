@@ -16,9 +16,8 @@ namespace AntWars.Board
     /// </summary>
     class Board
     {
-        public List<BoardObject> BoardObjects  { get; set; }
+        public BoardObjects BoardObjects  { get; private set; }
         private Configuration conf;
-        // TODO speichern von nur ant?
         private Converter converter;
 
 
@@ -26,20 +25,20 @@ namespace AntWars.Board
         {
             converter = new Converter(this);
             this.conf = conf;
-            BoardObjects = new List<BoardObject>();
+            BoardObjects = new BoardObjects(conf.Game);
         }
 
         public void nextTick()
         {
-            randomizeBoardObjects();
-
-            foreach (BoardObject obj in BoardObjects)
+            // TODO Gewinnbedingungen
+            // TODO zucker check ob der weg kann
+            foreach (Base playerbase in BoardObjects.getBases()) 
             {
-                if (obj.isAnt())
-                {
-                    Ant ant = (Ant)obj;
-                    ant.Owner.AI.antTick(ant, getBoardObjectsInView(ant));
-                }
+                playerbase.Player.AI.nextTick();
+            }
+            foreach (Ant ant in BoardObjects.getRandomAnts())
+            {
+                ant.Owner.AI.antTick(new AIAnt(ant, this), getBoardObjectsInView(ant));
             }
         }
 
@@ -66,24 +65,12 @@ namespace AntWars.Board
             List<BoardObject> result = new List<BoardObject>();
             foreach (Coordinates coords in coordinatesInsideView)
             {
-                result.AddRange(getBoardObjectsForCoordinates(coords));
+                result.AddRange(BoardObjects.getBoardObjectsFromCoords(coords));
             }
             List<AIBoardObject> AIresult = converter.getAIObjects(result);
             return AIresult;
         }
 
-        public List<BoardObject> getBoardObjectsForCoordinates(Coordinates coords)
-        {
-            List<BoardObject> results = new List<BoardObject>();
-            foreach (BoardObject obj in BoardObjects)
-            {
-                if (obj.Coords.Equals(coords))
-                {
-                    results.Add(obj);
-                }
-            }
-            return results;
-        }
         public void nullTick(Player player1, Player player2)
         {
             nullTick(player1);
@@ -93,18 +80,34 @@ namespace AntWars.Board
 
         private void nullTick(Player player)
         {
-            BoardObjects.Add(generateBase(player));
+            Base b = generateBase(player);
+
+            if(BoardObjects.hasBaseOnCoords(b.Coords))
+            {
+                nullTick(player);
+                return;
+            }
+            if(!BoardObjects.add(b))
+            {
+                throw new RuntimeException("Could not add base");
+            }
             player.AI.nextTick();
         }
 
         private void generateSugar(int min, int max)
         {
-            int count = new Random().Next(min, max + 1);
+            Random rand =  new Random();
+            int count = rand.Next(min, max + 1);
             for (int i = 0; i < count; i++)
             {
                 Sugar s = new Sugar();
                 s.Coords = Utils.generateCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
-                BoardObjects.Add(s);
+                if(BoardObjects.hasBaseOnCoords(s.Coords) || BoardObjects.hasSugarOnCoords(s.Coords)) {
+                    i--;
+                    continue;
+                }
+                s.amount = rand.Next(conf.Game.sugarAmountMin, conf.Game.sugarAmountMax + 1);
+                BoardObjects.add(s);
             }
         }
 
@@ -115,20 +118,5 @@ namespace AntWars.Board
             return b;
         }
 
-        private void randomizeBoardObjects()
-        {
-            Utils.RandomizeBoardObjects(BoardObjects);
-        }
-
-
-        public Base getBase(Player p)
-        {
-            foreach (BoardObject item in BoardObjects)
-            {
-                if (item.isBase() && ((Base) item).Player == p)
-                    return (Base)item;
-            }
-            throw new RuntimeException("Could not find base.");
-        }
     }
 }

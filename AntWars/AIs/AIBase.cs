@@ -49,23 +49,23 @@ namespace AntWars.AI
 
         private void buyAnt(Ant ant)
         {
-            Base b = Game.Board.getBase(Player);
+            Base b = Game.Board.BoardObjects.getBase(Player);
             ant.Owner = Player;
             ant.Coords = b.Coords;
-            Game.Board.BoardObjects.Add(ant);
+            Game.Board.BoardObjects.add(ant);
         }
 
 
         protected Base getBase()
         {
             if(Base == null)
-                Base = Game.Board.getBase(Player);
+                Base = Game.Board.BoardObjects.getBase(Player);
             
             return Base;
         }
 
         public abstract void nextTick(int currentMoney);
-        public abstract void antTick(Ant ant, List<AIBoardObject> view);
+        public abstract void antTick(AIAnt ant, List<AIBoardObject> view);
 
         public void nextTick()
         {

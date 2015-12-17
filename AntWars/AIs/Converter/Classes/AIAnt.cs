@@ -11,52 +11,40 @@ namespace AntWars.AIs.Converter.Classes
     class AIAnt : AIBoardObject
     {
         private Board.Board board;
+        private Ant ant; 
         public AIAnt(Ant ant, Board.Board board) : base(ant)
         {
             this.board = board;
+            this.ant = ant;
             Owner = ant.Owner;
         }
         public Player Owner { get; private set; }
 
-        protected bool checkCollision(Coordinates coords)
-        {
-            List<BoardObject> coordObjects = board.getBoardObjectsForCoordinates(coords);
-            foreach (BoardObject coordObject in coordObjects)
-            {
-                if (coordObject.isAnt())
-                    return false;               
-            }
-            return true;
-        }
-        public void moveLeft()
+        public bool moveLeft()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X--;
-            if (!checkCollision(newCoords))
-                Coords.X--;
+            return board.BoardObjects.move(ant, newCoords);
         }
 
-        public void moveRight()
+        public bool moveRight()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X++;
-            if (!checkCollision(newCoords))
-                Coords.X++;
+            return board.BoardObjects.move(ant, newCoords);
         }
-        public void moveUp()
+        public bool moveUp()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y++;
-            if (!checkCollision(newCoords))
-                Coords.Y++;
+            return board.BoardObjects.move(ant, newCoords);
         }
 
-        public void moveDown()
+        public bool moveDown()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y--;
-            if (!checkCollision(newCoords))
-                Coords.Y--;
+            return board.BoardObjects.move(ant, newCoords);
         }
 
     }
