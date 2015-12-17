@@ -52,6 +52,7 @@ namespace AntWars.AI
             Base b = Game.Board.BoardObjects.getBase(Player);
             ant.Owner = Player;
             ant.Coords = b.Coords;
+            ant.ViewRange = 10; // TODO get out of player or something else
             Game.Board.BoardObjects.add(ant);
         }
 
