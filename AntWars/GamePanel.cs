@@ -72,7 +72,7 @@ namespace AntWars
                 Color inferiorElement = bitmap.GetPixel(obj.Coords.X, obj.Coords.Y);
                 if (obj.isCarry())
                 {
-                    if (true)//((Carry)obj).Owner == this.game.Player1) //TODO
+                    if (((Ant)obj).Owner == this.game.Player1)
                     {
                         if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
                             bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
@@ -89,7 +89,7 @@ namespace AntWars
                 }
                 else if (obj.isScout())
                 {
-                    if (true)//((Scout)obj).Owner == this.game.Player1) //TODO
+                    if (((Scout)obj).Owner == this.game.Player1)
                     {
                         if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
                             bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
