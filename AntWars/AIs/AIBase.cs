@@ -51,10 +51,28 @@ namespace AntWars.AI
         {
             Base b = Game.Board.BoardObjects.getBase(Player);
             ant.Owner = Player;
-            ant.Coords = b.Coords;
+            resolveAntCoords(ant, b);
             Game.Board.BoardObjects.add(ant);
         }
 
+        private void resolveAntCoords(Ant ant, Base b)
+        {
+            if (!Game.Board.BoardObjects.hasAntOnCoords(b.Coords))
+                ant.Coords = b.Coords;
+            else
+            {
+                List<Coordinates> adjCoords = b.Coords.getAdjacentCoordinates(3);
+                foreach (Coordinates coords in adjCoords)
+                {
+                    if (!Game.Board.BoardObjects.hasAntOnCoords(coords))
+                    {
+                        ant.Coords = coords;
+                        break;
+                    }
+                }
+                // todo Exception (?)
+            }
+        }
 
         protected Base getBase()
         {
