@@ -33,7 +33,7 @@ namespace AntWars.AI
             }
         }
 
-        public override void nextTick(int currentMoney)
+        public override void nextTick(int currentMoney, int currentScore, int carryCount, int scoutCount, int time)
         {
             buyScout();
         }

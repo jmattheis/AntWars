@@ -61,7 +61,11 @@ namespace AntWars
         {
             
             
-        }   
+        }
+        public int getCurrentTick()
+        {
+            return currentTick;
+        }
         
     }
 }
