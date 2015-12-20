@@ -84,12 +84,26 @@ namespace AntWars.AI
             return Base;
         }
 
-        public abstract void nextTick(int currentMoney);
+        public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
         public abstract void antTick(AIAnt ant, List<AIBoardObject> view);
 
         public void nextTick()
         {
-            nextTick(Player.money);
+            // extra Parameter an AI übergeben
+            IList<Ant> ants = Game.Board.BoardObjects.getAntsByPlayer(this.Player);
+            int carryCount = 0;
+            int scoutCount = 0;
+            foreach (Ant ant in ants)
+            {
+                if (ant.isCarry())
+                    carryCount++;
+                if (ant.isScout())
+                    scoutCount++;
+            }
+
+            int score = this.Player.currentScore;
+            int time = Game.getCurrentTick();
+            nextTick(Player.money, score, carryCount, scoutCount, time);
         }
     }
 }
