@@ -12,16 +12,17 @@ namespace AntWars.AI
     abstract class AIBase : IAI
     {
 
-        public Player Player {private get; set; }
+        public Player Player { private get; set; }
 
-        public Game Game {private get; set; }
+        public Game Game { private get; set; }
 
         public AIBase() { }
 
         private Base Base = null;
 
 
-        protected bool buyScout() {
+        protected bool buyScout()
+        {
             Scout s = new Scout();
 
             if (Player.money < Player.scoutCost)
@@ -34,7 +35,8 @@ namespace AntWars.AI
             return true;
         }
 
-        protected bool buyCarrier() {
+        protected bool buyCarrier()
+        {
             Carry c = new Carry();
 
             if (Player.money < Player.carryCost)
@@ -76,9 +78,9 @@ namespace AntWars.AI
 
         protected Base getBase()
         {
-            if(Base == null)
+            if (Base == null)
                 Base = Game.Board.BoardObjects.getBase(Player);
-            
+
             return Base;
         }
 
