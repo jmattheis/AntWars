@@ -70,7 +70,7 @@ namespace AntWars.AI
                         break;
                     }
                 }
-                // todo Exception (?)
+                throw new System.Exception("Kein freier Platz für neue Ameise");
             }
         }
 
