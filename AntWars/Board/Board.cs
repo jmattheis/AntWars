@@ -16,7 +16,7 @@ namespace AntWars.Board
     /// </summary>
     class Board
     {
-        public BoardObjects BoardObjects  { get; private set; }
+        public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
         private Converter converter;
 
@@ -32,7 +32,7 @@ namespace AntWars.Board
         {
             // TODO Gewinnbedingungen
             // TODO zucker check ob der weg kann
-            foreach (Base playerbase in BoardObjects.getBases()) 
+            foreach (Base playerbase in BoardObjects.getBases())
             {
                 playerbase.Player.AI.nextTick();
             }
@@ -50,18 +50,21 @@ namespace AntWars.Board
             int boxMaxX = ant.Coords.X + ant.ViewRange;
             int boxMaxY = ant.Coords.Y + ant.ViewRange;
             List<Coordinates> coordinatesInsideView = new List<Coordinates>();
-            for(int x = boxMinX; x <= boxMaxX; x++)
+            for (int x = boxMinX; x <= boxMaxX; x++)
             {
                 for (int y = boxMinY; y <= boxMaxY; y++)
                 {
-                    double abstand = Math.Sqrt((ant.Coords.X - x) ^ 2 + (ant.Coords.Y - y) ^ 2);
-                    if(abstand <= ant.ViewRange)
+                    double abstand = Math.Pow(ant.Coords.X - x, 2) + Math.Pow(ant.Coords.Y - y, 2);
+                    if (abstand <= Math.Pow(ant.ViewRange, 2))
                     {
-                        coordinatesInsideView.Add(new Coordinates(x, y));
+                        Coordinates c = new Coordinates(x, y);
+                        if (BoardObjects.isValidCoords(c))
+                        {
+                            coordinatesInsideView.Add(new Coordinates(x, y));
+                        }
                     }
                 }
             }
-
             List<BoardObject> result = new List<BoardObject>();
             foreach (Coordinates coords in coordinatesInsideView)
             {
@@ -82,12 +85,12 @@ namespace AntWars.Board
         {
             Base b = generateBase(player);
 
-            if(BoardObjects.hasBaseOnCoords(b.Coords))
+            if (BoardObjects.hasBaseOnCoords(b.Coords))
             {
                 nullTick(player);
                 return;
             }
-            if(!BoardObjects.add(b))
+            if (!BoardObjects.add(b))
             {
                 throw new RuntimeException("Could not add base");
             }
@@ -96,13 +99,14 @@ namespace AntWars.Board
 
         private void generateSugar(int min, int max)
         {
-            Random rand =  new Random();
+            Random rand = new Random();
             int count = rand.Next(min, max + 1);
             for (int i = 0; i < count; i++)
             {
                 Sugar s = new Sugar();
                 s.Coords = Utils.generateCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
-                if(BoardObjects.hasBaseOnCoords(s.Coords) || BoardObjects.hasSugarOnCoords(s.Coords)) {
+                if (BoardObjects.hasBaseOnCoords(s.Coords) || BoardObjects.hasSugarOnCoords(s.Coords))
+                {
                     i--;
                     continue;
                 }

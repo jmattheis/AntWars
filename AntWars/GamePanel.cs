@@ -61,18 +61,17 @@ namespace AntWars
         {
             // TODO was ist wenn welche übereinander sind
             // TODO signal anzeigen?
-            // TODO immer alles neu bauen? --> performance base sugar muss nicht immer neu gemacht werden
+            // TODO sowas wie 'inferiorElement.Name == "ff000000"' kann doch mit 'inferiorElement == Color.Black' ausgetauscht werden
+            // Das würde besser im code aussehen.
 
-            //Graphics gra = pb_Game.CreateGraphics();
-
-            Bitmap bitmap = new Bitmap(this.game.Conf.Game.boardWidth + 1, this.game.Conf.Game.boardHeigth + 1);
+            Bitmap bitmap = new Bitmap(game.Conf.Game.boardWidth + 1, game.Conf.Game.boardHeigth + 1);
 
             foreach (BoardObject obj in boardObjects)
             {
                 Color inferiorElement = bitmap.GetPixel(obj.Coords.X, obj.Coords.Y);
                 if (obj.isCarry())
                 {
-                    if (((Ant)obj).Owner == this.game.Player1)
+                    if (((Ant)obj).Owner == game.Player1)
                     {
                         if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
                             bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
@@ -89,7 +88,7 @@ namespace AntWars
                 }
                 else if (obj.isScout())
                 {
-                    if (((Scout)obj).Owner == this.game.Player1)
+                    if (((Scout)obj).Owner == game.Player1)
                     {
                         if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
                             bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
@@ -132,7 +131,7 @@ namespace AntWars
                 {
                     Base baseObject = (Base)obj;
 
-                    if (baseObject.Player == new Player()) // TODO mit game player austauschen wenn das mit der config alles funtzt
+                    if (baseObject.Player == game.Player1)
                     {
                         bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.GreenYellow);
                     }
@@ -143,7 +142,7 @@ namespace AntWars
                 }
                 else if (obj.isSignal())
                 {
-                    if (true)//((Signal)obj).From == this.game.Player1) //TODO
+                    if (((Signal)obj).From == game.Player1)
                     {
                         if (string.IsNullOrEmpty(inferiorElement.Name))
                             bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Brown);
