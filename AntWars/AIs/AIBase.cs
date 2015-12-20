@@ -24,8 +24,9 @@ namespace AntWars.AI
         protected bool buyScout()
         {
             Scout s = new Scout();
+            Base b = Game.Board.BoardObjects.getBase(Player);
 
-            if (Player.money < Player.scoutCost)
+            if (Player.money < Player.scoutCost || !resolveAntCoords(s, b))
                 return false;
             else
             {
@@ -37,8 +38,9 @@ namespace AntWars.AI
         protected bool buyCarrier()
         {
             Carry c = new Carry();
+            Base b = Game.Board.BoardObjects.getBase(Player);
 
-            if (Player.money < Player.carryCost)
+            if (Player.money < Player.carryCost || !resolveAntCoords(c, b))
                 return false;
             else
             {
@@ -54,10 +56,13 @@ namespace AntWars.AI
             Game.Board.BoardObjects.add(ant);
         }
 
-        private void resolveAntCoords(Ant ant, Base b)
+        private bool resolveAntCoords(Ant ant, Base b)
         {
             if (!Game.Board.BoardObjects.hasAntOnCoords(b.Coords))
+            {
                 ant.Coords = b.Coords;
+                return true;
+            }
             else
             {
                 List<Coordinates> adjCoords = b.Coords.getAdjacentCoordinates(3);
@@ -66,10 +71,10 @@ namespace AntWars.AI
                     if (!Game.Board.BoardObjects.hasAntOnCoords(coords))
                     {
                         ant.Coords = coords;
-                        break;
+                        return true;
                     }
                 }
-                throw new System.Exception("Kein freier Platz für neue Ameise");
+                return false;
             }
         }
 
