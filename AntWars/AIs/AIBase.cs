@@ -28,11 +28,10 @@ namespace AntWars.AI
             if (Player.money < Player.scoutCost)
                 return false;
             else
-                Player.money -= Player.scoutCost;
-
-            buyAnt(s);
-
-            return true;
+            {
+                buyAnt(s, Player.scoutCost);
+                return true;
+            }
         }
 
         protected bool buyCarrier()
@@ -42,18 +41,16 @@ namespace AntWars.AI
             if (Player.money < Player.carryCost)
                 return false;
             else
-                Player.money -= Player.carryCost;
-
-            buyAnt(c);
-
+            {
+                buyAnt(c, Player.carryCost);
+            }
             return true;
         }
 
-        private void buyAnt(Ant ant)
+        private void buyAnt(Ant ant, int cost)
         {
-            Base b = Game.Board.BoardObjects.getBase(Player);
+            Player.money -= cost;
             ant.Owner = Player;
-            resolveAntCoords(ant, b);
             Game.Board.BoardObjects.add(ant);
         }
 
