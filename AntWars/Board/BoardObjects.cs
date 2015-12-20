@@ -107,6 +107,18 @@ namespace AntWars.Board
         {
             return new ReadOnlyCollection<Ant>(ants);
         }
+        public IList<Ant> getAntsByPlayer(Player player)
+        {
+            List<Ant> antList = new List<Ant>();
+            foreach (Ant ant in this.ants)
+            {
+                if (ant.Owner == player)
+                {
+                    antList.Add(ant);
+                }
+            }
+            return new ReadOnlyCollection<Ant>(antList);
+        }
 
         public IList<Ant> getRandomAnts()
         {
