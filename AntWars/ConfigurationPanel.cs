@@ -350,7 +350,7 @@ namespace AntWars
 
         private void numeric_gameConfigPoints_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().Game.points = Convert.ToInt32(numeric_gameConfigPoints);
+            configLoader.get().Game.points = Convert.ToInt32(numeric_gameConfigPoints.Value);
         }
 
         private void numeric_gameConfigStartMoney_ValueChanged(object sender, EventArgs e)
