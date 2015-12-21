@@ -912,7 +912,7 @@
             this.numeric_gameConfigSugarAmountMax.Name = "numeric_gameConfigSugarAmountMax";
             this.numeric_gameConfigSugarAmountMax.Size = new System.Drawing.Size(44, 20);
             this.numeric_gameConfigSugarAmountMax.TabIndex = 14;
-            this.numeric_gameConfigSugarAmountMax.ValueChanged += new System.EventHandler(this.numeric_gameConfigSugarAmountMin_ValueChanged);
+            this.numeric_gameConfigSugarAmountMax.ValueChanged += new System.EventHandler(this.numeric_gameConfigSugarAmountMax_ValueChanged);
             // 
             // numeric_gameConfigSugarAmountMin
             // 
@@ -925,7 +925,7 @@
             this.numeric_gameConfigSugarAmountMin.Name = "numeric_gameConfigSugarAmountMin";
             this.numeric_gameConfigSugarAmountMin.Size = new System.Drawing.Size(44, 20);
             this.numeric_gameConfigSugarAmountMin.TabIndex = 15;
-            this.numeric_gameConfigSugarAmountMin.ValueChanged += new System.EventHandler(this.numeric_gameConfigSugarAmountMax_ValueChanged);
+            this.numeric_gameConfigSugarAmountMin.ValueChanged += new System.EventHandler(this.numeric_gameConfigSugarAmountMin_ValueChanged);
             // 
             // SugarAmountMax
             // 
