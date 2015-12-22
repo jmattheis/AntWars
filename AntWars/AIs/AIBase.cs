@@ -69,6 +69,10 @@ namespace AntWars.AI
                 List<Coordinates> adjCoords = b.Coords.getAdjacentCoordinates(3);
                 foreach (Coordinates coords in adjCoords)
                 {
+                    if(!Game.Board.BoardObjects.isValidCoords(coords))
+                    {
+                        continue;
+                    }
                     if (!Game.Board.BoardObjects.hasAntOnCoords(coords))
                     {
                         ant.Coords = coords;
