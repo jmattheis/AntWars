@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GamePanel));
             this.timer_GameTick = new System.Windows.Forms.Timer(this.components);
             this.pb_Game = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).BeginInit();
@@ -44,7 +45,7 @@
             this.pb_Game.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pb_Game.Location = new System.Drawing.Point(0, 0);
             this.pb_Game.Name = "pb_Game";
-            this.pb_Game.Size = new System.Drawing.Size(370, 362);
+            this.pb_Game.Size = new System.Drawing.Size(284, 261);
             this.pb_Game.TabIndex = 0;
             this.pb_Game.TabStop = false;
             this.pb_Game.Click += new System.EventHandler(this.pb_Game_Click);
@@ -53,9 +54,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(370, 362);
+            this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.pb_Game);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GamePanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GamePanel";
             this.Load += new System.EventHandler(this.GamePanel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).EndInit();
