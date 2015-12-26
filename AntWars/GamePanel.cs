@@ -24,6 +24,7 @@ namespace AntWars
 
         public void start(Config.Configuration config)
         {
+            this.ClientSize = new Size(config.Game.boardWidth * 4, config.Game.boardHeigth * 4);
             game = new Game(config);
             game.start();
             timer_GameTick.Start();
