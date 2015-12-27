@@ -106,6 +106,7 @@
             this.btn_player2ConfigSave = new System.Windows.Forms.Button();
             this.btn_player2ConfigLoad = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.buttonView = new System.Windows.Forms.Button();
             this.ppppanel.SuspendLayout();
             this.pnl_player1Config.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_player1ScoutInventory)).BeginInit();
@@ -991,11 +992,22 @@
             this.btn_player2ConfigLoad.UseVisualStyleBackColor = true;
             this.btn_player2ConfigLoad.Click += new System.EventHandler(this.btn_player2ConfigLoad_Click);
             // 
+            // buttonView
+            // 
+            this.buttonView.Location = new System.Drawing.Point(513, 13);
+            this.buttonView.Name = "buttonView";
+            this.buttonView.Size = new System.Drawing.Size(75, 23);
+            this.buttonView.TabIndex = 7;
+            this.buttonView.Text = "View";
+            this.buttonView.UseVisualStyleBackColor = true;
+            this.buttonView.Click += new System.EventHandler(this.buttonView_Click);
+            // 
             // ConfigurationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(682, 457);
+            this.Controls.Add(this.buttonView);
             this.Controls.Add(this.ppanel);
             this.Controls.Add(this.panel);
             this.Controls.Add(this.ppppanel);
@@ -1121,5 +1133,6 @@
         private System.Windows.Forms.NumericUpDown numeric_gameConfigBoardHeigth;
         private System.Windows.Forms.Label SugarAmountMin;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button buttonView;
     }
 }
