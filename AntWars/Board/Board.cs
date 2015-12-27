@@ -85,11 +85,6 @@ namespace AntWars.Board
         {
             Base b = generateBase(player);
 
-            if (BoardObjects.hasBaseOnCoords(b.Coords))
-            {
-                nullTick(player);
-                return;
-            }
             if (!BoardObjects.add(b))
             {
                 throw new RuntimeException("Could not add base");
@@ -118,7 +113,15 @@ namespace AntWars.Board
         private Base generateBase(Player player)
         {
             Base b = new Base(player);
-            b.Coords = Utils.generateBaseCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
+            // Bases immer gegenüber spawnen lassen
+            if (this.BoardObjects.getBases().Count == 1)
+            {
+                b.Coords = Utils.generateBaseCoords(conf.Game.boardWidth, conf.Game.boardHeigth, this.BoardObjects.getBases()[0]);
+            }
+            else
+            {
+                b.Coords = Utils.generateBaseCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
+            }
             return b;
         }
 

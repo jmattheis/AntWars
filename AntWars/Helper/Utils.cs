@@ -13,7 +13,6 @@ namespace AntWars.Helper
 
         public static Coordinates generateBaseCoords(int boardWidth, int boardHeight)
         {
-            // TODO keine base nochmal an der gleichen himmelsrichtig generieren
             switch(random.Next(0,4))
             {
                 case 0:
@@ -27,6 +26,11 @@ namespace AntWars.Helper
                 default:
                     throw new RuntimeException("NO WAY");
             }
+        }
+
+        public static Coordinates generateBaseCoords(int boardWidth, int boardHeight, Base enemyBase)
+        {
+            return new Coordinates(boardWidth - enemyBase.Coords.X, boardHeight - enemyBase.Coords.Y);
         }
 
         public static Coordinates generateCoords(int boardWidth, int boardHeight)
