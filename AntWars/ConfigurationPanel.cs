@@ -33,10 +33,12 @@ namespace AntWars
                 if (checkGameConfig())
                 {
                     gamePanel.start(configLoader.get());
-                    return;
+                    /*return;
                     game = new Game(configLoader.get());
                     game.start();
-                    GameTick.Start();                    
+                    GameTick.Start();
+                    // Kann der Spaß raus? Wird sowieso nie erreicht und in dem gamepanel.start() ausgeführt
+                    */
                 }
             } else
             {
@@ -435,6 +437,21 @@ namespace AntWars
                 }
                 configLoadedOrNewCreatedGame();
                 loadGame(configLoader.get().Game);
+            }
+        }
+
+        private void buttonView_Click(object sender, EventArgs e)
+        {
+            if (configLoader.isAllLoaded())
+            {
+                if (checkGameConfig())
+                {
+                    gamePanel.view(configLoader.get());
+                }
+            }
+            else
+            {
+                MessageBox.Show("There are not all configs loaded/created.", "Error: Could not start.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

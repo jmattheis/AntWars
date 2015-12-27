@@ -24,7 +24,7 @@ namespace AntWars
 
         public void start(Config.Configuration config)
         {
-            this.ClientSize = new Size(config.Game.boardWidth * 4, config.Game.boardHeigth * 4);
+            setFormSize(config);
             game = new Game(config);
             game.start();
             timer_GameTick.Start();
@@ -190,6 +190,22 @@ namespace AntWars
         private void pb_Game_Click(object sender, EventArgs e)
         {
 
+        }
+
+        public void view(Config.Configuration config)
+        {
+            setFormSize(config);
+            Show();
+        }
+
+        public void setFormSize(Config.Configuration config)
+        {
+            this.pb_Game.Width = config.Game.boardWidth * 4;
+            this.pb_Game.Height = config.Game.boardHeigth * 4;
+            Point statsLocation = new Point(config.Game.boardWidth * 4, 0);
+            this.groupstats.Location = statsLocation;
+            this.ClientSize = new Size(config.Game.boardWidth * 4 + this.groupstats.Width, config.Game.boardHeigth * 4);
+            
         }
     }
 }
