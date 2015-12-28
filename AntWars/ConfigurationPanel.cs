@@ -32,6 +32,9 @@ namespace AntWars
             {
                 if (checkGameConfig())
                 {
+                    if (gamePanel.IsDisposed)
+                        gamePanel = new GamePanel();
+
                     gamePanel.start(configLoader.get());
                     /*return;
                     game = new Game(configLoader.get());
@@ -446,6 +449,9 @@ namespace AntWars
             {
                 if (checkGameConfig())
                 {
+                    if (gamePanel.IsDisposed)
+                        gamePanel = new GamePanel();
+
                     gamePanel.view(configLoader.get());
                 }
             }
