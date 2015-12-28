@@ -14,6 +14,9 @@ namespace AntWars.AI
         private Random rand = new Random();
         public override void antTick(AIAnt ant, List<AIBoardObject> view)
         {
+            // Zucker aufheben Test
+            ant.pickUpSugar();
+
             // RANDOM FTW
             switch(rand.Next(0, 4))
             {
