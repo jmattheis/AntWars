@@ -14,5 +14,35 @@ namespace AntWars.AIs.Converter.Classes
             Coords = boardObject.Coords;
         }
         public Coordinates Coords { get; private set; }
+
+        public bool isAnt()
+        {
+            return GetType() == typeof(AIAnt) || isScout() || isCarry();
+        }
+
+        public bool isSugar()
+        {
+            return GetType() == typeof(AISugar);
+        }
+
+        public bool isBase()
+        {
+            return GetType() == typeof(AIBase);
+        }
+
+        public bool isCarry()
+        {
+            return GetType() == typeof(AICarry);
+        }
+
+        public bool isScout()
+        {
+            return GetType() == typeof(AIScout);
+        }
+
+        public bool isSignal()
+        {
+            return GetType() == typeof(AISignal);
+        }
     }
 }
