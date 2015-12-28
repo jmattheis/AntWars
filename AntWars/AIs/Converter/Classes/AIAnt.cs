@@ -53,11 +53,15 @@ namespace AntWars.AIs.Converter.Classes
         /// <returns>True bei Erfolg, false wenn kein Zucker gefunden wurde.</returns>
         public bool pickUpSugar()
         {
+            int maxInventory = ant.isCarry() ? ant.Owner.PlayerConfig.carryInventory : ant.Owner.PlayerConfig.scoutInventory;
             Sugar sugar;
-            if (board.BoardObjects.getSugar(Coords, out sugar) && ant.Inventory > 0)
+
+            if (board.BoardObjects.getSugar(Coords, out sugar) && ant.Inventory < maxInventory)
             {
-                int temp = sugar.amount;
-                if (sugar.amount - ant.Inventory <= 0)
+                int tempSugarAmount = sugar.amount;
+                int maxPickUpSugar = maxInventory - ant.Inventory;
+
+                if (sugar.amount - maxPickUpSugar <= 0)
                 {
                     // Zucker bei 0 entfernen
                     sugar.amount = 0;
@@ -65,13 +69,15 @@ namespace AntWars.AIs.Converter.Classes
                 }
                 else
                 {
-                    sugar.amount = sugar.amount - ant.Inventory;
+                    sugar.amount = sugar.amount - maxPickUpSugar;
                 }
-                ant.Inventory += (temp - sugar.amount);
+                ant.Inventory += (tempSugarAmount - sugar.amount);
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
 
         /// <summary>
