@@ -50,23 +50,24 @@ namespace AntWars.AIs.Converter.Classes
         /// <summary>
         /// Zucker aufnehmen. Die Ameise muss auf dem Zucker stehen.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True bei Erfolg, false wenn kein Zucker gefunden wurde.</returns>
         public bool pickUpSugar()
         {
             Sugar sugar;
-            if (this.board.BoardObjects.getSugar(this.Coords, out sugar) && ant.Inventory > 0)
+            if (board.BoardObjects.getSugar(Coords, out sugar) && ant.Inventory > 0)
             {
                 int temp = sugar.amount;
                 if (sugar.amount - ant.Inventory <= 0)
                 {
                     // Zucker bei 0 entfernen
                     sugar.amount = 0;
-                    this.board.BoardObjects.remove(sugar);
+                    board.BoardObjects.remove(sugar);
                 }
                 else
+                {
                     sugar.amount = sugar.amount - ant.Inventory;
-
-                ant.Inventory -= (temp - sugar.amount);
+                }
+                ant.Inventory += (temp - sugar.amount);
                 return true;
             }
             else
@@ -76,13 +77,13 @@ namespace AntWars.AIs.Converter.Classes
         /// <summary>
         /// Zucker bei der Base abgeben. Die Ameise muss auf der Base stehen.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>True bei Erfolg, false wenn die Ameise nicht auf der Base steht.</returns>
         public bool dropSugarOnBase()
         {
-            if (this.Coords == this.board.BoardObjects.getBase(this.Owner).Coords)
+            if (Coords == board.BoardObjects.getBase(Owner).Coords)
             {
-                this.Owner.money += ant.Inventory;
-                this.Owner.Points += ant.Inventory;
+                Owner.money += ant.Inventory;
+                Owner.Points += ant.Inventory;
                 ant.Inventory = 0;
                 return true;
             }
