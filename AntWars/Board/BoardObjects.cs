@@ -265,5 +265,19 @@ namespace AntWars.Board
             }
             throw new RuntimeException("Could not find base.");
         }
+
+        public bool getSugar(Coordinates coords, out Sugar sugar)
+        {
+            foreach (BoardObject boardObject in this.getBoardObjectsFromCoords(coords))
+            {
+                if (boardObject.isSugar())
+                {
+                    sugar = (Sugar)boardObject;
+                    return true;
+                }
+            }
+            sugar = null;
+            return false;
+        }
     }
 }
