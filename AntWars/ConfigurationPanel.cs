@@ -19,7 +19,7 @@ namespace AntWars
 
         private Game game { get; set; }
         private ConfigurationLoader configLoader = new ConfigurationLoader();
-        private GamePanel gamePanel;
+        private List<GamePanel> gamePanels = new List<GamePanel>();
 
         public ConfigurationPanel()
         {
@@ -32,9 +32,10 @@ namespace AntWars
             {
                 if (checkGameConfig())
                 {
-                    gamePanel = new GamePanel();
+                    GamePanel gamePanel = new GamePanel();
                     gamePanel.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.gamePanelCloseEvent);
                     gamePanel.start(configLoader.get());
+                    gamePanels.Add(gamePanel);
                     disableControls();
                     /*return;
                     game = new Game(configLoader.get());
@@ -449,10 +450,8 @@ namespace AntWars
             {
                 if (checkGameConfig())
                 {
-                    gamePanel = new GamePanel();
-                    gamePanel.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.gamePanelCloseEvent);
+                    GamePanel gamePanel = new GamePanel();
                     gamePanel.view(configLoader.get());
-                    disableControls();
                 }
             }
             else
@@ -468,7 +467,10 @@ namespace AntWars
         /// <param name="e"></param>
         private void gamePanelCloseEvent(object sender, System.EventArgs e)
         {
-            enableControls();
+            if(!isGameRunning(sender))
+            {
+                enableControls();
+            }
         }
 
         /// <summary>
@@ -493,10 +495,21 @@ namespace AntWars
         /// <param name="state">true für aktivieren, false für deaktivieren</param>
         private void changeControlState(bool state)
         {
-            foreach (Control control in Controls)
+            pnl_GameConfig.Enabled = state;
+            pnl_player1Config.Enabled = state;
+            pnl_player2Config.Enabled = state;
+        }
+
+        private bool isGameRunning(object sender)
+        {
+            foreach(GamePanel gamePanel in gamePanels)
             {
-                control.Enabled = state;
+                if(!gamePanel.IsDisposed && sender != gamePanel)
+                {
+                    return true;
+                }
             }
+            return false;
         }
     }
 }
