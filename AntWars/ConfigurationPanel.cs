@@ -19,7 +19,7 @@ namespace AntWars
 
         private Game game { get; set; }
         private ConfigurationLoader configLoader = new ConfigurationLoader();
-        private GamePanel gamePanel = new GamePanel();
+        private List<GamePanel> gamePanels = new List<GamePanel>();
 
         public ConfigurationPanel()
         {
@@ -32,7 +32,11 @@ namespace AntWars
             {
                 if (checkGameConfig())
                 {
+                    GamePanel gamePanel = new GamePanel();
+                    gamePanel.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.gamePanelCloseEvent);
                     gamePanel.start(configLoader.get());
+                    gamePanels.Add(gamePanel);
+                    disableControls();
                     /*return;
                     game = new Game(configLoader.get());
                     game.start();
@@ -446,6 +450,7 @@ namespace AntWars
             {
                 if (checkGameConfig())
                 {
+                    GamePanel gamePanel = new GamePanel();
                     gamePanel.view(configLoader.get());
                 }
             }
@@ -453,6 +458,58 @@ namespace AntWars
             {
                 MessageBox.Show("There are not all configs loaded/created.", "Error: Could not start.", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// Wird ausgeführt, wenn das Game-Panel geschlossen wird.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gamePanelCloseEvent(object sender, System.EventArgs e)
+        {
+            if(!isGameRunning(sender))
+            {
+                enableControls();
+            }
+        }
+
+        /// <summary>
+        /// Eingabefelder aktivieren
+        /// </summary>
+        private void enableControls()
+        {
+            changeControlState(true);
+        }
+
+        /// <summary>
+        /// Eingabefelder deaktivieren
+        /// </summary>
+        private void disableControls()
+        {
+            changeControlState(false);
+        }
+
+        /// <summary>
+        /// Eingabefelder des Panels aktivieren/deaktivieren
+        /// </summary>
+        /// <param name="state">true für aktivieren, false für deaktivieren</param>
+        private void changeControlState(bool state)
+        {
+            pnl_GameConfig.Enabled = state;
+            pnl_player1Config.Enabled = state;
+            pnl_player2Config.Enabled = state;
+        }
+
+        private bool isGameRunning(object sender)
+        {
+            foreach(GamePanel gamePanel in gamePanels)
+            {
+                if(!gamePanel.IsDisposed && sender != gamePanel)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
