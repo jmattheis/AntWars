@@ -33,7 +33,9 @@ namespace AntWars
                 if (checkGameConfig())
                 {
                     gamePanel = new GamePanel();
+                    gamePanel.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.gamePanelCloseEvent);
                     gamePanel.start(configLoader.get());
+                    disableControls();
                     /*return;
                     game = new Game(configLoader.get());
                     game.start();
@@ -448,12 +450,52 @@ namespace AntWars
                 if (checkGameConfig())
                 {
                     gamePanel = new GamePanel();
+                    gamePanel.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.gamePanelCloseEvent);
                     gamePanel.view(configLoader.get());
+                    disableControls();
                 }
             }
             else
             {
                 MessageBox.Show("There are not all configs loaded/created.", "Error: Could not start.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Wird ausgeführt, wenn das Game-Panel geschlossen wird.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void gamePanelCloseEvent(object sender, System.EventArgs e)
+        {
+            enableControls();
+        }
+
+        /// <summary>
+        /// Eingabefelder aktivieren
+        /// </summary>
+        private void enableControls()
+        {
+            changeControlState(true);
+        }
+
+        /// <summary>
+        /// Eingabefelder deaktivieren
+        /// </summary>
+        private void disableControls()
+        {
+            changeControlState(false);
+        }
+
+        /// <summary>
+        /// Eingabefelder des Panels aktivieren/deaktivieren
+        /// </summary>
+        /// <param name="state">true für aktivieren, false für deaktivieren</param>
+        private void changeControlState(bool state)
+        {
+            foreach (Control control in Controls)
+            {
+                control.Enabled = state;
             }
         }
     }
