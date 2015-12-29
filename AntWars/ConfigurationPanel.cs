@@ -19,7 +19,7 @@ namespace AntWars
 
         private Game game { get; set; }
         private ConfigurationLoader configLoader = new ConfigurationLoader();
-        private GamePanel gamePanel = new GamePanel();
+        private GamePanel gamePanel;
 
         public ConfigurationPanel()
         {
@@ -447,9 +447,7 @@ namespace AntWars
             {
                 if (checkGameConfig())
                 {
-                    if (gamePanel.IsDisposed)
-                        gamePanel = new GamePanel();
-
+                    gamePanel = new GamePanel();
                     gamePanel.view(configLoader.get());
                 }
             }
