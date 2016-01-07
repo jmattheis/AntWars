@@ -86,6 +86,7 @@
             this.groupplayer2.Controls.Add(this.labelplayer2money);
             this.groupplayer2.Controls.Add(this.labelplayer2pointsshow);
             this.groupplayer2.Controls.Add(this.labelplayer2points);
+            this.groupplayer2.ForeColor = System.Drawing.Color.Blue;
             this.groupplayer2.Location = new System.Drawing.Point(7, 138);
             this.groupplayer2.Name = "groupplayer2";
             this.groupplayer2.Size = new System.Drawing.Size(135, 66);
@@ -135,6 +136,7 @@
             this.groupplayer1.Controls.Add(this.labelplayer1money);
             this.groupplayer1.Controls.Add(this.labelplayer1pointsshow);
             this.groupplayer1.Controls.Add(this.labelplayer1points);
+            this.groupplayer1.ForeColor = System.Drawing.Color.Green;
             this.groupplayer1.Location = new System.Drawing.Point(7, 66);
             this.groupplayer1.Name = "groupplayer1";
             this.groupplayer1.Size = new System.Drawing.Size(135, 66);

@@ -179,6 +179,10 @@ namespace AntWars
         private void timer_GameTick_Tick(object sender, EventArgs e)
         {
             game.nextTick();
+            // BRO >>
+            // calculate gamepanel statistics
+            calcGameStatistics();
+            // BRO <<
             print();
         }
 
@@ -207,5 +211,27 @@ namespace AntWars
             this.ClientSize = new Size(config.Game.boardWidth * 4 + this.groupstats.Width, config.Game.boardHeigth * 4);
             
         }
+
+        // BRO >>
+        private void calcGameStatistics()
+        {
+            // update timer
+            if (game.Conf.Game.time > 0)
+            {
+                labeltimershow.Text = Convert.ToString(game.Conf.Game.time - (game.getCurrentTick() / 10));
+            }
+            else
+            {
+                labeltimershow.Text = Convert.ToString(game.getCurrentTick() / 10);
+            }
+            labeltimershow.Text = labeltimershow.Text + "s";
+            // update player1
+            labelplayer1pointsshow.Text = game.Player1.Points.ToString();
+            labelplayer1moneyshow.Text = game.Player1.money.ToString();
+            // update player2
+            labelplayer2pointsshow.Text = game.Player2.Points.ToString();
+            labelplayer2moneyshow.Text = game.Player2.money.ToString();
+        }
+        // BRO <<
     }
 }
