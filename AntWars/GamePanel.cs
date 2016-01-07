@@ -215,6 +215,11 @@ namespace AntWars
         // BRO >>
         private void calcGameStatistics()
         {
+            int player1carry = 0;
+            int player1scout = 0;
+            int player2carry = 0;
+            int player2scout = 0;
+
             // update timer
             if (game.Conf.Game.time > 0)
             {
@@ -225,12 +230,48 @@ namespace AntWars
                 labeltimershow.Text = Convert.ToString(game.getCurrentTick() / 10);
             }
             labeltimershow.Text = labeltimershow.Text + "s";
+
+            // calculate ants for player by anttype
+            IList<Ant> antsPlayer1 = game.Board.BoardObjects.getAntsByPlayer(game.Player1);
+            foreach (Ant ant in antsPlayer1)
+            {
+                if (ant.isCarry())
+                {
+                    player1carry++;
+                }
+                else
+                {
+                    player1scout++;
+                }
+            }
+
+            // calculate ants for player by anttype
+            IList<Ant> antsPlayer2 = game.Board.BoardObjects.getAntsByPlayer(game.Player2);
+            foreach (Ant ant in antsPlayer2)
+            {
+                if (ant.isCarry())
+                {
+                    player2carry++;
+                }
+                else
+                {
+                    player2scout++;
+                }
+            }
+
             // update player1
             labelplayer1pointsshow.Text = game.Player1.Points.ToString();
             labelplayer1moneyshow.Text = game.Player1.money.ToString();
+            labelplayer1carriesshow.Text = player1carry.ToString();
+            labelplayer1scoutsshow.Text = player1scout.ToString();
+            labelplayer1antsshow.Text = Convert.ToString(player1scout + player1carry);
+
             // update player2
             labelplayer2pointsshow.Text = game.Player2.Points.ToString();
             labelplayer2moneyshow.Text = game.Player2.money.ToString();
+            labelplayer2carriesshow.Text = player2carry.ToString();
+            labelplayer2scoutsshow.Text = player2scout.ToString();
+            labelplayer2antsshow.Text = Convert.ToString(player2scout + player2carry);
         }
         // BRO <<
     }
