@@ -21,11 +21,11 @@ namespace AntWars.Board
         private Converter converter;
 
 
-        public Board(Configuration conf)
+        public Board(Configuration conf, Game game)
         {
             converter = new Converter(this);
             this.conf = conf;
-            BoardObjects = new BoardObjects(conf.Game);
+            BoardObjects = new BoardObjects(conf.Game, game);
         }
 
         public void nextTick()

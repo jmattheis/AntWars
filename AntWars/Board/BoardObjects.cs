@@ -18,10 +18,21 @@ namespace AntWars.Board
         private IList<Sugar> sugars = new List<Sugar>();
         private IDictionary<Coordinates, List<BoardObject>> coordsToObjects = new Dictionary<Coordinates, List<BoardObject>>();
         private GameConfig conf;
+        private Game game;
 
-        public BoardObjects(GameConfig conf)
+        public int player1Scouts { get; private set; }
+        public int player1Carries { get; private set; }
+        public int player2Scouts { get; private set; }
+        public int player2Carries { get; private set; }
+
+        public BoardObjects(GameConfig conf, Game game)
         {
             this.conf = conf;
+            this.game = game;
+            player1Scouts = 0;
+            player1Carries = 0;
+            player2Scouts = 0;
+            player2Carries = 0;
         }
 
         /// <summary>
@@ -37,7 +48,9 @@ namespace AntWars.Board
             boardObjects.Add(boardObject);
             if (boardObject.isAnt())
             {
-                ants.Add((Ant)boardObject);
+                Ant ant = (Ant)boardObject;
+                ants.Add(ant);
+                incrementAnts(ant);
             }
             else if (boardObject.isSignal())
             {
@@ -52,6 +65,24 @@ namespace AntWars.Board
                 sugars.Add((Sugar)boardObject);
             }
             return true;
+        }
+
+        private void incrementAnts(Ant ant)
+        {
+            if (ant.Owner == game.Player1)
+            {
+                if (ant.isCarry())
+                    player1Carries++;
+                else if (ant.isScout())
+                    player1Scouts++;
+            }
+            else if (ant.Owner == game.Player2)
+            {
+                if (ant.isCarry())
+                    player2Carries++;
+                else if (ant.isScout())
+                    player2Scouts++;
+            }
         }
 
         private bool addToMap(BoardObject boardObject)
