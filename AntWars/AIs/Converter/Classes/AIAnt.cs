@@ -24,6 +24,7 @@ namespace AntWars.AIs.Converter.Classes
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X--;
+            ant.UnitsGone++;
             return board.BoardObjects.move(ant, newCoords);
         }
 
@@ -31,12 +32,14 @@ namespace AntWars.AIs.Converter.Classes
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X++;
+            ant.UnitsGone++;
             return board.BoardObjects.move(ant, newCoords);
         }
         public bool moveUp()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y++;
+            ant.UnitsGone++;
             return board.BoardObjects.move(ant, newCoords);
         }
 
@@ -44,7 +47,22 @@ namespace AntWars.AIs.Converter.Classes
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y--;
+            ant.UnitsGone++;
             return board.BoardObjects.move(ant, newCoords);
+        }
+
+        public bool canMove()
+        {
+            if(this.ant.isCarry()){
+                if (this.ant.Owner.PlayerConfig.carryMoveRange <= this.ant.UnitsGone)
+                    return false;
+            }
+            if (this.ant.isScout())
+            {
+                if (this.ant.Owner.PlayerConfig.scoutMoveRange <= this.ant.UnitsGone)
+                    return false;
+            }
+            return true;
         }
 
         /// <summary>

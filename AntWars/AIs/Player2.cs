@@ -16,20 +16,23 @@ namespace AntWars.AI
         public override void antTick(AIAnt ant, List<AIBoardObject> view)
         {
             // RANDOM FTW
-            switch (rand.Next(0, 4))
+            if (ant.canMove()) // TODO: Ameisen bleiben stehen wenn sie die MoveRange gelaufen sind
             {
-                case 1:
-                    ant.moveDown();
-                    break;
-                case 2:
-                    ant.moveLeft();
-                    break;
-                case 3:
-                    ant.moveRight();
-                    break;
-                case 0:
-                    ant.moveUp();
-                    break;
+                switch (rand.Next(0, 4))
+                {
+                    case 1:
+                        ant.moveDown();
+                        break;
+                    case 2:
+                        ant.moveLeft();
+                        break;
+                    case 3:
+                        ant.moveRight();
+                        break;
+                    case 0:
+                        ant.moveUp();
+                        break;
+                }
             }
         }
 

@@ -24,6 +24,7 @@ namespace AntWars.AI
         protected bool buyScout()
         {
             Scout s = new Scout();
+            s.UnitsGone = 0;
             Base b = Game.Board.BoardObjects.getBase(Player);
 
             if (Player.money < Player.scoutCost || !resolveAntCoords(s, b))
@@ -38,6 +39,7 @@ namespace AntWars.AI
         protected bool buyCarrier()
         {
             Carry c = new Carry();
+            c.UnitsGone = 0;
             Base b = Game.Board.BoardObjects.getBase(Player);
 
             if (Player.money < Player.carryCost || !resolveAntCoords(c, b))
