@@ -97,20 +97,9 @@ namespace AntWars.AI
         public void nextTick()
         {
             // extra Parameter an AI übergeben
-            IList<Ant> ants = Game.Board.BoardObjects.getAntsByPlayer(this.Player);
-            int carryCount = 0;
-            int scoutCount = 0;
-            foreach (Ant ant in ants)
-            {
-                if (ant.isCarry())
-                    carryCount++;
-                if (ant.isScout())
-                    scoutCount++;
-            }
-
-            int score = this.Player.currentScore;
+            int score = Player.currentScore;
             int time = Game.getCurrentTick();
-            nextTick(Player.money, score, carryCount, scoutCount, time);
+            nextTick(Player.money, score, Player.carryCount, Player.scoutCount, time);
         }
     }
 }
