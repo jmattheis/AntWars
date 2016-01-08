@@ -20,19 +20,11 @@ namespace AntWars.Board
         private GameConfig conf;
         private Game game;
 
-        public int player1Scouts { get; private set; }
-        public int player1Carries { get; private set; }
-        public int player2Scouts { get; private set; }
-        public int player2Carries { get; private set; }
 
         public BoardObjects(GameConfig conf, Game game)
         {
             this.conf = conf;
             this.game = game;
-            player1Scouts = 0;
-            player1Carries = 0;
-            player2Scouts = 0;
-            player2Carries = 0;
         }
 
         /// <summary>
@@ -50,7 +42,10 @@ namespace AntWars.Board
             {
                 Ant ant = (Ant)boardObject;
                 ants.Add(ant);
-                incrementAnts(ant);
+                if (ant.Owner == game.Player1)
+                    game.Player1.incrementAnts(ant);
+                else if (ant.Owner == game.Player2)
+                    game.Player2.incrementAnts(ant);
             }
             else if (boardObject.isSignal())
             {
@@ -67,23 +62,6 @@ namespace AntWars.Board
             return true;
         }
 
-        private void incrementAnts(Ant ant)
-        {
-            if (ant.Owner == game.Player1)
-            {
-                if (ant.isCarry())
-                    player1Carries++;
-                else if (ant.isScout())
-                    player1Scouts++;
-            }
-            else if (ant.Owner == game.Player2)
-            {
-                if (ant.isCarry())
-                    player2Carries++;
-                else if (ant.isScout())
-                    player2Scouts++;
-            }
-        }
 
         private bool addToMap(BoardObject boardObject)
         {

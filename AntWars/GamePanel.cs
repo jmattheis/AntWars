@@ -232,10 +232,10 @@ namespace AntWars
             labeltimershow.Text = labeltimershow.Text + "s";
 
             // calculate ants for player by anttype
-            player1carry = game.Board.BoardObjects.player1Carries;
-            player1scout = game.Board.BoardObjects.player1Scouts;
-            player2carry = game.Board.BoardObjects.player2Carries;
-            player2scout = game.Board.BoardObjects.player2Scouts;
+            player1carry = game.Player1.carryCount;
+            player1scout = game.Player1.scoutCount;
+            player2carry = game.Player2.carryCount;
+            player2scout = game.Player2.scoutCount;
 
             // update player1
             labelplayer1pointsshow.Text = game.Player1.Points.ToString();
