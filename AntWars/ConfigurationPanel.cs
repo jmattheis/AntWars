@@ -37,12 +37,6 @@ namespace AntWars
                     gamePanel.start(configLoader.get());
                     gamePanels.Add(gamePanel);
                     disableControls();
-                    /*return;
-                    game = new Game(configLoader.get());
-                    game.start();
-                    GameTick.Start();
-                    // Kann der Spaß raus? Wird sowieso nie erreicht und in dem gamepanel.start() ausgeführt
-                    */
                 }
             } else
             {
@@ -388,6 +382,7 @@ namespace AntWars
         {
             configLoader.newGame();
             configLoadedOrNewCreatedGame();
+            loadGame(configLoader.get().Game);
         }
 
         private void btn_gameConfigSave_Click(object sender, EventArgs e)

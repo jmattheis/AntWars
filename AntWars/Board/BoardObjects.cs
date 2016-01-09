@@ -37,7 +37,9 @@ namespace AntWars.Board
             boardObjects.Add(boardObject);
             if (boardObject.isAnt())
             {
-                ants.Add((Ant)boardObject);
+                Ant ant = (Ant)boardObject;
+                ants.Add(ant);
+                ant.Owner.incrementAnts(ant);
             }
             else if (boardObject.isSignal())
             {
@@ -53,6 +55,7 @@ namespace AntWars.Board
             }
             return true;
         }
+
 
         private bool addToMap(BoardObject boardObject)
         {
