@@ -41,7 +41,7 @@ namespace AntWars
 
         public void start()
         {
-            Board = new Board.Board(Conf);
+            Board = new Board.Board(Conf, this);
             Board.nullTick(Player1, Player2);
             started = true;
         }

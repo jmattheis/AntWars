@@ -232,32 +232,10 @@ namespace AntWars
             labeltimershow.Text = labeltimershow.Text + "s";
 
             // calculate ants for player by anttype
-            IList<Ant> antsPlayer1 = game.Board.BoardObjects.getAntsByPlayer(game.Player1);
-            foreach (Ant ant in antsPlayer1)
-            {
-                if (ant.isCarry())
-                {
-                    player1carry++;
-                }
-                else
-                {
-                    player1scout++;
-                }
-            }
-
-            // calculate ants for player by anttype
-            IList<Ant> antsPlayer2 = game.Board.BoardObjects.getAntsByPlayer(game.Player2);
-            foreach (Ant ant in antsPlayer2)
-            {
-                if (ant.isCarry())
-                {
-                    player2carry++;
-                }
-                else
-                {
-                    player2scout++;
-                }
-            }
+            player1carry = game.Player1.carryCount;
+            player1scout = game.Player1.scoutCount;
+            player2carry = game.Player2.carryCount;
+            player2scout = game.Player2.scoutCount;
 
             // update player1
             labelplayer1pointsshow.Text = game.Player1.Points.ToString();
