@@ -18,13 +18,12 @@ namespace AntWars.Board
         private IList<Sugar> sugars = new List<Sugar>();
         private IDictionary<Coordinates, List<BoardObject>> coordsToObjects = new Dictionary<Coordinates, List<BoardObject>>();
         private GameConfig conf;
-        private Game game;
+        //private Game game;
 
 
         public BoardObjects(GameConfig conf, Game game)
         {
             this.conf = conf;
-            this.game = game;
         }
 
         /// <summary>
@@ -42,10 +41,7 @@ namespace AntWars.Board
             {
                 Ant ant = (Ant)boardObject;
                 ants.Add(ant);
-                if (ant.Owner == game.Player1)
-                    game.Player1.incrementAnts(ant);
-                else if (ant.Owner == game.Player2)
-                    game.Player2.incrementAnts(ant);
+                ant.Owner.incrementAnts(ant);
             }
             else if (boardObject.isSignal())
             {
