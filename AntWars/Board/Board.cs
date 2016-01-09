@@ -21,7 +21,7 @@ namespace AntWars.Board
         private Converter converter;
 
 
-        public Board(Configuration conf, Game game)
+        public Board(Configuration conf)
         {
             converter = new Converter(this);
             this.conf = conf;

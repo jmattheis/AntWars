@@ -382,7 +382,8 @@ namespace AntWars
         {
             configLoader.newGame();
             configLoadedOrNewCreatedGame();
-            getStandardGameValues();
+            loadGame(configLoader.get().Game);
+            //getStandardGameValues();
         }
 
         private void getStandardGameValues()
