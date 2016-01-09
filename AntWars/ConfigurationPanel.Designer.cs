@@ -510,18 +510,18 @@
             this.BoardHeigth.AutoSize = true;
             this.BoardHeigth.Location = new System.Drawing.Point(6, 170);
             this.BoardHeigth.Name = "BoardHeigth";
-            this.BoardHeigth.Size = new System.Drawing.Size(66, 13);
+            this.BoardHeigth.Size = new System.Drawing.Size(101, 13);
             this.BoardHeigth.TabIndex = 19;
-            this.BoardHeigth.Text = "BoardHeigth";
+            this.BoardHeigth.Text = "BoardHeigth in px*4";
             // 
             // BoardWidth
             // 
             this.BoardWidth.AutoSize = true;
             this.BoardWidth.Location = new System.Drawing.Point(6, 144);
             this.BoardWidth.Name = "BoardWidth";
-            this.BoardWidth.Size = new System.Drawing.Size(63, 13);
+            this.BoardWidth.Size = new System.Drawing.Size(98, 13);
             this.BoardWidth.TabIndex = 18;
-            this.BoardWidth.Text = "BoardWidth";
+            this.BoardWidth.Text = "BoardWidth in px*4";
             // 
             // StartAntAmount
             // 
