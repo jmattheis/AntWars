@@ -51,20 +51,6 @@ namespace AntWars.AIs.Converter.Classes
             return board.BoardObjects.move(ant, newCoords);
         }
 
-        public bool canMove()
-        {
-            if(this.ant.isCarry()){
-                if (this.ant.Owner.PlayerConfig.carryMoveRange <= this.ant.UnitsGone)
-                    return false;
-            }
-            if (this.ant.isScout())
-            {
-                if (this.ant.Owner.PlayerConfig.scoutMoveRange <= this.ant.UnitsGone)
-                    return false;
-            }
-            return true;
-        }
-
         /// <summary>
         /// Zucker aufnehmen. Die Ameise muss auf dem Zucker stehen.
         /// </summary>

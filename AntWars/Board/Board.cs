@@ -32,13 +32,30 @@ namespace AntWars.Board
         {
             // TODO Gewinnbedingungen
             // TODO zucker check ob der weg kann
+            List<Ant> antsOutOfRange = new List<Ant>();
+
             foreach (Base playerbase in BoardObjects.getBases())
             {
                 playerbase.Player.AI.nextTick();
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                ant.Owner.AI.antTick(new AIAnt(ant, this), getBoardObjectsInView(ant));
+                if(BoardObjects.outOfRange(ant))
+                    ant.Owner.AI.antTick(new AIAnt(ant, this), getBoardObjectsInView(ant));
+                else
+                    antsOutOfRange.Add(ant);
+            }
+            foreach (Ant ant in antsOutOfRange)
+            {
+                Sugar s = new Sugar();
+                if(ant.Inventory > 0)
+                {
+                    s.Coords = new Coordinates(ant.Coords.X, ant.Coords.Y);
+                    s.amount = ant.Inventory;
+                }
+                BoardObjects.remove(ant);
+                if (s.Coords != null)
+                    BoardObjects.add(s);
             }
         }
 

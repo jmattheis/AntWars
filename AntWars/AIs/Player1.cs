@@ -18,8 +18,6 @@ namespace AntWars.AI
             ant.pickUpSugar();
 
             // RANDOM FTW
-            if (ant.canMove()) // TODO: Ameisen bleiben stehen wenn sie die MoveRange gelaufen sind
-            {
                 switch (rand.Next(0, 4))
                 {
                     case 1:
@@ -35,7 +33,10 @@ namespace AntWars.AI
                         ant.moveUp();
                         break;
                 }
-            }
+            //}
+            //else
+            //{
+            //    this.Game.Board.BoardObjects.remove(ant)
         }
 
         public override void nextTick(int currentMoney, int currentScore, int carryCount, int scoutCount, int time)

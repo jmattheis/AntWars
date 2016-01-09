@@ -177,6 +177,24 @@ namespace AntWars.Board
             return true;
         }
 
+        public bool outOfRange(Ant ant)
+        {
+            if (ant.isCarry())
+            {
+                int test = ant.Owner.PlayerConfig.scoutMoveRange * conf.boardHeigth * conf.boardWidth / 100;
+                if (ant.UnitsGone >= ant.Owner.PlayerConfig.scoutMoveRange * conf.boardHeigth * conf.boardWidth / 100)
+                    return false;
+            }
+            if (ant.isScout())
+            {
+
+                int test = ant.Owner.PlayerConfig.scoutMoveRange * conf.boardHeigth * conf.boardWidth / 100;
+                if (ant.UnitsGone >= ant.Owner.PlayerConfig.scoutMoveRange  * conf.boardHeigth * conf.boardWidth / 100)
+                    return false;
+            }
+            return true;
+        }
+
         public bool isValidCoords(Coordinates coords)
         {
             if (coords.X < 0) return false;
