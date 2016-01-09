@@ -382,6 +382,31 @@ namespace AntWars
         {
             configLoader.newGame();
             configLoadedOrNewCreatedGame();
+            getStandardGameValues();
+        }
+
+        private void getStandardGameValues()
+        {
+            // set sizes to a quarter of screen resolution
+            numeric_gameConfigBoardHeigth.Value = Screen.PrimaryScreen.Bounds.Height / 8;
+            numeric_gameConfigBoardWidth.Value = Screen.PrimaryScreen.Bounds.Width / 8;
+            // set standard values
+            numeric_gameConfigSugarMin.Value = 5;
+            configLoader.get().Game.sugarMin = Convert.ToInt32(numeric_gameConfigSugarMin.Value);
+            numeric_gameConfigSugarMax.Value = 20;
+            configLoader.get().Game.sugarMax = Convert.ToInt32(numeric_gameConfigSugarMax.Value);
+            numeric_gameConfigSugarAmountMin.Value = 1;
+            configLoader.get().Game.sugarAmountMin = Convert.ToInt32(numeric_gameConfigSugarAmountMin.Value);
+            numeric_gameConfigSugarAmountMax.Value = 5;
+            configLoader.get().Game.sugarAmountMax = Convert.ToInt32(numeric_gameConfigSugarAmountMax.Value);
+            numeric_gameConfigStartAntAmount.Value = 10; // Meinung? zu groß oder zu klein?
+            configLoader.get().Game.startAntAmount = Convert.ToInt32(numeric_gameConfigStartAntAmount.Value);
+            numeric_gameConfigStartMoney.Value = 0; //Ändern wenn Kostenberechnung implementiert wurde
+            configLoader.get().Game.startMoney = Convert.ToInt32(numeric_gameConfigStartMoney.Value);
+            numeric_gameConfigTime.Value = 300;
+            configLoader.get().Game.time = Convert.ToInt32(numeric_gameConfigTime.Value);
+            numeric_gameConfigPoints.Value = 100;
+            configLoader.get().Game.points = Convert.ToInt32(numeric_gameConfigPoints.Value);
         }
 
         private void btn_gameConfigSave_Click(object sender, EventArgs e)

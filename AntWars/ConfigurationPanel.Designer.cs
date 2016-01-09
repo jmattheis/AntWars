@@ -545,26 +545,46 @@
             // 
             this.numeric_gameConfigSugarAmountMin.Location = new System.Drawing.Point(153, 64);
             this.numeric_gameConfigSugarAmountMin.Maximum = new decimal(new int[] {
-            10000,
+            10,
+            0,
+            0,
+            0});
+            this.numeric_gameConfigSugarAmountMin.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.numeric_gameConfigSugarAmountMin.Name = "numeric_gameConfigSugarAmountMin";
             this.numeric_gameConfigSugarAmountMin.Size = new System.Drawing.Size(44, 20);
             this.numeric_gameConfigSugarAmountMin.TabIndex = 15;
+            this.numeric_gameConfigSugarAmountMin.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_gameConfigSugarAmountMin.ValueChanged += new System.EventHandler(this.numeric_gameConfigSugarAmountMin_ValueChanged);
             // 
             // numeric_gameConfigSugarAmountMax
             // 
             this.numeric_gameConfigSugarAmountMax.Location = new System.Drawing.Point(153, 90);
             this.numeric_gameConfigSugarAmountMax.Maximum = new decimal(new int[] {
-            10000,
+            10,
+            0,
+            0,
+            0});
+            this.numeric_gameConfigSugarAmountMax.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.numeric_gameConfigSugarAmountMax.Name = "numeric_gameConfigSugarAmountMax";
             this.numeric_gameConfigSugarAmountMax.Size = new System.Drawing.Size(44, 20);
             this.numeric_gameConfigSugarAmountMax.TabIndex = 14;
+            this.numeric_gameConfigSugarAmountMax.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numeric_gameConfigSugarAmountMax.ValueChanged += new System.EventHandler(this.numeric_gameConfigSugarAmountMax_ValueChanged);
             // 
             // numeric_gameConfigStartAntAmount
@@ -601,9 +621,19 @@
             0,
             0,
             0});
+            this.numeric_gameConfigPoints.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_gameConfigPoints.Name = "numeric_gameConfigPoints";
             this.numeric_gameConfigPoints.Size = new System.Drawing.Size(44, 20);
             this.numeric_gameConfigPoints.TabIndex = 11;
+            this.numeric_gameConfigPoints.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.numeric_gameConfigPoints.ValueChanged += new System.EventHandler(this.numeric_gameConfigPoints_ValueChanged);
             // 
             // numeric_gameConfigStartMoney
@@ -630,6 +660,11 @@
             this.numeric_gameConfigTime.Name = "numeric_gameConfigTime";
             this.numeric_gameConfigTime.Size = new System.Drawing.Size(44, 20);
             this.numeric_gameConfigTime.TabIndex = 9;
+            this.numeric_gameConfigTime.Value = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
             this.numeric_gameConfigTime.ValueChanged += new System.EventHandler(this.numeric_gameConfigTime_ValueChanged);
             // 
             // numeric_gameConfigBoardHeigth
@@ -666,27 +701,37 @@
             // numeric_gameConfigSugarMin
             // 
             this.numeric_gameConfigSugarMin.Location = new System.Drawing.Point(153, 11);
-            this.numeric_gameConfigSugarMin.Maximum = new decimal(new int[] {
-            10000,
+            this.numeric_gameConfigSugarMin.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.numeric_gameConfigSugarMin.Name = "numeric_gameConfigSugarMin";
             this.numeric_gameConfigSugarMin.Size = new System.Drawing.Size(44, 20);
             this.numeric_gameConfigSugarMin.TabIndex = 4;
+            this.numeric_gameConfigSugarMin.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.numeric_gameConfigSugarMin.ValueChanged += new System.EventHandler(this.numeric_gameConfigSugarMin_ValueChanged);
             // 
             // numeric_gameConfigSugarMax
             // 
             this.numeric_gameConfigSugarMax.Location = new System.Drawing.Point(153, 38);
-            this.numeric_gameConfigSugarMax.Maximum = new decimal(new int[] {
-            10000,
+            this.numeric_gameConfigSugarMax.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
             this.numeric_gameConfigSugarMax.Name = "numeric_gameConfigSugarMax";
             this.numeric_gameConfigSugarMax.Size = new System.Drawing.Size(44, 20);
             this.numeric_gameConfigSugarMax.TabIndex = 6;
+            this.numeric_gameConfigSugarMax.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             this.numeric_gameConfigSugarMax.ValueChanged += new System.EventHandler(this.numeric_gameConfigSugarMax_ValueChanged);
             // 
             // SugarMin

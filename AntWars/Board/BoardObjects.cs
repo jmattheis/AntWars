@@ -18,10 +18,8 @@ namespace AntWars.Board
         private IList<Sugar> sugars = new List<Sugar>();
         private IDictionary<Coordinates, List<BoardObject>> coordsToObjects = new Dictionary<Coordinates, List<BoardObject>>();
         private GameConfig conf;
-        //private Game game;
 
-
-        public BoardObjects(GameConfig conf, Game game)
+        public BoardObjects(GameConfig conf)
         {
             this.conf = conf;
         }

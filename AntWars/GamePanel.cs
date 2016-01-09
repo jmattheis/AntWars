@@ -238,6 +238,14 @@ namespace AntWars
             labelplayer2carriesshow.Text = game.Player2.carryCount.ToString();
             labelplayer2scoutsshow.Text = game.Player2.scoutCount.ToString();
             labelplayer2antsshow.Text = Convert.ToString(game.Player2.scoutCount + game.Player2.carryCount);
+
+            // update sugar
+            labelsugarshow.Text = game.Board.BoardObjects.getSugars().Count.ToString();
+        }
+
+        private void groupstats_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

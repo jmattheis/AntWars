@@ -25,7 +25,7 @@ namespace AntWars.Board
         {
             converter = new Converter(this);
             this.conf = conf;
-            BoardObjects = new BoardObjects(conf.Game, game);
+            BoardObjects = new BoardObjects(conf.Game);
         }
 
         public void nextTick()
