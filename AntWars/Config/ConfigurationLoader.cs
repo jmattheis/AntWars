@@ -92,13 +92,12 @@ namespace AntWars.Config
         public void newPlayer1()
         {
             configuration.Player1 = new PlayerConfig();
-            setStandardPlayerValues(configuration.Player1);
+            
         } 
 
         public void newPlayer2()
         {
             configuration.Player2 = new PlayerConfig();
-            setStandardPlayerValues(configuration.Player2);
         }
 
         public void newGame()
@@ -107,7 +106,6 @@ namespace AntWars.Config
 
             // set sizes to a quarter of screen resolution
             configuration.Game.boardHeigth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
-            //numeric_gameConfigBoardHeigth.Value
             configuration.Game.boardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
             // set standard values
             configuration.Game.sugarMin = 5;
@@ -134,17 +132,6 @@ namespace AntWars.Config
         public bool isNeededPathGame()
         {
             return gamePath == null;
-        }
-
-        private void setStandardPlayerValues(PlayerConfig playerconfig)
-        {
-            PropertyInfo[] propies = playerconfig.GetType().GetProperties();
-            propies = propies.Skip(1).ToArray();
-            foreach (PropertyInfo propy in propies)
-            {
-                // TODO: evtl sobald propy.name contains cost --> return bzw skip <-- nicht zwingend notwendig
-                propy.SetValue(playerconfig, 1);
-            }
         }
     }
 }

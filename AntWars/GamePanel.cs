@@ -24,15 +24,7 @@ namespace AntWars
 
         public void start(Config.Configuration config)
         {
-            // set playernames in statistic
-            if (config.Player1.playername != "")
-            {
-                groupplayer1.Text = config.Player1.playername;
-            }
-            if (config.Player2.playername != "")
-            {
-                groupplayer2.Text = config.Player2.playername;
-            }
+            setPlayernameInStatistic(config);
             setFormSize(config);
             game = new Game(config);
             game.start();
@@ -204,15 +196,7 @@ namespace AntWars
 
         public void view(Config.Configuration config)
         {
-            // set playernames in statistic
-            if (config.Player1.playername != "")
-            {
-                groupplayer1.Text = config.Player1.playername;
-            }
-            if (config.Player2.playername != "")
-            {
-                groupplayer2.Text = config.Player2.playername;
-            }
+            setPlayernameInStatistic(config);
             setFormSize(config);
             Show();
         }
@@ -256,6 +240,19 @@ namespace AntWars
 
             // update sugar
             labelsugarshow.Text = game.Board.BoardObjects.getSugars().Count.ToString();
+        }
+
+        private void setPlayernameInStatistic(Config.Configuration config)
+        {
+            // set playernames in statistic
+            if (config.Player1.playername != "")
+            {
+                groupplayer1.Text = config.Player1.playername;
+            }
+            if (config.Player2.playername != "")
+            {
+                groupplayer2.Text = config.Player2.playername;
+            }
         }
 
         private void groupstats_Enter(object sender, EventArgs e)

@@ -22,5 +22,18 @@ namespace AntWars.Config
         public int scoutCost { get; set;}
         [XmlIgnore]
         public int carryCost { get; set; }
+
+        public PlayerConfig()
+        {
+            playername = "Player";
+            scoutViewRange = 1;
+            carryViewRange = 1;
+            scoutMoveRange = 1;
+            carryMoveRange = 1;
+            scoutInventory = 1;
+            carryInventory = 1;
+            scoutSpeed = 1;
+            carrySpeed = 1;
+        }
     }
 }
