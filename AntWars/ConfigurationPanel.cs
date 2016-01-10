@@ -506,5 +506,10 @@ namespace AntWars
             }
             return false;
         }
+
+        private void calculateAntCosts()
+        {
+            
+        }
     }
 }
