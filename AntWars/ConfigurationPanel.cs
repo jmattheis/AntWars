@@ -188,6 +188,7 @@ namespace AntWars
         private void numeric_player1CarryView_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player1.carryViewRange = Convert.ToInt32(numeric_player1CarryView.Value);
+            //calculateAntCostsByPlayer();
         }
 
         private void numeric_player1ScoutView_ValueChanged(object sender, EventArgs e)
@@ -507,9 +508,10 @@ namespace AntWars
             return false;
         }
 
-        private void calculateAntCosts()
+        private void calculateAntCostsByPlayer(Player player)
         {
-            
+            player.carryCost = player.PlayerConfig.carryViewRange + player.PlayerConfig.carryMoveRange + player.PlayerConfig.carryInventory + player.PlayerConfig.carrySpeed;
+            label__player1CarryCost.Text = player.carryCost.ToString();
         }
     }
 }
