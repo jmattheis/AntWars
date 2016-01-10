@@ -53,6 +53,9 @@ namespace AntWars
         {
             configLoader.newPlayer1();
             configLoadedOrNewCreatedPlayer1();
+            calculateAntCostsByPlayer(configLoader.get().Player1);
+            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
         }
 
         private void btn_player1ConfigLoad_Click(object sender, EventArgs e)
@@ -188,42 +191,65 @@ namespace AntWars
         private void numeric_player1CarryView_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player1.carryViewRange = Convert.ToInt32(numeric_player1CarryView.Value);
-            //calculateAntCostsByPlayer();
+            calculateAntCostsByPlayer(configLoader.get().Player1);
+            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
         }
 
         private void numeric_player1ScoutView_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player1.scoutViewRange = Convert.ToInt32(numeric_player1ScoutView.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player1);
+            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
         }
 
         private void numeric_player1ScoutInventory_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player1.scoutInventory = Convert.ToInt32(numeric_player1ScoutInventory.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player1);
+            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
         }
 
         private void numeric_player1ScoutSpeed_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player1.scoutSpeed = Convert.ToInt32(numeric_player1ScoutSpeed.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player1);
+            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
         }
 
         private void numeric_player1CarryInventory_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player1.carryInventory = Convert.ToInt32(numeric_player1CarryInventory.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player1);
+            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
         }
 
         private void numeric_player1CarrySpeed_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player1.carrySpeed = Convert.ToInt32(numeric_player1CarrySpeed.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player1);
+            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
         }
 
         private void numeric_player1ScoutMove_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player1.scoutMoveRange = Convert.ToInt32(numeric_player1ScoutMove.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player1);
+            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
         }
 
         private void numeric_player1CarryMove_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player1.carryMoveRange = Convert.ToInt32(numeric_player1CarryMove.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player1);
+            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
         }
 
         private void label__player1ScoutCost_Click(object sender, EventArgs e)
@@ -234,6 +260,9 @@ namespace AntWars
         private void numeric_player2ScoutView_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player2.scoutViewRange = Convert.ToInt32(numeric_player2ScoutView.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player2);
+            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
         }
 
         private void label__player2CarryCost_Click(object sender, EventArgs e)
@@ -244,36 +273,57 @@ namespace AntWars
         private void numeric_player2ScoutInventory_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player2.scoutInventory = Convert.ToInt32(numeric_player2ScoutInventory.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player2);
+            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
         }
 
         private void numeric_player2ScoutSpeed_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player2.scoutSpeed = Convert.ToInt32(numeric_player2ScoutSpeed.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player2);
+            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
         }
 
         private void numeric_player2CarryInventory_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player2.carryInventory = Convert.ToInt32(numeric_player2CarryInventory.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player2);
+            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
         }
 
         private void numeric_player2CarrySpeed_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player2.carrySpeed = Convert.ToInt32(numeric_player2CarrySpeed.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player2);
+            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
         }
 
         private void numeric_player2ScoutMove_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player2.scoutMoveRange = Convert.ToInt32(numeric_player2ScoutMove.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player2);
+            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
         }
 
         private void numeric_player2CarryMove_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player2.carryMoveRange = Convert.ToInt32(numeric_player2CarryMove.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player2);
+            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
         }
 
         private void numeric_player2CarryView_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Player2.carryViewRange = Convert.ToInt32(numeric_player2CarryView.Value);
+            calculateAntCostsByPlayer(configLoader.get().Player2);
+            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
         }
 
         private void label__player2ScoutCost_Click(object sender, EventArgs e)
@@ -285,6 +335,10 @@ namespace AntWars
         {
             configLoader.newPlayer2();
             configLoadedOrNewCreatedPlayer2();
+            loadPlayer2(configLoader.get().Player2);
+            calculateAntCostsByPlayer(configLoader.get().Player2);
+            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
         }
 
         private void btn_player2ConfigLoad_Click(object sender, EventArgs e)
@@ -508,10 +562,13 @@ namespace AntWars
             return false;
         }
 
-        private void calculateAntCostsByPlayer(Player player)
+        private void calculateAntCostsByPlayer(PlayerConfig playerconfig)
         {
-            player.carryCost = player.PlayerConfig.carryViewRange + player.PlayerConfig.carryMoveRange + player.PlayerConfig.carryInventory + player.PlayerConfig.carrySpeed;
-            label__player1CarryCost.Text = player.carryCost.ToString();
+            // TODO: Schönere Divisions- und Rundungsfunktion finden
+            playerconfig.carryCost = playerconfig.carryViewRange + playerconfig.carryMoveRange + playerconfig.carryInventory + playerconfig.carrySpeed;
+            playerconfig.carryCost = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(playerconfig.carryCost) / 2));
+            playerconfig.scoutCost = playerconfig.scoutViewRange + playerconfig.scoutMoveRange + playerconfig.scoutInventory + playerconfig.scoutSpeed;
+            playerconfig.scoutCost = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(playerconfig.scoutCost) / 2));
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace AntWars.Config
 {
@@ -17,5 +18,9 @@ namespace AntWars.Config
         public int carryInventory { get; set;}
         public int scoutSpeed { get; set;}
         public int carrySpeed { get; set;}
+        [XmlIgnore]
+        public int scoutCost { get; set;}
+        [XmlIgnore]
+        public int carryCost { get; set; }
     }
 }

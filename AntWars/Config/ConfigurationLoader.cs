@@ -7,6 +7,7 @@ using AntWars.Exception;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using System.Reflection;
 
 namespace AntWars.Config
 {
@@ -91,11 +92,13 @@ namespace AntWars.Config
         public void newPlayer1()
         {
             configuration.Player1 = new PlayerConfig();
+            setStandardPlayerValues(configuration.Player1);
         } 
 
         public void newPlayer2()
         {
             configuration.Player2 = new PlayerConfig();
+            setStandardPlayerValues(configuration.Player2);
         }
 
         public void newGame()
@@ -111,8 +114,9 @@ namespace AntWars.Config
             configuration.Game.sugarMax = 20;
             configuration.Game.sugarAmountMin = 1;
             configuration.Game.sugarAmountMax = 5;
+            // TODO: StartAntAmount hat derzeit keine Auswirkungen auf den Spielstart
             configuration.Game.startAntAmount = 10; // Meinung? zu groß oder zu klein?
-            configuration.Game.startMoney = 0; //Ändern wenn Kostenberechnung implementiert wurde
+            configuration.Game.startMoney = 20;
             configuration.Game.time = 300;
             configuration.Game.points = 100;
         }
@@ -130,6 +134,17 @@ namespace AntWars.Config
         public bool isNeededPathGame()
         {
             return gamePath == null;
+        }
+
+        private void setStandardPlayerValues(PlayerConfig playerconfig)
+        {
+            PropertyInfo[] propies = playerconfig.GetType().GetProperties();
+            propies = propies.Skip(1).ToArray();
+            foreach (PropertyInfo propy in propies)
+            {
+                // TODO: evtl sobald propy.name contains cost --> return bzw skip <-- nicht zwingend notwendig
+                propy.SetValue(playerconfig, 1);
+            }
         }
     }
 }

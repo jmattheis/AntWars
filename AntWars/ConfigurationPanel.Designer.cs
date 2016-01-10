@@ -209,8 +209,9 @@
             this.label__player1ScoutCost.AutoSize = true;
             this.label__player1ScoutCost.Location = new System.Drawing.Point(148, 165);
             this.label__player1ScoutCost.Name = "label__player1ScoutCost";
-            this.label__player1ScoutCost.Size = new System.Drawing.Size(0, 13);
+            this.label__player1ScoutCost.Size = new System.Drawing.Size(13, 13);
             this.label__player1ScoutCost.TabIndex = 19;
+            this.label__player1ScoutCost.Text = "0";
             this.label__player1ScoutCost.Click += new System.EventHandler(this.label__player1ScoutCost_Click);
             // 
             // label__player1CarryCost
@@ -218,8 +219,9 @@
             this.label__player1CarryCost.AutoSize = true;
             this.label__player1CarryCost.Location = new System.Drawing.Point(88, 165);
             this.label__player1CarryCost.Name = "label__player1CarryCost";
-            this.label__player1CarryCost.Size = new System.Drawing.Size(0, 13);
+            this.label__player1CarryCost.Size = new System.Drawing.Size(13, 13);
             this.label__player1CarryCost.TabIndex = 18;
+            this.label__player1CarryCost.Text = "0";
             // 
             // Inventory
             // 
@@ -265,9 +267,19 @@
             0,
             0,
             0});
+            this.numeric_player1ScoutInventory.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1ScoutInventory.Name = "numeric_player1ScoutInventory";
             this.numeric_player1ScoutInventory.Size = new System.Drawing.Size(45, 20);
             this.numeric_player1ScoutInventory.TabIndex = 12;
+            this.numeric_player1ScoutInventory.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1ScoutInventory.ValueChanged += new System.EventHandler(this.numeric_player1ScoutInventory_ValueChanged);
             // 
             // numeric_player1ScoutSpeed
@@ -278,9 +290,19 @@
             0,
             0,
             0});
+            this.numeric_player1ScoutSpeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1ScoutSpeed.Name = "numeric_player1ScoutSpeed";
             this.numeric_player1ScoutSpeed.Size = new System.Drawing.Size(45, 20);
             this.numeric_player1ScoutSpeed.TabIndex = 11;
+            this.numeric_player1ScoutSpeed.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1ScoutSpeed.ValueChanged += new System.EventHandler(this.numeric_player1ScoutSpeed_ValueChanged);
             // 
             // numeric_player1CarryInventory
@@ -291,9 +313,19 @@
             0,
             0,
             0});
+            this.numeric_player1CarryInventory.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1CarryInventory.Name = "numeric_player1CarryInventory";
             this.numeric_player1CarryInventory.Size = new System.Drawing.Size(45, 20);
             this.numeric_player1CarryInventory.TabIndex = 10;
+            this.numeric_player1CarryInventory.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1CarryInventory.ValueChanged += new System.EventHandler(this.numeric_player1CarryInventory_ValueChanged);
             // 
             // numeric_player1CarrySpeed
@@ -304,9 +336,19 @@
             0,
             0,
             0});
+            this.numeric_player1CarrySpeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1CarrySpeed.Name = "numeric_player1CarrySpeed";
             this.numeric_player1CarrySpeed.Size = new System.Drawing.Size(45, 20);
             this.numeric_player1CarrySpeed.TabIndex = 9;
+            this.numeric_player1CarrySpeed.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1CarrySpeed.ValueChanged += new System.EventHandler(this.numeric_player1CarrySpeed_ValueChanged);
             // 
             // numeric_player1ScoutMove
@@ -317,9 +359,19 @@
             0,
             0,
             0});
+            this.numeric_player1ScoutMove.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1ScoutMove.Name = "numeric_player1ScoutMove";
             this.numeric_player1ScoutMove.Size = new System.Drawing.Size(45, 20);
             this.numeric_player1ScoutMove.TabIndex = 8;
+            this.numeric_player1ScoutMove.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1ScoutMove.ValueChanged += new System.EventHandler(this.numeric_player1ScoutMove_ValueChanged);
             // 
             // numeric_player1CarryMove
@@ -330,9 +382,19 @@
             0,
             0,
             0});
+            this.numeric_player1CarryMove.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1CarryMove.Name = "numeric_player1CarryMove";
             this.numeric_player1CarryMove.Size = new System.Drawing.Size(45, 20);
             this.numeric_player1CarryMove.TabIndex = 7;
+            this.numeric_player1CarryMove.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1CarryMove.ValueChanged += new System.EventHandler(this.numeric_player1CarryMove_ValueChanged);
             // 
             // numeric_player1CarryView
@@ -343,9 +405,19 @@
             0,
             0,
             0});
+            this.numeric_player1CarryView.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1CarryView.Name = "numeric_player1CarryView";
             this.numeric_player1CarryView.Size = new System.Drawing.Size(45, 20);
             this.numeric_player1CarryView.TabIndex = 6;
+            this.numeric_player1CarryView.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1CarryView.ValueChanged += new System.EventHandler(this.numeric_player1CarryView_ValueChanged);
             // 
             // Carry
@@ -374,9 +446,19 @@
             0,
             0,
             0});
+            this.numeric_player1ScoutView.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1ScoutView.Name = "numeric_player1ScoutView";
             this.numeric_player1ScoutView.Size = new System.Drawing.Size(45, 20);
             this.numeric_player1ScoutView.TabIndex = 3;
+            this.numeric_player1ScoutView.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player1ScoutView.ValueChanged += new System.EventHandler(this.numeric_player1ScoutView_ValueChanged);
             // 
             // textbox_player1Name
@@ -809,8 +891,9 @@
             this.label__player2ScoutCost.AutoSize = true;
             this.label__player2ScoutCost.Location = new System.Drawing.Point(148, 165);
             this.label__player2ScoutCost.Name = "label__player2ScoutCost";
-            this.label__player2ScoutCost.Size = new System.Drawing.Size(0, 13);
+            this.label__player2ScoutCost.Size = new System.Drawing.Size(13, 13);
             this.label__player2ScoutCost.TabIndex = 22;
+            this.label__player2ScoutCost.Text = "0";
             this.label__player2ScoutCost.Click += new System.EventHandler(this.label__player2ScoutCost_Click);
             // 
             // Inventory2
@@ -827,8 +910,9 @@
             this.label__player2CarryCost.AutoSize = true;
             this.label__player2CarryCost.Location = new System.Drawing.Point(88, 165);
             this.label__player2CarryCost.Name = "label__player2CarryCost";
-            this.label__player2CarryCost.Size = new System.Drawing.Size(0, 13);
+            this.label__player2CarryCost.Size = new System.Drawing.Size(13, 13);
             this.label__player2CarryCost.TabIndex = 21;
+            this.label__player2CarryCost.Text = "0";
             this.label__player2CarryCost.Click += new System.EventHandler(this.label__player2CarryCost_Click);
             // 
             // Speed2
@@ -875,9 +959,19 @@
             0,
             0,
             0});
+            this.numeric_player2ScoutInventory.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2ScoutInventory.Name = "numeric_player2ScoutInventory";
             this.numeric_player2ScoutInventory.Size = new System.Drawing.Size(45, 20);
             this.numeric_player2ScoutInventory.TabIndex = 12;
+            this.numeric_player2ScoutInventory.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2ScoutInventory.ValueChanged += new System.EventHandler(this.numeric_player2ScoutInventory_ValueChanged);
             // 
             // numeric_player2ScoutSpeed
@@ -888,9 +982,19 @@
             0,
             0,
             0});
+            this.numeric_player2ScoutSpeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2ScoutSpeed.Name = "numeric_player2ScoutSpeed";
             this.numeric_player2ScoutSpeed.Size = new System.Drawing.Size(45, 20);
             this.numeric_player2ScoutSpeed.TabIndex = 11;
+            this.numeric_player2ScoutSpeed.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2ScoutSpeed.ValueChanged += new System.EventHandler(this.numeric_player2ScoutSpeed_ValueChanged);
             // 
             // numeric_player2CarryInventory
@@ -901,9 +1005,19 @@
             0,
             0,
             0});
+            this.numeric_player2CarryInventory.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2CarryInventory.Name = "numeric_player2CarryInventory";
             this.numeric_player2CarryInventory.Size = new System.Drawing.Size(45, 20);
             this.numeric_player2CarryInventory.TabIndex = 10;
+            this.numeric_player2CarryInventory.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2CarryInventory.ValueChanged += new System.EventHandler(this.numeric_player2CarryInventory_ValueChanged);
             // 
             // numeric_player2CarrySpeed
@@ -914,9 +1028,19 @@
             0,
             0,
             0});
+            this.numeric_player2CarrySpeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2CarrySpeed.Name = "numeric_player2CarrySpeed";
             this.numeric_player2CarrySpeed.Size = new System.Drawing.Size(45, 20);
             this.numeric_player2CarrySpeed.TabIndex = 9;
+            this.numeric_player2CarrySpeed.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2CarrySpeed.ValueChanged += new System.EventHandler(this.numeric_player2CarrySpeed_ValueChanged);
             // 
             // numeric_player2ScoutMove
@@ -927,9 +1051,19 @@
             0,
             0,
             0});
+            this.numeric_player2ScoutMove.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2ScoutMove.Name = "numeric_player2ScoutMove";
             this.numeric_player2ScoutMove.Size = new System.Drawing.Size(45, 20);
             this.numeric_player2ScoutMove.TabIndex = 8;
+            this.numeric_player2ScoutMove.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2ScoutMove.ValueChanged += new System.EventHandler(this.numeric_player2ScoutMove_ValueChanged);
             // 
             // numeric_player2CarryMove
@@ -940,9 +1074,19 @@
             0,
             0,
             0});
+            this.numeric_player2CarryMove.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2CarryMove.Name = "numeric_player2CarryMove";
             this.numeric_player2CarryMove.Size = new System.Drawing.Size(45, 20);
             this.numeric_player2CarryMove.TabIndex = 7;
+            this.numeric_player2CarryMove.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2CarryMove.ValueChanged += new System.EventHandler(this.numeric_player2CarryMove_ValueChanged);
             // 
             // numeric_player2CarryView
@@ -953,9 +1097,19 @@
             0,
             0,
             0});
+            this.numeric_player2CarryView.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2CarryView.Name = "numeric_player2CarryView";
             this.numeric_player2CarryView.Size = new System.Drawing.Size(45, 20);
             this.numeric_player2CarryView.TabIndex = 6;
+            this.numeric_player2CarryView.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2CarryView.ValueChanged += new System.EventHandler(this.numeric_player2CarryView_ValueChanged);
             // 
             // Carry2
@@ -984,9 +1138,19 @@
             0,
             0,
             0});
+            this.numeric_player2ScoutView.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2ScoutView.Name = "numeric_player2ScoutView";
             this.numeric_player2ScoutView.Size = new System.Drawing.Size(45, 20);
             this.numeric_player2ScoutView.TabIndex = 3;
+            this.numeric_player2ScoutView.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numeric_player2ScoutView.ValueChanged += new System.EventHandler(this.numeric_player2ScoutView_ValueChanged);
             // 
             // textbox_player2Name
