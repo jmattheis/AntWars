@@ -24,9 +24,6 @@ namespace AntWars
         public IAI AI { get; set; }
         public int currentScore = 0;
         public int money = 0;
-        //TODO beim erstellen/laden einer Config müssen Kosten neu berechnet werden
-        public int scoutCost { get; set; }
-        public int carryCost { get; set; }
         public int scoutCount { get; set; }
         public int carryCount { get; set; }
 

@@ -24,6 +24,7 @@ namespace AntWars
 
         public void start(Config.Configuration config)
         {
+            setPlayernameInStatistic(config);
             setFormSize(config);
             game = new Game(config);
             game.start();
@@ -179,10 +180,7 @@ namespace AntWars
         private void timer_GameTick_Tick(object sender, EventArgs e)
         {
             game.nextTick();
-            // BRO >>
-            // calculate gamepanel statistics
             calcGameStatistics();
-            // BRO <<
             print();
         }
 
@@ -198,6 +196,7 @@ namespace AntWars
 
         public void view(Config.Configuration config)
         {
+            setPlayernameInStatistic(config);
             setFormSize(config);
             Show();
         }
@@ -241,6 +240,19 @@ namespace AntWars
 
             // update sugar
             labelsugarshow.Text = game.Board.BoardObjects.getSugars().Count.ToString();
+        }
+
+        private void setPlayernameInStatistic(Config.Configuration config)
+        {
+            // set playernames in statistic
+            if (config.Player1.playername != "")
+            {
+                groupplayer1.Text = config.Player1.playername;
+            }
+            if (config.Player2.playername != "")
+            {
+                groupplayer2.Text = config.Player2.playername;
+            }
         }
 
         private void groupstats_Enter(object sender, EventArgs e)
