@@ -18,25 +18,21 @@ namespace AntWars.AI
             ant.pickUpSugar();
 
             // RANDOM FTW
-                switch (rand.Next(0, 4))
-                {
-                    case 1:
-                        ant.moveDown();
-                        break;
-                    case 2:
-                        ant.moveLeft();
-                        break;
-                    case 3:
-                        ant.moveRight();
-                        break;
-                    case 0:
-                        ant.moveUp();
-                        break;
-                }
-            //}
-            //else
-            //{
-            //    this.Game.Board.BoardObjects.remove(ant)
+            switch (rand.Next(0, 4))
+            {
+                case 1:
+                    ant.moveDown();
+                    break;
+                case 2:
+                    ant.moveLeft();
+                    break;
+                case 3:
+                    ant.moveRight();
+                    break;
+                case 0:
+                    ant.moveUp();
+                    break;
+            }
         }
 
         public override void nextTick(int currentMoney, int currentScore, int carryCount, int scoutCount, int time)

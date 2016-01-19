@@ -21,6 +21,8 @@ namespace AntWars
         //TODO beim erstellen/laden einer Config müssen Kosten neu berechnet werden
         public int scoutCost { get; set; }
         public int carryCost { get; set; }
+        public int scoutSpeed { get; set; }
+        public int carrySpeed { get; set; }
 
     }
 }

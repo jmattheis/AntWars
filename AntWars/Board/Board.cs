@@ -40,10 +40,27 @@ namespace AntWars.Board
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                if(BoardObjects.outOfRange(ant))
-                    ant.Owner.AI.antTick(new AIAnt(ant, this), getBoardObjectsInView(ant));
+                if (ant.isCarry())
+                {
+                    for (int i = 0; i < ant.Owner.PlayerConfig.carrySpeed; i++)
+                    {
+                        if (!BoardObjects.outOfRange(ant))
+                            ant.Owner.AI.antTick(new AIAnt(ant, this), getBoardObjectsInView(ant));
+                        else
+                            antsOutOfRange.Add(ant);
+                    }
+                }
                 else
-                    antsOutOfRange.Add(ant);
+                {
+                    for (int i = 0; i < ant.Owner.PlayerConfig.scoutSpeed; i++)
+                    {
+                        if (!BoardObjects.outOfRange(ant))
+                            ant.Owner.AI.antTick(new AIAnt(ant, this), getBoardObjectsInView(ant));
+                        else
+                            antsOutOfRange.Add(ant);
+                    }
+                }
+
             }
             foreach (Ant ant in antsOutOfRange)
             {

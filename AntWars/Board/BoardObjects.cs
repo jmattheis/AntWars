@@ -181,18 +181,17 @@ namespace AntWars.Board
         {
             if (ant.isCarry())
             {
-                int test = ant.Owner.PlayerConfig.scoutMoveRange * conf.boardHeigth * conf.boardWidth / 100;
-                if (ant.UnitsGone >= ant.Owner.PlayerConfig.scoutMoveRange * conf.boardHeigth * conf.boardWidth / 100)
-                    return false;
+                // MoveRange berechnet sich aus der config und der jeweiligen Feldgröße
+                if (ant.UnitsGone >= ant.Owner.PlayerConfig.scoutMoveRange * conf.boardHeigth * conf.boardWidth / 100) 
+                    return true;
             }
             if (ant.isScout())
             {
-
-                int test = ant.Owner.PlayerConfig.scoutMoveRange * conf.boardHeigth * conf.boardWidth / 100;
-                if (ant.UnitsGone >= ant.Owner.PlayerConfig.scoutMoveRange  * conf.boardHeigth * conf.boardWidth / 100)
-                    return false;
+                // MoveRange berechnet sich aus der config und der jeweiligen Feldgröße
+                if (ant.UnitsGone >= ant.Owner.PlayerConfig.scoutMoveRange  * conf.boardHeigth * conf.boardWidth / 100) 
+                    return true;
             }
-            return true;
+            return false;
         }
 
         public bool isValidCoords(Coordinates coords)

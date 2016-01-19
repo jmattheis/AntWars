@@ -20,6 +20,7 @@ namespace AntWars.Board.Ants
         public int Inventory { get; set; }
         public int ViewRange { get; set; }
         public int UnitsGone { get; set; }
+        public int Speed { get; set; }
         
         public void move(Direction d)
         {

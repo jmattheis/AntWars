@@ -40,6 +40,7 @@ namespace AntWars.AI
         {
             Carry c = new Carry();
             c.UnitsGone = 0;
+            c.Speed = Player.
             Base b = Game.Board.BoardObjects.getBase(Player);
 
             if (Player.money < Player.carryCost || !resolveAntCoords(c, b))
@@ -56,6 +57,7 @@ namespace AntWars.AI
             Player.money -= cost;
             ant.Owner = Player;
             ant.ViewRange = 10; // TODO get out of player or something else
+            
             Game.Board.BoardObjects.add(ant);
         }
 
