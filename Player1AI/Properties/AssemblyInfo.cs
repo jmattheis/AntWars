@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Player1AI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("OMIKRON Data Quality GmbH")]
-[assembly: AssemblyProduct("Player1AI")]
-[assembly: AssemblyCopyright("Copyright © OMIKRON Data Quality GmbH 2016")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("AntWars DLL")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
