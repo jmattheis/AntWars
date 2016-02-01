@@ -7,7 +7,7 @@ using AntWars.Board;
 
 namespace AntWars.AIs.Converter.Classes
 {
-    class AISugar : AIBoardObject
+    public class AISugar : AIBoardObject
     {
         public AISugar(Sugar sugar)
             : base(sugar)

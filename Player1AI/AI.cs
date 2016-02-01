@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 using AntWars.Board;
 using AntWars.Board.Ants;
 using AntWars.AIs.Converter.Classes;
+using AntWars.AI;
 
-
-namespace AntWars.AI
+namespace PlayerAI
 {
-    class Player2 : AIBase
+    public class AI : AntWars.AI.AIBase
     {
         private Random rand = new Random();
         public override void antTick(AIAnt ant, List<AIBoardObject> view)
         {
+            // Zucker aufheben Test
+            ant.pickUpSugar();
+
             // RANDOM FTW
             switch (rand.Next(0, 4))
             {
@@ -35,7 +38,8 @@ namespace AntWars.AI
 
         public override void nextTick(int currentMoney, int currentScore, int carryCount, int scoutCount, int time)
         {
-            buyScout();
+            buyCarrier();
         }
+
     }
 }

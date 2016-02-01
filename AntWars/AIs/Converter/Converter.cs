@@ -9,24 +9,26 @@ using AntWars.AIs.Converter.Classes;
 
 namespace AntWars.AIs.Converter
 {
-    class Converter
+    public class Converter
     {
         private Board.Board board;
+
         public Converter(Board.Board board)
         {
             this.board = board;
         }
+
         public List<AIBoardObject> getAIObjects(List<BoardObject> boardObjects)
         {
             List<AIBoardObject> AIboardObjects = new List<AIBoardObject>();
             foreach (BoardObject boardObject in boardObjects)
             {
                 AIBoardObject AIboardObject;
-               
+
                 if (boardObject.isBase())
                 {
                     AIboardObject = new AIBase((Base)boardObject);
-                }           
+                }
                 else if (boardObject.isCarry())
                 {
                     AIboardObject = new AICarry((Carry)boardObject, board);
@@ -43,9 +45,9 @@ namespace AntWars.AIs.Converter
                 {
                     AIboardObject = new AISignal((Signal)boardObject);
                 }
-                else //?
+                else
                 {
-                    AIboardObject = new AIBoardObject((BoardObject)boardObject);
+                    throw new RuntimeException("Unkown boardObject object found.");
                 }
                 AIboardObjects.Add(AIboardObject);
             }

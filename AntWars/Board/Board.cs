@@ -14,7 +14,7 @@ namespace AntWars.Board
     /// <summary>
     /// Das Board ruft die boardobjects mit ki im #nextTick() auf und enthält eine liste von allen vorhandenen BoardObjects
     /// </summary>
-    class Board
+    public class Board
     {
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
@@ -78,7 +78,7 @@ namespace AntWars.Board
         {
             nullTick(player1);
             nullTick(player2);
-            generateSugar(conf.Game.sugarMin, conf.Game.sugarMax);
+            generateSugar(conf.Game.SugarMin, conf.Game.SugarMax);
         }
 
         private void nullTick(Player player)
@@ -99,13 +99,13 @@ namespace AntWars.Board
             for (int i = 0; i < count; i++)
             {
                 Sugar s = new Sugar();
-                s.Coords = Utils.generateCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
+                s.Coords = Utils.generateCoords(conf.Game.BoardWidth, conf.Game.BoardHeigth);
                 if (BoardObjects.hasBaseOnCoords(s.Coords) || BoardObjects.hasSugarOnCoords(s.Coords))
                 {
                     i--;
                     continue;
                 }
-                s.amount = rand.Next(conf.Game.sugarAmountMin, conf.Game.sugarAmountMax + 1);
+                s.Amount = rand.Next(conf.Game.SugarAmountMin, conf.Game.SugarAmountMax + 1);
                 BoardObjects.add(s);
             }
         }
@@ -116,11 +116,11 @@ namespace AntWars.Board
             // Bases immer gegenüber spawnen lassen
             if (this.BoardObjects.getBases().Count == 1)
             {
-                b.Coords = Utils.generateBaseCoords(conf.Game.boardWidth, conf.Game.boardHeigth, this.BoardObjects.getBases()[0]);
+                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeigth, this.BoardObjects.getBases()[0]);
             }
             else
             {
-                b.Coords = Utils.generateBaseCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
+                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeigth);
             }
             return b;
         }

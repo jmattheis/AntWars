@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AntWars.Config;
-using AntWars.AI;
 using AntWars.Board.Ants;
 
 namespace AntWars
@@ -12,28 +11,36 @@ namespace AntWars
     /// <summary>
     /// Der Player, enthält die AU, sein momentanes geld, den momentanen score und die PlayerConfig.
     /// </summary>
-    class Player
+    public class Player
     {
-        public Player()
-        {
-            scoutCount = 0;
-            carryCount = 0;
-        }
         public int Points { get; set; }
         public PlayerConfig PlayerConfig { get; set; }
-        public IAI AI { get; set; }
-        public int currentScore = 0;
-        public int money = 0;
-        public int scoutCount { get; set; }
-        public int carryCount { get; set; }
+        public AIs.AI AI { get; set; }
+        public int CurrentScore { get; set; }
+        public int Money { get; set; }
+        public int ScoutCount { get; set; }
+        public int CarryCount { get; set; }
 
-
+        public Player()
+        {
+            ScoutCount = 0;
+            CarryCount = 0;
+            Money = 0;
+            CurrentScore = 0;
+        }
+        
         public void incrementAnts(Ant ant)
         {
             if (ant.isCarry())
-                carryCount++;
-            else if (ant.isScout())
-                scoutCount++;
+            {
+                CarryCount++;
+            } else if(ant.isScout())
+            {
+                ScoutCount++;
+            } else
+            {
+                throw new RuntimeException("Unknown ant type.");
+            }    
         }
     }
 }

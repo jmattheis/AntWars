@@ -9,24 +9,21 @@ using AntWars.AIs.Converter.Classes;
 
 namespace AntWars.AI
 {
-    abstract class AIBase : IAI
+    public abstract class AIBase : IAI
     {
 
         public Player Player { private get; set; }
 
         public Game Game { private get; set; }
 
-        public AIBase() { }
-
         private Base Base = null;
-
 
         protected bool buyScout()
         {
             Scout s = new Scout();
             Base b = Game.Board.BoardObjects.getBase(Player);
 
-            if (Player.money < Player.PlayerConfig.scoutCost || !resolveAntCoords(s, b))
+            if (Player.Money < Player.PlayerConfig.scoutCost || !resolveAntCoords(s, b))
                 return false;
             else
             {
@@ -40,7 +37,7 @@ namespace AntWars.AI
             Carry c = new Carry();
             Base b = Game.Board.BoardObjects.getBase(Player);
 
-            if (Player.money < Player.PlayerConfig.carryCost || !resolveAntCoords(c, b))
+            if (Player.Money < Player.PlayerConfig.carryCost || !resolveAntCoords(c, b))
                 return false;
             else
             {
@@ -51,7 +48,7 @@ namespace AntWars.AI
 
         private void buyAnt(Ant ant, int cost)
         {
-            Player.money -= cost;
+            Player.Money -= cost;
             ant.Owner = Player;
             ant.ViewRange = 10; // TODO get out of player or something else
             Game.Board.BoardObjects.add(ant);
@@ -97,9 +94,9 @@ namespace AntWars.AI
         public void nextTick()
         {
             // extra Parameter an AI übergeben
-            int score = Player.currentScore;
+            int score = Player.CurrentScore;
             int time = Game.getCurrentTick();
-            nextTick(Player.money, score, Player.carryCount, Player.scoutCount, time);
+            nextTick(Player.Money, score, Player.CarryCount, Player.ScoutCount, time);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace AntWars
     /// Das Game startpunkt für alles was nicht visuell ist.
     /// Händelt das Board und enthält die Globale Configuration.
     /// </summary>
-    class Game
+    public class Game
     {
         public Board.Board Board { get; set; }
         public Player Player1 { get; set; }
@@ -30,15 +30,11 @@ namespace AntWars
             Player2 = new Player();
             Player1.PlayerConfig = config.Player1;
             Player2.PlayerConfig = config.Player2;
-            Player1.money = config.Game.startMoney;
-            Player2.money = config.Game.startMoney;
-            Player1.AI = new AI.Player1();
-            Player1.AI.Game = this;
-            Player1.AI.Player = Player1;
-            Player2.AI = new AI.Player2();
+            Player1.Money = config.Game.StartMoney;
+            Player2.Money = config.Game.StartMoney;
+            Player1.AI = new AIs.AI(config.Player1.AIPath, this, Player1);
+            Player2.AI = new AIs.AI(config.Player2.AIPath, this, Player2);
             Conf = config;
-            Player2.AI.Game = this;
-            Player2.AI.Player = Player2;
         }
 
         public void start()
@@ -59,11 +55,6 @@ namespace AntWars
             return started;
         }
 
-        public void print()
-        {
-            
-            
-        }
         public int getCurrentTick()
         {
             return currentTick;

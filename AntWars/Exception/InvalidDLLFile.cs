@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntWars.Exception
 {
-    public class InvalidConfigurationException : System.Exception
+    class InvalidDLLFileException : System.Exception
     {
-        public InvalidConfigurationException(String message) : base(message) {}
     }
 }

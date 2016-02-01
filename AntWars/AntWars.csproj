@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AIs\AI.cs" />
     <Compile Include="AIs\Converter\Classes\AIAnt.cs" />
     <Compile Include="AIs\Converter\Classes\AIBase.cs" />
     <Compile Include="AIs\Converter\Classes\AIBoardObject.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Config\GameConfig.cs" />
     <Compile Include="Config\PlayerConfig.cs" />
     <Compile Include="Exception\InvalidConfigurationException.cs" />
+    <Compile Include="Exception\InvalidDLLFile.cs" />
     <Compile Include="Exception\RuntimeException.cs" />
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Game.cs" />
@@ -83,8 +85,6 @@
     </Compile>
     <Compile Include="Helper\Utils.cs" />
     <Compile Include="AIs\AIBase.cs" />
-    <Compile Include="AIs\Player1.cs" />
-    <Compile Include="AIs\Player2.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Board\Sugar.cs" />
     <Compile Include="Program.cs" />

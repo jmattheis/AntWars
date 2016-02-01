@@ -107,6 +107,12 @@
             this.btn_player2ConfigLoad = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.buttonView = new System.Windows.Forms.Button();
+            this.ai_dll = new System.Windows.Forms.Label();
+            this.btn_player2loadAI = new System.Windows.Forms.Button();
+            this.lbl_player2AIPath = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btn_player1loadAI = new System.Windows.Forms.Button();
+            this.lbl_player1AIPath = new System.Windows.Forms.Label();
             this.ppppanel.SuspendLayout();
             this.pnl_player1Config.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_player1ScoutInventory)).BeginInit();
@@ -170,6 +176,9 @@
             // 
             // pnl_player1Config
             // 
+            this.pnl_player1Config.Controls.Add(this.lbl_player1AIPath);
+            this.pnl_player1Config.Controls.Add(this.btn_player1loadAI);
+            this.pnl_player1Config.Controls.Add(this.label1);
             this.pnl_player1Config.Controls.Add(this.Cost);
             this.pnl_player1Config.Controls.Add(this.label__player1ScoutCost);
             this.pnl_player1Config.Controls.Add(this.label__player1CarryCost);
@@ -861,6 +870,9 @@
             // 
             // pnl_player2Config
             // 
+            this.pnl_player2Config.Controls.Add(this.lbl_player2AIPath);
+            this.pnl_player2Config.Controls.Add(this.btn_player2loadAI);
+            this.pnl_player2Config.Controls.Add(this.ai_dll);
             this.pnl_player2Config.Controls.Add(this.label__player2ScoutCost);
             this.pnl_player2Config.Controls.Add(this.Inventory2);
             this.pnl_player2Config.Controls.Add(this.label__player2CarryCost);
@@ -1211,6 +1223,58 @@
             this.buttonView.UseVisualStyleBackColor = true;
             this.buttonView.Click += new System.EventHandler(this.buttonView_Click);
             // 
+            // ai_dll
+            // 
+            this.ai_dll.AutoSize = true;
+            this.ai_dll.Location = new System.Drawing.Point(3, 189);
+            this.ai_dll.Name = "ai_dll";
+            this.ai_dll.Size = new System.Drawing.Size(55, 13);
+            this.ai_dll.TabIndex = 23;
+            this.ai_dll.Text = "DLL for AI";
+            // 
+            // btn_player2loadAI
+            // 
+            this.btn_player2loadAI.Location = new System.Drawing.Point(128, 184);
+            this.btn_player2loadAI.Name = "btn_player2loadAI";
+            this.btn_player2loadAI.Size = new System.Drawing.Size(75, 23);
+            this.btn_player2loadAI.TabIndex = 24;
+            this.btn_player2loadAI.Text = "load AI";
+            this.btn_player2loadAI.UseVisualStyleBackColor = true;
+            this.btn_player2loadAI.Click += new System.EventHandler(this.btn_player2loadAI_Click);
+            // 
+            // lbl_player2AIPath
+            // 
+            this.lbl_player2AIPath.Location = new System.Drawing.Point(64, 189);
+            this.lbl_player2AIPath.Name = "lbl_player2AIPath";
+            this.lbl_player2AIPath.Size = new System.Drawing.Size(60, 13);
+            this.lbl_player2AIPath.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 189);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "DLL for AI";
+            // 
+            // btn_player1loadAI
+            // 
+            this.btn_player1loadAI.Location = new System.Drawing.Point(121, 184);
+            this.btn_player1loadAI.Name = "btn_player1loadAI";
+            this.btn_player1loadAI.Size = new System.Drawing.Size(75, 23);
+            this.btn_player1loadAI.TabIndex = 26;
+            this.btn_player1loadAI.Text = "load AI";
+            this.btn_player1loadAI.UseVisualStyleBackColor = true;
+            this.btn_player1loadAI.Click += new System.EventHandler(this.btn_player1loadAI_Click);
+            // 
+            // lbl_player1AIPath
+            // 
+            this.lbl_player1AIPath.Location = new System.Drawing.Point(59, 189);
+            this.lbl_player1AIPath.Name = "lbl_player1AIPath";
+            this.lbl_player1AIPath.Size = new System.Drawing.Size(60, 13);
+            this.lbl_player1AIPath.TabIndex = 26;
+            // 
             // ConfigurationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1343,5 +1407,11 @@
         private System.Windows.Forms.Label SugarAmountMin;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button buttonView;
+        private System.Windows.Forms.Label lbl_player2AIPath;
+        private System.Windows.Forms.Button btn_player2loadAI;
+        private System.Windows.Forms.Label ai_dll;
+        private System.Windows.Forms.Label lbl_player1AIPath;
+        private System.Windows.Forms.Button btn_player1loadAI;
+        private System.Windows.Forms.Label label1;
     }
 }

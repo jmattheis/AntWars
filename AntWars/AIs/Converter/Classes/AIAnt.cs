@@ -8,17 +8,19 @@ using AntWars.Board;
 
 namespace AntWars.AIs.Converter.Classes
 {
-    class AIAnt : AIBoardObject
+    public class AIAnt : AIBoardObject
     {
+        public Player Owner { get; private set; }
+
         private Board.Board board;
         private Ant ant; 
+
         public AIAnt(Ant ant, Board.Board board) : base(ant)
         {
             this.board = board;
             this.ant = ant;
             Owner = ant.Owner;
         }
-        public Player Owner { get; private set; }
 
         public bool moveLeft()
         {
@@ -53,31 +55,27 @@ namespace AntWars.AIs.Converter.Classes
         /// <returns>True bei Erfolg, false wenn kein Zucker gefunden wurde.</returns>
         public bool pickUpSugar()
         {
-            int maxInventory = ant.isCarry() ? ant.Owner.PlayerConfig.carryInventory : ant.Owner.PlayerConfig.scoutInventory;
+            int maxInventory = ant.isCarry() ? ant.Owner.PlayerConfig.CarryInventory : ant.Owner.PlayerConfig.ScoutInventory;
             Sugar sugar;
 
             if (board.BoardObjects.getSugar(Coords, out sugar) && ant.Inventory < maxInventory)
             {
-                int tempSugarAmount = sugar.amount;
+                int tempSugarAmount = sugar.Amount;
                 int maxPickUpSugar = maxInventory - ant.Inventory;
 
-                if (sugar.amount - maxPickUpSugar <= 0)
+                if (sugar.Amount - maxPickUpSugar <= 0)
                 {
-                    // Zucker bei 0 entfernen
-                    sugar.amount = 0;
+                    sugar.Amount = 0;
                     board.BoardObjects.remove(sugar);
                 }
                 else
                 {
-                    sugar.amount = sugar.amount - maxPickUpSugar;
+                    sugar.Amount = sugar.Amount - maxPickUpSugar;
                 }
-                ant.Inventory += (tempSugarAmount - sugar.amount);
+                ant.Inventory += (tempSugarAmount - sugar.Amount);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         /// <summary>
@@ -88,13 +86,12 @@ namespace AntWars.AIs.Converter.Classes
         {
             if (Coords == board.BoardObjects.getBase(Owner).Coords)
             {
-                Owner.money += ant.Inventory;
+                Owner.Money += ant.Inventory;
                 Owner.Points += ant.Inventory;
                 ant.Inventory = 0;
                 return true;
             }
-            else
-                return false;
+            return false;
         }
     }
 }

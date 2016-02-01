@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntWars", "AntWars\AntWars.csproj", "{9AFF2957-2957-4817-B3F9-8688F1186B1B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AI", "AI", "{7CB28488-FFAD-4DBF-AB7E-F8C3868EC0B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Player1AI", "Player1AI\Player1AI.csproj", "{FFB9E02F-FCE2-4320-9BD3-8E7097A0963A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +19,15 @@ Global
 		{9AFF2957-2957-4817-B3F9-8688F1186B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AFF2957-2957-4817-B3F9-8688F1186B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AFF2957-2957-4817-B3F9-8688F1186B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFB9E02F-FCE2-4320-9BD3-8E7097A0963A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB9E02F-FCE2-4320-9BD3-8E7097A0963A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB9E02F-FCE2-4320-9BD3-8E7097A0963A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB9E02F-FCE2-4320-9BD3-8E7097A0963A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FFB9E02F-FCE2-4320-9BD3-8E7097A0963A} = {7CB28488-FFAD-4DBF-AB7E-F8C3868EC0B6}
 	EndGlobalSection
 EndGlobal

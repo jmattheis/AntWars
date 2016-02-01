@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board;
+using AntWars.AIs.Converter.Classes;
 
 namespace AntWars.AIs.Converter.Classes
 {
-    class AIBoardObject
+    public class AIBoardObject
     {
         public AIBoardObject(BoardObject boardObject)
         {

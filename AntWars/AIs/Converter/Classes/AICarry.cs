@@ -7,7 +7,7 @@ using AntWars.Board.Ants;
 
 namespace AntWars.AIs.Converter.Classes
 {
-    class AICarry : AIAnt
+    public class AICarry : AIAnt
     {
         public AICarry(Carry carry, Board.Board board)
             : base(carry, board)

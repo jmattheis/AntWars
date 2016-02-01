@@ -7,7 +7,7 @@ using AntWars.Board;
 
 namespace AntWars.AIs.Converter.Classes
 {
-    class AIBase : AIBoardObject
+    public class AIBase : AIBoardObject
     {
         public AIBase(Base boardbase) : base(boardbase)
         {

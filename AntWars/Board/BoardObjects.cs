@@ -9,7 +9,7 @@ using AntWars.Helper;
 using AntWars.Config;
 namespace AntWars.Board
 {
-    class BoardObjects
+    public class BoardObjects
     {
         private IList<BoardObject> boardObjects = new List<BoardObject>();
         private IList<Ant> ants = new List<Ant>();
@@ -183,9 +183,9 @@ namespace AntWars.Board
         public bool isValidCoords(Coordinates coords)
         {
             if (coords.X < 0) return false;
-            if (coords.X > conf.boardWidth) return false;
+            if (coords.X > conf.BoardWidth) return false;
             if (coords.Y < 0) return false;
-            if (coords.Y > conf.boardHeigth) return false;
+            if (coords.Y > conf.BoardHeigth) return false;
             return true;
         }
 

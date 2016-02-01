@@ -9,31 +9,32 @@ namespace AntWars.Config
 {
     public class PlayerConfig
     {
-        public string playername { get; set; }
-        public int scoutViewRange { get; set;}
-        public int carryViewRange { get; set;}
-        public int scoutMoveRange { get; set;}
-        public int carryMoveRange { get; set;}
-        public int scoutInventory { get; set;}
-        public int carryInventory { get; set;}
-        public int scoutSpeed { get; set;}
-        public int carrySpeed { get; set;}
+        public string PlayerName { get; set; }
+        public int ScoutViewRange { get; set; }
+        public int CarryViewRange { get; set; }
+        public int ScoutMoveRange { get; set; }
+        public int CarryMoveRange { get; set; }
+        public int ScoutInventory { get; set; }
+        public int CarryInventory { get; set; }
+        public int ScoutSpeed { get; set; }
+        public int CarrySpeed { get; set; }
+        public String AIPath { get; set; }
         [XmlIgnore]
-        public int scoutCost { get; set;}
+        public int scoutCost { get; set; }
         [XmlIgnore]
         public int carryCost { get; set; }
 
         public PlayerConfig()
         {
-            playername = "Player";
-            scoutViewRange = 1;
-            carryViewRange = 1;
-            scoutMoveRange = 1;
-            carryMoveRange = 1;
-            scoutInventory = 1;
-            carryInventory = 1;
-            scoutSpeed = 1;
-            carrySpeed = 1;
+            PlayerName = "Player";
+            ScoutViewRange = 1;
+            CarryViewRange = 1;
+            ScoutMoveRange = 1;
+            CarryMoveRange = 1;
+            ScoutInventory = 1;
+            CarryInventory = 1;
+            ScoutSpeed = 1;
+            CarrySpeed = 1;
         }
     }
 }

@@ -7,7 +7,7 @@ using AntWars.Board.Ants;
 
 namespace AntWars.AIs.Converter.Classes
 {
-    class AIScout : AIAnt
+    public class AIScout : AIAnt
     {
         public AIScout(Scout scout, Board.Board board)
             : base(scout, board)
