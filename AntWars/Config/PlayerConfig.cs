@@ -20,9 +20,9 @@ namespace AntWars.Config
         public int CarrySpeed { get; set; }
         public String AIPath { get; set; }
         [XmlIgnore]
-        public int scoutCost { get; set; }
+        public int ScoutCost { get; set; }
         [XmlIgnore]
-        public int carryCost { get; set; }
+        public int CarryCost { get; set; }
 
         public PlayerConfig()
         {

@@ -23,12 +23,12 @@ namespace AntWars.AI
             Scout s = new Scout();
             Base b = Game.Board.BoardObjects.getBase(Player);
 
-            if (Player.Money < Player.PlayerConfig.scoutCost || !resolveAntCoords(s, b))
+            if (Player.Money < Player.PlayerConfig.ScoutCost || !resolveAntCoords(s, b))
             {
                 return false;
             }
 
-            buyAnt(s, Player.PlayerConfig.scoutCost);
+            buyAnt(s, Player.PlayerConfig.ScoutCost);
             return true;
         }
 
@@ -37,12 +37,12 @@ namespace AntWars.AI
             Carry c = new Carry();
             Base b = Game.Board.BoardObjects.getBase(Player);
 
-            if (Player.Money < Player.PlayerConfig.carryCost || !resolveAntCoords(c, b))
+            if (Player.Money < Player.PlayerConfig.CarryCost || !resolveAntCoords(c, b))
             {
                 return false;
             }
 
-            buyAnt(c, Player.PlayerConfig.carryCost);
+            buyAnt(c, Player.PlayerConfig.CarryCost);
             return true;
         }
 

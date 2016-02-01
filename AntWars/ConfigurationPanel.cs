@@ -120,6 +120,7 @@ namespace AntWars
             numeric_player1ScoutSpeed.Value = conf.ScoutSpeed;
             numeric_player1ScoutView.Value = conf.ScoutViewRange;
             lbl_player1AIPath.Text = conf.AIPath;
+            calculateAntCostsPlayer1();
         }
 
         private void loadPlayer2(PlayerConfig conf)
@@ -134,6 +135,7 @@ namespace AntWars
             numeric_player2ScoutSpeed.Value = conf.ScoutSpeed;
             numeric_player2ScoutView.Value = conf.ScoutViewRange;
             lbl_player2AIPath.Text = conf.AIPath;
+            calculateAntCostsPlayer2();
         }
 
         private void loadGame(GameConfig conf)
@@ -543,24 +545,24 @@ namespace AntWars
         private void calculateAntCostsByPlayer(PlayerConfig playerconfig)
         {
             // TODO: Schönere Divisions- und Rundungsfunktion finden
-            playerconfig.carryCost = playerconfig.CarryViewRange + playerconfig.CarryMoveRange + playerconfig.CarryInventory + playerconfig.CarrySpeed;
-            playerconfig.carryCost = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(playerconfig.carryCost) / 2));
-            playerconfig.scoutCost = playerconfig.ScoutViewRange + playerconfig.ScoutMoveRange + playerconfig.ScoutInventory + playerconfig.ScoutSpeed;
-            playerconfig.scoutCost = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(playerconfig.scoutCost) / 2));
+            playerconfig.CarryCost = playerconfig.CarryViewRange + playerconfig.CarryMoveRange + playerconfig.CarryInventory + playerconfig.CarrySpeed;
+            playerconfig.CarryCost = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(playerconfig.CarryCost) / 2));
+            playerconfig.ScoutCost = playerconfig.ScoutViewRange + playerconfig.ScoutMoveRange + playerconfig.ScoutInventory + playerconfig.ScoutSpeed;
+            playerconfig.ScoutCost = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(playerconfig.ScoutCost) / 2));
         }
 
         private void calculateAntCostsPlayer1()
         {
             calculateAntCostsByPlayer(configLoader.get().Player1);
-            label__player1CarryCost.Text = configLoader.get().Player1.carryCost.ToString();
-            label__player1ScoutCost.Text = configLoader.get().Player1.scoutCost.ToString();
+            label__player1CarryCost.Text = configLoader.get().Player1.CarryCost.ToString();
+            label__player1ScoutCost.Text = configLoader.get().Player1.ScoutCost.ToString();
         }
 
         private void calculateAntCostsPlayer2()
         {
             calculateAntCostsByPlayer(configLoader.get().Player2);
-            label__player2CarryCost.Text = configLoader.get().Player2.carryCost.ToString();
-            label__player2ScoutCost.Text = configLoader.get().Player2.scoutCost.ToString();
+            label__player2CarryCost.Text = configLoader.get().Player2.CarryCost.ToString();
+            label__player2ScoutCost.Text = configLoader.get().Player2.ScoutCost.ToString();
         }
 
         private void btn_player2loadAI_Click(object sender, EventArgs e)
