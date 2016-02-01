@@ -24,7 +24,7 @@ namespace AntWars.Helper
                 case 3:
                     return new Coordinates(0, random.Next(boardHeight + 1));
                 default:
-                    throw new RuntimeException("NO WAY");
+                    throw new RuntimeException("C# is wrong.");
             }
         }
 

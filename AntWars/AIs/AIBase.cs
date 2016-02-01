@@ -24,12 +24,12 @@ namespace AntWars.AI
             Base b = Game.Board.BoardObjects.getBase(Player);
 
             if (Player.Money < Player.PlayerConfig.scoutCost || !resolveAntCoords(s, b))
-                return false;
-            else
             {
-                buyAnt(s, Player.PlayerConfig.scoutCost);
-                return true;
+                return false;
             }
+
+            buyAnt(s, Player.PlayerConfig.scoutCost);
+            return true;
         }
 
         protected bool buyCarrier()
@@ -38,11 +38,11 @@ namespace AntWars.AI
             Base b = Game.Board.BoardObjects.getBase(Player);
 
             if (Player.Money < Player.PlayerConfig.carryCost || !resolveAntCoords(c, b))
-                return false;
-            else
             {
-                buyAnt(c, Player.PlayerConfig.carryCost);
+                return false;
             }
+
+            buyAnt(c, Player.PlayerConfig.carryCost);
             return true;
         }
 
@@ -66,7 +66,7 @@ namespace AntWars.AI
                 List<Coordinates> adjCoords = b.Coords.getAdjacentCoordinates(3);
                 foreach (Coordinates coords in adjCoords)
                 {
-                    if(!Game.Board.BoardObjects.isValidCoords(coords))
+                    if (!Game.Board.BoardObjects.isValidCoords(coords))
                     {
                         continue;
                     }

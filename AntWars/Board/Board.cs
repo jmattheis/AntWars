@@ -31,7 +31,6 @@ namespace AntWars.Board
         public void nextTick()
         {
             // TODO Gewinnbedingungen
-            // TODO zucker check ob der weg kann
             foreach (Base playerbase in BoardObjects.getBases())
             {
                 playerbase.Player.AI.nextTick();
@@ -42,7 +41,6 @@ namespace AntWars.Board
             }
         }
 
-        // TODO testen
         private List<AIBoardObject> getBoardObjectsInView(Ant ant)
         {
             int boxMinX = ant.Coords.X - ant.ViewRange;
