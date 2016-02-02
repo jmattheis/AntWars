@@ -9,7 +9,7 @@ namespace AntWars.AIs.Converter.Classes
 {
     public class AIBase : AIBoardObject
     {
-        public AIBase(Base boardbase) : base(boardbase)
+        internal AIBase(Base boardbase) : base(boardbase)
         {
 
         }

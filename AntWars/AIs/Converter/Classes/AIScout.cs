@@ -9,7 +9,7 @@ namespace AntWars.AIs.Converter.Classes
 {
     public class AIScout : AIAnt
     {
-        public AIScout(Scout scout, Board.Board board)
+        internal AIScout(Scout scout, Board.Board board)
             : base(scout, board)
         {
 

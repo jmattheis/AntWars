@@ -14,7 +14,7 @@ using AntWars.Exception;
 
 namespace AntWars
 {
-    public partial class ConfigurationPanel : Form
+    partial class ConfigurationPanel : Form
     {
 
         private Game game;

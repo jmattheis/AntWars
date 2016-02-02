@@ -9,7 +9,7 @@ namespace AntWars.AIs.Converter.Classes
 {
     public class AICarry : AIAnt
     {
-        public AICarry(Carry carry, Board.Board board)
+        internal AICarry(Carry carry, Board.Board board)
             : base(carry, board)
         {
 

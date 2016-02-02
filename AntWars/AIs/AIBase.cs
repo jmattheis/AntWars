@@ -12,11 +12,11 @@ namespace AntWars.AI
     public abstract class AIBase : IAI
     {
 
-        public Player Player { private get; set; }
+        internal Player Player { get; set; }
 
-        public Game Game { private get; set; }
+        internal Game Game { get; set; }
 
-        private Base Base = null;
+        internal Base Base = null;
 
         protected bool buyScout()
         {
@@ -80,7 +80,7 @@ namespace AntWars.AI
             }
         }
 
-        protected Base getBase()
+        private Base getBase()
         {
             if (Base == null)
                 Base = Game.Board.BoardObjects.getBase(Player);

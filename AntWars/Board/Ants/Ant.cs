@@ -9,7 +9,7 @@ namespace AntWars.Board.Ants
     /// <summary>
     /// Die Ameise.
     /// </summary>
-    public class Ant : BoardObject
+    internal class Ant : BoardObject
     {
         
         public Player Owner { get; set; }

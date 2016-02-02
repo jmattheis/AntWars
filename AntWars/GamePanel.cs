@@ -12,7 +12,7 @@ using AntWars.Board.Ants;
 
 namespace AntWars
 {
-    public partial class GamePanel : Form
+    partial class GamePanel : Form
     {
         private Game game;
         private bool loaded = false;

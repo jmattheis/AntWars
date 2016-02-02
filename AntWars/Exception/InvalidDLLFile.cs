@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntWars.Exception
 {
-    class InvalidDLLFileException : System.Exception
+    public class InvalidDLLFileException : System.Exception
     {
     }
 }

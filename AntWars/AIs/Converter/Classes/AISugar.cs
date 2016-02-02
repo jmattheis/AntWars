@@ -9,7 +9,7 @@ namespace AntWars.AIs.Converter.Classes
 {
     public class AISugar : AIBoardObject
     {
-        public AISugar(Sugar sugar)
+        internal AISugar(Sugar sugar)
             : base(sugar)
         {
 

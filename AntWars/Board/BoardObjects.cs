@@ -9,7 +9,7 @@ using AntWars.Helper;
 using AntWars.Config;
 namespace AntWars.Board
 {
-    public class BoardObjects
+    class BoardObjects
     {
         private IList<BoardObject> boardObjects = new List<BoardObject>();
         private IList<Ant> ants = new List<Ant>();

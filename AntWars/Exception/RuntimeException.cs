@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntWars
 {
-    public class RuntimeException : System.Exception
+     class RuntimeException : System.Exception
     {
         public RuntimeException(string message) : base(message)
         { }

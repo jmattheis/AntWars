@@ -11,7 +11,7 @@ namespace AntWars
     /// <summary>
     /// Der Player, enthält die AU, sein momentanes geld, den momentanen score und die PlayerConfig.
     /// </summary>
-    public class Player
+    class Player
     {
         public int Points { get; set; }
         public PlayerConfig PlayerConfig { get; set; }

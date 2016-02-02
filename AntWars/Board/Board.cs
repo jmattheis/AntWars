@@ -14,7 +14,7 @@ namespace AntWars.Board
     /// <summary>
     /// Das Board ruft die boardobjects mit ki im #nextTick() auf und enthält eine liste von allen vorhandenen BoardObjects
     /// </summary>
-    public class Board
+    class Board
     {
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;

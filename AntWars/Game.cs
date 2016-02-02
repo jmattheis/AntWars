@@ -14,7 +14,7 @@ namespace AntWars
     /// Das Game startpunkt für alles was nicht visuell ist.
     /// Händelt das Board und enthält die Globale Configuration.
     /// </summary>
-    public class Game
+    class Game
     {
         public Board.Board Board { get; set; }
         public Player Player1 { get; set; }

@@ -9,7 +9,7 @@ namespace AntWars.Board
     /// <summary>
     /// ZUCKEERRRR
     /// </summary>
-    public class Sugar : BoardObject
+    class Sugar : BoardObject
     {
         public int Amount { get; set; }
     }

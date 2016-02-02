@@ -8,7 +8,7 @@ namespace AntWars.AIs.Converter.Classes
 {
     public class AISignal : AIBoardObject
     {
-        public AISignal(AntWars.Board.Signal signal)
+        internal AISignal(AntWars.Board.Signal signal)
             : base(signal)
         {
 

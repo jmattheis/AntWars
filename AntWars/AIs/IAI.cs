@@ -9,13 +9,10 @@ using AntWars.AIs.Converter.Classes;
 
 namespace AntWars.AI
 {
-    public interface IAI
+    interface IAI
     {
         void nextTick();
         void antTick(AIAnt ant, List<AIBoardObject> view);
-        Game Game {set;}
-        Player Player { set;}
-
         
     }
 }

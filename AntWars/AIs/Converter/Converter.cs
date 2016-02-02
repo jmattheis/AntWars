@@ -9,7 +9,7 @@ using AntWars.AIs.Converter.Classes;
 
 namespace AntWars.AIs.Converter
 {
-    public class Converter
+    class Converter
     {
         private Board.Board board;
 
@@ -20,10 +20,10 @@ namespace AntWars.AIs.Converter
 
         public List<AIBoardObject> getAIObjects(List<BoardObject> boardObjects)
         {
+            AIBoardObject AIboardObject;
             List<AIBoardObject> AIboardObjects = new List<AIBoardObject>();
             foreach (BoardObject boardObject in boardObjects)
             {
-                AIBoardObject AIboardObject;
 
                 if (boardObject.isBase())
                 {

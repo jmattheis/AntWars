@@ -9,7 +9,7 @@ using AntWars.Exception;
 
 namespace AntWars.AIs
 {
-    public class AI
+    class AI
     {
         private static String CLASS_PLAYERAI = "PlayerAI.AI";
         private static String METHOD_ANT_TICK = "antTick";
@@ -18,7 +18,7 @@ namespace AntWars.AIs
         private static String PROPERTY_PLAYER = "Player";
 
         private Type playerAI;
-        public object instance;
+        private object instance;
 
         public AI(String path, Game game, Player player)
         {
@@ -37,10 +37,10 @@ namespace AntWars.AIs
             }
         }
 
-        public void setProperty(string name, object value)
+        private void setProperty(string name, object value)
         {
-            PropertyInfo playerProperty = playerAI.GetProperty(name);
-            playerProperty.SetValue(instance, value, null);
+            PropertyInfo playerProperty = playerAI.GetProperty(name, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance);
+            playerProperty.SetValue(instance, value);
         }
 
         public void antTick(AIAnt ant, List<AIBoardObject> view)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntWars.Board
 {
-    public class Signal : BoardObject
+    class Signal : BoardObject
     {
         public Player From { get; set; }
     }

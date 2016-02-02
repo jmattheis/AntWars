@@ -17,7 +17,6 @@ namespace PlayerAI
         {
             // Zucker aufheben Test
             ant.pickUpSugar();
-
             // RANDOM FTW
             switch (rand.Next(0, 4))
             {

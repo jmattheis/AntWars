@@ -7,7 +7,7 @@ using AntWars.Board;
 
 namespace AntWars.Helper
 {
-    public class Utils
+    class Utils
     {
         public static Random random = new Random();
 
