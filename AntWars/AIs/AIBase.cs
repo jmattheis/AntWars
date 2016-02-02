@@ -89,6 +89,7 @@ namespace AntWars.AI
         }
 
         public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
+        [System.Security.Permissions.ReflectionPermission(System.Security.Permissions.SecurityAction.InheritanceDemand)]
         public abstract void antTick(AIAnt ant, List<AIBoardObject> view);
 
         public void nextTick()

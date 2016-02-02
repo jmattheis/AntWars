@@ -7,7 +7,7 @@ using AntWars.Board;
 using AntWars.Board.Ants;
 using AntWars.AIs.Converter.Classes;
 using AntWars.AI;
-
+using System.Reflection;
 namespace PlayerAI
 {
     public class AI : AntWars.AI.AIBase

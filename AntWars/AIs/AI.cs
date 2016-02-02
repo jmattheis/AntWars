@@ -24,12 +24,23 @@ namespace AntWars.AIs
         {
             try
             {
+                String content = System.IO.File.ReadAllText(path);
+
+                // So there is no real way for detecting the use of reflection,
+                // so we searching for the import, that is atleast needed when using the BindingFlag.NonPublic for get/set value for private properties.
+                if(content.Contains("System.Reflection"))
+                {
+                    throw new ReflectionUseException(path);
+                }
                 Assembly DLL = Assembly.LoadFile(path);
                 playerAI = DLL.GetType(CLASS_PLAYERAI);
                 instance = Activator.CreateInstance(playerAI);
 
                 setProperty(PROPERTY_PLAYER, player);
                 setProperty(PROPERTY_GAME, game);
+            } catch(ReflectionUseException e)
+            {
+                throw e;
             }
             catch (System.Exception e)
             {
