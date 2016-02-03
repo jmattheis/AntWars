@@ -9,8 +9,6 @@ using System.Security.Permissions;
 
 namespace AntWars.AI
 {
-    [ReflectionPermission(SecurityAction
-        .Assert)]
     public abstract class AIBase : IAI
     {
 

@@ -31,36 +31,15 @@ namespace AntWars.AIs
         {
             try
             {
-                String content = System.IO.File.ReadAllText(path);
-
-
-
-
                 Assembly DLL = Assembly.LoadFile(path);
-                
-                PermissionSet permSet = new PermissionSet(PermissionState.None);
-                permSet.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
-
-                StrongName fullTrustAssembly = DLL.Evidence.GetHostEvidence<StrongName>();
-            AppDomainSetup adSetup = new AppDomainSetup();
-                adSetup.ApplicationBase = Path.GetFullPath(path);
                 playerAI = DLL.GetType(CLASS_PLAYERAI);
-                AppDomain newDomain = AppDomain.CreateDomain("Sandbox", null, adSetup, permSet, fullTrustAssembly);
-
-            
-
-                ObjectHandle handle = Activator.CreateInstanceFrom(
-newDomain, DLL.ManifestModule.FullyQualifiedName,
-       playerAI.FullName);
-
-                
-                instance = handle.Unwrap();
+                instance = Activator.CreateInstance(playerAI);
 
                 setProperty(PROPERTY_PLAYER, player);
                 setProperty(PROPERTY_GAME, game);
-            } catch(ReflectionUseException e)
+            } catch(System.Exception e)
             {
-                throw e;
+                throw new DllNotFoundException();
             }
         }
 
