@@ -5,15 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board;
 using AntWars.Board.Ants;
-using AntWars.AIs.Converter.Classes;
 using AntWars.AI;
-using System.Reflection;
+
 namespace PlayerAI
 {
     public class AI : AntWars.AI.AIBase
     {
         private Random rand = new Random();
-        public override void antTick(AIAnt ant, List<AIBoardObject> view)
+        public override void antTick(Ant ant, List<BoardObject> view)
         {
             // Zucker aufheben Test
             ant.pickUpSugar();
