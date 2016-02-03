@@ -4,8 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
-using AntWars.AIs.Converter.Classes;
 using AntWars.Exception;
+using AntWars.Board;
+using AntWars.Board.Ants;
+using System.Security.Permissions;
+using System.Collections;
+using System.Security;
+using System.Security.Policy;
+using System.IO;
+using System.Runtime.Remoting;
 
 namespace AntWars.AIs
 {
@@ -26,25 +33,34 @@ namespace AntWars.AIs
             {
                 String content = System.IO.File.ReadAllText(path);
 
-                // So there is no real way for detecting the use of reflection,
-                // so we searching for the import, that is atleast needed when using the BindingFlag.NonPublic for get/set value for private properties.
-                if(content.Contains("System.Reflection"))
-                {
-                    throw new ReflectionUseException(path);
-                }
+
+
+
                 Assembly DLL = Assembly.LoadFile(path);
+                
+                PermissionSet permSet = new PermissionSet(PermissionState.None);
+                permSet.AddPermission(new SecurityPermission(SecurityPermissionFlag.Execution));
+
+                StrongName fullTrustAssembly = DLL.Evidence.GetHostEvidence<StrongName>();
+            AppDomainSetup adSetup = new AppDomainSetup();
+                adSetup.ApplicationBase = Path.GetFullPath(path);
                 playerAI = DLL.GetType(CLASS_PLAYERAI);
-                instance = Activator.CreateInstance(playerAI);
+                AppDomain newDomain = AppDomain.CreateDomain("Sandbox", null, adSetup, permSet, fullTrustAssembly);
+
+            
+
+                ObjectHandle handle = Activator.CreateInstanceFrom(
+newDomain, DLL.ManifestModule.FullyQualifiedName,
+       playerAI.FullName);
+
+                
+                instance = handle.Unwrap();
 
                 setProperty(PROPERTY_PLAYER, player);
                 setProperty(PROPERTY_GAME, game);
             } catch(ReflectionUseException e)
             {
                 throw e;
-            }
-            catch (System.Exception e)
-            {
-                throw new InvalidDLLFileException();
             }
         }
 
@@ -54,7 +70,7 @@ namespace AntWars.AIs
             playerProperty.SetValue(instance, value);
         }
 
-        public void antTick(AIAnt ant, List<AIBoardObject> view)
+        public void antTick(Ant ant, List<BoardObject> view)
         {
             try
             {

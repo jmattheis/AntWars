@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace AntWars.Board.Ants
 {
-    class Carry : Ant
+    public class Carry : Ant
     {
+        internal Carry(Board board) : base(board)
+        {
+
+        }
     }
 }

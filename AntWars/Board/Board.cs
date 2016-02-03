@@ -6,8 +6,6 @@ using System.Windows.Forms;
 using AntWars.Config;
 using AntWars.Helper;
 using AntWars.Board.Ants;
-using AntWars.AIs.Converter;
-using AntWars.AIs.Converter.Classes;
 
 namespace AntWars.Board
 {
@@ -18,12 +16,10 @@ namespace AntWars.Board
     {
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
-        private Converter converter;
 
 
         public Board(Configuration conf)
         {
-            converter = new Converter(this);
             this.conf = conf;
             BoardObjects = new BoardObjects(conf.Game);
         }
@@ -37,11 +33,11 @@ namespace AntWars.Board
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                ant.Owner.AI.antTick(new AIAnt(ant, this), getBoardObjectsInView(ant));
+                ant.Owner.AI.antTick(ant, getBoardObjectsInView(ant));
             }
         }
 
-        private List<AIBoardObject> getBoardObjectsInView(Ant ant)
+        private List<BoardObject> getBoardObjectsInView(Ant ant)
         {
             int boxMinX = ant.Coords.X - ant.ViewRange;
             int boxMinY = ant.Coords.Y - ant.ViewRange;
@@ -68,8 +64,7 @@ namespace AntWars.Board
             {
                 result.AddRange(BoardObjects.getBoardObjectsFromCoords(coords));
             }
-            List<AIBoardObject> AIresult = converter.getAIObjects(result);
-            return AIresult;
+            return result;
         }
 
         public void nullTick(Player player1, Player player2)

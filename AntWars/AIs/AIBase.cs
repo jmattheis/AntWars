@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board;
 using AntWars.Board.Ants;
-using AntWars.AIs.Converter.Classes;
+using System.Security.Permissions;
 
 namespace AntWars.AI
 {
+    [ReflectionPermission(SecurityAction
+        .Assert)]
     public abstract class AIBase : IAI
     {
 
@@ -20,7 +22,7 @@ namespace AntWars.AI
 
         protected bool buyScout()
         {
-            Scout s = new Scout();
+            Scout s = new Scout(Game.Board);
             Base b = Game.Board.BoardObjects.getBase(Player);
 
             if (Player.Money < Player.PlayerConfig.ScoutCost || !resolveAntCoords(s, b))
@@ -34,7 +36,7 @@ namespace AntWars.AI
 
         protected bool buyCarrier()
         {
-            Carry c = new Carry();
+            Carry c = new Carry(Game.Board);
             Base b = Game.Board.BoardObjects.getBase(Player);
 
             if (Player.Money < Player.PlayerConfig.CarryCost || !resolveAntCoords(c, b))
@@ -89,7 +91,7 @@ namespace AntWars.AI
         }
 
         public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
-        public abstract void antTick(AIAnt ant, List<AIBoardObject> view);
+        public abstract void antTick(Ant ant, List<BoardObject> view);
 
         public void nextTick()
         {
