@@ -10,7 +10,5 @@ namespace AntWars.AI
     interface IAI
     {
         void nextTick();
-        void antTick(Ant ant, List<BoardObject> view);
-        
     }
 }

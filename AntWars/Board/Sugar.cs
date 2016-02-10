@@ -11,6 +11,6 @@ namespace AntWars.Board
     /// </summary>
     public class Sugar : BoardObject
     {
-        public int Amount { get; set; }
+        public int Amount { get; internal set; }
     }
 }

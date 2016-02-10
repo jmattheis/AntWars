@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AntWars.AI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,15 +12,17 @@ namespace AntWars.Board.Ants
     /// </summary>
     public class Ant : BoardObject
     {
-        
-        internal Player Owner { get; set; }
         public int Inventory { get; internal set; }
         public int ViewRange { get; internal set; }
+        
+        internal Player Owner { get; private set; }
+        internal IAIAnt AI { get; set; }
         internal Board board;
 
-        internal Ant(Board board)
+        internal Ant(Board board, Player owner)
         {
             this.board = board;
+            Owner = owner;
         }
 
         public bool moveLeft()
@@ -35,6 +38,7 @@ namespace AntWars.Board.Ants
             newCoords.X++;
             return board.BoardObjects.move(this, newCoords);
         }
+
         public bool moveUp()
         {
             Coordinates newCoords = Coords.clone();
@@ -76,10 +80,7 @@ namespace AntWars.Board.Ants
                 Inventory += (tempSugarAmount - sugar.Amount);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         /// <summary>
@@ -95,8 +96,7 @@ namespace AntWars.Board.Ants
                 Inventory = 0;
                 return true;
             }
-            else
-                return false;
+            return false;
         }
     }
 

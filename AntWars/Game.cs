@@ -8,6 +8,8 @@ using System.Xml;
 using System.Drawing;
 using AntWars.Config;
 using AntWars.Board;
+using AntWars.AI;
+
 namespace AntWars
 {
     /// <summary>
@@ -21,20 +23,25 @@ namespace AntWars
         public Player Player2 { get; set; }
         public Configuration Conf { get; set; }
         public PictureBox GamePanel { get; set; }
+
         private bool started = false;
         private int currentTick = 0;
 
         public Game(Configuration config)
         {
-            Player1 = new Player();
-            Player2 = new Player();
-            Player1.PlayerConfig = config.Player1;
-            Player2.PlayerConfig = config.Player2;
-            Player1.Money = config.Game.StartMoney;
-            Player2.Money = config.Game.StartMoney;
-            Player1.AI = new AIs.AI(config.Player1.AIPath, this, Player1);
-            Player2.AI = new AIs.AI(config.Player2.AIPath, this, Player2);
+            int startMoney = config.Game.StartMoney;
+                    
+            Player1 = new Player(config.Player1, new AILoader(config.Player1.AIPath), startMoney);
+            Player2 = new Player(config.Player2, new AILoader(config.Player2.AIPath), startMoney);
+            initAI(Player1);
+            initAI(Player2);
+
             Conf = config;
+        }
+
+        private void initAI(Player player)
+        {
+            player.AI = player.AILoader.createAIInstance(this, player);
         }
 
         public void start()

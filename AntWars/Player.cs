@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AntWars.Config;
 using AntWars.Board.Ants;
+using AntWars.AI;
 
 namespace AntWars
 {
@@ -15,17 +16,20 @@ namespace AntWars
     {
         public int Points { get; set; }
         public PlayerConfig PlayerConfig { get; set; }
-        public AIs.AI AI { get; set; }
+        public AILoader AILoader { get; set; }
+        public IAI AI { get; set; }
         public int CurrentScore { get; set; }
         public int Money { get; set; }
         public int ScoutCount { get; set; }
         public int CarryCount { get; set; }
 
-        public Player()
+        public Player(PlayerConfig config, AILoader aiLoader, int money)
         {
+            PlayerConfig = config;
+            AILoader = aiLoader;
+            Money = money;
             ScoutCount = 0;
             CarryCount = 0;
-            Money = 0;
             CurrentScore = 0;
         }
         

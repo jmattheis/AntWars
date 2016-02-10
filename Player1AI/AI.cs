@@ -9,35 +9,38 @@ using AntWars.AI;
 
 namespace PlayerAI
 {
-    public class AI : AntWars.AI.AIBase
+    public class AI : AIBase
     {
-        private Random rand = new Random();
-        public override void antTick(Ant ant, List<BoardObject> view)
-        {
-            // Zucker aufheben Test
-            ant.pickUpSugar();
-            // RANDOM FTW
-            switch (rand.Next(0, 4))
-            {
-                case 1:
-                    ant.moveDown();
-                    break;
-                case 2:
-                    ant.moveLeft();
-                    break;
-                case 3:
-                    ant.moveRight();
-                    break;
-                case 0:
-                    ant.moveUp();
-                    break;
-            }
-        }
-
         public override void nextTick(int currentMoney, int currentScore, int carryCount, int scoutCount, int time)
         {
             buyCarrier();
         }
+    }
 
+    public class AIAnt : AIAntBase
+    {
+        private Random rand = new Random();
+        public override void antTick(List<BoardObject> view)
+        {
+            // Zucker aufheben Test
+            Ant.pickUpSugar();
+            // RANDOM FTW
+            switch (rand.Next(0, 4))
+            {
+                case 1:
+                    Ant.moveDown();
+                    break;
+                case 2:
+                    Ant.moveLeft();
+                    break;
+                case 3:
+                    Ant.moveRight();
+                    break;
+                case 0:
+                    Ant.moveUp();
+                    break;
+
+            }
+        }
     }
 }

@@ -13,45 +13,33 @@ namespace AntWars.AI
     {
 
         internal Player Player { get; set; }
-
         internal Game Game { get; set; }
-
         internal Base Base = null;
 
         protected bool buyScout()
         {
-            Scout s = new Scout(Game.Board);
-            Base b = Game.Board.BoardObjects.getBase(Player);
-
-            if (Player.Money < Player.PlayerConfig.ScoutCost || !resolveAntCoords(s, b))
-            {
-                return false;
-            }
-
-            buyAnt(s, Player.PlayerConfig.ScoutCost);
-            return true;
+            Scout s = new Scout(Game.Board, Player);      
+            return buyAnt(s, Player.PlayerConfig.ScoutCost);
         }
 
         protected bool buyCarrier()
         {
-            Carry c = new Carry(Game.Board);
-            Base b = Game.Board.BoardObjects.getBase(Player);
+            Carry c = new Carry(Game.Board, Player);
+            return buyAnt(c, Player.PlayerConfig.CarryCost);
+        }
 
-            if (Player.Money < Player.PlayerConfig.CarryCost || !resolveAntCoords(c, b))
+        private bool buyAnt(Ant ant, int cost)
+        {
+            Base b = Game.Board.BoardObjects.getBase(Player);
+            if (Player.Money < cost || !resolveAntCoords(ant, b))
             {
                 return false;
             }
 
-            buyAnt(c, Player.PlayerConfig.CarryCost);
-            return true;
-        }
-
-        private void buyAnt(Ant ant, int cost)
-        {
             Player.Money -= cost;
-            ant.Owner = Player;
+            ant.AI = Player.AILoader.createAIAntInstance(ant);
             ant.ViewRange = 10; // TODO get out of player or something else
-            Game.Board.BoardObjects.add(ant);
+            return Game.Board.BoardObjects.add(ant);
         }
 
         private bool resolveAntCoords(Ant ant, Base b)
@@ -89,7 +77,6 @@ namespace AntWars.AI
         }
 
         public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
-        public abstract void antTick(Ant ant, List<BoardObject> view);
 
         public void nextTick()
         {

@@ -11,7 +11,7 @@ namespace AntWars.Board
     /// </summary>
     public class Base : BoardObject
     {
-        internal Player Player { get; set; }
+        internal Player Player { get; private set; }
 
         internal Base(Player p)
         {

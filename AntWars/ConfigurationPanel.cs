@@ -44,10 +44,6 @@ namespace AntWars
                     {
                         MessageBox.Show("The given DLL is not valid, please try another one.", "Error: Invalid DLL.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    catch (ReflectionUseException ex)
-                    {
-                        MessageBox.Show("The dll:\n " + ex.Message + "\n uses reflection which is not allowed.", "Error: Invalid DLL.", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
             }
             else

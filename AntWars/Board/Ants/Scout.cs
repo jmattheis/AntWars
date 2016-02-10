@@ -8,9 +8,6 @@ namespace AntWars.Board.Ants
 {
     public class Scout : Ant
     {
-        internal Scout(Board board) : base(board)
-        {
-
-        }
+        internal Scout(Board board, Player owner) : base(board, owner) { }
     }
 }

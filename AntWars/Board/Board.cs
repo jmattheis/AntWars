@@ -33,7 +33,7 @@ namespace AntWars.Board
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                ant.Owner.AI.antTick(ant, getBoardObjectsInView(ant));
+                ant.AI.antTick(getBoardObjectsInView(ant));
             }
         }
 
