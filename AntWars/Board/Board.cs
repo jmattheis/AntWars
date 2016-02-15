@@ -6,8 +6,6 @@ using System.Windows.Forms;
 using AntWars.Config;
 using AntWars.Helper;
 using AntWars.Board.Ants;
-using AntWars.AIs.Converter;
-using AntWars.AIs.Converter.Classes;
 
 namespace AntWars.Board
 {
@@ -18,12 +16,10 @@ namespace AntWars.Board
     {
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
-        private Converter converter;
 
 
         public Board(Configuration conf)
         {
-            converter = new Converter(this);
             this.conf = conf;
             BoardObjects = new BoardObjects(conf.Game);
         }
@@ -31,19 +27,17 @@ namespace AntWars.Board
         public void nextTick()
         {
             // TODO Gewinnbedingungen
-            // TODO zucker check ob der weg kann
             foreach (Base playerbase in BoardObjects.getBases())
             {
                 playerbase.Player.AI.nextTick();
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                ant.Owner.AI.antTick(new AIAnt(ant, this), getBoardObjectsInView(ant));
+                ant.AI.antTick(getBoardObjectsInView(ant));
             }
         }
 
-        // TODO testen
-        private List<AIBoardObject> getBoardObjectsInView(Ant ant)
+        private List<BoardObject> getBoardObjectsInView(Ant ant)
         {
             int boxMinX = ant.Coords.X - ant.ViewRange;
             int boxMinY = ant.Coords.Y - ant.ViewRange;
@@ -70,15 +64,14 @@ namespace AntWars.Board
             {
                 result.AddRange(BoardObjects.getBoardObjectsFromCoords(coords));
             }
-            List<AIBoardObject> AIresult = converter.getAIObjects(result);
-            return AIresult;
+            return result;
         }
 
         public void nullTick(Player player1, Player player2)
         {
             nullTick(player1);
             nullTick(player2);
-            generateSugar(conf.Game.sugarMin, conf.Game.sugarMax);
+            generateSugar(conf.Game.SugarMin, conf.Game.SugarMax);
         }
 
         private void nullTick(Player player)
@@ -99,13 +92,13 @@ namespace AntWars.Board
             for (int i = 0; i < count; i++)
             {
                 Sugar s = new Sugar();
-                s.Coords = Utils.generateCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
+                s.Coords = Utils.generateCoords(conf.Game.BoardWidth, conf.Game.BoardHeigth);
                 if (BoardObjects.hasBaseOnCoords(s.Coords) || BoardObjects.hasSugarOnCoords(s.Coords))
                 {
                     i--;
                     continue;
                 }
-                s.amount = rand.Next(conf.Game.sugarAmountMin, conf.Game.sugarAmountMax + 1);
+                s.Amount = rand.Next(conf.Game.SugarAmountMin, conf.Game.SugarAmountMax + 1);
                 BoardObjects.add(s);
             }
         }
@@ -116,11 +109,11 @@ namespace AntWars.Board
             // Bases immer gegenüber spawnen lassen
             if (this.BoardObjects.getBases().Count == 1)
             {
-                b.Coords = Utils.generateBaseCoords(conf.Game.boardWidth, conf.Game.boardHeigth, this.BoardObjects.getBases()[0]);
+                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeigth, this.BoardObjects.getBases()[0]);
             }
             else
             {
-                b.Coords = Utils.generateBaseCoords(conf.Game.boardWidth, conf.Game.boardHeigth);
+                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeigth);
             }
             return b;
         }

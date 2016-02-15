@@ -17,25 +17,25 @@ namespace AntWars.Config
         private XmlSerializer playerConfSerializer = new XmlSerializer(typeof(PlayerConfig));
 
         private Configuration configuration = new Configuration();
-        public String player1Path { get; set; }
-        public String player2Path { get; set; }
-        public String gamePath { get; set; }
+        public String Player1Path { get; set; }
+        public String Player2Path { get; set; }
+        public String GamePath { get; set; }
 
         public void loadPlayer1(String path)
         {
-            player1Path = path;
+            Player1Path = path;
             configuration.Player1 = deserializePlayer(path);
         }
 
         public void loadPlayer2(String path)
         {
-            player2Path = path;
+            Player2Path = path;
             configuration.Player2 = deserializePlayer(path);
         }
 
         public void loadGame(String path)
         {
-            gamePath = path;
+            GamePath = path;
             configuration.Game = (GameConfig)deserialize(path, gameConfSerializer);
         }
 
@@ -51,17 +51,17 @@ namespace AntWars.Config
 
         public void savePlayer1()
         {
-            writeToFile(player1Path, playerConfSerializer, get().Player1);
+            writeToFile(Player1Path, playerConfSerializer, get().Player1);
         }
 
         public void savePlayer2()
         {
-            writeToFile(player2Path, playerConfSerializer, get().Player2);
+            writeToFile(Player2Path, playerConfSerializer, get().Player2);
         }
 
         public void saveGame()
         {
-            writeToFile(gamePath, gameConfSerializer, get().Game);
+            writeToFile(GamePath, gameConfSerializer, get().Game);
         }
 
         private PlayerConfig deserializePlayer(String path)
@@ -105,33 +105,33 @@ namespace AntWars.Config
             configuration.Game = new GameConfig();
 
             // set sizes to a quarter of screen resolution
-            configuration.Game.boardHeigth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
-            configuration.Game.boardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
+            configuration.Game.BoardHeigth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
+            configuration.Game.BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
             // set standard values
-            configuration.Game.sugarMin = 5;
-            configuration.Game.sugarMax = 20;
-            configuration.Game.sugarAmountMin = 1;
-            configuration.Game.sugarAmountMax = 5;
+            configuration.Game.SugarMin = 5;
+            configuration.Game.SugarMax = 20;
+            configuration.Game.SugarAmountMin = 1;
+            configuration.Game.SugarAmountMax = 5;
             // TODO: StartAntAmount hat derzeit keine Auswirkungen auf den Spielstart
-            configuration.Game.startAntAmount = 10; // Meinung? zu groß oder zu klein?
-            configuration.Game.startMoney = 20;
-            configuration.Game.time = 300;
-            configuration.Game.points = 100;
+            configuration.Game.StartAntAmount = 10; // Meinung? zu groß oder zu klein?
+            configuration.Game.StartMoney = 20;
+            configuration.Game.Time = 300;
+            configuration.Game.Points = 100;
         }
 
         public bool isNeededPathPlayer1()
         {
-            return player1Path == null;
+            return Player1Path == null;
         }
 
         public bool isNeededPathPlayer2()
         {
-            return player2Path == null;
+            return Player2Path == null;
         }
 
         public bool isNeededPathGame()
         {
-            return gamePath == null;
+            return GamePath == null;
         }
     }
 }

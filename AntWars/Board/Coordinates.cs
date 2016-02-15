@@ -9,7 +9,7 @@ namespace AntWars.Board
     /// <summary>
     /// Stellt die x und y coordinate vom board dar.
     /// </summary>
-    class Coordinates
+    public class Coordinates
     {
         public int X { get; set; }
         public int Y { get; set; }
