@@ -42,14 +42,14 @@ namespace AntWars.Board.Ants
         public bool moveUp()
         {
             Coordinates newCoords = Coords.clone();
-            newCoords.Y++;
+            newCoords.Y--;
             return board.BoardObjects.move(this, newCoords);
         }
 
         public bool moveDown()
         {
             Coordinates newCoords = Coords.clone();
-            newCoords.Y--;
+            newCoords.Y++;
             return board.BoardObjects.move(this, newCoords);
         }
 
