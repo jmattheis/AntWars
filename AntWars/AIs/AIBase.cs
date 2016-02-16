@@ -25,6 +25,7 @@ namespace AntWars.AI
         {
             Scout s = new Scout();
             s.UnitsGone = 0;
+            s.Speed = Player.PlayerConfig.scoutSpeed;
             Base b = Game.Board.BoardObjects.getBase(Player);
 
             if (Player.money < Player.PlayerConfig.scoutCost || !resolveAntCoords(s, b))
@@ -40,7 +41,7 @@ namespace AntWars.AI
         {
             Carry c = new Carry();
             c.UnitsGone = 0;
-            c.Speed = Player.
+            c.Speed = Player.PlayerConfig.carrySpeed;
             Base b = Game.Board.BoardObjects.getBase(Player);
 
             if (Player.money < Player.PlayerConfig.carryCost || !resolveAntCoords(c, b))
