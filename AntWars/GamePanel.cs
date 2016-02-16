@@ -140,21 +140,23 @@ namespace AntWars
 
         private void setColorSugar(BoardObject obj, Color inferiorElement, Bitmap bitmap)
         {
-            switch (inferiorElement)
+            switch (inferiorElement.Name)
             {
-                case (Color.Green): //Player1-Carry
+                case ("ff008000"): //Player1-Carry
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
                     break;
-                case (Color.Blue): //Player2-Carry
+                case ("ff0000ff"): //Player2-Carry
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkBlue);
                     break;
-                case (Color.SeaGreen): //Player1-Scout
+                case ("ff2e8b57"): //Player1-Scout
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
                     break;
-                case (Color.SlateBlue): //Player2-Scout
+                case ("ff6a5acd"): //Player2-Scout
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSlateBlue);
                     break;
-                default:
+                case ("0"): //nichts
+                case ("ff800080"): //Player2-Signal
+                case ("ffa52a2a"): //Player1-Signal
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Black);
                     break;
             }
@@ -162,23 +164,15 @@ namespace AntWars
 
         private void setColorBase(BoardObject obj, Color inferiorElement, Bitmap bitmap)
         {
-            switch (inferiorElement)
+            Base baseObject = (Base)obj;
+
+            if (baseObject.Player == game.Player1)
             {
-                case (Color.Green): //Player1-Carry
-                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
-                    break;
-                case (Color.Blue): //Player2-Carry
-                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkBlue);
-                    break;
-                case (Color.SeaGreen): //Player1-Scout
-                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
-                    break;
-                case (Color.SlateBlue): //Player2-Scout
-                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSlateBlue);
-                    break;
-                default:
-                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Black);
-                    break;
+                bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.GreenYellow);
+            }
+            else
+            {
+                bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.BlueViolet);
             }
         }
 
