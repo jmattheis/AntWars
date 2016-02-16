@@ -71,93 +71,129 @@ namespace AntWars
             foreach (BoardObject obj in boardObjects)
             {
                 Color inferiorElement = bitmap.GetPixel(obj.Coords.X, obj.Coords.Y);
-                if (obj.isCarry())
-                {
-                    if (((Ant)obj).Owner == game.Player1)
-                    {
-                        if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
-                        else
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Green);
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkBlue);
-                        else
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Blue);
-                    }
-                }
-                else if (obj.isScout())
-                {
-                    if (((Scout)obj).Owner == game.Player1)
-                    {
-                        if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
-                        else
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.SeaGreen);
-                    }
-                    else
-                    {
-                        if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement.Name == "ff000000") //wenn Sugar drunter ist
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSlateBlue);
-                        else
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.SlateBlue);
-                    }
-                }
-                else if (obj.isSugar())
-                {
-                    switch (inferiorElement.Name)
-                    {
-                        case ("ff008000"): //Player1-Carry
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
-                            break;
-                        case ("ff0000ff"): //Player2-Carry
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkBlue);
-                            break;
-                        case ("ff2e8b57"): //Player1-Scout
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
-                            break;
-                        case ("ff6a5acd"): //Player2-Scout
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSlateBlue);
-                            break;
-                        case ("0"): //nichts
-                        case ("ff800080"): //Player2-Signal
-                        case ("ffa52a2a"): //Player1-Signal
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Black);
-                            break;
-                    }
-
-                }
-                else if (obj.isBase())
-                {
-                    Base baseObject = (Base)obj;
-
-                    if (baseObject.Player == game.Player1)
-                    {
-                        bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.GreenYellow);
-                    }
-                    else
-                    {
-                        bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.BlueViolet);
-                    }
-                }
-                else if (obj.isSignal())
-                {
-                    if (((Signal)obj).From == game.Player1)
-                    {
-                        if (string.IsNullOrEmpty(inferiorElement.Name))
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Brown);
-                    }
-                    else
-                    {
-                        if (string.IsNullOrEmpty(inferiorElement.Name))
-                            bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Purple);
-                    }
-                }
+                setColor(obj, inferiorElement, bitmap);
             }
+
             bitmap = new Bitmap(bitmap, bitmap.Width * 4, bitmap.Height * 4);
             pb_Game.Image = bitmap;
+        }
+
+        private void setColor(BoardObject obj, Color inferiorElement, Bitmap bitmap)
+        {
+            if (obj.isCarry())
+            {
+                setColorCarry(obj, inferiorElement, bitmap);
+            }
+            else if (obj.isScout())
+            {
+                setColorScout(obj, inferiorElement, bitmap);
+            }
+            else if (obj.isSugar())
+            {
+                setColorSugar(obj, inferiorElement, bitmap);
+            }
+            else if (obj.isBase())
+            {
+                setColorBase(obj, inferiorElement, bitmap);
+            }
+            else if (obj.isSignal())
+            {
+                setColorSignal(obj, inferiorElement, bitmap);
+            }
+        }
+
+        private void setColorCarry(BoardObject obj, Color inferiorElement, Bitmap bitmap)
+        {
+            if (((Ant)obj).Owner == game.Player1)
+            {
+                if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement == Color.Black) //wenn Sugar drunter ist
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
+                else
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Green);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement == Color.Black) //wenn Sugar drunter ist
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkBlue);
+                else
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Blue);
+            }
+        }
+
+        private void setColorScout(BoardObject obj, Color inferiorElement, Bitmap bitmap)
+        {
+            if (((Scout)obj).Owner == game.Player1)
+            {
+                if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement == Color.Black) //wenn Sugar drunter ist
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
+                else
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.SeaGreen);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(inferiorElement.Name) && inferiorElement == Color.Black) //wenn Sugar drunter ist
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSlateBlue);
+                else
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.SlateBlue);
+            }
+        }
+
+        private void setColorSugar(BoardObject obj, Color inferiorElement, Bitmap bitmap)
+        {
+            switch (inferiorElement)
+            {
+                case (Color.Green): //Player1-Carry
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
+                    break;
+                case (Color.Blue): //Player2-Carry
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkBlue);
+                    break;
+                case (Color.SeaGreen): //Player1-Scout
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
+                    break;
+                case (Color.SlateBlue): //Player2-Scout
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSlateBlue);
+                    break;
+                default:
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Black);
+                    break;
+            }
+        }
+
+        private void setColorBase(BoardObject obj, Color inferiorElement, Bitmap bitmap)
+        {
+            switch (inferiorElement)
+            {
+                case (Color.Green): //Player1-Carry
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
+                    break;
+                case (Color.Blue): //Player2-Carry
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkBlue);
+                    break;
+                case (Color.SeaGreen): //Player1-Scout
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
+                    break;
+                case (Color.SlateBlue): //Player2-Scout
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSlateBlue);
+                    break;
+                default:
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Black);
+                    break;
+            }
+        }
+
+        private void setColorSignal(BoardObject obj, Color inferiorElement, Bitmap bitmap)
+        {
+            if (((Signal)obj).From == game.Player1)
+            {
+                if (string.IsNullOrEmpty(inferiorElement.Name))
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Brown);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(inferiorElement.Name))
+                    bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Purple);
+            }
         }
 
         private void testPrint()
