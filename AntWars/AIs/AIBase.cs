@@ -27,11 +27,11 @@ namespace AntWars.AI
             s.UnitsGone = 0;
             Base b = Game.Board.BoardObjects.getBase(Player);
 
-            if (Player.money < Player.scoutCost || !resolveAntCoords(s, b))
+            if (Player.money < Player.PlayerConfig.scoutCost || !resolveAntCoords(s, b))
                 return false;
             else
             {
-                buyAnt(s, Player.scoutCost);
+                buyAnt(s, Player.PlayerConfig.scoutCost);
                 return true;
             }
         }
@@ -43,11 +43,11 @@ namespace AntWars.AI
             c.Speed = Player.
             Base b = Game.Board.BoardObjects.getBase(Player);
 
-            if (Player.money < Player.carryCost || !resolveAntCoords(c, b))
+            if (Player.money < Player.PlayerConfig.carryCost || !resolveAntCoords(c, b))
                 return false;
             else
             {
-                buyAnt(c, Player.carryCost);
+                buyAnt(c, Player.PlayerConfig.carryCost);
             }
             return true;
         }
@@ -101,20 +101,9 @@ namespace AntWars.AI
         public void nextTick()
         {
             // extra Parameter an AI übergeben
-            IList<Ant> ants = Game.Board.BoardObjects.getAntsByPlayer(this.Player);
-            int carryCount = 0;
-            int scoutCount = 0;
-            foreach (Ant ant in ants)
-            {
-                if (ant.isCarry())
-                    carryCount++;
-                if (ant.isScout())
-                    scoutCount++;
-            }
-
-            int score = this.Player.currentScore;
+            int score = Player.currentScore;
             int time = Game.getCurrentTick();
-            nextTick(Player.money, score, carryCount, scoutCount, time);
+            nextTick(Player.money, score, Player.carryCount, Player.scoutCount, time);
         }
     }
 }

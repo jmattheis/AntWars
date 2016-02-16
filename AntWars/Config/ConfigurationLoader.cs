@@ -7,6 +7,7 @@ using AntWars.Exception;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
+using System.Reflection;
 
 namespace AntWars.Config
 {
@@ -91,6 +92,7 @@ namespace AntWars.Config
         public void newPlayer1()
         {
             configuration.Player1 = new PlayerConfig();
+            
         } 
 
         public void newPlayer2()
@@ -101,6 +103,20 @@ namespace AntWars.Config
         public void newGame()
         {
             configuration.Game = new GameConfig();
+
+            // set sizes to a quarter of screen resolution
+            configuration.Game.boardHeigth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
+            configuration.Game.boardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
+            // set standard values
+            configuration.Game.sugarMin = 5;
+            configuration.Game.sugarMax = 20;
+            configuration.Game.sugarAmountMin = 1;
+            configuration.Game.sugarAmountMax = 5;
+            // TODO: StartAntAmount hat derzeit keine Auswirkungen auf den Spielstart
+            configuration.Game.startAntAmount = 10; // Meinung? zu groß oder zu klein?
+            configuration.Game.startMoney = 20;
+            configuration.Game.time = 300;
+            configuration.Game.points = 100;
         }
 
         public bool isNeededPathPlayer1()

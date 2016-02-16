@@ -24,6 +24,7 @@ namespace AntWars
 
         public void start(Config.Configuration config)
         {
+            setPlayernameInStatistic(config);
             setFormSize(config);
             game = new Game(config);
             game.start();
@@ -179,6 +180,7 @@ namespace AntWars
         private void timer_GameTick_Tick(object sender, EventArgs e)
         {
             game.nextTick();
+            calcGameStatistics();
             print();
         }
 
@@ -194,6 +196,7 @@ namespace AntWars
 
         public void view(Config.Configuration config)
         {
+            setPlayernameInStatistic(config);
             setFormSize(config);
             Show();
         }
@@ -206,6 +209,55 @@ namespace AntWars
             this.groupstats.Location = statsLocation;
             this.ClientSize = new Size(config.Game.boardWidth * 4 + this.groupstats.Width, config.Game.boardHeigth * 4);
             
+        }
+
+        private void calcGameStatistics()
+        {
+            // update timer
+            if (game.Conf.Game.time > 0)
+            {
+                labeltimershow.Text = Convert.ToString(game.Conf.Game.time - (game.getCurrentTick() / 10));
+            }
+            else
+            {
+                labeltimershow.Text = Convert.ToString(game.getCurrentTick() / 10);
+            }
+            labeltimershow.Text = labeltimershow.Text + "s";
+            
+            // update player1
+            labelplayer1pointsshow.Text = game.Player1.Points.ToString();
+            labelplayer1moneyshow.Text = game.Player1.money.ToString();
+            labelplayer1carriesshow.Text = game.Player1.carryCount.ToString();
+            labelplayer1scoutsshow.Text = game.Player1.scoutCount.ToString();
+            labelplayer1antsshow.Text = Convert.ToString(game.Player1.scoutCount + game.Player1.carryCount);
+
+            // update player2
+            labelplayer2pointsshow.Text = game.Player2.Points.ToString();
+            labelplayer2moneyshow.Text = game.Player2.money.ToString();
+            labelplayer2carriesshow.Text = game.Player2.carryCount.ToString();
+            labelplayer2scoutsshow.Text = game.Player2.scoutCount.ToString();
+            labelplayer2antsshow.Text = Convert.ToString(game.Player2.scoutCount + game.Player2.carryCount);
+
+            // update sugar
+            labelsugarshow.Text = game.Board.BoardObjects.getSugars().Count.ToString();
+        }
+
+        private void setPlayernameInStatistic(Config.Configuration config)
+        {
+            // set playernames in statistic
+            if (config.Player1.playername != "")
+            {
+                groupplayer1.Text = config.Player1.playername;
+            }
+            if (config.Player2.playername != "")
+            {
+                groupplayer2.Text = config.Player2.playername;
+            }
+        }
+
+        private void groupstats_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
