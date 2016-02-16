@@ -39,6 +39,16 @@ namespace AntWars.Board
 
         private List<BoardObject> getBoardObjectsInView(Ant ant)
         {
+            List<BoardObject> result = new List<BoardObject>();
+            foreach (Coordinates coords in getCoordsInView(ant))
+            {
+                result.AddRange(BoardObjects.getBoardObjectsFromCoords(coords));
+            }
+            return result;
+        }
+
+        public List<Coordinates> getCoordsInView(Ant ant)
+        {
             int boxMinX = ant.Coords.X - ant.ViewRange;
             int boxMinY = ant.Coords.Y - ant.ViewRange;
             int boxMaxX = ant.Coords.X + ant.ViewRange;
@@ -54,17 +64,12 @@ namespace AntWars.Board
                         Coordinates c = new Coordinates(x, y);
                         if (BoardObjects.isValidCoords(c))
                         {
-                            coordinatesInsideView.Add(new Coordinates(x, y));
+                            coordinatesInsideView.Add(c);
                         }
                     }
                 }
             }
-            List<BoardObject> result = new List<BoardObject>();
-            foreach (Coordinates coords in coordinatesInsideView)
-            {
-                result.AddRange(BoardObjects.getBoardObjectsFromCoords(coords));
-            }
-            return result;
+            return coordinatesInsideView;
         }
 
         public void nullTick(Player player1, Player player2)
