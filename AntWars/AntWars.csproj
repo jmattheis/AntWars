@@ -92,6 +92,7 @@
     <Compile Include="GamePanel.Designer.cs">
       <DependentUpon>GamePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CoordsInView.cs" />
     <Compile Include="Helper\QueuedLock.cs" />
     <Compile Include="Helper\Utils.cs" />
     <Compile Include="AI\AIBase.cs" />
