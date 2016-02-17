@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 using AntWars.Board.Ants;
 using AntWars.Helper;
 using AntWars.Config;
+
 namespace AntWars.Board
 {
     class BoardObjects
     {
-        private IList<BoardObject> boardObjects = new List<BoardObject>();
-        private IList<Ant> ants = new List<Ant>();
-        private IList<Signal> signals = new List<Signal>();
-        private IList<Base> bases = new List<Base>();
-        private IList<Sugar> sugars = new List<Sugar>();
+        private volatile IList<BoardObject> boardObjects = new List<BoardObject>();
+        private volatile IList<Ant> ants = new List<Ant>();
+        private volatile IList<Signal> signals = new List<Signal>();
+        private volatile IList<Base> bases = new List<Base>();
+        private volatile IList<Sugar> sugars = new List<Sugar>();
         private GameConfig conf;
-        private List<BoardObject>[,] boardObjectList;
+        private volatile List<BoardObject>[,] boardObjectList;
 
         public BoardObjects(GameConfig conf)
         {
@@ -61,14 +62,14 @@ namespace AntWars.Board
 
         private bool addToMap(BoardObject boardObject)
         {
-            List<BoardObject> objsInCoords;
-            List<BoardObject> test = boardObjectList[boardObject.Coords.X,boardObject.Coords.Y];
-            if(test == null)
+            List<BoardObject> objsInCoords = boardObjectList[boardObject.Coords.X,boardObject.Coords.Y];
+            if(objsInCoords == null)
             {
-                test = new List<BoardObject>();
+                objsInCoords = new List<BoardObject>();
+                boardObjectList[boardObject.Coords.X, boardObject.Coords.Y] = objsInCoords;
             }
-            if(!containsType(test, boardObject)) {
-                test.Add(boardObject);
+            if(!containsType(objsInCoords, boardObject)) {
+                objsInCoords.Add(boardObject);
                 return true;
             }
             return false;
@@ -149,6 +150,7 @@ namespace AntWars.Board
             if(objsInCoords == null)
             {
                 objsInCoords = new List<BoardObject>();
+                boardObjectList[coords.X, coords.Y] = objsInCoords;
             }
             return objsInCoords;
         }

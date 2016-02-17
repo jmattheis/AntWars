@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using AntWars.Config;
 using AntWars.Helper;
 using AntWars.Board.Ants;
+using System.Threading;
 
 namespace AntWars.Board
 {
@@ -16,6 +17,7 @@ namespace AntWars.Board
     {
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
+        private QueuedLock queuedLock = new QueuedLock();
 
 
         public Board(Configuration conf)
@@ -33,16 +35,40 @@ namespace AntWars.Board
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                ant.AI.antTick(getBoardObjectsInView(ant));
+                Task.Factory.StartNew(() => { doAntAi(ant); });
             }
+            
+            queuedLock.Enter();
+            queuedLock.Exit();
         }
 
-        private List<BoardObject> getBoardObjectsInView(Ant ant)
+        private void doAntAi(Ant ant)
+        {
+            List<Coordinates> inView = getCoordsInView(ant);
+            try
+            {
+                queuedLock.Enter();
+                ant.AI.antTick(getBoardObjectsInView(ant, inView));
+            }
+            finally
+            {
+                queuedLock.Exit();
+            }
+
+        }
+
+
+        private List<BoardObject> getBoardObjectsInView(Ant ant, List<Coordinates> inView)
         {
             List<BoardObject> result = new List<BoardObject>();
-            foreach (Coordinates coords in getCoordsInView(ant))
+
+            foreach (Coordinates coords in inView)
             {
-                result.AddRange(BoardObjects.getBoardObjectsFromCoords(coords));
+                IList<BoardObject> toAdd = BoardObjects.getBoardObjectsFromCoords(coords);
+                if(toAdd.Count != 0)
+                {
+                    result.AddRange(BoardObjects.getBoardObjectsFromCoords(coords));
+                }
             }
             return result;
         }
@@ -122,6 +148,5 @@ namespace AntWars.Board
             }
             return b;
         }
-
     }
 }

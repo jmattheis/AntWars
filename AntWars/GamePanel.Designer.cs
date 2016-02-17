@@ -56,10 +56,10 @@
             this.labelplayer1pointsshow = new System.Windows.Forms.Label();
             this.labelplayer1points = new System.Windows.Forms.Label();
             this.groupgamestats = new System.Windows.Forms.GroupBox();
+            this.labelsugarshow = new System.Windows.Forms.Label();
+            this.labelsugar = new System.Windows.Forms.Label();
             this.labeltimershow = new System.Windows.Forms.Label();
             this.labeltimer = new System.Windows.Forms.Label();
-            this.labelsugar = new System.Windows.Forms.Label();
-            this.labelsugarshow = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).BeginInit();
             this.groupstats.SuspendLayout();
             this.groupplayer2.SuspendLayout();
@@ -332,6 +332,24 @@
             this.groupgamestats.TabStop = false;
             this.groupgamestats.Text = "Game";
             // 
+            // labelsugarshow
+            // 
+            this.labelsugarshow.AutoSize = true;
+            this.labelsugarshow.Location = new System.Drawing.Point(92, 33);
+            this.labelsugarshow.Name = "labelsugarshow";
+            this.labelsugarshow.Size = new System.Drawing.Size(37, 13);
+            this.labelsugarshow.TabIndex = 10;
+            this.labelsugarshow.Text = "99999";
+            // 
+            // labelsugar
+            // 
+            this.labelsugar.AutoSize = true;
+            this.labelsugar.Location = new System.Drawing.Point(7, 33);
+            this.labelsugar.Name = "labelsugar";
+            this.labelsugar.Size = new System.Drawing.Size(35, 13);
+            this.labelsugar.TabIndex = 2;
+            this.labelsugar.Text = "Sugar";
+            // 
             // labeltimershow
             // 
             this.labeltimershow.AutoSize = true;
@@ -349,24 +367,6 @@
             this.labeltimer.Size = new System.Drawing.Size(30, 13);
             this.labeltimer.TabIndex = 0;
             this.labeltimer.Text = "Time";
-            // 
-            // labelsugar
-            // 
-            this.labelsugar.AutoSize = true;
-            this.labelsugar.Location = new System.Drawing.Point(7, 33);
-            this.labelsugar.Name = "labelsugar";
-            this.labelsugar.Size = new System.Drawing.Size(35, 13);
-            this.labelsugar.TabIndex = 2;
-            this.labelsugar.Text = "Sugar";
-            // 
-            // labelsugarshow
-            // 
-            this.labelsugarshow.AutoSize = true;
-            this.labelsugarshow.Location = new System.Drawing.Point(92, 33);
-            this.labelsugarshow.Name = "labelsugarshow";
-            this.labelsugarshow.Size = new System.Drawing.Size(37, 13);
-            this.labelsugarshow.TabIndex = 10;
-            this.labelsugarshow.Text = "99999";
             // 
             // GamePanel
             // 
