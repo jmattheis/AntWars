@@ -17,8 +17,7 @@ namespace AntWars.Board
     {
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
-        private QueuedLock queuedLock = new QueuedLock();
-        private volatile CoordsInView[] coordsInViews = new CoordsInView[20];
+        private CoordsInView[] coordsInViews = new CoordsInView[20];
 
 
         public Board(Configuration conf)
@@ -36,55 +35,39 @@ namespace AntWars.Board
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                //Task.Factory.StartNew(() => { 
-                doAntAi(ant); //});
-            }
-            
-            queuedLock.Enter();
-            queuedLock.Exit();
-        }
-
-        private void doAntAi(Ant ant)
-        {
-            List<Coordinates> inView = getCoordsInView(ant);
-            try
-            {
-                queuedLock.Enter();
-                ant.AI.antTick(getBoardObjectsInView(ant, inView));
-            }
-            finally
-            {
-                queuedLock.Exit();
+                ant.AI.antTick(getBoardObjectsInView(ant));
             }
 
         }
 
-
-        private List<BoardObject> getBoardObjectsInView(Ant ant, List<Coordinates> inView)
+        private IEnumerable<BoardObject> getBoardObjectsInView(Ant ant)
         {
-            List<BoardObject> result = new List<BoardObject>();
-
-            foreach (Coordinates coords in inView)
+            IEnumerable<BoardObject> result = new LinkedList<BoardObject>();
+            foreach (Coordinates c in getCoordsInView(ant.ViewRange).circle)
             {
-                IList<BoardObject> toAdd = BoardObjects.getBoardObjectsFromCoords(coords);
-                if(toAdd.Count != 0)
+                Coordinates toAdd = new Coordinates(c.X + ant.Coords.X, c.Y + ant.Coords.Y);
+                if (BoardObjects.isValidCoords(toAdd))
                 {
-                    result.AddRange(toAdd);
+                    IList<BoardObject> boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(toAdd);
+                    if (boardobjectsformcoords.Count != 0)
+                    {
+                        result = result.Concat(boardobjectsformcoords);
+                    }
                 }
             }
+
             return result;
         }
 
-        public List<Coordinates> getCoordsInView(Ant ant)
+        public CoordsInView getCoordsInView(int range)
         {
-            CoordsInView toDo = coordsInViews[ant.ViewRange];
-            if(toDo == null)
+            CoordsInView coordsInView = coordsInViews[range];
+            if (coordsInView == null)
             {
-                toDo = new CoordsInView(ant.ViewRange, BoardObjects);
-                coordsInViews[ant.ViewRange] = toDo;
+                coordsInView = new CoordsInView(range, BoardObjects);
+                coordsInViews[range] = coordsInView;
             }
-            List<Coordinates> test = toDo.getCoordinatesInsideView(ant.Coords);
-            return test;
+            return coordsInView;
         }
 
         public void nullTick(Player player1, Player player2)

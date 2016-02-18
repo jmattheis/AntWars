@@ -12,12 +12,7 @@ namespace AntWars.Helper
         private BoardObjects boardObjects;
 
         public int Width { get; set; }
-        public List<Coordinates> circle {get;set;}
-
-        public CoordsInView(int width)
-        {
-            
-        }
+        public Coordinates[] circle { get; set; }
 
         public CoordsInView(int width, BoardObjects boardObjects)
         {
@@ -39,20 +34,18 @@ namespace AntWars.Helper
                     }
                 }
             }
-            circle = coordinatesInsideView;
+            circle = coordinatesInsideView.ToArray();
         }
 
         public List<Coordinates> getCoordinatesInsideView(Coordinates center)
         {
-
             List<Coordinates> coordinatesInsideView = new List<Coordinates>();
             foreach (Coordinates c in circle)
             {
                 Coordinates toAdd = new Coordinates(c.X + center.X, c.Y + center.Y);
-                if(boardObjects.isValidCoords(toAdd))
+                if (boardObjects.isValidCoords(toAdd))
                 {
-
-                coordinatesInsideView.Add(toAdd);
+                    coordinatesInsideView.Add(toAdd);
                 }
             }
             return coordinatesInsideView;

@@ -54,7 +54,7 @@ namespace AntWars
 
         private void GameTick_Tick(object sender, EventArgs e)
         {
-            game.nextTick();
+            //game.nextTick();
         }
 
         private void btn_player1ConfigNew_Click(object sender, EventArgs e)

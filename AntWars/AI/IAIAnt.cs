@@ -10,6 +10,6 @@ namespace AntWars.AI
 {
     public interface IAIAnt
     {
-        void antTick(List<BoardObject> view);
+        void antTick(IEnumerable<BoardObject> view);
     }
 }

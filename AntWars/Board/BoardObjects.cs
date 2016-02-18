@@ -12,13 +12,13 @@ namespace AntWars.Board
 {
     class BoardObjects
     {
-        private volatile IList<BoardObject> boardObjects = new List<BoardObject>();
-        private volatile IList<Ant> ants = new List<Ant>();
-        private volatile IList<Signal> signals = new List<Signal>();
-        private volatile IList<Base> bases = new List<Base>();
-        private volatile IList<Sugar> sugars = new List<Sugar>();
+        private IList<BoardObject> boardObjects = new List<BoardObject>();
+        private IList<Ant> ants = new List<Ant>();
+        private IList<Signal> signals = new List<Signal>();
+        private IList<Base> bases = new List<Base>();
+        private IList<Sugar> sugars = new List<Sugar>();
         private GameConfig conf;
-        private volatile List<BoardObject>[,] boardObjectList;
+        private List<BoardObject>[,] boardObjectList;
 
         public BoardObjects(GameConfig conf)
         {

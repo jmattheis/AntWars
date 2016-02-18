@@ -20,7 +20,7 @@ namespace PlayerAI
     public class AIAnt : AIAntBase
     {
         private Random rand = new Random();
-        public override void antTick(List<BoardObject> view)
+        public override void antTick(IEnumerable<BoardObject> view)
         {
             // Zucker aufheben Test
             Ant.pickUpSugar();
