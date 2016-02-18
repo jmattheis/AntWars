@@ -11,6 +11,21 @@
     <AssemblyName>AntWars</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,15 +59,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AIs\Converter\Classes\AIAnt.cs" />
-    <Compile Include="AIs\Converter\Classes\AIBase.cs" />
-    <Compile Include="AIs\Converter\Classes\AIBoardObject.cs" />
-    <Compile Include="AIs\Converter\Classes\AICarry.cs" />
-    <Compile Include="AIs\Converter\Classes\AIScout.cs" />
-    <Compile Include="AIs\Converter\Classes\AISignal.cs" />
-    <Compile Include="AIs\Converter\Classes\AISugar.cs" />
-    <Compile Include="AIs\Converter\Converter.cs" />
-    <Compile Include="AIs\IAI.cs" />
+    <Compile Include="AI\AILoader.cs" />
+    <Compile Include="AI\AIAntBase.cs" />
+    <Compile Include="AI\IAI.cs" />
+    <Compile Include="AI\IAIAnt.cs" />
     <Compile Include="Board\Ants\Ant.cs" />
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardObject.cs" />
@@ -72,6 +82,7 @@
     <Compile Include="Config\GameConfig.cs" />
     <Compile Include="Config\PlayerConfig.cs" />
     <Compile Include="Exception\InvalidConfigurationException.cs" />
+    <Compile Include="Exception\InvalidDLLFile.cs" />
     <Compile Include="Exception\RuntimeException.cs" />
     <Compile Include="Config\Configuration.cs" />
     <Compile Include="Game.cs" />
@@ -82,9 +93,7 @@
       <DependentUpon>GamePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\Utils.cs" />
-    <Compile Include="AIs\AIBase.cs" />
-    <Compile Include="AIs\Player1.cs" />
-    <Compile Include="AIs\Player2.cs" />
+    <Compile Include="AI\AIBase.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Board\Sugar.cs" />
     <Compile Include="Program.cs" />
@@ -116,6 +125,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

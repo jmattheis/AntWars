@@ -5,15 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board;
 using AntWars.Board.Ants;
-using AntWars.AIs.Converter.Classes;
-
 namespace AntWars.AI
 {
     interface IAI
     {
         void nextTick();
-        void antTick(AIAnt ant, List<AIBoardObject> view);
-        Game Game {set;}
-        Player Player { set;}
     }
 }

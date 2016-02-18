@@ -9,7 +9,7 @@ namespace AntWars.Config
     /// <summary>
     /// Die Configuration enthält die PlayerConfiguration und die GameConfiguration
     /// </summary>
-    public class Configuration
+    class Configuration
     {
         public GameConfig Game { get; set; }
         public PlayerConfig Player1 { get; set; }

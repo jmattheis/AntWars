@@ -30,7 +30,7 @@ namespace AntWars.Board
         /// <returns>true when added false when there a already a entry with the type on this coordinate</returns>
         public bool add(BoardObject boardObject)
         {
-            if(!addToMap(boardObject))
+            if (!addToMap(boardObject))
             {
                 return false;
             }
@@ -65,7 +65,7 @@ namespace AntWars.Board
                 objsInCoords = new List<BoardObject>();
                 coordsToObjects.Add(boardObject.Coords, objsInCoords);
             }
-            if(!containsType(objsInCoords, boardObject))
+            if (!containsType(objsInCoords, boardObject))
             {
                 objsInCoords.Add(boardObject);
                 return true;
@@ -78,7 +78,8 @@ namespace AntWars.Board
             foreach (BoardObject obj in objs)
             {
                 // the OR is a workaround due to Carry != Scout in type so we use our isAnt() method
-                if(obj.GetType() == objectToCheck.GetType() || (obj.isAnt() && objectToCheck.isAnt())) {
+                if (obj.GetType() == objectToCheck.GetType() || (obj.isAnt() && objectToCheck.isAnt()))
+                {
                     return true;
                 }
             }
@@ -165,7 +166,7 @@ namespace AntWars.Board
         /// <returns>true when moved false when the way is blocked</returns>
         public bool move(BoardObject obj, Coordinates coords)
         {
-            if(!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords), obj))
+            if (!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords), obj))
             {
                 return false;
             }
@@ -185,13 +186,13 @@ namespace AntWars.Board
             if (ant.isCarry())
             {
                 // MoveRange berechnet sich aus der config und der jeweiligen Feldgröße
-                if (ant.UnitsGone >= ant.Owner.PlayerConfig.scoutMoveRange * conf.boardHeigth * conf.boardWidth / 100) 
+                if (ant.UnitsGone >= ant.Owner.PlayerConfig.ScoutMoveRange * conf.BoardHeigth * conf.BoardWidth / 100) 
                     return true;
             }
             if (ant.isScout())
             {
                 // MoveRange berechnet sich aus der config und der jeweiligen Feldgröße
-                if (ant.UnitsGone >= ant.Owner.PlayerConfig.scoutMoveRange  * conf.boardHeigth * conf.boardWidth / 100) 
+                if (ant.UnitsGone >= ant.Owner.PlayerConfig.ScoutMoveRange  * conf.BoardHeigth * conf.BoardWidth / 100) 
                     return true;
             }
             return false;
@@ -200,9 +201,9 @@ namespace AntWars.Board
         public bool isValidCoords(Coordinates coords)
         {
             if (coords.X < 0) return false;
-            if (coords.X > conf.boardWidth) return false;
+            if (coords.X > conf.BoardWidth) return false;
             if (coords.Y < 0) return false;
-            if (coords.Y > conf.boardHeigth) return false;
+            if (coords.Y > conf.BoardHeigth) return false;
             return true;
         }
 
@@ -232,7 +233,7 @@ namespace AntWars.Board
         {
             foreach (BoardObject obj in getBoardObjectsFromCoords(coords))
             {
-                if(obj.isSugar())
+                if (obj.isSugar())
                 {
                     return true;
                 }

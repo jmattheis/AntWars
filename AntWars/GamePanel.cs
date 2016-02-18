@@ -12,7 +12,7 @@ using AntWars.Board.Ants;
 
 namespace AntWars
 {
-    public partial class GamePanel : Form
+    partial class GamePanel : Form
     {
         private Game game;
         private bool loaded = false;
@@ -32,28 +32,6 @@ namespace AntWars
             Show();
         }
 
-        public void startWithTestData()
-        {
-            Show();
-            List<BoardObject> b = new List<BoardObject>();
-            Carry ant = new Carry();
-            ant.Coords = new Coordinates(50, 50);
-            b.Add(ant);
-            Carry ant2 = new Carry();
-            ant2.Coords = new Coordinates(150, 50);
-            b.Add(ant2);
-            Carry ant3 = new Carry();
-            ant3.Coords = new Coordinates(50, 150);
-            b.Add(ant3);
-            Carry ant4 = new Carry();
-            ant4.Coords = new Coordinates(100, 50);
-            Sugar sugar = new Sugar();
-            sugar.Coords = new Coordinates(50, 150);
-            b.Add(sugar);
-            b.Add(ant4);
-            print(b);
-        }
-
         public void print()
         {
             print(game.Board.BoardObjects.get());
@@ -66,7 +44,7 @@ namespace AntWars
             // TODO sowas wie 'inferiorElement.Name == "ff000000"' kann doch mit 'inferiorElement == Color.Black' ausgetauscht werden
             // Das würde besser im code aussehen.
 
-            Bitmap bitmap = new Bitmap(game.Conf.Game.boardWidth + 1, game.Conf.Game.boardHeigth + 1);
+            Bitmap bitmap = new Bitmap(game.Conf.Game.BoardWidth + 1, game.Conf.Game.BoardHeigth + 1);
 
             foreach (BoardObject obj in boardObjects)
             {
@@ -233,40 +211,40 @@ namespace AntWars
 
         public void setFormSize(Config.Configuration config)
         {
-            this.pb_Game.Width = config.Game.boardWidth * 4;
-            this.pb_Game.Height = config.Game.boardHeigth * 4;
-            Point statsLocation = new Point(config.Game.boardWidth * 4, 0);
+            this.pb_Game.Width = config.Game.BoardWidth * 4;
+            this.pb_Game.Height = config.Game.BoardHeigth * 4;
+            Point statsLocation = new Point(config.Game.BoardWidth * 4, 0);
             this.groupstats.Location = statsLocation;
-            this.ClientSize = new Size(config.Game.boardWidth * 4 + this.groupstats.Width, config.Game.boardHeigth * 4);
-            
+            this.ClientSize = new Size(config.Game.BoardWidth * 4 + this.groupstats.Width, config.Game.BoardHeigth * 4);
+
         }
 
         private void calcGameStatistics()
         {
             // update timer
-            if (game.Conf.Game.time > 0)
+            if (game.Conf.Game.Time > 0)
             {
-                labeltimershow.Text = Convert.ToString(game.Conf.Game.time - (game.getCurrentTick() / 10));
+                labeltimershow.Text = Convert.ToString(game.Conf.Game.Time - (game.getCurrentTick() / 10));
             }
             else
             {
                 labeltimershow.Text = Convert.ToString(game.getCurrentTick() / 10);
             }
             labeltimershow.Text = labeltimershow.Text + "s";
-            
+
             // update player1
             labelplayer1pointsshow.Text = game.Player1.Points.ToString();
-            labelplayer1moneyshow.Text = game.Player1.money.ToString();
-            labelplayer1carriesshow.Text = game.Player1.carryCount.ToString();
-            labelplayer1scoutsshow.Text = game.Player1.scoutCount.ToString();
-            labelplayer1antsshow.Text = Convert.ToString(game.Player1.scoutCount + game.Player1.carryCount);
+            labelplayer1moneyshow.Text = game.Player1.Money.ToString();
+            labelplayer1carriesshow.Text = game.Player1.CarryCount.ToString();
+            labelplayer1scoutsshow.Text = game.Player1.ScoutCount.ToString();
+            labelplayer1antsshow.Text = Convert.ToString(game.Player1.ScoutCount + game.Player1.CarryCount);
 
             // update player2
             labelplayer2pointsshow.Text = game.Player2.Points.ToString();
-            labelplayer2moneyshow.Text = game.Player2.money.ToString();
-            labelplayer2carriesshow.Text = game.Player2.carryCount.ToString();
-            labelplayer2scoutsshow.Text = game.Player2.scoutCount.ToString();
-            labelplayer2antsshow.Text = Convert.ToString(game.Player2.scoutCount + game.Player2.carryCount);
+            labelplayer2moneyshow.Text = game.Player2.Money.ToString();
+            labelplayer2carriesshow.Text = game.Player2.CarryCount.ToString();
+            labelplayer2scoutsshow.Text = game.Player2.ScoutCount.ToString();
+            labelplayer2antsshow.Text = Convert.ToString(game.Player2.ScoutCount + game.Player2.CarryCount);
 
             // update sugar
             labelsugarshow.Text = game.Board.BoardObjects.getSugars().Count.ToString();
@@ -275,13 +253,13 @@ namespace AntWars
         private void setPlayernameInStatistic(Config.Configuration config)
         {
             // set playernames in statistic
-            if (config.Player1.playername != "")
+            if (config.Player1.PlayerName != "")
             {
-                groupplayer1.Text = config.Player1.playername;
+                groupplayer1.Text = config.Player1.PlayerName;
             }
-            if (config.Player2.playername != "")
+            if (config.Player2.PlayerName != "")
             {
-                groupplayer2.Text = config.Player2.playername;
+                groupplayer2.Text = config.Player2.PlayerName;
             }
         }
 
