@@ -93,6 +93,7 @@
       <DependentUpon>GamePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\CoordsInView.cs" />
+    <Compile Include="Helper\Timer.cs" />
     <Compile Include="Helper\Utils.cs" />
     <Compile Include="AI\AIBase.cs" />
     <Compile Include="Player.cs" />
