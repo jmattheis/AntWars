@@ -12,18 +12,19 @@ namespace AntWars.Board
 {
     class BoardObjects
     {
+        private static readonly int MAX_OBJ_ON_COORD = 6;
         private IList<BoardObject> boardObjects = new List<BoardObject>();
         private IList<Ant> ants = new List<Ant>();
         private IList<Signal> signals = new List<Signal>();
         private IList<Base> bases = new List<Base>();
         private IList<Sugar> sugars = new List<Sugar>();
         private GameConfig conf;
-        private List<BoardObject>[,] boardObjectList;
+        private BoardObject[,][] boardObjectList;
 
         public BoardObjects(GameConfig conf)
         {
             this.conf = conf;
-            boardObjectList = new List<BoardObject>[conf.BoardWidth + 1, conf.BoardHeigth + 1];
+            boardObjectList = new BoardObject[conf.BoardWidth + 1, conf.BoardHeigth + 1][];
         }
 
         /// <summary>
@@ -62,24 +63,26 @@ namespace AntWars.Board
 
         private bool addToMap(BoardObject boardObject)
         {
-            List<BoardObject> objsInCoords = boardObjectList[boardObject.Coords.X,boardObject.Coords.Y];
+            BoardObject[] objsInCoords = boardObjectList[boardObject.Coords.X,boardObject.Coords.Y];
             if(objsInCoords == null)
             {
-                objsInCoords = new List<BoardObject>();
-                boardObjectList[boardObject.Coords.X, boardObject.Coords.Y] = objsInCoords;
+                objsInCoords = new BoardObject[0];
             }
             if(!containsType(objsInCoords, boardObject)) {
-                objsInCoords.Add(boardObject);
+                add(ref objsInCoords, boardObject);
+                boardObjectList[boardObject.Coords.X, boardObject.Coords.Y] = objsInCoords;
                 return true;
             }
             return false;
         }
+
 
         private bool containsType(IList<BoardObject> objs, BoardObject objectToCheck)
         {
             
             foreach (BoardObject obj in objs)
             {
+                if (obj == null) continue;
                 // the OR is a workaround due to Carry != Scout in type so we use our isAnt() method
                 if (obj.GetType() == objectToCheck.GetType() || (obj.isAnt() && objectToCheck.isAnt()))
                 {
@@ -91,8 +94,28 @@ namespace AntWars.Board
 
         private void removeFromMap(BoardObject boardObject)
         {
-            List<BoardObject> objsInCoords = boardObjectList[boardObject.Coords.X, boardObject.Coords.Y];
-            objsInCoords.Remove(boardObject);
+            BoardObject[] objsInCoords = boardObjectList[boardObject.Coords.X, boardObject.Coords.Y];
+            remove(ref objsInCoords, boardObject);
+            boardObjectList[boardObject.Coords.X, boardObject.Coords.Y] = objsInCoords;
+        }
+
+
+        private void remove(ref BoardObject[] objs, BoardObject remove)
+        {
+            for (int i = 0; i < objs.Length; i++)
+            {
+                if (objs[i] == remove)
+                {
+                    objs[i] = null;
+                    if(i != objs.Length - 1)
+                    {
+                        BoardObject tmp = objs[objs.Length - 1];
+                        objs[i] = tmp;
+                    }
+                }
+            }
+            Array.Resize<BoardObject>(ref objs, objs.Length - 1);
+
         }
 
         public IList<BoardObject> get()
@@ -144,16 +167,22 @@ namespace AntWars.Board
             return new ReadOnlyCollection<Base>(bases);
         }
 
-        public IList<BoardObject> getBoardObjectsFromCoords(Coordinates coords)
+        public BoardObject[] getBoardObjectsFromCoords(Coordinates coords)
         {
-            List<BoardObject> objsInCoords = boardObjectList[coords.X, coords.Y];
+            BoardObject[] objsInCoords = boardObjectList[coords.X, coords.Y];
             if(objsInCoords == null)
             {
-                objsInCoords = new List<BoardObject>();
+                objsInCoords = new BoardObject[0];
                 boardObjectList[coords.X, coords.Y] = objsInCoords;
             }
             return objsInCoords;
         }
+
+        private void add(ref BoardObject[] array, BoardObject obj)
+        {
+            Array.Resize<BoardObject>(ref array, array.Length + 1);
+            array[array.Length - 1] = obj;
+        } 
 
         /// <summary>
         /// 
@@ -165,8 +194,7 @@ namespace AntWars.Board
             {
                 return false;
             }
-            IList<BoardObject> objsInCoords = getBoardObjectsFromCoords(obj.Coords);
-            objsInCoords.Remove(obj);
+            removeFromMap(obj);
             obj.Coords = coords;
             addToMap(obj);
             return true;
@@ -174,11 +202,7 @@ namespace AntWars.Board
 
         public bool isValidCoords(Coordinates coords)
         {
-            if (coords.X < 0) return false;
-            if (coords.X > conf.BoardWidth) return false;
-            if (coords.Y < 0) return false;
-            if (coords.Y > conf.BoardHeigth) return false;
-            return true;
+            return !(coords.X < 0 || coords.X > conf.BoardWidth || coords.Y < 0 || coords.Y > conf.BoardHeigth);
         }
 
         public void remove(BoardObject boardObject)

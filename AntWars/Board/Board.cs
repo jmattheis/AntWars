@@ -40,23 +40,32 @@ namespace AntWars.Board
 
         }
 
-        private IEnumerable<BoardObject> getBoardObjectsInView(Ant ant)
+        private BoardObject[] getBoardObjectsInView(Ant ant)
         {
-            IEnumerable<BoardObject> result = new LinkedList<BoardObject>();
-            foreach (Coordinates c in getCoordsInView(ant.ViewRange).circle)
+            BoardObject[] result = new BoardObject[0];
+            Coordinates[] coords = getCoordsInView(ant.ViewRange).circle;
+            for (int i = 0; i < coords.Length; i++)
             {
+                Coordinates c = coords[i];
                 Coordinates toAdd = new Coordinates(c.X + ant.Coords.X, c.Y + ant.Coords.Y);
                 if (BoardObjects.isValidCoords(toAdd))
                 {
-                    IList<BoardObject> boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(toAdd);
-                    if (boardobjectsformcoords.Count != 0)
+                    BoardObject[] boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(toAdd);
+                    if (boardobjectsformcoords.Length != 0)
                     {
-                        result = result.Concat(boardobjectsformcoords);
+                        merge(ref result, boardobjectsformcoords);
                     }
                 }
             }
 
             return result;
+        }
+
+        private void merge(ref BoardObject[] result, BoardObject[] add)
+        { 
+            int array1OriginalLength = result.Length;
+            Array.Resize<BoardObject>(ref result, array1OriginalLength + add.Length);
+            Array.Copy(add, 0, result, array1OriginalLength, add.Length);
         }
 
         public CoordsInView getCoordsInView(int range)

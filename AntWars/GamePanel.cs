@@ -151,15 +151,20 @@ namespace AntWars
         private void timer_GameTick_Tick(object sender, EventArgs e)
         {
             game.nextTick();
-            try {
-                this.Invoke((MethodInvoker)delegate {
-                    calcGameStatistics();
-                    print();
-                });
-            } catch(System.Exception)
-            {
-                // Der timer bemerkt nicht das die form geschlossen wurde --> ruft das trotzdem auf --> exceptions.
-            }
+            // start printing in new thread, this could case read write from the print() method but who cares? otherwise the game slows down.
+            Task.Factory.StartNew(() => {
+                try
+                {
+                    this.Invoke((MethodInvoker)delegate {
+                        calcGameStatistics();
+                        print();
+                    });
+                }
+                catch (System.Exception)
+                {
+                    // Der timer bemerkt nicht das die form geschlossen wurde --> ruft das trotzdem auf --> exceptions.
+                }
+            });
         }
 
         private void GamePanel_Load(object sender, EventArgs e)
