@@ -151,7 +151,8 @@ namespace AntWars
         private void timer_GameTick_Tick(object sender, EventArgs e)
         {
             game.nextTick();
-            // start printing in new thread, this could case read write from the print() method but who cares? otherwise the game slows down.
+            // Starte das Ausführen vom ui zeichenen in einem neuen thread d.h. wenn die print methode zulange braucht, 
+            // fängt der nächste tick schon an zu berechnen dafür wird das Spiel aber nicht langsamer
             Task.Factory.StartNew(() => {
                 try
                 {
