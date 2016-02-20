@@ -5,56 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board;
 using AntWars.Board.Ants;
-using AntWars.AIs.Converter.Classes;
+using System.Security.Permissions;
 
 namespace AntWars.AI
 {
-    abstract class AIBase : IAI
+    public abstract class AIBase : IAI
     {
 
-        public Player Player { private get; set; }
-
-        public Game Game { private get; set; }
-
-        public AIBase() { }
-
-        private Base Base = null;
-
+        internal Player Player { get; set; }
+        internal Game Game { get; set; }
+        internal Base Base = null;
 
         protected bool buyScout()
         {
-            Scout s = new Scout();
-            Base b = Game.Board.BoardObjects.getBase(Player);
-
-            if (Player.money < Player.PlayerConfig.scoutCost || !resolveAntCoords(s, b))
-                return false;
-            else
-            {
-                buyAnt(s, Player.PlayerConfig.scoutCost);
-                return true;
-            }
+            Scout s = new Scout(Game.Board, Player);      
+            return buyAnt(s, Player.PlayerConfig.ScoutCost);
         }
 
         protected bool buyCarrier()
         {
-            Carry c = new Carry();
-            Base b = Game.Board.BoardObjects.getBase(Player);
-
-            if (Player.money < Player.PlayerConfig.carryCost || !resolveAntCoords(c, b))
-                return false;
-            else
-            {
-                buyAnt(c, Player.PlayerConfig.carryCost);
-            }
-            return true;
+            Carry c = new Carry(Game.Board, Player);
+            return buyAnt(c, Player.PlayerConfig.CarryCost);
         }
 
-        private void buyAnt(Ant ant, int cost)
+        private bool buyAnt(Ant ant, int cost)
         {
-            Player.money -= cost;
-            ant.Owner = Player;
+            Base b = Game.Board.BoardObjects.getBase(Player);
+            if (Player.Money < cost || !resolveAntCoords(ant, b))
+            {
+                return false;
+            }
+
+            Player.Money -= cost;
+            ant.AI = Player.AILoader.createAIAntInstance(ant);
             ant.ViewRange = 10; // TODO get out of player or something else
-            Game.Board.BoardObjects.add(ant);
+            return Game.Board.BoardObjects.add(ant);
         }
 
         private bool resolveAntCoords(Ant ant, Base b)
@@ -69,7 +54,7 @@ namespace AntWars.AI
                 List<Coordinates> adjCoords = b.Coords.getAdjacentCoordinates(3);
                 foreach (Coordinates coords in adjCoords)
                 {
-                    if(!Game.Board.BoardObjects.isValidCoords(coords))
+                    if (!Game.Board.BoardObjects.isValidCoords(coords))
                     {
                         continue;
                     }
@@ -83,7 +68,7 @@ namespace AntWars.AI
             }
         }
 
-        protected Base getBase()
+        private Base getBase()
         {
             if (Base == null)
                 Base = Game.Board.BoardObjects.getBase(Player);
@@ -92,14 +77,13 @@ namespace AntWars.AI
         }
 
         public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
-        public abstract void antTick(AIAnt ant, List<AIBoardObject> view);
 
         public void nextTick()
         {
             // extra Parameter an AI übergeben
-            int score = Player.currentScore;
+            int score = Player.CurrentScore;
             int time = Game.getCurrentTick();
-            nextTick(Player.money, score, Player.carryCount, Player.scoutCount, time);
+            nextTick(Player.Money, score, Player.CarryCount, Player.ScoutCount, time);
         }
     }
 }

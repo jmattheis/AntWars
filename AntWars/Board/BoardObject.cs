@@ -10,9 +10,9 @@ namespace AntWars.Board
     /// <summary>
     /// Das BoardObject der startpunkt für alles was auf dem board ist.
     /// </summary>
-    class BoardObject
+    public class BoardObject
     {
-        public Coordinates Coords { get; set; }
+        public Coordinates Coords { get; internal set; }
 
         public bool isAnt()
         {
