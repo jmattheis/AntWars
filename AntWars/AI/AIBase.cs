@@ -18,20 +18,30 @@ namespace AntWars.AI
 
         protected bool buyScout()
         {
-            Scout s = new Scout(Game.Board, Player);      
+            Coordinates coords = new Coordinates();
+            if (!resolveAntCoords(ref coords))
+            {
+                return false;
+            }
+            Scout s = new Scout(Game.Board, Player, coords);      
             return buyAnt(s, Player.PlayerConfig.ScoutCost);
         }
 
         protected bool buyCarrier()
         {
-            Carry c = new Carry(Game.Board, Player);
+            Coordinates coords = new Coordinates();
+            if (!resolveAntCoords(ref coords))
+            {
+                return false;
+            }
+            Carry c = new Carry(Game.Board, Player, coords);
             return buyAnt(c, Player.PlayerConfig.CarryCost);
         }
 
         private bool buyAnt(Ant ant, int cost)
         {
             Base b = Game.Board.BoardObjects.getBase(Player);
-            if (Player.Money < cost || !resolveAntCoords(ant, b))
+            if (Player.Money < cost)
             {
                 return false;
             }
@@ -42,11 +52,12 @@ namespace AntWars.AI
             return Game.Board.BoardObjects.add(ant);
         }
 
-        private bool resolveAntCoords(Ant ant, Base b)
+        private bool resolveAntCoords(ref Coordinates coordsRef)
         {
+            Base b = Game.Board.BoardObjects.getBase(Player);
             if (!Game.Board.BoardObjects.hasAntOnCoords(b.Coords))
             {
-                ant.Coords = b.Coords;
+                coordsRef = b.Coords.clone();
                 return true;
             }
             else
@@ -60,7 +71,7 @@ namespace AntWars.AI
                     }
                     if (!Game.Board.BoardObjects.hasAntOnCoords(coords))
                     {
-                        ant.Coords = coords;
+                        coordsRef = coords.clone();
                         return true;
                     }
                 }

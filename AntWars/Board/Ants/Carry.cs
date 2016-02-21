@@ -8,6 +8,6 @@ namespace AntWars.Board.Ants
 {
     public class Carry : Ant
     {
-        internal Carry(Board board, Player owner) : base(board, owner) { }
+        internal Carry(Board board, Player owner, Coordinates coords) : base(board, owner, coords) { }
     }
 }

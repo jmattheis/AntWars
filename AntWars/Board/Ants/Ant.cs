@@ -19,7 +19,7 @@ namespace AntWars.Board.Ants
         internal IAIAnt AI { get; set; }
         internal Board board;
 
-        internal Ant(Board board, Player owner)
+        internal Ant(Board board, Player owner, Coordinates coords) : base(coords)
         {
             this.board = board;
             Owner = owner;
