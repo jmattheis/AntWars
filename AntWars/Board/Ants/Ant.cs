@@ -14,7 +14,9 @@ namespace AntWars.Board.Ants
     {
         public int Inventory { get; internal set; }
         public int ViewRange { get; internal set; }
-        
+        public int CarryMaxInventory { get { return Owner.PlayerConfig.CarryInventory; } }
+        public int ScoutMaxInventory { get { return Owner.PlayerConfig.ScoutInventory; } }
+
         internal Player Owner { get; private set; }
         internal IAIAnt AI { get; set; }
         internal Board board;
