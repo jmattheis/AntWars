@@ -146,7 +146,7 @@ namespace AntWars
             numeric_gameConfigSugarAmountMax.Value = conf.SugarAmountMax;
             numeric_gameConfigStartAntAmount.Value = conf.StartAntAmount;
             numeric_gameConfigBoardWidth.Value = conf.BoardWidth;
-            numeric_gameConfigBoardHeigth.Value = conf.BoardHeigth;
+            numeric_gameConfigBoardHeigth.Value = conf.BoardHeight;
             numeric_gameConfigStartMoney.Value = conf.StartMoney;
             numeric_gameConfigTime.Value = conf.Time;
             numeric_gameConfigPoints.Value = conf.Points;
@@ -400,7 +400,7 @@ namespace AntWars
 
         private void numeric_gameConfigBoardHeigth_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().Game.BoardHeigth = Convert.ToInt32(numeric_gameConfigBoardHeigth.Value);
+            configLoader.get().Game.BoardHeight = Convert.ToInt32(numeric_gameConfigBoardHeigth.Value);
         }
 
         private void numeric_gameConfigSugarAmountMax_ValueChanged(object sender, EventArgs e)

@@ -24,7 +24,7 @@ namespace AntWars.Board
         public BoardObjects(GameConfig conf)
         {
             this.conf = conf;
-            boardObjectList = new BoardObject[conf.BoardWidth + 1, conf.BoardHeigth + 1][];
+            boardObjectList = new BoardObject[conf.BoardWidth + 1, conf.BoardHeight + 1][];
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace AntWars.Board
 
         public bool isValidCoords(Coordinates coords)
         {
-            return !(coords.X < 0 || coords.X > conf.BoardWidth || coords.Y < 0 || coords.Y > conf.BoardHeigth);
+            return !(coords.X < 0 || coords.X > conf.BoardWidth || coords.Y < 0 || coords.Y > conf.BoardHeight);
         }
 
         public void remove(BoardObject boardObject)
