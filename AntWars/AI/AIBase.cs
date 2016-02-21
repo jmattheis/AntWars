@@ -37,7 +37,7 @@ namespace AntWars.AI
             }
 
             Player.Money -= cost;
-            ant.AI = Player.AILoader.createAIAntInstance(ant);
+            ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf.Game);
             ant.ViewRange = 10; // TODO get out of player or something else
             return Game.Board.BoardObjects.add(ant);
         }

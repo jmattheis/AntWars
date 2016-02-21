@@ -54,12 +54,13 @@ namespace AntWars.AI
 
         }
 
-        public IAIAnt createAIAntInstance(Ant ant)
+        public IAIAnt createAIAntInstance(Ant ant, Config.GameConfig conf)
         {
             try
             {
                 AIAntBase obj = (AIAntBase)Activator.CreateInstance(antAI);
                 obj.Ant = ant;
+                obj.Conf = conf;
                 return obj;
             }
             catch (System.Exception e)

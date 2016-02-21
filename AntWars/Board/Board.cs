@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using AntWars.Config;
 using AntWars.Helper;
 using AntWars.Board.Ants;
+using System.Threading;
 
 namespace AntWars.Board
 {
@@ -16,6 +17,7 @@ namespace AntWars.Board
     {
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
+        private CoordsInView[] coordsInViews = new CoordsInView[20];
 
 
         public Board(Configuration conf)
@@ -34,36 +36,46 @@ namespace AntWars.Board
             {
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
+
         }
 
-        private List<BoardObject> getBoardObjectsInView(Ant ant)
+        private BoardObject[] getBoardObjectsInView(Ant ant)
         {
-            int boxMinX = ant.Coords.X - ant.ViewRange;
-            int boxMinY = ant.Coords.Y - ant.ViewRange;
-            int boxMaxX = ant.Coords.X + ant.ViewRange;
-            int boxMaxY = ant.Coords.Y + ant.ViewRange;
-            List<Coordinates> coordinatesInsideView = new List<Coordinates>();
-            for (int x = boxMinX; x <= boxMaxX; x++)
+            BoardObject[] result = new BoardObject[0];
+            Coordinates[] coords = getCoordsInView(ant.ViewRange).circle;
+            for (int i = 0; i < coords.Length; i++)
             {
-                for (int y = boxMinY; y <= boxMaxY; y++)
+                Coordinates c = coords[i];
+                Coordinates toAdd = new Coordinates(c.X + ant.Coords.X, c.Y + ant.Coords.Y);
+                if (BoardObjects.isValidCoords(toAdd))
                 {
-                    double abstand = Math.Pow(ant.Coords.X - x, 2) + Math.Pow(ant.Coords.Y - y, 2);
-                    if (abstand <= Math.Pow(ant.ViewRange, 2))
+                    BoardObject[] boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(toAdd);
+                    if (boardobjectsformcoords.Length != 0)
                     {
-                        Coordinates c = new Coordinates(x, y);
-                        if (BoardObjects.isValidCoords(c))
-                        {
-                            coordinatesInsideView.Add(new Coordinates(x, y));
-                        }
+                        merge(ref result, boardobjectsformcoords);
                     }
                 }
             }
-            List<BoardObject> result = new List<BoardObject>();
-            foreach (Coordinates coords in coordinatesInsideView)
-            {
-                result.AddRange(BoardObjects.getBoardObjectsFromCoords(coords));
-            }
+
             return result;
+        }
+
+        private void merge(ref BoardObject[] result, BoardObject[] add)
+        { 
+            int array1OriginalLength = result.Length;
+            Array.Resize<BoardObject>(ref result, array1OriginalLength + add.Length);
+            Array.Copy(add, 0, result, array1OriginalLength, add.Length);
+        }
+
+        public CoordsInView getCoordsInView(int range)
+        {
+            CoordsInView coordsInView = coordsInViews[range];
+            if (coordsInView == null)
+            {
+                coordsInView = new CoordsInView(range, BoardObjects);
+                coordsInViews[range] = coordsInView;
+            }
+            return coordsInView;
         }
 
         public void nullTick(Player player1, Player player2)
@@ -91,7 +103,7 @@ namespace AntWars.Board
             for (int i = 0; i < count; i++)
             {
                 Sugar s = new Sugar();
-                s.Coords = Utils.generateCoords(conf.Game.BoardWidth, conf.Game.BoardHeigth);
+                s.Coords = Utils.generateCoords(conf.Game.BoardWidth, conf.Game.BoardHeight);
                 if (BoardObjects.hasBaseOnCoords(s.Coords) || BoardObjects.hasSugarOnCoords(s.Coords))
                 {
                     i--;
@@ -108,11 +120,11 @@ namespace AntWars.Board
             // Bases immer gegenüber spawnen lassen
             if (this.BoardObjects.getBases().Count == 1)
             {
-                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeigth, this.BoardObjects.getBases()[0]);
+                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeight, this.BoardObjects.getBases()[0]);
             }
             else
             {
-                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeigth);
+                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeight);
             }
             return b;
         }

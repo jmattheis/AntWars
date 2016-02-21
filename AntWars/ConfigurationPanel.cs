@@ -54,7 +54,7 @@ namespace AntWars
 
         private void GameTick_Tick(object sender, EventArgs e)
         {
-            game.nextTick();
+            //game.nextTick();
         }
 
         private void btn_player1ConfigNew_Click(object sender, EventArgs e)
@@ -145,7 +145,7 @@ namespace AntWars
             numeric_gameConfigSugarAmountMin.Value = conf.SugarAmountMin;
             numeric_gameConfigSugarAmountMax.Value = conf.SugarAmountMax;
             numeric_gameConfigBoardWidth.Value = conf.BoardWidth;
-            numeric_gameConfigBoardHeigth.Value = conf.BoardHeigth;
+            numeric_gameConfigBoardHeigth.Value = conf.BoardHeight;
             numeric_gameConfigStartMoney.Value = conf.StartMoney;
             numeric_gameConfigTime.Value = conf.Time;
             numeric_gameConfigPoints.Value = conf.Points;
@@ -394,7 +394,7 @@ namespace AntWars
 
         private void numeric_gameConfigBoardHeigth_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().Game.BoardHeigth = Convert.ToInt32(numeric_gameConfigBoardHeigth.Value);
+            configLoader.get().Game.BoardHeight = Convert.ToInt32(numeric_gameConfigBoardHeigth.Value);
         }
 
         private void numeric_gameConfigSugarAmountMax_ValueChanged(object sender, EventArgs e)

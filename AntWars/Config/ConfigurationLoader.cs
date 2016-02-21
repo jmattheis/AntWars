@@ -105,7 +105,7 @@ namespace AntWars.Config
             configuration.Game = new GameConfig();
 
             // set sizes to a quarter of screen resolution
-            configuration.Game.BoardHeigth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
+            configuration.Game.BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
             configuration.Game.BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
             // set standard values
             configuration.Game.SugarMin = 5;

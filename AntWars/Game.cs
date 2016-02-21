@@ -22,7 +22,6 @@ namespace AntWars
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Configuration Conf { get; set; }
-        public PictureBox GamePanel { get; set; }
 
         private bool started = false;
         private int currentTick = 0;
