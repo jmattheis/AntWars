@@ -34,6 +34,9 @@
             this.GameTick = new System.Windows.Forms.Timer(this.components);
             this.ppppanel = new System.Windows.Forms.GroupBox();
             this.pnl_player1Config = new System.Windows.Forms.Panel();
+            this.lbl_player1AIPath = new System.Windows.Forms.Label();
+            this.btn_player1loadAI = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.Cost = new System.Windows.Forms.Label();
             this.label__player1ScoutCost = new System.Windows.Forms.Label();
             this.label__player1CarryCost = new System.Windows.Forms.Label();
@@ -59,20 +62,20 @@
             this.ppanel = new System.Windows.Forms.GroupBox();
             this.btn_gameConfigNew = new System.Windows.Forms.Button();
             this.pnl_GameConfig = new System.Windows.Forms.Panel();
+            this.MaxTicks = new System.Windows.Forms.Label();
+            this.numeric_gameConfigMaxTicks = new System.Windows.Forms.NumericUpDown();
             this.Points = new System.Windows.Forms.Label();
-            this.Time = new System.Windows.Forms.Label();
+            this.Ticks = new System.Windows.Forms.Label();
             this.StartMoney = new System.Windows.Forms.Label();
             this.BoardHeigth = new System.Windows.Forms.Label();
             this.BoardWidth = new System.Windows.Forms.Label();
-            this.StartAntAmount = new System.Windows.Forms.Label();
             this.SugarAmountMax = new System.Windows.Forms.Label();
             this.numeric_gameConfigSugarAmountMin = new System.Windows.Forms.NumericUpDown();
             this.numeric_gameConfigSugarAmountMax = new System.Windows.Forms.NumericUpDown();
-            this.numeric_gameConfigStartAntAmount = new System.Windows.Forms.NumericUpDown();
             this.numeric_gameConfigBoardWidth = new System.Windows.Forms.NumericUpDown();
             this.numeric_gameConfigPoints = new System.Windows.Forms.NumericUpDown();
             this.numeric_gameConfigStartMoney = new System.Windows.Forms.NumericUpDown();
-            this.numeric_gameConfigTime = new System.Windows.Forms.NumericUpDown();
+            this.numeric_gameConfigTicks = new System.Windows.Forms.NumericUpDown();
             this.numeric_gameConfigBoardHeigth = new System.Windows.Forms.NumericUpDown();
             this.SugarAmountMin = new System.Windows.Forms.Label();
             this.SugarMax = new System.Windows.Forms.Label();
@@ -83,6 +86,9 @@
             this.btn_gameConfigLoad = new System.Windows.Forms.Button();
             this.panel = new System.Windows.Forms.GroupBox();
             this.pnl_player2Config = new System.Windows.Forms.Panel();
+            this.lbl_player2AIPath = new System.Windows.Forms.Label();
+            this.btn_player2loadAI = new System.Windows.Forms.Button();
+            this.ai_dll = new System.Windows.Forms.Label();
             this.label__player2ScoutCost = new System.Windows.Forms.Label();
             this.Inventory2 = new System.Windows.Forms.Label();
             this.label__player2CarryCost = new System.Windows.Forms.Label();
@@ -107,12 +113,6 @@
             this.btn_player2ConfigLoad = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.buttonView = new System.Windows.Forms.Button();
-            this.ai_dll = new System.Windows.Forms.Label();
-            this.btn_player2loadAI = new System.Windows.Forms.Button();
-            this.lbl_player2AIPath = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btn_player1loadAI = new System.Windows.Forms.Button();
-            this.lbl_player1AIPath = new System.Windows.Forms.Label();
             this.ppppanel.SuspendLayout();
             this.pnl_player1Config.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_player1ScoutInventory)).BeginInit();
@@ -125,13 +125,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numeric_player1ScoutView)).BeginInit();
             this.ppanel.SuspendLayout();
             this.pnl_GameConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigMaxTicks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarAmountMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarAmountMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigStartAntAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigBoardWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigPoints)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigStartMoney)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigTicks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigBoardHeigth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMax)).BeginInit();
@@ -203,6 +203,32 @@
             this.pnl_player1Config.Name = "pnl_player1Config";
             this.pnl_player1Config.Size = new System.Drawing.Size(209, 354);
             this.pnl_player1Config.TabIndex = 4;
+            // 
+            // lbl_player1AIPath
+            // 
+            this.lbl_player1AIPath.Location = new System.Drawing.Point(59, 189);
+            this.lbl_player1AIPath.Name = "lbl_player1AIPath";
+            this.lbl_player1AIPath.Size = new System.Drawing.Size(60, 13);
+            this.lbl_player1AIPath.TabIndex = 26;
+            // 
+            // btn_player1loadAI
+            // 
+            this.btn_player1loadAI.Location = new System.Drawing.Point(121, 184);
+            this.btn_player1loadAI.Name = "btn_player1loadAI";
+            this.btn_player1loadAI.Size = new System.Drawing.Size(75, 23);
+            this.btn_player1loadAI.TabIndex = 26;
+            this.btn_player1loadAI.Text = "load AI";
+            this.btn_player1loadAI.UseVisualStyleBackColor = true;
+            this.btn_player1loadAI.Click += new System.EventHandler(this.btn_player1loadAI_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 189);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "DLL for AI";
             // 
             // Cost
             // 
@@ -473,6 +499,7 @@
             // textbox_player1Name
             // 
             this.textbox_player1Name.Location = new System.Drawing.Point(44, 11);
+            this.textbox_player1Name.MaxLength = 20;
             this.textbox_player1Name.Name = "textbox_player1Name";
             this.textbox_player1Name.Size = new System.Drawing.Size(162, 20);
             this.textbox_player1Name.TabIndex = 2;
@@ -543,20 +570,20 @@
             // 
             // pnl_GameConfig
             // 
+            this.pnl_GameConfig.Controls.Add(this.MaxTicks);
+            this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigMaxTicks);
             this.pnl_GameConfig.Controls.Add(this.Points);
-            this.pnl_GameConfig.Controls.Add(this.Time);
+            this.pnl_GameConfig.Controls.Add(this.Ticks);
             this.pnl_GameConfig.Controls.Add(this.StartMoney);
             this.pnl_GameConfig.Controls.Add(this.BoardHeigth);
             this.pnl_GameConfig.Controls.Add(this.BoardWidth);
-            this.pnl_GameConfig.Controls.Add(this.StartAntAmount);
             this.pnl_GameConfig.Controls.Add(this.SugarAmountMax);
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigSugarAmountMin);
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigSugarAmountMax);
-            this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigStartAntAmount);
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigBoardWidth);
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigPoints);
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigStartMoney);
-            this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigTime);
+            this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigTicks);
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigBoardHeigth);
             this.pnl_GameConfig.Controls.Add(this.SugarAmountMin);
             this.pnl_GameConfig.Controls.Add(this.SugarMax);
@@ -569,6 +596,33 @@
             this.pnl_GameConfig.Size = new System.Drawing.Size(200, 354);
             this.pnl_GameConfig.TabIndex = 7;
             // 
+            // MaxTicks
+            // 
+            this.MaxTicks.AutoSize = true;
+            this.MaxTicks.Location = new System.Drawing.Point(6, 222);
+            this.MaxTicks.Name = "MaxTicks";
+            this.MaxTicks.Size = new System.Drawing.Size(66, 13);
+            this.MaxTicks.TabIndex = 24;
+            this.MaxTicks.Text = "Time in ticks";
+            // 
+            // numeric_gameConfigMaxTicks
+            // 
+            this.numeric_gameConfigMaxTicks.Location = new System.Drawing.Point(153, 220);
+            this.numeric_gameConfigMaxTicks.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numeric_gameConfigMaxTicks.Name = "numeric_gameConfigMaxTicks";
+            this.numeric_gameConfigMaxTicks.Size = new System.Drawing.Size(44, 20);
+            this.numeric_gameConfigMaxTicks.TabIndex = 23;
+            this.numeric_gameConfigMaxTicks.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numeric_gameConfigMaxTicks.ValueChanged += new System.EventHandler(this.numeric_gameConfigMaxTicks_ValueChanged);
+            // 
             // Points
             // 
             this.Points.AutoSize = true;
@@ -578,19 +632,19 @@
             this.Points.TabIndex = 22;
             this.Points.Text = "Points";
             // 
-            // Time
+            // Ticks
             // 
-            this.Time.AutoSize = true;
-            this.Time.Location = new System.Drawing.Point(6, 222);
-            this.Time.Name = "Time";
-            this.Time.Size = new System.Drawing.Size(90, 13);
-            this.Time.TabIndex = 21;
-            this.Time.Text = "Time in secounds";
+            this.Ticks.AutoSize = true;
+            this.Ticks.Location = new System.Drawing.Point(6, 197);
+            this.Ticks.Name = "Ticks";
+            this.Ticks.Size = new System.Drawing.Size(95, 13);
+            this.Ticks.TabIndex = 21;
+            this.Ticks.Text = "Ticks per secound";
             // 
             // StartMoney
             // 
             this.StartMoney.AutoSize = true;
-            this.StartMoney.Location = new System.Drawing.Point(6, 196);
+            this.StartMoney.Location = new System.Drawing.Point(6, 171);
             this.StartMoney.Name = "StartMoney";
             this.StartMoney.Size = new System.Drawing.Size(61, 13);
             this.StartMoney.TabIndex = 20;
@@ -599,7 +653,7 @@
             // BoardHeigth
             // 
             this.BoardHeigth.AutoSize = true;
-            this.BoardHeigth.Location = new System.Drawing.Point(6, 170);
+            this.BoardHeigth.Location = new System.Drawing.Point(6, 145);
             this.BoardHeigth.Name = "BoardHeigth";
             this.BoardHeigth.Size = new System.Drawing.Size(101, 13);
             this.BoardHeigth.TabIndex = 19;
@@ -608,20 +662,11 @@
             // BoardWidth
             // 
             this.BoardWidth.AutoSize = true;
-            this.BoardWidth.Location = new System.Drawing.Point(6, 144);
+            this.BoardWidth.Location = new System.Drawing.Point(6, 119);
             this.BoardWidth.Name = "BoardWidth";
             this.BoardWidth.Size = new System.Drawing.Size(98, 13);
             this.BoardWidth.TabIndex = 18;
             this.BoardWidth.Text = "BoardWidth in px*4";
-            // 
-            // StartAntAmount
-            // 
-            this.StartAntAmount.AutoSize = true;
-            this.StartAntAmount.Location = new System.Drawing.Point(6, 118);
-            this.StartAntAmount.Name = "StartAntAmount";
-            this.StartAntAmount.Size = new System.Drawing.Size(81, 13);
-            this.StartAntAmount.TabIndex = 17;
-            this.StartAntAmount.Text = "StartAntAmount";
             // 
             // SugarAmountMax
             // 
@@ -678,22 +723,9 @@
             0});
             this.numeric_gameConfigSugarAmountMax.ValueChanged += new System.EventHandler(this.numeric_gameConfigSugarAmountMax_ValueChanged);
             // 
-            // numeric_gameConfigStartAntAmount
-            // 
-            this.numeric_gameConfigStartAntAmount.Location = new System.Drawing.Point(153, 116);
-            this.numeric_gameConfigStartAntAmount.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.numeric_gameConfigStartAntAmount.Name = "numeric_gameConfigStartAntAmount";
-            this.numeric_gameConfigStartAntAmount.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigStartAntAmount.TabIndex = 13;
-            this.numeric_gameConfigStartAntAmount.ValueChanged += new System.EventHandler(this.numeric_gameConfigStartAntAmount_ValueChanged);
-            // 
             // numeric_gameConfigBoardWidth
             // 
-            this.numeric_gameConfigBoardWidth.Location = new System.Drawing.Point(153, 142);
+            this.numeric_gameConfigBoardWidth.Location = new System.Drawing.Point(153, 117);
             this.numeric_gameConfigBoardWidth.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -729,7 +761,7 @@
             // 
             // numeric_gameConfigStartMoney
             // 
-            this.numeric_gameConfigStartMoney.Location = new System.Drawing.Point(153, 194);
+            this.numeric_gameConfigStartMoney.Location = new System.Drawing.Point(153, 169);
             this.numeric_gameConfigStartMoney.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -740,27 +772,27 @@
             this.numeric_gameConfigStartMoney.TabIndex = 10;
             this.numeric_gameConfigStartMoney.ValueChanged += new System.EventHandler(this.numeric_gameConfigStartMoney_ValueChanged);
             // 
-            // numeric_gameConfigTime
+            // numeric_gameConfigTicks
             // 
-            this.numeric_gameConfigTime.Location = new System.Drawing.Point(153, 220);
-            this.numeric_gameConfigTime.Maximum = new decimal(new int[] {
-            1200,
+            this.numeric_gameConfigTicks.Location = new System.Drawing.Point(153, 195);
+            this.numeric_gameConfigTicks.Maximum = new decimal(new int[] {
+            40,
             0,
             0,
             0});
-            this.numeric_gameConfigTime.Name = "numeric_gameConfigTime";
-            this.numeric_gameConfigTime.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigTime.TabIndex = 9;
-            this.numeric_gameConfigTime.Value = new decimal(new int[] {
-            300,
+            this.numeric_gameConfigTicks.Name = "numeric_gameConfigTicks";
+            this.numeric_gameConfigTicks.Size = new System.Drawing.Size(44, 20);
+            this.numeric_gameConfigTicks.TabIndex = 9;
+            this.numeric_gameConfigTicks.Value = new decimal(new int[] {
+            10,
             0,
             0,
             0});
-            this.numeric_gameConfigTime.ValueChanged += new System.EventHandler(this.numeric_gameConfigTime_ValueChanged);
+            this.numeric_gameConfigTicks.ValueChanged += new System.EventHandler(this.numeric_gameConfigTime_ValueChanged);
             // 
             // numeric_gameConfigBoardHeigth
             // 
-            this.numeric_gameConfigBoardHeigth.Location = new System.Drawing.Point(153, 168);
+            this.numeric_gameConfigBoardHeigth.Location = new System.Drawing.Point(153, 143);
             this.numeric_gameConfigBoardHeigth.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -792,6 +824,11 @@
             // numeric_gameConfigSugarMin
             // 
             this.numeric_gameConfigSugarMin.Location = new System.Drawing.Point(153, 11);
+            this.numeric_gameConfigSugarMin.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
             this.numeric_gameConfigSugarMin.Minimum = new decimal(new int[] {
             1,
             0,
@@ -810,6 +847,11 @@
             // numeric_gameConfigSugarMax
             // 
             this.numeric_gameConfigSugarMax.Location = new System.Drawing.Point(153, 38);
+            this.numeric_gameConfigSugarMax.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
             this.numeric_gameConfigSugarMax.Minimum = new decimal(new int[] {
             1,
             0,
@@ -897,6 +939,32 @@
             this.pnl_player2Config.Name = "pnl_player2Config";
             this.pnl_player2Config.Size = new System.Drawing.Size(209, 354);
             this.pnl_player2Config.TabIndex = 17;
+            // 
+            // lbl_player2AIPath
+            // 
+            this.lbl_player2AIPath.Location = new System.Drawing.Point(64, 189);
+            this.lbl_player2AIPath.Name = "lbl_player2AIPath";
+            this.lbl_player2AIPath.Size = new System.Drawing.Size(60, 13);
+            this.lbl_player2AIPath.TabIndex = 25;
+            // 
+            // btn_player2loadAI
+            // 
+            this.btn_player2loadAI.Location = new System.Drawing.Point(128, 184);
+            this.btn_player2loadAI.Name = "btn_player2loadAI";
+            this.btn_player2loadAI.Size = new System.Drawing.Size(75, 23);
+            this.btn_player2loadAI.TabIndex = 24;
+            this.btn_player2loadAI.Text = "load AI";
+            this.btn_player2loadAI.UseVisualStyleBackColor = true;
+            this.btn_player2loadAI.Click += new System.EventHandler(this.btn_player2loadAI_Click);
+            // 
+            // ai_dll
+            // 
+            this.ai_dll.AutoSize = true;
+            this.ai_dll.Location = new System.Drawing.Point(3, 189);
+            this.ai_dll.Name = "ai_dll";
+            this.ai_dll.Size = new System.Drawing.Size(55, 13);
+            this.ai_dll.TabIndex = 23;
+            this.ai_dll.Text = "DLL for AI";
             // 
             // label__player2ScoutCost
             // 
@@ -1168,6 +1236,7 @@
             // textbox_player2Name
             // 
             this.textbox_player2Name.Location = new System.Drawing.Point(44, 11);
+            this.textbox_player2Name.MaxLength = 20;
             this.textbox_player2Name.Name = "textbox_player2Name";
             this.textbox_player2Name.Size = new System.Drawing.Size(162, 20);
             this.textbox_player2Name.TabIndex = 2;
@@ -1223,58 +1292,6 @@
             this.buttonView.UseVisualStyleBackColor = true;
             this.buttonView.Click += new System.EventHandler(this.buttonView_Click);
             // 
-            // ai_dll
-            // 
-            this.ai_dll.AutoSize = true;
-            this.ai_dll.Location = new System.Drawing.Point(3, 189);
-            this.ai_dll.Name = "ai_dll";
-            this.ai_dll.Size = new System.Drawing.Size(55, 13);
-            this.ai_dll.TabIndex = 23;
-            this.ai_dll.Text = "DLL for AI";
-            // 
-            // btn_player2loadAI
-            // 
-            this.btn_player2loadAI.Location = new System.Drawing.Point(128, 184);
-            this.btn_player2loadAI.Name = "btn_player2loadAI";
-            this.btn_player2loadAI.Size = new System.Drawing.Size(75, 23);
-            this.btn_player2loadAI.TabIndex = 24;
-            this.btn_player2loadAI.Text = "load AI";
-            this.btn_player2loadAI.UseVisualStyleBackColor = true;
-            this.btn_player2loadAI.Click += new System.EventHandler(this.btn_player2loadAI_Click);
-            // 
-            // lbl_player2AIPath
-            // 
-            this.lbl_player2AIPath.Location = new System.Drawing.Point(64, 189);
-            this.lbl_player2AIPath.Name = "lbl_player2AIPath";
-            this.lbl_player2AIPath.Size = new System.Drawing.Size(60, 13);
-            this.lbl_player2AIPath.TabIndex = 25;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 189);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "DLL for AI";
-            // 
-            // btn_player1loadAI
-            // 
-            this.btn_player1loadAI.Location = new System.Drawing.Point(121, 184);
-            this.btn_player1loadAI.Name = "btn_player1loadAI";
-            this.btn_player1loadAI.Size = new System.Drawing.Size(75, 23);
-            this.btn_player1loadAI.TabIndex = 26;
-            this.btn_player1loadAI.Text = "load AI";
-            this.btn_player1loadAI.UseVisualStyleBackColor = true;
-            this.btn_player1loadAI.Click += new System.EventHandler(this.btn_player1loadAI_Click);
-            // 
-            // lbl_player1AIPath
-            // 
-            this.lbl_player1AIPath.Location = new System.Drawing.Point(59, 189);
-            this.lbl_player1AIPath.Name = "lbl_player1AIPath";
-            this.lbl_player1AIPath.Size = new System.Drawing.Size(60, 13);
-            this.lbl_player1AIPath.TabIndex = 26;
-            // 
             // ConfigurationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1303,13 +1320,13 @@
             this.ppanel.ResumeLayout(false);
             this.pnl_GameConfig.ResumeLayout(false);
             this.pnl_GameConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigMaxTicks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarAmountMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarAmountMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigStartAntAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigBoardWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigPoints)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigStartMoney)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigTicks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigBoardHeigth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMax)).EndInit();
@@ -1390,19 +1407,17 @@
         private System.Windows.Forms.Label Cost2;
         private System.Windows.Forms.Label Cost;
         private System.Windows.Forms.Label Points;
-        private System.Windows.Forms.Label Time;
+        private System.Windows.Forms.Label Ticks;
         private System.Windows.Forms.Label StartMoney;
         private System.Windows.Forms.Label BoardHeigth;
         private System.Windows.Forms.Label BoardWidth;
-        private System.Windows.Forms.Label StartAntAmount;
         private System.Windows.Forms.Label SugarAmountMax;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigSugarAmountMin;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigSugarAmountMax;
-        private System.Windows.Forms.NumericUpDown numeric_gameConfigStartAntAmount;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigBoardWidth;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigPoints;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigStartMoney;
-        private System.Windows.Forms.NumericUpDown numeric_gameConfigTime;
+        private System.Windows.Forms.NumericUpDown numeric_gameConfigTicks;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigBoardHeigth;
         private System.Windows.Forms.Label SugarAmountMin;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -1413,5 +1428,7 @@
         private System.Windows.Forms.Label lbl_player1AIPath;
         private System.Windows.Forms.Button btn_player1loadAI;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label MaxTicks;
+        private System.Windows.Forms.NumericUpDown numeric_gameConfigMaxTicks;
     }
 }

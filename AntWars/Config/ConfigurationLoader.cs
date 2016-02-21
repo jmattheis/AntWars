@@ -105,17 +105,16 @@ namespace AntWars.Config
             configuration.Game = new GameConfig();
 
             // set sizes to a quarter of screen resolution
-            configuration.Game.BoardHeigth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
+            configuration.Game.BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
             configuration.Game.BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
             // set standard values
             configuration.Game.SugarMin = 5;
             configuration.Game.SugarMax = 20;
             configuration.Game.SugarAmountMin = 1;
             configuration.Game.SugarAmountMax = 5;
-            // TODO: StartAntAmount hat derzeit keine Auswirkungen auf den Spielstart
-            configuration.Game.StartAntAmount = 10; // Meinung? zu groß oder zu klein?
             configuration.Game.StartMoney = 20;
-            configuration.Game.Time = 300;
+            configuration.Game.Ticks = 10;
+            configuration.Game.MaxTicks = 5000;
             configuration.Game.Points = 100;
         }
 
