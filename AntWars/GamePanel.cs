@@ -32,6 +32,12 @@ namespace AntWars
             Show();
         }
 
+        public void stop()
+        {
+            timer_GameTick.Stop();
+            showGameStatistic();
+        }
+
         public void print()
         {
             print(game.Board.BoardObjects.get());
@@ -142,6 +148,7 @@ namespace AntWars
         {
             game.nextTick();
             calcGameStatistics();
+            checkWinningConditions();
             print();
         }
 
@@ -203,6 +210,26 @@ namespace AntWars
             labelsugarshow.Text = game.Board.BoardObjects.getSugars().Count.ToString();
         }
 
+        private void checkWinningConditions()
+        {
+            if ((game.getCurrentTick() / 10) >= game.Conf.Game.Time)
+            {
+                this.stop();
+            }
+            if (game.Player1.Points > game.Conf.Game.Points)
+            {
+                this.stop();
+            }
+            else if (game.Player2.Points > game.Conf.Game.Points)
+            {
+                this.stop();
+            }
+            if (game.Board.BoardObjects.getSugars().Count <= 0)
+            {
+                this.stop();
+            }
+        }
+
         private void setPlayernameInStatistic(Config.Configuration config)
         {
             // set playernames in statistic
@@ -219,6 +246,11 @@ namespace AntWars
         private void groupstats_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void showGameStatistic()
+        {
+            MessageBox.Show("Ende.");
         }
     }
 }
