@@ -182,13 +182,12 @@ namespace AntWars
             // update timer
             if (game.Conf.Game.Ticks > 0)
             {
-                labeltimershow.Text = Convert.ToString(game.Conf.Game.Ticks - (game.getCurrentTick() / 10));
+                labelticksshow.Text = Convert.ToString(game.Conf.Game.Ticks - game.getCurrentTick());
             }
             else
             {
-                labeltimershow.Text = Convert.ToString(game.getCurrentTick() / 10);
+                labelticksshow.Text = Convert.ToString(game.getCurrentTick());
             }
-            labeltimershow.Text = labeltimershow.Text + "s";
 
             // update player1
             labelplayer1pointsshow.Text = game.Player1.Points.ToString();
