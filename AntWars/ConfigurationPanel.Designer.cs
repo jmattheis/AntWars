@@ -496,6 +496,7 @@
             // textbox_player1Name
             // 
             this.textbox_player1Name.Location = new System.Drawing.Point(44, 11);
+            this.textbox_player1Name.MaxLength = 20;
             this.textbox_player1Name.Name = "textbox_player1Name";
             this.textbox_player1Name.Size = new System.Drawing.Size(162, 20);
             this.textbox_player1Name.TabIndex = 2;
@@ -1193,6 +1194,7 @@
             // textbox_player2Name
             // 
             this.textbox_player2Name.Location = new System.Drawing.Point(44, 11);
+            this.textbox_player2Name.MaxLength = 20;
             this.textbox_player2Name.Name = "textbox_player2Name";
             this.textbox_player2Name.Size = new System.Drawing.Size(162, 20);
             this.textbox_player2Name.TabIndex = 2;

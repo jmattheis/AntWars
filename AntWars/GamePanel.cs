@@ -35,7 +35,6 @@ namespace AntWars
         public void stop()
         {
             timer_GameTick.Stop();
-            showGameStatistic();
         }
 
         public void print()
@@ -148,8 +147,8 @@ namespace AntWars
         {
             game.nextTick();
             calcGameStatistics();
-            checkWinningConditions();
             print();
+            checkWinningConditions();
         }
 
         private void GamePanel_Load(object sender, EventArgs e)
@@ -215,19 +214,36 @@ namespace AntWars
             if ((game.getCurrentTick() / 10) >= game.Conf.Game.Time)
             {
                 this.stop();
+                if (game.Player1.Points > game.Player2.Points)
+                {
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Sekunden ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.Time,
+                                    game.Conf.Player1.PlayerName, game.Player1.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);    
+                }
+                else if (game.Player1.Points < game.Player2.Points)
+                {
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Sekunden ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.Time,
+                                    game.Conf.Player2.PlayerName, game.Player2.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Sekunden ist abgelaufen.", game.Conf.Game.Time), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
+                return;
             }
             if (game.Player1.Points > game.Conf.Game.Points)
             {
                 this.stop();
+                MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player1.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
             else if (game.Player2.Points > game.Conf.Game.Points)
             {
                 this.stop();
+                MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player2.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
-            if (game.Board.BoardObjects.getSugars().Count <= 0)
-            {
-                this.stop();
-            }
+            // TODO: If sugar is zero count all points(sugar) in ants from each player and add it to his score --> finish game
         }
 
         private void setPlayernameInStatistic(Config.Configuration config)
@@ -246,11 +262,6 @@ namespace AntWars
         private void groupstats_Enter(object sender, EventArgs e)
         {
 
-        }
-
-        private void showGameStatistic()
-        {
-            MessageBox.Show("Ende.");
         }
     }
 }
