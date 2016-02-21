@@ -23,7 +23,7 @@ namespace AntWars
             setFormSize(config);
             game = new Game(config);
             game.start();
-            initTimer();
+            initTimer(config.Game.Ticks);
             Show();
         }
 
@@ -32,9 +32,9 @@ namespace AntWars
             timer.Stop();
         }
 
-        private void initTimer()
+        private void initTimer(int period)
         {
-            timer.Period = 100;
+            timer.Period = Convert.ToInt32(1000 / Convert.ToDecimal(period));
             timer.Resolution = 1;
             timer.Tick += new EventHandler(timer_GameTick_Tick);
             timer.Start();
@@ -180,9 +180,9 @@ namespace AntWars
         private void calcGameStatistics()
         {
             // update timer
-            if (game.Conf.Game.Ticks > 0)
+            if (game.Conf.Game.MaxTicks > 0)
             {
-                labelticksshow.Text = Convert.ToString(game.Conf.Game.Ticks - game.getCurrentTick());
+                labelticksshow.Text = Convert.ToString(game.Conf.Game.MaxTicks - game.getCurrentTick());
             }
             else
             {
@@ -209,22 +209,22 @@ namespace AntWars
 
         private void checkWinningConditions()
         {
-            if ((game.getCurrentTick() / 10) >= game.Conf.Game.Ticks)
+            if ((game.getCurrentTick()) >= game.Conf.Game.MaxTicks)
             {
                 this.stop();
                 if (game.Player1.Points > game.Player2.Points)
                 {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.Ticks,
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.MaxTicks,
                                     game.Conf.Player1.PlayerName, game.Player1.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);    
                 }
                 else if (game.Player1.Points < game.Player2.Points)
                 {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.Ticks,
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.MaxTicks,
                                     game.Conf.Player2.PlayerName, game.Player2.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.", game.Conf.Game.Ticks), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.", game.Conf.Game.MaxTicks), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 
                 return;

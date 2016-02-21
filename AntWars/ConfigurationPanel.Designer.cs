@@ -62,6 +62,8 @@
             this.ppanel = new System.Windows.Forms.GroupBox();
             this.btn_gameConfigNew = new System.Windows.Forms.Button();
             this.pnl_GameConfig = new System.Windows.Forms.Panel();
+            this.MaxTicks = new System.Windows.Forms.Label();
+            this.numeric_gameConfigMaxTicks = new System.Windows.Forms.NumericUpDown();
             this.Points = new System.Windows.Forms.Label();
             this.Ticks = new System.Windows.Forms.Label();
             this.StartMoney = new System.Windows.Forms.Label();
@@ -73,7 +75,7 @@
             this.numeric_gameConfigBoardWidth = new System.Windows.Forms.NumericUpDown();
             this.numeric_gameConfigPoints = new System.Windows.Forms.NumericUpDown();
             this.numeric_gameConfigStartMoney = new System.Windows.Forms.NumericUpDown();
-            this.numeric_gameConfigTime = new System.Windows.Forms.NumericUpDown();
+            this.numeric_gameConfigTicks = new System.Windows.Forms.NumericUpDown();
             this.numeric_gameConfigBoardHeigth = new System.Windows.Forms.NumericUpDown();
             this.SugarAmountMin = new System.Windows.Forms.Label();
             this.SugarMax = new System.Windows.Forms.Label();
@@ -123,12 +125,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.numeric_player1ScoutView)).BeginInit();
             this.ppanel.SuspendLayout();
             this.pnl_GameConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigMaxTicks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarAmountMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarAmountMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigBoardWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigPoints)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigStartMoney)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigTicks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigBoardHeigth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMax)).BeginInit();
@@ -567,6 +570,8 @@
             // 
             // pnl_GameConfig
             // 
+            this.pnl_GameConfig.Controls.Add(this.MaxTicks);
+            this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigMaxTicks);
             this.pnl_GameConfig.Controls.Add(this.Points);
             this.pnl_GameConfig.Controls.Add(this.Ticks);
             this.pnl_GameConfig.Controls.Add(this.StartMoney);
@@ -578,7 +583,7 @@
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigBoardWidth);
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigPoints);
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigStartMoney);
-            this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigTime);
+            this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigTicks);
             this.pnl_GameConfig.Controls.Add(this.numeric_gameConfigBoardHeigth);
             this.pnl_GameConfig.Controls.Add(this.SugarAmountMin);
             this.pnl_GameConfig.Controls.Add(this.SugarMax);
@@ -591,10 +596,37 @@
             this.pnl_GameConfig.Size = new System.Drawing.Size(200, 354);
             this.pnl_GameConfig.TabIndex = 7;
             // 
+            // MaxTicks
+            // 
+            this.MaxTicks.AutoSize = true;
+            this.MaxTicks.Location = new System.Drawing.Point(6, 222);
+            this.MaxTicks.Name = "MaxTicks";
+            this.MaxTicks.Size = new System.Drawing.Size(66, 13);
+            this.MaxTicks.TabIndex = 24;
+            this.MaxTicks.Text = "Time in ticks";
+            // 
+            // numeric_gameConfigMaxTicks
+            // 
+            this.numeric_gameConfigMaxTicks.Location = new System.Drawing.Point(153, 220);
+            this.numeric_gameConfigMaxTicks.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numeric_gameConfigMaxTicks.Name = "numeric_gameConfigMaxTicks";
+            this.numeric_gameConfigMaxTicks.Size = new System.Drawing.Size(44, 20);
+            this.numeric_gameConfigMaxTicks.TabIndex = 23;
+            this.numeric_gameConfigMaxTicks.Value = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.numeric_gameConfigMaxTicks.ValueChanged += new System.EventHandler(this.numeric_gameConfigMaxTicks_ValueChanged);
+            // 
             // Points
             // 
             this.Points.AutoSize = true;
-            this.Points.Location = new System.Drawing.Point(6, 223);
+            this.Points.Location = new System.Drawing.Point(6, 248);
             this.Points.Name = "Points";
             this.Points.Size = new System.Drawing.Size(36, 13);
             this.Points.TabIndex = 22;
@@ -605,9 +637,9 @@
             this.Ticks.AutoSize = true;
             this.Ticks.Location = new System.Drawing.Point(6, 197);
             this.Ticks.Name = "Ticks";
-            this.Ticks.Size = new System.Drawing.Size(85, 13);
+            this.Ticks.Size = new System.Drawing.Size(95, 13);
             this.Ticks.TabIndex = 21;
-            this.Ticks.Text = "Ticks per minute";
+            this.Ticks.Text = "Ticks per secound";
             // 
             // StartMoney
             // 
@@ -706,7 +738,7 @@
             // 
             // numeric_gameConfigPoints
             // 
-            this.numeric_gameConfigPoints.Location = new System.Drawing.Point(153, 221);
+            this.numeric_gameConfigPoints.Location = new System.Drawing.Point(153, 246);
             this.numeric_gameConfigPoints.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -740,23 +772,23 @@
             this.numeric_gameConfigStartMoney.TabIndex = 10;
             this.numeric_gameConfigStartMoney.ValueChanged += new System.EventHandler(this.numeric_gameConfigStartMoney_ValueChanged);
             // 
-            // numeric_gameConfigTime
+            // numeric_gameConfigTicks
             // 
-            this.numeric_gameConfigTime.Location = new System.Drawing.Point(153, 195);
-            this.numeric_gameConfigTime.Maximum = new decimal(new int[] {
-            1200,
+            this.numeric_gameConfigTicks.Location = new System.Drawing.Point(153, 195);
+            this.numeric_gameConfigTicks.Maximum = new decimal(new int[] {
+            40,
             0,
             0,
             0});
-            this.numeric_gameConfigTime.Name = "numeric_gameConfigTime";
-            this.numeric_gameConfigTime.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigTime.TabIndex = 9;
-            this.numeric_gameConfigTime.Value = new decimal(new int[] {
-            300,
+            this.numeric_gameConfigTicks.Name = "numeric_gameConfigTicks";
+            this.numeric_gameConfigTicks.Size = new System.Drawing.Size(44, 20);
+            this.numeric_gameConfigTicks.TabIndex = 9;
+            this.numeric_gameConfigTicks.Value = new decimal(new int[] {
+            10,
             0,
             0,
             0});
-            this.numeric_gameConfigTime.ValueChanged += new System.EventHandler(this.numeric_gameConfigTime_ValueChanged);
+            this.numeric_gameConfigTicks.ValueChanged += new System.EventHandler(this.numeric_gameConfigTime_ValueChanged);
             // 
             // numeric_gameConfigBoardHeigth
             // 
@@ -792,6 +824,11 @@
             // numeric_gameConfigSugarMin
             // 
             this.numeric_gameConfigSugarMin.Location = new System.Drawing.Point(153, 11);
+            this.numeric_gameConfigSugarMin.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
             this.numeric_gameConfigSugarMin.Minimum = new decimal(new int[] {
             1,
             0,
@@ -810,6 +847,11 @@
             // numeric_gameConfigSugarMax
             // 
             this.numeric_gameConfigSugarMax.Location = new System.Drawing.Point(153, 38);
+            this.numeric_gameConfigSugarMax.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
             this.numeric_gameConfigSugarMax.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1278,12 +1320,13 @@
             this.ppanel.ResumeLayout(false);
             this.pnl_GameConfig.ResumeLayout(false);
             this.pnl_GameConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigMaxTicks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarAmountMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarAmountMax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigBoardWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigPoints)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigStartMoney)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigTicks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigBoardHeigth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigSugarMax)).EndInit();
@@ -1374,7 +1417,7 @@
         private System.Windows.Forms.NumericUpDown numeric_gameConfigBoardWidth;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigPoints;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigStartMoney;
-        private System.Windows.Forms.NumericUpDown numeric_gameConfigTime;
+        private System.Windows.Forms.NumericUpDown numeric_gameConfigTicks;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigBoardHeigth;
         private System.Windows.Forms.Label SugarAmountMin;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -1385,5 +1428,7 @@
         private System.Windows.Forms.Label lbl_player1AIPath;
         private System.Windows.Forms.Button btn_player1loadAI;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label MaxTicks;
+        private System.Windows.Forms.NumericUpDown numeric_gameConfigMaxTicks;
     }
 }

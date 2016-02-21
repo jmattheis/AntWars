@@ -147,7 +147,8 @@ namespace AntWars
             numeric_gameConfigBoardWidth.Value = conf.BoardWidth;
             numeric_gameConfigBoardHeigth.Value = conf.BoardHeight;
             numeric_gameConfigStartMoney.Value = conf.StartMoney;
-            numeric_gameConfigTime.Value = conf.Ticks;
+            numeric_gameConfigTicks.Value = conf.Ticks;
+            numeric_gameConfigMaxTicks.Value = conf.MaxTicks;
             numeric_gameConfigPoints.Value = conf.Points;
         }
 
@@ -388,7 +389,7 @@ namespace AntWars
 
         private void numeric_gameConfigTime_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().Game.Ticks = Convert.ToInt32(numeric_gameConfigTime.Value);
+            configLoader.get().Game.Ticks = Convert.ToInt32(numeric_gameConfigTicks.Value);
         }
 
         private void numeric_gameConfigBoardHeigth_ValueChanged(object sender, EventArgs e)
@@ -576,6 +577,11 @@ namespace AntWars
                 lbl_player1AIPath.Text = res;
                 configLoader.get().Player1.AIPath = res;
             }
+        }
+
+        private void numeric_gameConfigMaxTicks_ValueChanged(object sender, EventArgs e)
+        {
+            configLoader.get().Game.MaxTicks = Convert.ToInt32(numeric_gameConfigMaxTicks.Value);
         }
     }
 }
