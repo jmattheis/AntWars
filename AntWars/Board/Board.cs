@@ -28,7 +28,6 @@ namespace AntWars.Board
 
         public void nextTick()
         {
-            // TODO Gewinnbedingungen
             foreach (Base playerbase in BoardObjects.getBases())
             {
                 playerbase.Player.AI.nextTick();

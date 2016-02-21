@@ -58,8 +58,8 @@
             this.groupgamestats = new System.Windows.Forms.GroupBox();
             this.labelsugarshow = new System.Windows.Forms.Label();
             this.labelsugar = new System.Windows.Forms.Label();
-            this.labeltimershow = new System.Windows.Forms.Label();
-            this.labeltimer = new System.Windows.Forms.Label();
+            this.labelticksshow = new System.Windows.Forms.Label();
+            this.labelticks = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).BeginInit();
             this.groupstats.SuspendLayout();
             this.groupplayer2.SuspendLayout();
@@ -321,8 +321,8 @@
             // 
             this.groupgamestats.Controls.Add(this.labelsugarshow);
             this.groupgamestats.Controls.Add(this.labelsugar);
-            this.groupgamestats.Controls.Add(this.labeltimershow);
-            this.groupgamestats.Controls.Add(this.labeltimer);
+            this.groupgamestats.Controls.Add(this.labelticksshow);
+            this.groupgamestats.Controls.Add(this.labelticks);
             this.groupgamestats.Location = new System.Drawing.Point(7, 20);
             this.groupgamestats.Name = "groupgamestats";
             this.groupgamestats.Size = new System.Drawing.Size(129, 49);
@@ -348,23 +348,23 @@
             this.labelsugar.TabIndex = 2;
             this.labelsugar.Text = "Sugar";
             // 
-            // labeltimershow
+            // labelticksshow
             // 
-            this.labeltimershow.AutoSize = true;
-            this.labeltimershow.Location = new System.Drawing.Point(78, 20);
-            this.labeltimershow.Name = "labeltimershow";
-            this.labeltimershow.Size = new System.Drawing.Size(51, 13);
-            this.labeltimershow.TabIndex = 1;
-            this.labeltimershow.Text = "hh:mm:ss";
+            this.labelticksshow.AutoSize = true;
+            this.labelticksshow.Location = new System.Drawing.Point(92, 20);
+            this.labelticksshow.Name = "labelticksshow";
+            this.labelticksshow.Size = new System.Drawing.Size(37, 13);
+            this.labelticksshow.TabIndex = 1;
+            this.labelticksshow.Text = "99999";
             // 
-            // labeltimer
+            // labelticks
             // 
-            this.labeltimer.AutoSize = true;
-            this.labeltimer.Location = new System.Drawing.Point(7, 20);
-            this.labeltimer.Name = "labeltimer";
-            this.labeltimer.Size = new System.Drawing.Size(30, 13);
-            this.labeltimer.TabIndex = 0;
-            this.labeltimer.Text = "Time";
+            this.labelticks.AutoSize = true;
+            this.labelticks.Location = new System.Drawing.Point(7, 20);
+            this.labelticks.Name = "labelticks";
+            this.labelticks.Size = new System.Drawing.Size(33, 13);
+            this.labelticks.TabIndex = 0;
+            this.labelticks.Text = "Ticks";
             // 
             // GamePanel
             // 
@@ -396,8 +396,8 @@
         private System.Windows.Forms.PictureBox pb_Game;
         private System.Windows.Forms.GroupBox groupstats;
         private System.Windows.Forms.GroupBox groupgamestats;
-        private System.Windows.Forms.Label labeltimer;
-        private System.Windows.Forms.Label labeltimershow;
+        private System.Windows.Forms.Label labelticks;
+        private System.Windows.Forms.Label labelticksshow;
         private System.Windows.Forms.GroupBox groupplayer1;
         private System.Windows.Forms.GroupBox groupplayer2;
         private System.Windows.Forms.Label labelplayer2moneyshow;

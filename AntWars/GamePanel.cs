@@ -23,13 +23,18 @@ namespace AntWars
             setFormSize(config);
             game = new Game(config);
             game.start();
-            initTimer();
+            initTimer(config.Game.Ticks);
             Show();
         }
 
-        private void initTimer()
+        public void stop()
         {
-            timer.Period = 100;
+            timer.Stop();
+        }
+
+        private void initTimer(int period)
+        {
+            timer.Period = Convert.ToInt32(1000 / Convert.ToDecimal(period));
             timer.Resolution = 1;
             timer.Tick += new EventHandler(timer_GameTick_Tick);
             timer.Start();
@@ -47,7 +52,7 @@ namespace AntWars
             // TODO sowas wie 'inferiorElement.Name == "ff000000"' kann doch mit 'inferiorElement == Color.Black' ausgetauscht werden
             // Das würde besser im code aussehen.
 
-            Bitmap bitmap = new Bitmap(game.Conf.Game.BoardWidth + 1, game.Conf.Game.BoardHeight + 1);
+            Bitmap bitmap = new Bitmap(game.Conf.Game.BoardWidth, game.Conf.Game.BoardHeight);
 
             foreach (BoardObject obj in boardObjects)
             {
@@ -153,6 +158,7 @@ namespace AntWars
                 });
             }
             catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
+            checkWinningConditions();
         }
 
         public void view(Config.Configuration config)
@@ -169,21 +175,19 @@ namespace AntWars
             Point statsLocation = new Point(config.Game.BoardWidth * 4, 0);
             this.groupstats.Location = statsLocation;
             this.ClientSize = new Size(config.Game.BoardWidth * 4 + this.groupstats.Width, config.Game.BoardHeight * 4);
-
         }
 
         private void calcGameStatistics()
         {
             // update timer
-            if (game.Conf.Game.Time > 0)
+            if (game.Conf.Game.MaxTicks > 0)
             {
-                labeltimershow.Text = Convert.ToString(game.Conf.Game.Time - (game.getCurrentTick() / 10));
+                labelticksshow.Text = Convert.ToString(game.Conf.Game.MaxTicks - game.getCurrentTick());
             }
             else
             {
-                labeltimershow.Text = Convert.ToString(game.getCurrentTick() / 10);
+                labelticksshow.Text = Convert.ToString(game.getCurrentTick());
             }
-            labeltimershow.Text = labeltimershow.Text + "s";
 
             // update player1
             labelplayer1pointsshow.Text = game.Player1.Points.ToString();
@@ -201,6 +205,43 @@ namespace AntWars
 
             // update sugar
             labelsugarshow.Text = game.Board.BoardObjects.getSugars().Count.ToString();
+        }
+
+        private void checkWinningConditions()
+        {
+            if ((game.getCurrentTick()) >= game.Conf.Game.MaxTicks)
+            {
+                this.stop();
+                if (game.Player1.Points > game.Player2.Points)
+                {
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.MaxTicks,
+                                    game.Conf.Player1.PlayerName, game.Player1.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);    
+                }
+                else if (game.Player1.Points < game.Player2.Points)
+                {
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.MaxTicks,
+                                    game.Conf.Player2.PlayerName, game.Player2.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.", game.Conf.Game.MaxTicks), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
+                return;
+            }
+            if (game.Player1.Points >= game.Conf.Game.Points)
+            {
+                this.stop();
+                MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player1.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (game.Player2.Points >= game.Conf.Game.Points)
+            {
+                this.stop();
+                MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player2.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            // TODO: If sugar is zero count all points(sugar) in ants from each player and add it to his score --> finish game
         }
 
         private void setPlayernameInStatistic(Config.Configuration config)

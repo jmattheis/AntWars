@@ -40,7 +40,7 @@ namespace AntWars
                         gamePanels.Add(gamePanel);
                         disableControls();
                     }
-                    catch (InvalidDLLFileException ex)
+                    catch (InvalidDLLFileException)
                     {
                         MessageBox.Show("The given DLL is not valid, please try another one.", "Error: Invalid DLL.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -144,13 +144,12 @@ namespace AntWars
             numeric_gameConfigSugarMax.Value = conf.SugarMax;
             numeric_gameConfigSugarAmountMin.Value = conf.SugarAmountMin;
             numeric_gameConfigSugarAmountMax.Value = conf.SugarAmountMax;
-            numeric_gameConfigStartAntAmount.Value = conf.StartAntAmount;
             numeric_gameConfigBoardWidth.Value = conf.BoardWidth;
             numeric_gameConfigBoardHeigth.Value = conf.BoardHeight;
             numeric_gameConfigStartMoney.Value = conf.StartMoney;
-            numeric_gameConfigTime.Value = conf.Time;
+            numeric_gameConfigTicks.Value = conf.Ticks;
+            numeric_gameConfigMaxTicks.Value = conf.MaxTicks;
             numeric_gameConfigPoints.Value = conf.Points;
-
         }
 
         private void btn_player1ConfigSave_Click(object sender, EventArgs e)
@@ -373,11 +372,6 @@ namespace AntWars
             configLoader.get().Game.SugarAmountMin = Convert.ToInt32(numeric_gameConfigSugarAmountMin.Value);
         }
 
-        private void numeric_gameConfigStartAntAmount_ValueChanged(object sender, EventArgs e)
-        {
-            configLoader.get().Game.StartAntAmount = Convert.ToInt32(numeric_gameConfigStartAntAmount.Value);
-        }
-
         private void numeric_gameConfigBoardWidth_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Game.BoardWidth = Convert.ToInt32(numeric_gameConfigBoardWidth.Value);
@@ -395,7 +389,7 @@ namespace AntWars
 
         private void numeric_gameConfigTime_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().Game.Time = Convert.ToInt32(numeric_gameConfigTime.Value);
+            configLoader.get().Game.Ticks = Convert.ToInt32(numeric_gameConfigTicks.Value);
         }
 
         private void numeric_gameConfigBoardHeigth_ValueChanged(object sender, EventArgs e)
@@ -583,6 +577,11 @@ namespace AntWars
                 lbl_player1AIPath.Text = res;
                 configLoader.get().Player1.AIPath = res;
             }
+        }
+
+        private void numeric_gameConfigMaxTicks_ValueChanged(object sender, EventArgs e)
+        {
+            configLoader.get().Game.MaxTicks = Convert.ToInt32(numeric_gameConfigMaxTicks.Value);
         }
     }
 }
