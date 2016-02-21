@@ -11,7 +11,9 @@ namespace AntWars.AI
     public abstract class AIAntBase : IAIAnt
     {
         public Ant Ant { get; internal set; }
-
+        internal Config.GameConfig Conf { get; set; }
+        public int BoardWidth { get { return Conf.BoardWidth; } }
+        public int BoardHeight { get { return Conf.BoardHeight; } }
         public abstract void antTick(BoardObject[] view);
     }
 }

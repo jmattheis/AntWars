@@ -80,7 +80,6 @@
             this.pb_Game.Size = new System.Drawing.Size(284, 352);
             this.pb_Game.TabIndex = 0;
             this.pb_Game.TabStop = false;
-            this.pb_Game.Click += new System.EventHandler(this.pb_Game_Click);
             // 
             // groupstats
             // 
@@ -93,7 +92,6 @@
             this.groupstats.TabIndex = 1;
             this.groupstats.TabStop = false;
             this.groupstats.Text = "Statistics";
-            this.groupstats.Enter += new System.EventHandler(this.groupstats_Enter);
             // 
             // groupplayer2
             // 
@@ -379,7 +377,7 @@
             this.Name = "GamePanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GamePanel";
-            this.Load += new System.EventHandler(this.GamePanel_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GamePanel_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).EndInit();
             this.groupstats.ResumeLayout(false);
             this.groupplayer2.ResumeLayout(false);

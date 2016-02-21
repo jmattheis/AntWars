@@ -1,22 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AntWars.Board;
 using AntWars.Board.Ants;
-using Multimedia;
 
 namespace AntWars
 {
     partial class GamePanel : Form
     {
         private Game game;
-        private bool loaded = false;
         private Multimedia.Timer timer = new Multimedia.Timer();
 
         public GamePanel()
@@ -54,7 +47,7 @@ namespace AntWars
             // TODO sowas wie 'inferiorElement.Name == "ff000000"' kann doch mit 'inferiorElement == Color.Black' ausgetauscht werden
             // Das würde besser im code aussehen.
 
-            Bitmap bitmap = new Bitmap(game.Conf.Game.BoardWidth + 1, game.Conf.Game.BoardHeigth + 1);
+            Bitmap bitmap = new Bitmap(game.Conf.Game.BoardWidth + 1, game.Conf.Game.BoardHeight + 1);
 
             foreach (BoardObject obj in boardObjects)
             {
@@ -151,31 +144,15 @@ namespace AntWars
         private void timer_GameTick_Tick(object sender, EventArgs e)
         {
             game.nextTick();
-            // Starte das Ausführen vom ui zeichenen in einem neuen thread d.h. wenn die print methode zulange braucht, 
-            // fängt der nächste tick schon an zu berechnen dafür wird das Spiel aber nicht langsamer
-            Task.Factory.StartNew(() => {
-                try
+            try
+            {
+                this.Invoke((MethodInvoker)delegate
                 {
-                    this.Invoke((MethodInvoker)delegate {
-                        calcGameStatistics();
-                        print();
-                    });
-                }
-                catch (System.Exception)
-                {
-                    // Der timer bemerkt nicht das die form geschlossen wurde --> ruft das trotzdem auf --> exceptions.
-                }
-            });
-        }
-
-        private void GamePanel_Load(object sender, EventArgs e)
-        {
-            loaded = true;
-        }
-
-        private void pb_Game_Click(object sender, EventArgs e)
-        {
-
+                    calcGameStatistics();
+                    print();
+                });
+            }
+            catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
         }
 
         public void view(Config.Configuration config)
@@ -188,10 +165,10 @@ namespace AntWars
         public void setFormSize(Config.Configuration config)
         {
             this.pb_Game.Width = config.Game.BoardWidth * 4;
-            this.pb_Game.Height = config.Game.BoardHeigth * 4;
+            this.pb_Game.Height = config.Game.BoardHeight * 4;
             Point statsLocation = new Point(config.Game.BoardWidth * 4, 0);
             this.groupstats.Location = statsLocation;
-            this.ClientSize = new Size(config.Game.BoardWidth * 4 + this.groupstats.Width, config.Game.BoardHeigth * 4);
+            this.ClientSize = new Size(config.Game.BoardWidth * 4 + this.groupstats.Width, config.Game.BoardHeight * 4);
 
         }
 
@@ -239,9 +216,9 @@ namespace AntWars
             }
         }
 
-        private void groupstats_Enter(object sender, EventArgs e)
+        private void GamePanel_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            timer.Stop();
         }
     }
 }
