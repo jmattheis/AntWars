@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AntWars.Board;
 using AntWars.Board.Ants;
+using Multimedia;
 
 namespace AntWars
 {
@@ -16,6 +17,7 @@ namespace AntWars
     {
         private Game game;
         private bool loaded = false;
+        private Multimedia.Timer timer = new Multimedia.Timer();
 
         public GamePanel()
         {
@@ -28,8 +30,16 @@ namespace AntWars
             setFormSize(config);
             game = new Game(config);
             game.start();
-            timer_GameTick.Start();
+            initTimer();
             Show();
+        }
+
+        private void initTimer()
+        {
+            timer.Period = 100;
+            timer.Resolution = 1;
+            timer.Tick += new EventHandler(timer_GameTick_Tick);
+            timer.Start();
         }
 
         public void print()
@@ -141,8 +151,21 @@ namespace AntWars
         private void timer_GameTick_Tick(object sender, EventArgs e)
         {
             game.nextTick();
-            calcGameStatistics();
-            print();
+            // Starte das Ausführen vom ui zeichenen in einem neuen thread d.h. wenn die print methode zulange braucht, 
+            // fängt der nächste tick schon an zu berechnen dafür wird das Spiel aber nicht langsamer
+            Task.Factory.StartNew(() => {
+                try
+                {
+                    this.Invoke((MethodInvoker)delegate {
+                        calcGameStatistics();
+                        print();
+                    });
+                }
+                catch (System.Exception)
+                {
+                    // Der timer bemerkt nicht das die form geschlossen wurde --> ruft das trotzdem auf --> exceptions.
+                }
+            });
         }
 
         private void GamePanel_Load(object sender, EventArgs e)

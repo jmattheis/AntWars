@@ -12,6 +12,6 @@ namespace AntWars.AI
     {
         public Ant Ant { get; internal set; }
 
-        public abstract void antTick(List<BoardObject> view);
+        public abstract void antTick(BoardObject[] view);
     }
 }
