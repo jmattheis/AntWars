@@ -52,7 +52,7 @@ namespace AntWars
             // TODO sowas wie 'inferiorElement.Name == "ff000000"' kann doch mit 'inferiorElement == Color.Black' ausgetauscht werden
             // Das würde besser im code aussehen.
 
-            Bitmap bitmap = new Bitmap(game.Conf.Game.BoardWidth + 1, game.Conf.Game.BoardHeight + 1);
+            Bitmap bitmap = new Bitmap(game.Conf.Game.BoardWidth, game.Conf.Game.BoardHeight);
 
             foreach (BoardObject obj in boardObjects)
             {
@@ -158,6 +158,7 @@ namespace AntWars
                 });
             }
             catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
+            checkWinningConditions();
         }
 
         public void view(Config.Configuration config)
@@ -174,15 +175,14 @@ namespace AntWars
             Point statsLocation = new Point(config.Game.BoardWidth * 4, 0);
             this.groupstats.Location = statsLocation;
             this.ClientSize = new Size(config.Game.BoardWidth * 4 + this.groupstats.Width, config.Game.BoardHeight * 4);
-
         }
 
         private void calcGameStatistics()
         {
             // update timer
-            if (game.Conf.Game.Time > 0)
+            if (game.Conf.Game.Ticks > 0)
             {
-                labeltimershow.Text = Convert.ToString(game.Conf.Game.Time - (game.getCurrentTick() / 10));
+                labeltimershow.Text = Convert.ToString(game.Conf.Game.Ticks - (game.getCurrentTick() / 10));
             }
             else
             {
@@ -210,33 +210,33 @@ namespace AntWars
 
         private void checkWinningConditions()
         {
-            if ((game.getCurrentTick() / 10) >= game.Conf.Game.Time)
+            if ((game.getCurrentTick() / 10) >= game.Conf.Game.Ticks)
             {
                 this.stop();
                 if (game.Player1.Points > game.Player2.Points)
                 {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Sekunden ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.Time,
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.Ticks,
                                     game.Conf.Player1.PlayerName, game.Player1.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);    
                 }
                 else if (game.Player1.Points < game.Player2.Points)
                 {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Sekunden ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.Time,
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.Ticks,
                                     game.Conf.Player2.PlayerName, game.Player2.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Sekunden ist abgelaufen.", game.Conf.Game.Time), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.", game.Conf.Game.Ticks), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 
                 return;
             }
-            if (game.Player1.Points > game.Conf.Game.Points)
+            if (game.Player1.Points >= game.Conf.Game.Points)
             {
                 this.stop();
                 MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player1.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            else if (game.Player2.Points > game.Conf.Game.Points)
+            else if (game.Player2.Points >= game.Conf.Game.Points)
             {
                 this.stop();
                 MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player2.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);

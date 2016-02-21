@@ -40,7 +40,7 @@ namespace AntWars
                         gamePanels.Add(gamePanel);
                         disableControls();
                     }
-                    catch (InvalidDLLFileException ex)
+                    catch (InvalidDLLFileException)
                     {
                         MessageBox.Show("The given DLL is not valid, please try another one.", "Error: Invalid DLL.", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -147,9 +147,8 @@ namespace AntWars
             numeric_gameConfigBoardWidth.Value = conf.BoardWidth;
             numeric_gameConfigBoardHeigth.Value = conf.BoardHeight;
             numeric_gameConfigStartMoney.Value = conf.StartMoney;
-            numeric_gameConfigTime.Value = conf.Time;
+            numeric_gameConfigTime.Value = conf.Ticks;
             numeric_gameConfigPoints.Value = conf.Points;
-
         }
 
         private void btn_player1ConfigSave_Click(object sender, EventArgs e)
@@ -389,7 +388,7 @@ namespace AntWars
 
         private void numeric_gameConfigTime_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().Game.Time = Convert.ToInt32(numeric_gameConfigTime.Value);
+            configLoader.get().Game.Ticks = Convert.ToInt32(numeric_gameConfigTime.Value);
         }
 
         private void numeric_gameConfigBoardHeigth_ValueChanged(object sender, EventArgs e)

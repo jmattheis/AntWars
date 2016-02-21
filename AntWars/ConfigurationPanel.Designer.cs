@@ -63,7 +63,7 @@
             this.btn_gameConfigNew = new System.Windows.Forms.Button();
             this.pnl_GameConfig = new System.Windows.Forms.Panel();
             this.Points = new System.Windows.Forms.Label();
-            this.Time = new System.Windows.Forms.Label();
+            this.Ticks = new System.Windows.Forms.Label();
             this.StartMoney = new System.Windows.Forms.Label();
             this.BoardHeigth = new System.Windows.Forms.Label();
             this.BoardWidth = new System.Windows.Forms.Label();
@@ -568,7 +568,7 @@
             // pnl_GameConfig
             // 
             this.pnl_GameConfig.Controls.Add(this.Points);
-            this.pnl_GameConfig.Controls.Add(this.Time);
+            this.pnl_GameConfig.Controls.Add(this.Ticks);
             this.pnl_GameConfig.Controls.Add(this.StartMoney);
             this.pnl_GameConfig.Controls.Add(this.BoardHeigth);
             this.pnl_GameConfig.Controls.Add(this.BoardWidth);
@@ -600,14 +600,14 @@
             this.Points.TabIndex = 22;
             this.Points.Text = "Points";
             // 
-            // Time
+            // Ticks
             // 
-            this.Time.AutoSize = true;
-            this.Time.Location = new System.Drawing.Point(6, 197);
-            this.Time.Name = "Time";
-            this.Time.Size = new System.Drawing.Size(90, 13);
-            this.Time.TabIndex = 21;
-            this.Time.Text = "Time in secounds";
+            this.Ticks.AutoSize = true;
+            this.Ticks.Location = new System.Drawing.Point(6, 197);
+            this.Ticks.Name = "Ticks";
+            this.Ticks.Size = new System.Drawing.Size(85, 13);
+            this.Ticks.TabIndex = 21;
+            this.Ticks.Text = "Ticks per minute";
             // 
             // StartMoney
             // 
@@ -1364,7 +1364,7 @@
         private System.Windows.Forms.Label Cost2;
         private System.Windows.Forms.Label Cost;
         private System.Windows.Forms.Label Points;
-        private System.Windows.Forms.Label Time;
+        private System.Windows.Forms.Label Ticks;
         private System.Windows.Forms.Label StartMoney;
         private System.Windows.Forms.Label BoardHeigth;
         private System.Windows.Forms.Label BoardWidth;

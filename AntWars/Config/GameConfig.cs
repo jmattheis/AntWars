@@ -16,7 +16,7 @@ namespace AntWars.Config
         public int BoardWidth { get; set; }
         public int BoardHeight { get; set; }
         public int StartMoney { get; set; }
-        public int Time { get; set; }
+        public int Ticks { get; set; }
         public int Points { get; set; }
     }
 }

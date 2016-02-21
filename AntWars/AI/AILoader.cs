@@ -27,7 +27,7 @@ namespace AntWars.AI
                 playerAI = DLL.GetType(CLASS_PLAYERAI);
                 antAI = DLL.GetType(CLASS_ANTAI);
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 throw new InvalidDLLFileException();
             }
@@ -47,7 +47,7 @@ namespace AntWars.AI
                 obj.Player = player;
                 return obj;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 throw new InvalidDLLFileException();
             }
@@ -63,7 +63,7 @@ namespace AntWars.AI
                 obj.Conf = conf;
                 return obj;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 throw new InvalidDLLFileException();
             }

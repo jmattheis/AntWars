@@ -202,7 +202,7 @@ namespace AntWars.Board
 
         public bool isValidCoords(Coordinates coords)
         {
-            return !(coords.X < 0 || coords.X > conf.BoardWidth || coords.Y < 0 || coords.Y > conf.BoardHeight);
+            return !(coords.X < 0 || coords.X > (conf.BoardWidth - 1) || coords.Y < 0 || coords.Y > (conf.BoardHeight - 1));
         }
 
         public void remove(BoardObject boardObject)

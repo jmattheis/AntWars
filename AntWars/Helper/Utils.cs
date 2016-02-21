@@ -16,13 +16,13 @@ namespace AntWars.Helper
             switch(random.Next(0,4))
             {
                 case 0:
-                    return new Coordinates(random.Next(boardWidth + 1), 0);
+                    return new Coordinates(random.Next(boardWidth), 0);
                 case 1:
-                    return new Coordinates(boardWidth, random.Next(boardHeight + 1));
+                    return new Coordinates(--boardWidth, random.Next(boardHeight));
                 case 2:
-                    return new Coordinates(random.Next(boardWidth + 1), boardHeight);
+                    return new Coordinates(random.Next(boardWidth), --boardHeight);
                 case 3:
-                    return new Coordinates(0, random.Next(boardHeight + 1));
+                    return new Coordinates(0, random.Next(boardHeight));
                 default:
                     throw new RuntimeException("C# is wrong.");
             }
@@ -30,12 +30,12 @@ namespace AntWars.Helper
 
         public static Coordinates generateBaseCoords(int boardWidth, int boardHeight, Base enemyBase)
         {
-            return new Coordinates(boardWidth - enemyBase.Coords.X, boardHeight - enemyBase.Coords.Y);
+            return new Coordinates(--boardWidth - enemyBase.Coords.X, --boardHeight - enemyBase.Coords.Y);
         }
 
         public static Coordinates generateCoords(int boardWidth, int boardHeight)
         {
-            return new Coordinates(random.Next(boardWidth + 1), random.Next(boardHeight + 1));
+            return new Coordinates(random.Next(boardWidth), random.Next(boardHeight));
         }
 
         public static void RandomizeBoardObjects<T>(IList<T> list)
