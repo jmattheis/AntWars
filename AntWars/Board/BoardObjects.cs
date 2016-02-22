@@ -183,16 +183,12 @@ namespace AntWars.Board
 
         public bool outOfRange(Ant ant)
         {
-            if (ant.isCarry())
+            if (ant.isCarry() && ant.UnitsGone >= ant.Owner.PlayerConfig.CarryPixelRange)
             {
-                // MoveRange berechnet sich aus der config und der jeweiligen Feldgröße
-                if (ant.UnitsGone >= ant.Owner.PlayerConfig.ScoutMoveRange * conf.BoardHeigth * conf.BoardWidth / 100) 
                     return true;
             }
-            if (ant.isScout())
+            if (ant.isScout() && ant.UnitsGone >= ant.Owner.PlayerConfig.ScoutPixelRange)
             {
-                // MoveRange berechnet sich aus der config und der jeweiligen Feldgröße
-                if (ant.UnitsGone >= ant.Owner.PlayerConfig.ScoutMoveRange  * conf.BoardHeigth * conf.BoardWidth / 100) 
                     return true;
             }
             return false;

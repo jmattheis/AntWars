@@ -19,17 +19,12 @@ namespace AntWars.AI
         protected bool buyScout()
         {
             Scout s = new Scout(Game.Board, Player);
-            s.UnitsGone = 0;
-            s.Speed = Player.PlayerConfig.ScoutSpeed;
-            Base b = Game.Board.BoardObjects.getBase(Player);
             return buyAnt(s, Player.PlayerConfig.ScoutCost);
         }
 
         protected bool buyCarrier()
         {
             Carry c = new Carry(Game.Board, Player);
-            c.UnitsGone = 0;
-            c.Speed = Player.PlayerConfig.CarrySpeed;
             return buyAnt(c, Player.PlayerConfig.CarryCost);
         }
 

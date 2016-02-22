@@ -23,6 +23,7 @@ namespace AntWars.Board.Ants
         internal Ant(Board board, Player owner)
         {
             this.board = board;
+            this.UnitsGone = 0;
             Owner = owner;
         }
 
@@ -30,32 +31,48 @@ namespace AntWars.Board.Ants
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X--;
-            UnitsGone++;
-            return board.BoardObjects.move(this, newCoords);
+            if(board.BoardObjects.move(this, newCoords))
+            {
+                UnitsGone++;
+                return true;
+            }
+            return false;
         }
 
         public bool moveRight()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X++;
-            UnitsGone++;
-            return board.BoardObjects.move(this, newCoords);
+            if(board.BoardObjects.move(this, newCoords))
+            {
+                UnitsGone++;
+                return true;
+            }
+            return false;
         }
 
         public bool moveUp()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y++;
-            UnitsGone++;
-            return board.BoardObjects.move(this, newCoords);
+            if(board.BoardObjects.move(this, newCoords))
+            {
+                UnitsGone++;
+                return true;
+            }
+            return false;
         }
 
         public bool moveDown()
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y--;
-            UnitsGone++;
-            return board.BoardObjects.move(this, newCoords);
+            if(board.BoardObjects.move(this, newCoords))
+            {
+                UnitsGone++;
+                return true;
+            }
+            return false;
         }
 
         /// <summary>

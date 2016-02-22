@@ -132,9 +132,7 @@ namespace AntWars
                 case ("ff6a5acd"): //Player2-Scout
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSlateBlue);
                     break;
-                case ("0"): //nichts
-                case ("ff800080"): //Player2-Signal
-                case ("ffa52a2a"): //Player1-Signal
+                default:
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Black);
                     break;
             }

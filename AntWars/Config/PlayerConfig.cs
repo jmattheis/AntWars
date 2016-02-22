@@ -13,7 +13,9 @@ namespace AntWars.Config
         public int ScoutViewRange { get; set; }
         public int CarryViewRange { get; set; }
         public int ScoutMoveRange { get; set; }
+        public int ScoutPixelRange { get; set; }
         public int CarryMoveRange { get; set; }
+        public int CarryPixelRange { get; set; }
         public int ScoutInventory { get; set; }
         public int CarryInventory { get; set; }
         public int ScoutSpeed { get; set; }

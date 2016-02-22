@@ -20,10 +20,10 @@ namespace AntWars
         public IAI AI { get; set; }
 
         //TODO beim erstellen/laden einer Config müssen Kosten neu berechnet werden
-        public int scoutCost { get; set; }
-        public int carryCost { get; set; }
-        public int scoutSpeed { get; set; }
-        public int carrySpeed { get; set; }
+        public int ScoutCost { get; set; }
+        public int CarryCost { get; set; }
+        public int ScoutSpeed { get; set; }
+        public int CarrySpeed { get; set; }
         public int CurrentScore { get; set; }
         public int Money { get; set; }
         public int ScoutCount { get; set; }
@@ -37,6 +37,14 @@ namespace AntWars
             ScoutCount = 0;
             CarryCount = 0;
             CurrentScore = 0;
+        }
+
+        public void setScoutAndCarryPixelRange(int BoardHeight, int BoardWidth)
+        {
+            // MoveRange berechnet sich aus der config und der jeweiligen Feldgröße
+
+            this.PlayerConfig.ScoutPixelRange = this.PlayerConfig.ScoutMoveRange * BoardHeight * BoardWidth / 100;
+            this.PlayerConfig.CarryPixelRange = this.PlayerConfig.CarryMoveRange * BoardHeight * BoardWidth / 100;
         }
         
         public void incrementAnts(Ant ant)
