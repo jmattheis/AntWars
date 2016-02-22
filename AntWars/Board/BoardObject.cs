@@ -15,11 +15,6 @@ namespace AntWars.Board
     {
         public Coordinates Coords { get; internal set; }
 
-        /*public Coordinates getBoardSize()
-        {
-               
-        }*/
-
         public bool isAnt()
         {
             return GetType() == typeof(Ant) || isScout() || isCarry();
