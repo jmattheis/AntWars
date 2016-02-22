@@ -22,7 +22,6 @@ namespace AntWars
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Configuration Conf { get; set; }
-        public PictureBox GamePanel { get; set; }
 
         private bool started = false;
         private int currentTick = 0;
@@ -33,9 +32,9 @@ namespace AntWars
                     
             Player1 = new Player(config.Player1, new AILoader(config.Player1.AIPath), startMoney);
             Player2 = new Player(config.Player2, new AILoader(config.Player2.AIPath), startMoney);
-
-            Player1.setScoutAndCarryPixelRange(config.Game.BoardHeigth, config.Game.BoardWidth);
-            Player2.setScoutAndCarryPixelRange(config.Game.BoardHeigth, config.Game.BoardWidth);
+            
+            Player1.setScoutAndCarryPixelRange(config.Game.BoardHeight, config.Game.BoardWidth);
+            Player2.setScoutAndCarryPixelRange(config.Game.BoardHeight, config.Game.BoardWidth);
 
             initAI(Player1);
             initAI(Player2);
@@ -70,6 +69,5 @@ namespace AntWars
         {
             return currentTick;
         }
-        
     }
 }
