@@ -29,29 +29,25 @@ namespace AntWars.Board.Ants
 
         public bool moveLeft()
         {
-            Coordinates newCoords = Coords.clone();
-            newCoords.X--;
+            Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
             return board.BoardObjects.move(this, newCoords);
         }
 
         public bool moveRight()
         {
-            Coordinates newCoords = Coords.clone();
-            newCoords.X++;
+            Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
             return board.BoardObjects.move(this, newCoords);
         }
 
         public bool moveUp()
         {
-            Coordinates newCoords = Coords.clone();
-            newCoords.Y++;
+            Coordinates newCoords = new Coordinates(Coords.X, Coords.Y - 1);
             return board.BoardObjects.move(this, newCoords);
         }
 
         public bool moveDown()
         {
-            Coordinates newCoords = Coords.clone();
-            newCoords.Y--;
+            Coordinates newCoords = new Coordinates(Coords.X, Coords.Y + 1);
             return board.BoardObjects.move(this, newCoords);
         }
 
