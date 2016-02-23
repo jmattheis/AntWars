@@ -152,7 +152,7 @@
             this.Start.Location = new System.Drawing.Point(594, 12);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(75, 23);
-            this.Start.TabIndex = 0;
+            this.Start.TabIndex = 41;
             this.Start.Text = "Start";
             this.Start.UseVisualStyleBackColor = true;
             this.Start.Click += new System.EventHandler(this.Start_Click);
@@ -170,7 +170,7 @@
             this.ppppanel.Location = new System.Drawing.Point(12, 42);
             this.ppppanel.Name = "ppppanel";
             this.ppppanel.Size = new System.Drawing.Size(215, 408);
-            this.ppppanel.TabIndex = 5;
+            this.ppppanel.TabIndex = 42;
             this.ppppanel.TabStop = false;
             this.ppppanel.Text = "Player 1 Configuration";
             // 
@@ -202,7 +202,7 @@
             this.pnl_player1Config.Location = new System.Drawing.Point(3, 48);
             this.pnl_player1Config.Name = "pnl_player1Config";
             this.pnl_player1Config.Size = new System.Drawing.Size(209, 354);
-            this.pnl_player1Config.TabIndex = 4;
+            this.pnl_player1Config.TabIndex = 45;
             // 
             // lbl_player1AIPath
             // 
@@ -216,7 +216,7 @@
             this.btn_player1loadAI.Location = new System.Drawing.Point(121, 184);
             this.btn_player1loadAI.Name = "btn_player1loadAI";
             this.btn_player1loadAI.Size = new System.Drawing.Size(75, 23);
-            this.btn_player1loadAI.TabIndex = 26;
+            this.btn_player1loadAI.TabIndex = 13;
             this.btn_player1loadAI.Text = "load AI";
             this.btn_player1loadAI.UseVisualStyleBackColor = true;
             this.btn_player1loadAI.Click += new System.EventHandler(this.btn_player1loadAI_Click);
@@ -309,7 +309,7 @@
             0});
             this.numeric_player1ScoutInventory.Name = "numeric_player1ScoutInventory";
             this.numeric_player1ScoutInventory.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player1ScoutInventory.TabIndex = 12;
+            this.numeric_player1ScoutInventory.TabIndex = 10;
             this.numeric_player1ScoutInventory.Value = new decimal(new int[] {
             1,
             0,
@@ -332,7 +332,7 @@
             0});
             this.numeric_player1ScoutSpeed.Name = "numeric_player1ScoutSpeed";
             this.numeric_player1ScoutSpeed.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player1ScoutSpeed.TabIndex = 11;
+            this.numeric_player1ScoutSpeed.TabIndex = 12;
             this.numeric_player1ScoutSpeed.Value = new decimal(new int[] {
             1,
             0,
@@ -355,7 +355,7 @@
             0});
             this.numeric_player1CarryInventory.Name = "numeric_player1CarryInventory";
             this.numeric_player1CarryInventory.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player1CarryInventory.TabIndex = 10;
+            this.numeric_player1CarryInventory.TabIndex = 9;
             this.numeric_player1CarryInventory.Value = new decimal(new int[] {
             1,
             0,
@@ -378,7 +378,7 @@
             0});
             this.numeric_player1CarrySpeed.Name = "numeric_player1CarrySpeed";
             this.numeric_player1CarrySpeed.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player1CarrySpeed.TabIndex = 9;
+            this.numeric_player1CarrySpeed.TabIndex = 11;
             this.numeric_player1CarrySpeed.Value = new decimal(new int[] {
             1,
             0,
@@ -447,7 +447,7 @@
             0});
             this.numeric_player1CarryView.Name = "numeric_player1CarryView";
             this.numeric_player1CarryView.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player1CarryView.TabIndex = 6;
+            this.numeric_player1CarryView.TabIndex = 5;
             this.numeric_player1CarryView.Value = new decimal(new int[] {
             1,
             0,
@@ -488,7 +488,7 @@
             0});
             this.numeric_player1ScoutView.Name = "numeric_player1ScoutView";
             this.numeric_player1ScoutView.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player1ScoutView.TabIndex = 3;
+            this.numeric_player1ScoutView.TabIndex = 6;
             this.numeric_player1ScoutView.Value = new decimal(new int[] {
             1,
             0,
@@ -502,7 +502,7 @@
             this.textbox_player1Name.MaxLength = 20;
             this.textbox_player1Name.Name = "textbox_player1Name";
             this.textbox_player1Name.Size = new System.Drawing.Size(162, 20);
-            this.textbox_player1Name.TabIndex = 2;
+            this.textbox_player1Name.TabIndex = 4;
             this.textbox_player1Name.TextChanged += new System.EventHandler(this.textbox_player1Name_TextChanged);
             // 
             // Name1
@@ -519,7 +519,7 @@
             this.btn_player1ConfigNew.Location = new System.Drawing.Point(6, 19);
             this.btn_player1ConfigNew.Name = "btn_player1ConfigNew";
             this.btn_player1ConfigNew.Size = new System.Drawing.Size(50, 23);
-            this.btn_player1ConfigNew.TabIndex = 3;
+            this.btn_player1ConfigNew.TabIndex = 1;
             this.btn_player1ConfigNew.Text = "New";
             this.btn_player1ConfigNew.UseVisualStyleBackColor = true;
             this.btn_player1ConfigNew.Click += new System.EventHandler(this.btn_player1ConfigNew_Click);
@@ -530,7 +530,7 @@
             this.btn_player1ConfigSave.Location = new System.Drawing.Point(134, 19);
             this.btn_player1ConfigSave.Name = "btn_player1ConfigSave";
             this.btn_player1ConfigSave.Size = new System.Drawing.Size(75, 23);
-            this.btn_player1ConfigSave.TabIndex = 2;
+            this.btn_player1ConfigSave.TabIndex = 3;
             this.btn_player1ConfigSave.Text = "Save";
             this.btn_player1ConfigSave.UseVisualStyleBackColor = true;
             this.btn_player1ConfigSave.Click += new System.EventHandler(this.btn_player1ConfigSave_Click);
@@ -554,7 +554,7 @@
             this.ppanel.Location = new System.Drawing.Point(233, 42);
             this.ppanel.Name = "ppanel";
             this.ppanel.Size = new System.Drawing.Size(215, 408);
-            this.ppanel.TabIndex = 6;
+            this.ppanel.TabIndex = 43;
             this.ppanel.TabStop = false;
             this.ppanel.Text = "Game Configuration";
             // 
@@ -563,7 +563,7 @@
             this.btn_gameConfigNew.Location = new System.Drawing.Point(6, 19);
             this.btn_gameConfigNew.Name = "btn_gameConfigNew";
             this.btn_gameConfigNew.Size = new System.Drawing.Size(50, 23);
-            this.btn_gameConfigNew.TabIndex = 5;
+            this.btn_gameConfigNew.TabIndex = 14;
             this.btn_gameConfigNew.Text = "New";
             this.btn_gameConfigNew.UseVisualStyleBackColor = true;
             this.btn_gameConfigNew.Click += new System.EventHandler(this.btn_gameConfigNew_Click);
@@ -594,7 +594,7 @@
             this.pnl_GameConfig.Location = new System.Drawing.Point(4, 48);
             this.pnl_GameConfig.Name = "pnl_GameConfig";
             this.pnl_GameConfig.Size = new System.Drawing.Size(200, 354);
-            this.pnl_GameConfig.TabIndex = 7;
+            this.pnl_GameConfig.TabIndex = 46;
             // 
             // MaxTicks
             // 
@@ -615,7 +615,7 @@
             0});
             this.numeric_gameConfigMaxTicks.Name = "numeric_gameConfigMaxTicks";
             this.numeric_gameConfigMaxTicks.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigMaxTicks.TabIndex = 23;
+            this.numeric_gameConfigMaxTicks.TabIndex = 25;
             this.numeric_gameConfigMaxTicks.Value = new decimal(new int[] {
             10000,
             0,
@@ -692,7 +692,7 @@
             0});
             this.numeric_gameConfigSugarAmountMin.Name = "numeric_gameConfigSugarAmountMin";
             this.numeric_gameConfigSugarAmountMin.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigSugarAmountMin.TabIndex = 15;
+            this.numeric_gameConfigSugarAmountMin.TabIndex = 19;
             this.numeric_gameConfigSugarAmountMin.Value = new decimal(new int[] {
             1,
             0,
@@ -715,7 +715,7 @@
             0});
             this.numeric_gameConfigSugarAmountMax.Name = "numeric_gameConfigSugarAmountMax";
             this.numeric_gameConfigSugarAmountMax.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigSugarAmountMax.TabIndex = 14;
+            this.numeric_gameConfigSugarAmountMax.TabIndex = 20;
             this.numeric_gameConfigSugarAmountMax.Value = new decimal(new int[] {
             5,
             0,
@@ -733,7 +733,7 @@
             0});
             this.numeric_gameConfigBoardWidth.Name = "numeric_gameConfigBoardWidth";
             this.numeric_gameConfigBoardWidth.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigBoardWidth.TabIndex = 12;
+            this.numeric_gameConfigBoardWidth.TabIndex = 21;
             this.numeric_gameConfigBoardWidth.ValueChanged += new System.EventHandler(this.numeric_gameConfigBoardWidth_ValueChanged);
             // 
             // numeric_gameConfigPoints
@@ -751,7 +751,7 @@
             0});
             this.numeric_gameConfigPoints.Name = "numeric_gameConfigPoints";
             this.numeric_gameConfigPoints.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigPoints.TabIndex = 11;
+            this.numeric_gameConfigPoints.TabIndex = 26;
             this.numeric_gameConfigPoints.Value = new decimal(new int[] {
             100,
             0,
@@ -769,7 +769,7 @@
             0});
             this.numeric_gameConfigStartMoney.Name = "numeric_gameConfigStartMoney";
             this.numeric_gameConfigStartMoney.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigStartMoney.TabIndex = 10;
+            this.numeric_gameConfigStartMoney.TabIndex = 23;
             this.numeric_gameConfigStartMoney.ValueChanged += new System.EventHandler(this.numeric_gameConfigStartMoney_ValueChanged);
             // 
             // numeric_gameConfigTicks
@@ -782,7 +782,7 @@
             0});
             this.numeric_gameConfigTicks.Name = "numeric_gameConfigTicks";
             this.numeric_gameConfigTicks.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigTicks.TabIndex = 9;
+            this.numeric_gameConfigTicks.TabIndex = 24;
             this.numeric_gameConfigTicks.Value = new decimal(new int[] {
             10,
             0,
@@ -800,7 +800,7 @@
             0});
             this.numeric_gameConfigBoardHeigth.Name = "numeric_gameConfigBoardHeigth";
             this.numeric_gameConfigBoardHeigth.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigBoardHeigth.TabIndex = 8;
+            this.numeric_gameConfigBoardHeigth.TabIndex = 22;
             this.numeric_gameConfigBoardHeigth.ValueChanged += new System.EventHandler(this.numeric_gameConfigBoardHeigth_ValueChanged);
             // 
             // SugarAmountMin
@@ -836,7 +836,7 @@
             0});
             this.numeric_gameConfigSugarMin.Name = "numeric_gameConfigSugarMin";
             this.numeric_gameConfigSugarMin.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigSugarMin.TabIndex = 4;
+            this.numeric_gameConfigSugarMin.TabIndex = 17;
             this.numeric_gameConfigSugarMin.Value = new decimal(new int[] {
             5,
             0,
@@ -859,7 +859,7 @@
             0});
             this.numeric_gameConfigSugarMax.Name = "numeric_gameConfigSugarMax";
             this.numeric_gameConfigSugarMax.Size = new System.Drawing.Size(44, 20);
-            this.numeric_gameConfigSugarMax.TabIndex = 6;
+            this.numeric_gameConfigSugarMax.TabIndex = 18;
             this.numeric_gameConfigSugarMax.Value = new decimal(new int[] {
             20,
             0,
@@ -882,7 +882,7 @@
             this.btn_gameConfigSave.Location = new System.Drawing.Point(134, 19);
             this.btn_gameConfigSave.Name = "btn_gameConfigSave";
             this.btn_gameConfigSave.Size = new System.Drawing.Size(75, 23);
-            this.btn_gameConfigSave.TabIndex = 1;
+            this.btn_gameConfigSave.TabIndex = 16;
             this.btn_gameConfigSave.Text = "Save";
             this.btn_gameConfigSave.UseVisualStyleBackColor = true;
             this.btn_gameConfigSave.Click += new System.EventHandler(this.btn_gameConfigSave_Click);
@@ -892,7 +892,7 @@
             this.btn_gameConfigLoad.Location = new System.Drawing.Point(62, 19);
             this.btn_gameConfigLoad.Name = "btn_gameConfigLoad";
             this.btn_gameConfigLoad.Size = new System.Drawing.Size(66, 23);
-            this.btn_gameConfigLoad.TabIndex = 0;
+            this.btn_gameConfigLoad.TabIndex = 15;
             this.btn_gameConfigLoad.Text = "Load";
             this.btn_gameConfigLoad.UseVisualStyleBackColor = true;
             this.btn_gameConfigLoad.Click += new System.EventHandler(this.btn_gameConfigLoad_Click);
@@ -906,7 +906,7 @@
             this.panel.Location = new System.Drawing.Point(454, 42);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(222, 408);
-            this.panel.TabIndex = 6;
+            this.panel.TabIndex = 44;
             this.panel.TabStop = false;
             this.panel.Text = "Player 2 Configuration";
             // 
@@ -938,7 +938,7 @@
             this.pnl_player2Config.Location = new System.Drawing.Point(6, 48);
             this.pnl_player2Config.Name = "pnl_player2Config";
             this.pnl_player2Config.Size = new System.Drawing.Size(209, 354);
-            this.pnl_player2Config.TabIndex = 17;
+            this.pnl_player2Config.TabIndex = 47;
             // 
             // lbl_player2AIPath
             // 
@@ -952,7 +952,7 @@
             this.btn_player2loadAI.Location = new System.Drawing.Point(128, 184);
             this.btn_player2loadAI.Name = "btn_player2loadAI";
             this.btn_player2loadAI.Size = new System.Drawing.Size(75, 23);
-            this.btn_player2loadAI.TabIndex = 24;
+            this.btn_player2loadAI.TabIndex = 39;
             this.btn_player2loadAI.Text = "load AI";
             this.btn_player2loadAI.UseVisualStyleBackColor = true;
             this.btn_player2loadAI.Click += new System.EventHandler(this.btn_player2loadAI_Click);
@@ -1046,7 +1046,7 @@
             0});
             this.numeric_player2ScoutInventory.Name = "numeric_player2ScoutInventory";
             this.numeric_player2ScoutInventory.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player2ScoutInventory.TabIndex = 12;
+            this.numeric_player2ScoutInventory.TabIndex = 36;
             this.numeric_player2ScoutInventory.Value = new decimal(new int[] {
             1,
             0,
@@ -1069,7 +1069,7 @@
             0});
             this.numeric_player2ScoutSpeed.Name = "numeric_player2ScoutSpeed";
             this.numeric_player2ScoutSpeed.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player2ScoutSpeed.TabIndex = 11;
+            this.numeric_player2ScoutSpeed.TabIndex = 38;
             this.numeric_player2ScoutSpeed.Value = new decimal(new int[] {
             1,
             0,
@@ -1092,7 +1092,7 @@
             0});
             this.numeric_player2CarryInventory.Name = "numeric_player2CarryInventory";
             this.numeric_player2CarryInventory.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player2CarryInventory.TabIndex = 10;
+            this.numeric_player2CarryInventory.TabIndex = 35;
             this.numeric_player2CarryInventory.Value = new decimal(new int[] {
             1,
             0,
@@ -1115,7 +1115,7 @@
             0});
             this.numeric_player2CarrySpeed.Name = "numeric_player2CarrySpeed";
             this.numeric_player2CarrySpeed.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player2CarrySpeed.TabIndex = 9;
+            this.numeric_player2CarrySpeed.TabIndex = 37;
             this.numeric_player2CarrySpeed.Value = new decimal(new int[] {
             1,
             0,
@@ -1138,7 +1138,7 @@
             0});
             this.numeric_player2ScoutMove.Name = "numeric_player2ScoutMove";
             this.numeric_player2ScoutMove.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player2ScoutMove.TabIndex = 8;
+            this.numeric_player2ScoutMove.TabIndex = 34;
             this.numeric_player2ScoutMove.Value = new decimal(new int[] {
             1,
             0,
@@ -1161,7 +1161,7 @@
             0});
             this.numeric_player2CarryMove.Name = "numeric_player2CarryMove";
             this.numeric_player2CarryMove.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player2CarryMove.TabIndex = 7;
+            this.numeric_player2CarryMove.TabIndex = 33;
             this.numeric_player2CarryMove.Value = new decimal(new int[] {
             1,
             0,
@@ -1184,7 +1184,7 @@
             0});
             this.numeric_player2CarryView.Name = "numeric_player2CarryView";
             this.numeric_player2CarryView.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player2CarryView.TabIndex = 6;
+            this.numeric_player2CarryView.TabIndex = 31;
             this.numeric_player2CarryView.Value = new decimal(new int[] {
             1,
             0,
@@ -1225,7 +1225,7 @@
             0});
             this.numeric_player2ScoutView.Name = "numeric_player2ScoutView";
             this.numeric_player2ScoutView.Size = new System.Drawing.Size(45, 20);
-            this.numeric_player2ScoutView.TabIndex = 3;
+            this.numeric_player2ScoutView.TabIndex = 32;
             this.numeric_player2ScoutView.Value = new decimal(new int[] {
             1,
             0,
@@ -1239,7 +1239,7 @@
             this.textbox_player2Name.MaxLength = 20;
             this.textbox_player2Name.Name = "textbox_player2Name";
             this.textbox_player2Name.Size = new System.Drawing.Size(162, 20);
-            this.textbox_player2Name.TabIndex = 2;
+            this.textbox_player2Name.TabIndex = 30;
             this.textbox_player2Name.TextChanged += new System.EventHandler(this.textbox_player2Name_TextChanged);
             // 
             // Name2
@@ -1256,7 +1256,7 @@
             this.btn_player2ConfigNew.Location = new System.Drawing.Point(6, 19);
             this.btn_player2ConfigNew.Name = "btn_player2ConfigNew";
             this.btn_player2ConfigNew.Size = new System.Drawing.Size(50, 23);
-            this.btn_player2ConfigNew.TabIndex = 8;
+            this.btn_player2ConfigNew.TabIndex = 27;
             this.btn_player2ConfigNew.Text = "New";
             this.btn_player2ConfigNew.UseVisualStyleBackColor = true;
             this.btn_player2ConfigNew.Click += new System.EventHandler(this.btn_player2ConfigNew_Click);
@@ -1267,7 +1267,7 @@
             this.btn_player2ConfigSave.Location = new System.Drawing.Point(134, 19);
             this.btn_player2ConfigSave.Name = "btn_player2ConfigSave";
             this.btn_player2ConfigSave.Size = new System.Drawing.Size(75, 23);
-            this.btn_player2ConfigSave.TabIndex = 2;
+            this.btn_player2ConfigSave.TabIndex = 29;
             this.btn_player2ConfigSave.Text = "Save";
             this.btn_player2ConfigSave.UseVisualStyleBackColor = true;
             this.btn_player2ConfigSave.Click += new System.EventHandler(this.btn_player2ConfigSave_Click);
@@ -1277,7 +1277,7 @@
             this.btn_player2ConfigLoad.Location = new System.Drawing.Point(62, 19);
             this.btn_player2ConfigLoad.Name = "btn_player2ConfigLoad";
             this.btn_player2ConfigLoad.Size = new System.Drawing.Size(66, 23);
-            this.btn_player2ConfigLoad.TabIndex = 2;
+            this.btn_player2ConfigLoad.TabIndex = 28;
             this.btn_player2ConfigLoad.Text = "Load";
             this.btn_player2ConfigLoad.UseVisualStyleBackColor = true;
             this.btn_player2ConfigLoad.Click += new System.EventHandler(this.btn_player2ConfigLoad_Click);
@@ -1287,7 +1287,7 @@
             this.buttonView.Location = new System.Drawing.Point(513, 13);
             this.buttonView.Name = "buttonView";
             this.buttonView.Size = new System.Drawing.Size(75, 23);
-            this.buttonView.TabIndex = 7;
+            this.buttonView.TabIndex = 40;
             this.buttonView.Text = "View";
             this.buttonView.UseVisualStyleBackColor = true;
             this.buttonView.Click += new System.EventHandler(this.buttonView_Click);

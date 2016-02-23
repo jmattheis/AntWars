@@ -209,39 +209,77 @@ namespace AntWars
 
         private void checkWinningConditions()
         {
+            if (checkTickPlayerPoints()) return;
+            if (checkMaxPoints()) return;
+            if (checkSugarPlayerPoint()) return;
+        }
+
+        private bool checkSugarPlayerPoint()
+        {
+            if (game.Board.BoardObjects.getSugars().Count == 0)
+            {
+                if ((game.Player1.Points + game.Player2.Points) == game.Board.SugarAmount)
+                {
+                    if (!checkPlayerPoints())
+                    {
+                        this.stop();
+                        MessageBox.Show(String.Format("Es ist kein Zucker mehr verfügbar."), "OUT OF SUGAR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool checkTickPlayerPoints()
+        {
             if ((game.getCurrentTick()) >= game.Conf.Game.MaxTicks)
             {
                 this.stop();
-                if (game.Player1.Points > game.Player2.Points)
+                if (!checkPlayerPoints())
                 {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.MaxTicks,
-                                    game.Conf.Player1.PlayerName, game.Player1.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);    
-                }
-                else if (game.Player1.Points < game.Player2.Points)
-                {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.MaxTicks,
-                                    game.Conf.Player2.PlayerName, game.Player2.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
+                    this.stop();
                     MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.", game.Conf.Game.MaxTicks), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                
-                return;
+                return true;
             }
+            return false;
+        }
+
+        private bool checkPlayerPoints()
+        {
+            if (game.Player1.Points > game.Player2.Points)
+            {
+                this.stop();
+                MessageBox.Show(String.Format("{0} hat mit {1} Punkten gewonnen!", 
+                                game.Conf.Player1.PlayerName, game.Player1.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            else if (game.Player1.Points < game.Player2.Points)
+            {
+                this.stop();
+                MessageBox.Show(String.Format("{0} hat mit {1} Punkten gewonnen!", 
+                                    game.Conf.Player2.PlayerName, game.Player2.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            return false;
+        }
+
+        private bool checkMaxPoints()
+        {
             if (game.Player1.Points >= game.Conf.Game.Points)
             {
                 this.stop();
                 MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player1.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                return true;
             }
             else if (game.Player2.Points >= game.Conf.Game.Points)
             {
                 this.stop();
                 MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player2.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                return true;
             }
-            // TODO: If sugar is zero count all points(sugar) in ants from each player and add it to his score --> finish game
+            return false;
         }
 
         private void setPlayernameInStatistic(Config.Configuration config)
