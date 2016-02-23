@@ -18,7 +18,7 @@ namespace AntWars.Board
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
-        public int SugarAmount { get; set; }
+        public int SugarAmount { get; private set; }
 
         public Board(Configuration conf)
         {
