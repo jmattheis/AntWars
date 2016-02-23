@@ -18,7 +18,7 @@ namespace AntWars.Board
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
-
+        public int SugarAmount { get; set; }
 
         public Board(Configuration conf)
         {
@@ -111,6 +111,7 @@ namespace AntWars.Board
                 }
                 s.Amount = rand.Next(conf.Game.SugarAmountMin, conf.Game.SugarAmountMax + 1);
                 BoardObjects.add(s);
+                SugarAmount += s.Amount;
             }
         }
 

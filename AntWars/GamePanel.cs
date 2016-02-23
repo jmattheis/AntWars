@@ -229,6 +229,18 @@ namespace AntWars
                 
                 return;
             }
+            checkPlayerPoints();
+            if (game.Board.BoardObjects.getSugars().Count == 0)
+            {
+                if ((game.Player1.Points + game.Player2.Points) == game.Board.SugarAmount)
+                {
+                    checkPlayerPoints();
+                }
+            }
+        }
+
+        private void checkPlayerPoints()
+        {
             if (game.Player1.Points >= game.Conf.Game.Points)
             {
                 this.stop();
@@ -241,7 +253,6 @@ namespace AntWars
                 MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player2.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            // TODO: If sugar is zero count all points(sugar) in ants from each player and add it to his score --> finish game
         }
 
         private void setPlayernameInStatistic(Config.Configuration config)
