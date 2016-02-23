@@ -13,7 +13,7 @@ namespace AntWars.Board
     {
         internal Player Player { get; private set; }
 
-        internal Base(Player p, Coordinates coords) : base(coords)
+        internal Base(Player p)
         {
             Player = p;
         }

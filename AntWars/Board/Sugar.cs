@@ -12,7 +12,5 @@ namespace AntWars.Board
     public class Sugar : BoardObject
     {
         public int Amount { get; internal set; }
-
-        public Sugar(Coordinates coords) : base(coords) { }
     }
 }

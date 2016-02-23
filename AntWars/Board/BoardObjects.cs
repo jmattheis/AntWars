@@ -195,8 +195,7 @@ namespace AntWars.Board
                 return false;
             }
             removeFromMap(obj);
-            obj.Coords.X = coords.X;
-            obj.Coords.Y = coords.Y;
+            obj.Coords = coords;
             addToMap(obj);
             return true;
         }

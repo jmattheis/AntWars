@@ -12,12 +12,7 @@ namespace AntWars.Board
     /// </summary>
     public class BoardObject
     {
-        public Coordinates Coords { get; protected set; }
-
-        public BoardObject(Coordinates coords)
-        {
-            Coords = coords;
-        }
+        public Coordinates Coords { get; internal set; }
 
         public bool isAnt()
         {

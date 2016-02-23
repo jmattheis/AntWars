@@ -102,7 +102,8 @@ namespace AntWars.Board
             int count = rand.Next(min, max + 1);
             for (int i = 0; i < count; i++)
             {
-                Sugar s = new Sugar(Utils.generateCoords(conf.Game.BoardWidth, conf.Game.BoardHeight));
+                Sugar s = new Sugar();
+                s.Coords = Utils.generateCoords(conf.Game.BoardWidth, conf.Game.BoardHeight);
                 if (BoardObjects.hasBaseOnCoords(s.Coords) || BoardObjects.hasSugarOnCoords(s.Coords))
                 {
                     i--;
@@ -115,15 +116,15 @@ namespace AntWars.Board
 
         private Base generateBase(Player player)
         {
-            Base b;
+            Base b = new Base(player);
             // Bases immer gegenüber spawnen lassen
             if (this.BoardObjects.getBases().Count == 1)
             {
-                b = new Base(player, Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeight, this.BoardObjects.getBases()[0]));
+                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeight, this.BoardObjects.getBases()[0]);
             }
             else
             {
-                b = new Base(player, Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeight));
+                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeight);
             }
             return b;
         }
