@@ -74,6 +74,8 @@
             // pb_Game
             // 
             this.pb_Game.BackColor = System.Drawing.Color.White;
+            this.pb_Game.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb_Game.BackgroundImage")));
+            this.pb_Game.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pb_Game.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pb_Game.Location = new System.Drawing.Point(0, 0);
             this.pb_Game.Name = "pb_Game";
