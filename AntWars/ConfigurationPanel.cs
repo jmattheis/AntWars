@@ -63,6 +63,7 @@ namespace AntWars
             configLoadedOrNewCreatedPlayer1();
             loadPlayer1(configLoader.get().Player1);
             calculateAntCostsPlayer1();
+            btn_player1ConfigSave.Focus();
         }
 
         private void btn_player1ConfigLoad_Click(object sender, EventArgs e)
@@ -82,6 +83,7 @@ namespace AntWars
                 configLoadedOrNewCreatedPlayer1();
                 loadPlayer1(configLoader.get().Player1);
             }
+            btn_player1ConfigSave.Focus();
         }
 
         private void configLoadedOrNewCreatedPlayer1()
@@ -318,6 +320,7 @@ namespace AntWars
             configLoadedOrNewCreatedPlayer2();
             loadPlayer2(configLoader.get().Player2);
             calculateAntCostsPlayer2();
+            btn_player2ConfigSave.Focus();
         }
 
         private void btn_player2ConfigLoad_Click(object sender, EventArgs e)
@@ -337,6 +340,7 @@ namespace AntWars
                 configLoadedOrNewCreatedPlayer2();
                 loadPlayer2(configLoader.get().Player2);
             }
+            btn_player2ConfigSave.Focus();
         }
 
         private void btn_player2ConfigSave_Click(object sender, EventArgs e)
@@ -412,6 +416,7 @@ namespace AntWars
             configLoader.newGame();
             configLoadedOrNewCreatedGame();
             loadGame(configLoader.get().Game);
+            btn_gameConfigSave.Focus();
         }
 
         private void btn_gameConfigSave_Click(object sender, EventArgs e)
@@ -466,6 +471,7 @@ namespace AntWars
                 configLoadedOrNewCreatedGame();
                 loadGame(configLoader.get().Game);
             }
+            btn_gameConfigSave.Focus();
         }
 
         private void buttonView_Click(object sender, EventArgs e)
