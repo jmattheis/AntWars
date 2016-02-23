@@ -539,9 +539,9 @@ namespace AntWars
         private void calculateAntCostsByPlayer(PlayerConfig playerconfig)
         {
             // TODO: Schönere Divisions- und Rundungsfunktion finden
-            playerconfig.CarryCost = playerconfig.CarryViewRange + playerconfig.CarryMoveRange + playerconfig.CarryInventory + playerconfig.CarrySpeed;
+            playerconfig.CarryCost = playerconfig.CarryViewRange + (int)Math.Round(playerconfig.CarryMoveRange/250.0, 0) + playerconfig.CarryInventory + playerconfig.CarrySpeed;
             playerconfig.CarryCost = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(playerconfig.CarryCost) / 2));
-            playerconfig.ScoutCost = playerconfig.ScoutViewRange + playerconfig.ScoutMoveRange + playerconfig.ScoutInventory + playerconfig.ScoutSpeed;
+            playerconfig.ScoutCost = playerconfig.ScoutViewRange + (int)Math.Round(playerconfig.ScoutMoveRange/250.0, 0) + playerconfig.ScoutInventory + playerconfig.ScoutSpeed;
             playerconfig.ScoutCost = Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(playerconfig.ScoutCost) / 2));
         }
 

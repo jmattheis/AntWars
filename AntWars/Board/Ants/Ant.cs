@@ -31,7 +31,7 @@ namespace AntWars.Board.Ants
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X--;
-            if(board.BoardObjects.move(this, newCoords))
+            if (canMove() && board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
                 return true;
@@ -43,7 +43,7 @@ namespace AntWars.Board.Ants
         {
             Coordinates newCoords = Coords.clone();
             newCoords.X++;
-            if(board.BoardObjects.move(this, newCoords))
+            if (canMove() && board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
                 return true;
@@ -55,7 +55,7 @@ namespace AntWars.Board.Ants
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y++;
-            if(board.BoardObjects.move(this, newCoords))
+            if(canMove() && board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
                 return true;
@@ -67,12 +67,21 @@ namespace AntWars.Board.Ants
         {
             Coordinates newCoords = Coords.clone();
             newCoords.Y--;
-            if(board.BoardObjects.move(this, newCoords))
+            if (canMove() && board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
                 return true;
             }
             return false;
+        }
+
+        public bool canMove()
+        {
+            if (isCarry() && UnitsGone >= Owner.PlayerConfig.CarryMoveRange)
+                return false;
+            if (isScout() && UnitsGone >= Owner.PlayerConfig.ScoutMoveRange)
+                return false;
+            return true;
         }
 
         /// <summary>
