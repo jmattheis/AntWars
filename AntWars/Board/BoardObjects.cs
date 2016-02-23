@@ -12,7 +12,6 @@ namespace AntWars.Board
 {
     class BoardObjects
     {
-        private static readonly int MAX_OBJ_ON_COORD = 6;
         private IList<BoardObject> boardObjects = new List<BoardObject>();
         private IList<Ant> ants = new List<Ant>();
         private IList<Signal> signals = new List<Signal>();
