@@ -25,6 +25,7 @@ namespace AntWars
         public ConfigurationPanel()
         {
             InitializeComponent();
+            checkPlayerKI();
         }
 
         private void Start_Click(object sender, EventArgs e)
@@ -589,6 +590,14 @@ namespace AntWars
         private void numeric_gameConfigMaxTicks_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Game.MaxTicks = Convert.ToInt32(numeric_gameConfigMaxTicks.Value);
+        }
+
+        private void checkPlayerKI()
+        {
+            if (String.IsNullOrEmpty(game.Conf.Player1.AIPath))
+            {
+                btn_player1loadAI.BackColor = Color.Red;
+            }
         }
     }
 }
