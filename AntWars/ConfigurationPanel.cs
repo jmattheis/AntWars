@@ -417,6 +417,7 @@ namespace AntWars
             configLoader.newGame();
             configLoadedOrNewCreatedGame();
             loadGame(configLoader.get().Game);
+            checkPlayerKI();
             btn_gameConfigSave.Focus();
         }
 
@@ -574,6 +575,7 @@ namespace AntWars
                 lbl_player2AIPath.Text = res;
                 configLoader.get().Player2.AIPath = res;
             }
+            checkPlayerKI();
         }
 
         private void btn_player1loadAI_Click(object sender, EventArgs e)
@@ -584,11 +586,42 @@ namespace AntWars
                 lbl_player1AIPath.Text = res;
                 configLoader.get().Player1.AIPath = res;
             }
+            checkPlayerKI();
         }
 
         private void numeric_gameConfigMaxTicks_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Game.MaxTicks = Convert.ToInt32(numeric_gameConfigMaxTicks.Value);
+        }
+
+        private void checkPlayerKI()
+        {
+            // TODO1: Player.AIPath muss nach übernahme der Properties von Player1/2 zur AI aus Gameconfig bezogen werden
+            // TODO2: wenn TODO1 erfüllt try catch entfernen
+            try
+            {
+                if (!String.IsNullOrEmpty(configLoader.get().Player1.AIPath))
+                {
+                    btn_player1loadAI.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    btn_player1loadAI.BackColor = Color.Red;
+                }
+
+                if (!String.IsNullOrEmpty(configLoader.get().Player2.AIPath))
+                {
+                    btn_player2loadAI.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    btn_player2loadAI.BackColor = Color.Red;
+                }
+            }
+            catch (System.NullReferenceException)
+            {
+                return;
+            }
         }
     }
 }

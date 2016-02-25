@@ -378,7 +378,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GamePanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GamePanel";
+            this.Text = "AntWars";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GamePanel_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).EndInit();
             this.groupstats.ResumeLayout(false);
