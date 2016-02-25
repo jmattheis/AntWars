@@ -27,9 +27,9 @@ namespace AntWars.Board
         }
 
         /// <summary>
-        /// Adds a entry to the boardobjects
+        /// Fügt ein BoardObject hinzu.
         /// </summary>
-        /// <returns>true when added false when there a already a entry with the type on this coordinate</returns>
+        /// <returns>true wenn er hinzugefügt wurde andernfalls false</returns>
         public bool add(BoardObject boardObject)
         {
 
@@ -59,7 +59,6 @@ namespace AntWars.Board
             return true;
         }
 
-
         private bool addToMap(BoardObject boardObject)
         {
             BoardObject[] objsInCoords = boardObjectList[boardObject.Coords.X,boardObject.Coords.Y];
@@ -75,10 +74,8 @@ namespace AntWars.Board
             return false;
         }
 
-
         private bool containsType(IList<BoardObject> objs, BoardObject objectToCheck)
-        {
-            
+        {    
             foreach (BoardObject obj in objs)
             {
                 if (obj == null) continue;
@@ -98,7 +95,6 @@ namespace AntWars.Board
             boardObjectList[boardObject.Coords.X, boardObject.Coords.Y] = objsInCoords;
         }
 
-
         private void remove(ref BoardObject[] objs, BoardObject remove)
         {
             for (int i = 0; i < objs.Length; i++)
@@ -117,21 +113,35 @@ namespace AntWars.Board
 
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>Alle BoardObjects</returns>
         public IList<BoardObject> get()
         {
             return new ReadOnlyCollection<BoardObject>(boardObjects);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>Alle BoardObject in eine zufälligen reihenfolge.</returns>
         public IList<BoardObject> getRandom()
         {
             Utils.RandomizeBoardObjects(boardObjects);
             return get();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>Alle Ameise</returns>
         public IList<Ant> getAnts()
         {
             return new ReadOnlyCollection<Ant>(ants);
         }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="player">The Player</param>
+        /// <returns>Alle Ameise von einem Player</returns>
         public IList<Ant> getAntsByPlayer(Player player)
         {
             List<Ant> antList = new List<Ant>();
@@ -145,27 +155,44 @@ namespace AntWars.Board
             return new ReadOnlyCollection<Ant>(antList);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>Alle Ameisen in zufälliger reihenfolge</returns>
         public IList<Ant> getRandomAnts()
         {
             Utils.RandomizeBoardObjects(ants);
             return getAnts();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>Alle Zuckerhaufen</returns>
         public IList<Sugar> getSugars()
         {
             return new ReadOnlyCollection<Sugar>(sugars);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>Alle Signale</returns>
         public IList<Signal> getSignals()
         {
             return new ReadOnlyCollection<Signal>(signals);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns>Alle Bases</returns>
         public IList<Base> getBases()
         {
             return new ReadOnlyCollection<Base>(bases);
         }
 
+        /// <summary>
+        /// Gibt die Boardobjects von einer bestimmten Koordinate wieder.
+        /// </summary>
+        /// <param name="coords">Die Coordinaten</param>
+        /// <returns>Die BoardObjects von den Koordinaten</returns>
         public BoardObject[] getBoardObjectsFromCoords(Coordinates coords)
         {
             BoardObject[] objsInCoords = boardObjectList[coords.X, coords.Y];
@@ -184,9 +211,8 @@ namespace AntWars.Board
         } 
 
         /// <summary>
-        /// 
         /// </summary>
-        /// <returns>true when moved false when the way is blocked</returns>
+        /// <returns>true wenn das BoardObject gemoved wurde andernfalls false.</returns>
         public bool move(BoardObject obj, Coordinates coords)
         {
             if (!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords), obj))
@@ -199,11 +225,19 @@ namespace AntWars.Board
             return true;
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="coords"></param>
+        /// <returns>true wenn die Koordinaten nicht außerhalb des Spielfeldes sind.</returns>
         public bool isValidCoords(Coordinates coords)
         {
             return !(coords.X < 0 || coords.X > (conf.BoardWidth - 1) || coords.Y < 0 || coords.Y > (conf.BoardHeight - 1));
         }
 
+        /// <summary>
+        /// Entfernt ein BoardObject vom Spielfeld
+        /// </summary>
+        /// <param name="boardObject">Das Boardobject was gelöscht werden soll.</param>
         public void remove(BoardObject boardObject)
         {
             boardObjects.Remove(boardObject);
@@ -226,6 +260,11 @@ namespace AntWars.Board
             removeFromMap(boardObject);
         }
 
+        /// <summary>
+        /// Überprüft ob Zucker auf den Koordinaten sind.
+        /// </summary>
+        /// <param name="coords">Die Koordinaten</param>
+        /// <returns>true wenn Zucker auf den Koordinaten liegt</returns>
         public bool hasSugarOnCoords(Coordinates coords)
         {
             foreach (BoardObject obj in getBoardObjectsFromCoords(coords))
@@ -238,6 +277,11 @@ namespace AntWars.Board
             return false;
         }
 
+        /// <summary>
+        /// Überprüft ob Base auf den Koordinaten sind.
+        /// </summary>
+        /// <param name="coords">Die Koordinaten</param>
+        /// <returns>true wenn eine Base auf den Koordinaten liegt</returns>
         public bool hasBaseOnCoords(Coordinates coords)
         {
             foreach (BoardObject obj in getBoardObjectsFromCoords(coords))

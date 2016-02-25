@@ -12,9 +12,21 @@ namespace AntWars.Board.Ants
     /// </summary>
     public class Ant : BoardObject
     {
+        /// <summary>
+        /// Das Inventory von der Ameise, welches aussagt wieviel Zucker die Ameise momentan Trägt
+        /// </summary>
         public int Inventory { get; internal set; }
+        /// <summary>
+        /// Wie weit die Ameise sehen kann.
+        /// </summary>
         public int ViewRange { get; internal set; }
+        /// <summary>
+        /// Das Maximale Inventory vom Carry.
+        /// </summary>
         public int CarryMaxInventory { get { return Owner.PlayerConfig.CarryInventory; } }
+        /// <summary>
+        /// Das Maximale Inventory vom Scout.
+        /// </summary>
         public int ScoutMaxInventory { get { return Owner.PlayerConfig.ScoutInventory; } }
 
         internal Player Owner { get; private set; }
@@ -27,24 +39,40 @@ namespace AntWars.Board.Ants
             Owner = owner;
         }
 
+        /// <summary>
+        /// Lässt die Ameise nach links bewegen
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveLeft()
         {
             Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
             return board.BoardObjects.move(this, newCoords);
         }
 
+        /// <summary>
+        /// Lässt die Ameise nach rechts bewegen
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveRight()
         {
             Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
             return board.BoardObjects.move(this, newCoords);
         }
 
+        /// <summary>
+        /// Lässt die Ameise nach oben bewegen
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveUp()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y - 1);
             return board.BoardObjects.move(this, newCoords);
         }
 
+        /// <summary>
+        /// Lässt die Ameise nach unten bewegen
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveDown()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y + 1);
@@ -97,6 +125,10 @@ namespace AntWars.Board.Ants
             return false;
         }
 
+        /// <summary>
+        /// Gibt die Koordinaten von der zugehörigen Base zurück.
+        /// </summary>
+        /// <returns>Die Koordinaten von der Base</returns>
         public Coordinates getBaseCoords()
         {
             return board.BoardObjects.getBase(Owner).Coords;

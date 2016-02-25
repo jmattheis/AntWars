@@ -9,19 +9,29 @@ using System.Security.Permissions;
 
 namespace AntWars.AI
 {
+    /// <summary>
+    /// Die Basis der AI welcher Ameisen kaufen kann.
+    /// </summary>
     public abstract class AIBase : IAI
     {
-
         internal Player Player { get; set; }
         internal Game Game { get; set; }
         internal Base Base = null;
 
+        /// <summary>
+        /// Kauft einen Scout.
+        /// </summary>
+        /// <returns>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyScout()
         {
             Scout s = new Scout(Game.Board, Player);      
             return buyAnt(s, Player.PlayerConfig.ScoutCost);
         }
 
+        /// <summary>
+        /// Kauft einen Carry
+        /// </summary>
+        /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyCarrier()
         {
             Carry c = new Carry(Game.Board, Player);
@@ -75,6 +85,10 @@ namespace AntWars.AI
             return Base;
         }
 
+        /// <summary>
+        /// Führt den tick aus welcher 1 mal pro Gametick ausgeführt wird in welchem man Ameisen kaufen kann.
+        /// </summary>
+        // ISSUE #73 parameter wegmachen
         public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
 
         public void nextTick()
