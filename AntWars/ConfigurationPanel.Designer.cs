@@ -35,8 +35,6 @@
             this.ppppanel = new System.Windows.Forms.GroupBox();
             this.pnl_player1Config = new System.Windows.Forms.Panel();
             this.lbl_player1AIPath = new System.Windows.Forms.Label();
-            this.btn_player1loadAI = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.Cost = new System.Windows.Forms.Label();
             this.label__player1ScoutCost = new System.Windows.Forms.Label();
             this.label__player1CarryCost = new System.Windows.Forms.Label();
@@ -59,10 +57,14 @@
             this.btn_player1ConfigNew = new System.Windows.Forms.Button();
             this.btn_player1ConfigSave = new System.Windows.Forms.Button();
             this.btn_player1ConfigLoad = new System.Windows.Forms.Button();
+            this.btn_player1loadAI = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.ppanel = new System.Windows.Forms.GroupBox();
             this.btn_gameConfigNew = new System.Windows.Forms.Button();
             this.pnl_GameConfig = new System.Windows.Forms.Panel();
             this.MaxTicks = new System.Windows.Forms.Label();
+            this.ai_dll = new System.Windows.Forms.Label();
+            this.btn_player2loadAI = new System.Windows.Forms.Button();
             this.numeric_gameConfigMaxTicks = new System.Windows.Forms.NumericUpDown();
             this.Points = new System.Windows.Forms.Label();
             this.Ticks = new System.Windows.Forms.Label();
@@ -87,8 +89,6 @@
             this.panel = new System.Windows.Forms.GroupBox();
             this.pnl_player2Config = new System.Windows.Forms.Panel();
             this.lbl_player2AIPath = new System.Windows.Forms.Label();
-            this.btn_player2loadAI = new System.Windows.Forms.Button();
-            this.ai_dll = new System.Windows.Forms.Label();
             this.label__player2ScoutCost = new System.Windows.Forms.Label();
             this.Inventory2 = new System.Windows.Forms.Label();
             this.label__player2CarryCost = new System.Windows.Forms.Label();
@@ -208,25 +208,6 @@
             this.lbl_player1AIPath.Name = "lbl_player1AIPath";
             this.lbl_player1AIPath.Size = new System.Drawing.Size(60, 13);
             this.lbl_player1AIPath.TabIndex = 26;
-            // 
-            // btn_player1loadAI
-            // 
-            this.btn_player1loadAI.Location = new System.Drawing.Point(122, 272);
-            this.btn_player1loadAI.Name = "btn_player1loadAI";
-            this.btn_player1loadAI.Size = new System.Drawing.Size(75, 23);
-            this.btn_player1loadAI.TabIndex = 13;
-            this.btn_player1loadAI.Text = "Lade KI";
-            this.btn_player1loadAI.UseVisualStyleBackColor = true;
-            this.btn_player1loadAI.Click += new System.EventHandler(this.btn_player1loadAI_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 277);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 13);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "DLL für Spieler1-KI";
             // 
             // Cost
             // 
@@ -543,6 +524,25 @@
             this.btn_player1ConfigLoad.UseVisualStyleBackColor = true;
             this.btn_player1ConfigLoad.Click += new System.EventHandler(this.btn_player1ConfigLoad_Click);
             // 
+            // btn_player1loadAI
+            // 
+            this.btn_player1loadAI.Location = new System.Drawing.Point(122, 272);
+            this.btn_player1loadAI.Name = "btn_player1loadAI";
+            this.btn_player1loadAI.Size = new System.Drawing.Size(75, 23);
+            this.btn_player1loadAI.TabIndex = 13;
+            this.btn_player1loadAI.Text = "Lade KI";
+            this.btn_player1loadAI.UseVisualStyleBackColor = true;
+            this.btn_player1loadAI.Click += new System.EventHandler(this.btn_player1loadAI_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 277);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "DLL für Spieler1-KI";
+            // 
             // ppanel
             // 
             this.ppanel.Controls.Add(this.btn_gameConfigNew);
@@ -606,6 +606,25 @@
             this.MaxTicks.Size = new System.Drawing.Size(86, 13);
             this.MaxTicks.TabIndex = 24;
             this.MaxTicks.Text = "Spielzeit in Ticks";
+            // 
+            // ai_dll
+            // 
+            this.ai_dll.AutoSize = true;
+            this.ai_dll.Location = new System.Drawing.Point(6, 306);
+            this.ai_dll.Name = "ai_dll";
+            this.ai_dll.Size = new System.Drawing.Size(96, 13);
+            this.ai_dll.TabIndex = 23;
+            this.ai_dll.Text = "DLL für Spieler2-KI";
+            // 
+            // btn_player2loadAI
+            // 
+            this.btn_player2loadAI.Location = new System.Drawing.Point(122, 301);
+            this.btn_player2loadAI.Name = "btn_player2loadAI";
+            this.btn_player2loadAI.Size = new System.Drawing.Size(75, 23);
+            this.btn_player2loadAI.TabIndex = 39;
+            this.btn_player2loadAI.Text = "Lade KI";
+            this.btn_player2loadAI.UseVisualStyleBackColor = true;
+            this.btn_player2loadAI.Click += new System.EventHandler(this.btn_player2loadAI_Click);
             // 
             // numeric_gameConfigMaxTicks
             // 
@@ -946,25 +965,6 @@
             this.lbl_player2AIPath.Name = "lbl_player2AIPath";
             this.lbl_player2AIPath.Size = new System.Drawing.Size(60, 13);
             this.lbl_player2AIPath.TabIndex = 25;
-            // 
-            // btn_player2loadAI
-            // 
-            this.btn_player2loadAI.Location = new System.Drawing.Point(122, 301);
-            this.btn_player2loadAI.Name = "btn_player2loadAI";
-            this.btn_player2loadAI.Size = new System.Drawing.Size(75, 23);
-            this.btn_player2loadAI.TabIndex = 39;
-            this.btn_player2loadAI.Text = "Lade KI";
-            this.btn_player2loadAI.UseVisualStyleBackColor = true;
-            this.btn_player2loadAI.Click += new System.EventHandler(this.btn_player2loadAI_Click);
-            // 
-            // ai_dll
-            // 
-            this.ai_dll.AutoSize = true;
-            this.ai_dll.Location = new System.Drawing.Point(6, 306);
-            this.ai_dll.Name = "ai_dll";
-            this.ai_dll.Size = new System.Drawing.Size(96, 13);
-            this.ai_dll.TabIndex = 23;
-            this.ai_dll.Text = "DLL für Spieler2-KI";
             // 
             // label__player2ScoutCost
             // 
