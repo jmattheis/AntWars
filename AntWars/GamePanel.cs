@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using AntWars.Board;
 using AntWars.Board.Ants;
+using AntWars.Helper;
 
 namespace AntWars
 {
@@ -223,7 +224,7 @@ namespace AntWars
                     if (!checkPlayerPoints())
                     {
                         this.stop();
-                        MessageBox.Show(String.Format("Es ist kein Zucker mehr verfügbar."), "OUT OF SUGAR", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(Messages.OUT_OF_SUGAR, Messages.OUT_OF_SUGAR_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     return true;
                 }
@@ -239,7 +240,7 @@ namespace AntWars
                 if (!checkPlayerPoints())
                 {
                     this.stop();
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.", game.Conf.Game.MaxTicks), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(String.Format(Messages.TIME_OUT, game.Conf.Game.MaxTicks), Messages.TIME_OUT_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 return true;
             }
@@ -251,15 +252,15 @@ namespace AntWars
             if (game.Player1.Points > game.Player2.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format("{0} hat mit {1} Punkten gewonnen!", 
-                                game.Conf.Player1.PlayerName, game.Player1.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT, 
+                                game.Conf.Player1.PlayerName, game.Player1.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             else if (game.Player1.Points < game.Player2.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format("{0} hat mit {1} Punkten gewonnen!", 
-                                    game.Conf.Player2.PlayerName, game.Player2.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT, 
+                                    game.Conf.Player2.PlayerName, game.Player2.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             return false;
@@ -270,13 +271,13 @@ namespace AntWars
             if (game.Player1.Points >= game.Conf.Game.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player1.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Conf.Player1.PlayerName), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             else if (game.Player2.Points >= game.Conf.Game.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player2.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Conf.Player2.PlayerName), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             return false;

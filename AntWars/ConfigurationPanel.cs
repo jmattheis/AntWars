@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AntWars.Config;
 using System.IO;
 using AntWars.Exception;
+using AntWars.Helper;
 
 
 namespace AntWars
@@ -42,13 +43,13 @@ namespace AntWars
                     }
                     catch (InvalidDLLFileException)
                     {
-                        MessageBox.Show("The given DLL is not valid, please try another one.", "Error: Invalid DLL.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Messages.ERROR_INVALID_DLL, Messages.ERROR_INVALID_DLL_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("There are not all configs loaded/created.", "Error: Could not start.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Messages.ERROR_COULD_NOT_START, Messages.ERROR_COULD_NOT_START_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -77,7 +78,7 @@ namespace AntWars
                 }
                 catch (InvalidConfigurationException exception)
                 {
-                    MessageBox.Show("Cannot load this configuration because of: \n" + exception.Message, "Error: Invalid configuration.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Messages.ERROR_INVALID_CONFIG + exception.Message, Messages.ERROR_INVALID_CONFIG_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 configLoadedOrNewCreatedPlayer1();
@@ -168,7 +169,7 @@ namespace AntWars
                     return;
                 }
             }
-            MessageBox.Show("Successfully saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Messages.SAVED, Messages.SAVED_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
             configLoader.savePlayer1();
         }
 
@@ -334,7 +335,7 @@ namespace AntWars
                 }
                 catch (InvalidConfigurationException exception)
                 {
-                    MessageBox.Show("Cannot load this configuration because of: \n" + exception.Message, "Error: Invalid configuration.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Messages.ERROR_INVALID_CONFIG + exception.Message, Messages.ERROR_INVALID_CONFIG_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 configLoadedOrNewCreatedPlayer2();
@@ -357,7 +358,7 @@ namespace AntWars
                     return;
                 }
             }
-            MessageBox.Show("Successfully saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Messages.SAVED, Messages.SAVED_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
             configLoader.savePlayer2();
         }
 
@@ -433,7 +434,7 @@ namespace AntWars
                     return;
                 }
             }
-            MessageBox.Show("Successfully saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Messages.SAVED, Messages.SAVED_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
             configLoader.saveGame();
         }
         private bool checkGameConfig()
@@ -448,7 +449,7 @@ namespace AntWars
         {
             if (min > max)
             {
-                MessageBox.Show("Min can't be higher than Max!", "Error: Invalid Value.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Messages.ERROR_MIN_HIGHER_MAX, Messages.ERROR_MIN_HIGHER_MAX_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -465,7 +466,7 @@ namespace AntWars
                 }
                 catch (InvalidConfigurationException exception)
                 {
-                    MessageBox.Show("Cannot load this configuration because of: \n" + exception.Message, "Error: Invalid configuration.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Messages.ERROR_INVALID_CONFIG + exception.Message, Messages.ERROR_INVALID_CONFIG_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 configLoadedOrNewCreatedGame();
@@ -486,7 +487,7 @@ namespace AntWars
             }
             else
             {
-                MessageBox.Show("There are not all configs loaded/created.", "Error: Could not start.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Messages.ERROR_COULD_NOT_START, Messages.ERROR_COULD_NOT_START_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
