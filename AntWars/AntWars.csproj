@@ -64,6 +64,8 @@
     <Compile Include="AI\IAI.cs" />
     <Compile Include="AI\IAIAnt.cs" />
     <Compile Include="Board\Ants\Ant.cs" />
+    <Compile Include="Board\Ants\MovableAnt.cs" />
+    <Compile Include="Board\Ants\Warrior.cs" />
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardObject.cs" />
     <Compile Include="Board\Base.cs" />
