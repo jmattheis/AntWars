@@ -26,31 +26,7 @@ namespace AntWars.Board.Ants
             this.board = board;
             Owner = owner;
         }
-
-        public bool moveLeft()
-        {
-            Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
-            return board.BoardObjects.move(this, newCoords);
-        }
-
-        public bool moveRight()
-        {
-            Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
-            return board.BoardObjects.move(this, newCoords);
-        }
-
-        public bool moveUp()
-        {
-            Coordinates newCoords = new Coordinates(Coords.X, Coords.Y - 1);
-            return board.BoardObjects.move(this, newCoords);
-        }
-
-        public bool moveDown()
-        {
-            Coordinates newCoords = new Coordinates(Coords.X, Coords.Y + 1);
-            return board.BoardObjects.move(this, newCoords);
-        }
-
+       
         /// <summary>
         /// Zucker aufnehmen. Die Ameise muss auf dem Zucker stehen.
         /// </summary>

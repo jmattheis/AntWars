@@ -54,7 +54,7 @@ namespace AntWars.AI
 
         }
 
-        public IAIAnt createAIAntInstance(Ant ant, Config.GameConfig conf)
+        public IAIAnt createAIAntInstance(MovableAnt ant, Config.GameConfig conf)
         {
             try
             {
