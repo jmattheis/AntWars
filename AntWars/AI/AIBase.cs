@@ -16,6 +16,31 @@ namespace AntWars.AI
         internal Game Game { get; set; }
         internal Base Base = null;
 
+        protected int CurrentScore
+        {
+            get { return Player.CurrentScore; }
+        }
+
+        protected int CurrentTick
+        {
+            get { return Game.getCurrentTick(); }
+        }
+
+        protected int CurrentMoney
+        {
+            get { return Player.Money; }
+        }
+
+        protected int CurrentCarryCount
+        {
+            get { return Player.CarryCount; }
+        }
+
+        protected int CurrentScoutScount
+        {
+            get { return Player.ScoutCount; }
+        }
+
         protected bool buyScout()
         {
             Scout s = new Scout(Game.Board, Player);      
@@ -75,14 +100,6 @@ namespace AntWars.AI
             return Base;
         }
 
-        public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
-
-        public void nextTick()
-        {
-            // extra Parameter an AI übergeben
-            int score = Player.CurrentScore;
-            int time = Game.getCurrentTick();
-            nextTick(Player.Money, score, Player.CarryCount, Player.ScoutCount, time);
-        }
+        public abstract void nextTick();
     }
 }
