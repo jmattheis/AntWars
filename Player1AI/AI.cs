@@ -11,7 +11,7 @@ namespace PlayerAI
 {
     public class AI : AIBase
     {
-        public override void nextTick(int currentMoney, int currentScore, int carryCount, int scoutCount, int time)
+        public override void nextTick()
         {
             buyCarrier();
         }
