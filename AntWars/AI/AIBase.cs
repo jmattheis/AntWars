@@ -16,26 +16,41 @@ namespace AntWars.AI
         internal Game Game { get; set; }
         internal Base Base = null;
 
+        /// <summary>
+        /// Deine derzeitigen Punkte.
+        /// </summary>
         protected int CurrentScore
         {
             get { return Player.CurrentScore; }
         }
 
+        /// <summary>
+        /// Die bisher vergangenen Ticks.
+        /// </summary>
         protected int CurrentTick
         {
             get { return Game.getCurrentTick(); }
         }
 
+        /// <summary>
+        /// Dein aktuelles Geld.
+        /// </summary>
         protected int CurrentMoney
         {
             get { return Player.Money; }
         }
 
+        /// <summary>
+        /// Anzahl deiner Carries.
+        /// </summary>
         protected int CurrentCarryCount
         {
             get { return Player.CarryCount; }
         }
 
+        /// <summary>
+        /// Anzahl deiner Scouts.
+        /// </summary>
         protected int CurrentScoutScount
         {
             get { return Player.ScoutCount; }
