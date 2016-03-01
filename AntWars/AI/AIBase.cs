@@ -18,16 +18,51 @@ namespace AntWars.AI
         internal Game Game { get; set; }
         internal Base Base = null;
 
-        /// <summary>
-        /// Führt den tick aus welcher 1 mal pro Gametick ausgeführt wird in welchem man Ameisen kaufen kann.
+        public abstract void nextTick();
+
+        /// Deine derzeitigen Punkte.
         /// </summary>
-        // ISSUE #73 parameter wegmachen
-        public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
+        protected int CurrentScore
+        {
+            get { return Player.Points; }
+        }
+
+        /// <summary>
+        /// Die bisher vergangenen Ticks.
+        /// </summary>
+        protected int CurrentTick
+        {
+            get { return Game.getCurrentTick(); }
+        }
+
+        /// <summary>
+        /// Dein aktuelles Geld.
+        /// </summary>
+        protected int CurrentMoney
+        {
+            get { return Player.Money; }
+        }
+
+        /// <summary>
+        /// Anzahl deiner Carries.
+        /// </summary>
+        protected int CurrentCarryCount
+        {
+            get { return Player.CarryCount; }
+        }
+
+        /// <summary>
+        /// Anzahl deiner Scouts.
+        /// </summary>
+        protected int CurrentScoutScount
+        {
+            get { return Player.ScoutCount; }
+        }
 
         /// <summary>
         /// Kauft einen Scout.
         /// </summary>
-        /// <returns>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
+        /// <returns>>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyScout()
         {
             Scout s = new Scout(Game.Board, Player);      
@@ -42,13 +77,6 @@ namespace AntWars.AI
         {
             Carry c = new Carry(Game.Board, Player);
             return buyAnt(c, Player.PlayerConfig.CarryCost);
-        }
-
-        public void nextTick()
-        {
-            // extra Parameter an AI übergeben
-            int time = Game.getCurrentTick();
-            nextTick(Player.Money, Player.Points, Player.CarryCount, Player.ScoutCount, time);
         }
 
         private bool buyAnt(Ant ant, int cost)

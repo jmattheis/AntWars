@@ -30,10 +30,6 @@ namespace AntWars.AI
         /// </summary>
         public int BoardHeight { get { return Conf.BoardHeight; } }
 
-        /// <summary>
-        /// Führt den ant tick aus welcher 1 mal für jede Ameise pro Gametick ausgeführt wird.
-        /// </summary>
-        /// <param name="view"></param>
         public abstract void antTick(BoardObject[] view);
     }
 }

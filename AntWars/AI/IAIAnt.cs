@@ -13,6 +13,10 @@ namespace AntWars.AI
     /// </summary>
     public interface IAIAnt
     {
+        /// <summary>
+        /// Wird in jedem Tick für jede Ameise einmal aufgerufen.
+        /// </summary>
+        /// <param name="view">Alle BoardObject's die die Ameise sieht</param>
         void antTick(BoardObject[] view);
     }
 }

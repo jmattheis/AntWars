@@ -12,6 +12,9 @@ namespace AntWars.AI
     /// </summary>
     interface IAI
     {
+        /// <summary>
+        /// Wird in jedem Tick einmal aufgerufen.
+        /// </summary>
         void nextTick();
     }
 }
