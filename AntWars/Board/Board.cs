@@ -48,6 +48,18 @@ namespace AntWars.Board
 
         }
 
+        /// <summary>
+        /// Generiert Zucker und Base's
+        /// </summary>
+        /// <param name="player1">Der Spieler 1</param>
+        /// <param name="player2">Der Spieler 2</param>
+        public void nullTick(Player player1, Player player2)
+        {
+            nullTick(player1);
+            nullTick(player2);
+            generateSugar(conf.Game.SugarMin, conf.Game.SugarMax);
+        }
+
         private BoardObject[] getBoardObjectsInView(Ant ant)
         {
             BoardObject[] result = new BoardObject[0];
@@ -70,7 +82,7 @@ namespace AntWars.Board
         }
 
         private void merge(ref BoardObject[] result, BoardObject[] add)
-        { 
+        {
             int array1OriginalLength = result.Length;
             Array.Resize<BoardObject>(ref result, array1OriginalLength + add.Length);
             Array.Copy(add, 0, result, array1OriginalLength, add.Length);
@@ -85,13 +97,6 @@ namespace AntWars.Board
                 coordsInViews[range] = coordsInView;
             }
             return coordsInView;
-        }
-
-        private void nullTick(Player player1, Player player2)
-        {
-            nullTick(player1);
-            nullTick(player2);
-            generateSugar(conf.Game.SugarMin, conf.Game.SugarMax);
         }
 
         private void nullTick(Player player)

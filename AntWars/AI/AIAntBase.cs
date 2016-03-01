@@ -17,15 +17,19 @@ namespace AntWars.AI
         /// Die Ameise für die momentane AI instance.
         /// </summary>
         public Ant Ant { get; internal set; }
+
         internal Config.GameConfig Conf { get; set; }
+
         /// <summary>
         /// Die BoardWidth
         /// </summary>
         public int BoardWidth { get { return Conf.BoardWidth; } }
+
         /// <summary>
         /// Die BoardHeight
         /// </summary>
         public int BoardHeight { get { return Conf.BoardHeight; } }
+
         /// <summary>
         /// Führt den ant tick aus welcher 1 mal für jede Ameise pro Gametick ausgeführt wird.
         /// </summary>

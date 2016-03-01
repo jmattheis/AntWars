@@ -19,6 +19,12 @@ namespace AntWars.AI
         internal Base Base = null;
 
         /// <summary>
+        /// Führt den tick aus welcher 1 mal pro Gametick ausgeführt wird in welchem man Ameisen kaufen kann.
+        /// </summary>
+        // ISSUE #73 parameter wegmachen
+        public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
+
+        /// <summary>
         /// Kauft einen Scout.
         /// </summary>
         /// <returns>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
@@ -36,6 +42,13 @@ namespace AntWars.AI
         {
             Carry c = new Carry(Game.Board, Player);
             return buyAnt(c, Player.PlayerConfig.CarryCost);
+        }
+
+        public void nextTick()
+        {
+            // extra Parameter an AI übergeben
+            int time = Game.getCurrentTick();
+            nextTick(Player.Money, Player.Points, Player.CarryCount, Player.ScoutCount, time);
         }
 
         private bool buyAnt(Ant ant, int cost)
@@ -83,20 +96,6 @@ namespace AntWars.AI
                 Base = Game.Board.BoardObjects.getBase(Player);
 
             return Base;
-        }
-
-        /// <summary>
-        /// Führt den tick aus welcher 1 mal pro Gametick ausgeführt wird in welchem man Ameisen kaufen kann.
-        /// </summary>
-        // ISSUE #73 parameter wegmachen
-        public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
-
-        public void nextTick()
-        {
-            // extra Parameter an AI übergeben
-            int score = Player.CurrentScore;
-            int time = Game.getCurrentTick();
-            nextTick(Player.Money, score, Player.CarryCount, Player.ScoutCount, time);
         }
     }
 }
