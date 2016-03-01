@@ -115,7 +115,9 @@ namespace AntWars.Board.Ants
         /// <returns>True bei Erfolg, false wenn die Ameise nicht auf der Base steht.</returns>
         public bool dropSugarOnBase()
         {
-            if (Coords.isInRange(2, getBaseCoords()))
+            int range = (int)((Owner.CarryCount + Owner.ScoutCount) / 50);
+            if (range > 3) { range = 3; }
+            if (Coords.isInRange(range, getBaseCoords()))
             {
                 Owner.Money += Inventory;
                 Owner.Points += Inventory;
