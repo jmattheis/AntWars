@@ -20,6 +20,7 @@ namespace AntWars.AI
 
         public abstract void nextTick();
 
+        /// <summary>
         /// Deine derzeitigen Punkte.
         /// </summary>
         protected int CurrentScore
