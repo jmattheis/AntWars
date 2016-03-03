@@ -203,11 +203,11 @@ namespace AntWars.Board
 
         public bool outOfRange(Ant ant)
         {
-            if (ant.isCarry() && ant.UnitsGone >= ant.Owner.PlayerConfig.CarryPixelRange)
+            if (ant.isCarry() && ant.UnitsGone >= ant.Owner.PlayerConfig.CarryMoveRange)
             {
                     return true;
             }
-            if (ant.isScout() && ant.UnitsGone >= ant.Owner.PlayerConfig.ScoutPixelRange)
+            if (ant.isScout() && ant.UnitsGone >= ant.Owner.PlayerConfig.ScoutMoveRange)
             {
                     return true;
             }

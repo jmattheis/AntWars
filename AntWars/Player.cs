@@ -36,14 +36,6 @@ namespace AntWars
             CarryCount = 0;
             CurrentScore = 0;
         }
-
-        public void setScoutAndCarryPixelRange(int BoardHeight, int BoardWidth)
-        {
-            // MoveRange berechnet sich aus der config und der jeweiligen Feldgröße
-
-            this.PlayerConfig.ScoutPixelRange = this.PlayerConfig.ScoutMoveRange * BoardHeight * BoardWidth / 100;
-            this.PlayerConfig.CarryPixelRange = this.PlayerConfig.CarryMoveRange * BoardHeight * BoardWidth / 100;
-        }
         
         public void incrementAnts(Ant ant)
         {

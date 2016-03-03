@@ -32,7 +32,7 @@ namespace AntWars.Board.Ants
         public bool moveLeft()
         {
             Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
-            if (board.BoardObjects.outOfRange(this))
+            if (!canMove())
             {
                 die();
             }
@@ -47,11 +47,11 @@ namespace AntWars.Board.Ants
         public bool moveRight()
         {
             Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
-            if (board.BoardObjects.outOfRange(this))
+            if (!canMove())
             {
                 die();
             }
-            if(board.BoardObjects.move(this, newCoords))
+            else if(board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
                 return true;
@@ -62,11 +62,11 @@ namespace AntWars.Board.Ants
         public bool moveUp()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y - 1);
-            if (board.BoardObjects.outOfRange(this))
+            if (!canMove())
             {
                 die();
             }
-            if(board.BoardObjects.move(this, newCoords))
+            else if(board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
                 return true;
@@ -77,16 +77,29 @@ namespace AntWars.Board.Ants
         public bool moveDown()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y + 1);
-            if (board.BoardObjects.outOfRange(this))
+            if (!canMove())
             {
                 die();
             }
-            if(board.BoardObjects.move(this, newCoords))
+            else if(board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Prüfen, ob die Ameise sich noch bewegen kann.
+        /// </summary>
+        /// <returns>True wenn ja, False wenn nicht</returns>
+        public bool canMove()
+        {
+            if (isCarry() && UnitsGone >= Owner.PlayerConfig.CarryMoveRange)
+                return false;
+            if (isScout() && UnitsGone >= Owner.PlayerConfig.ScoutMoveRange)
+                return false;
+            return true;
         }
 
         /// <summary>
@@ -141,15 +154,6 @@ namespace AntWars.Board.Ants
         public void die()
         {
             board.DyingAnts.Add(this);
-        }
-
-        /// <summary>
-        /// Prüfen, ob die Ameise sich noch bewegen kann.
-        /// </summary>
-        /// <returns>True wenn ja, False wenn nicht</returns>
-        public bool canMove()
-        {
-            return !board.BoardObjects.outOfRange(this);
         }
 
         public Coordinates getBaseCoords()

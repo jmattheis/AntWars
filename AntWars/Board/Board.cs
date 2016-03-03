@@ -43,6 +43,7 @@ namespace AntWars.Board
                 }
             }
 
+            List<Ant> DeadAnts = new List<Ant>();
 
             foreach (Ant ant in DyingAnts)
             {
@@ -54,7 +55,11 @@ namespace AntWars.Board
                     BoardObjects.add(s);
                 }
                 BoardObjects.remove(ant);
+                DeadAnts.Add(ant);
             }
+
+            foreach (Ant ant in DeadAnts)
+                DyingAnts.Remove(ant);
         }
 
         private BoardObject[] getBoardObjectsInView(Ant ant)

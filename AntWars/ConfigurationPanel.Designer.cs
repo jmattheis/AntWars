@@ -300,7 +300,7 @@
             // 
             this.numeric_player1ScoutSpeed.Location = new System.Drawing.Point(151, 138);
             this.numeric_player1ScoutSpeed.Maximum = new decimal(new int[] {
-            10,
+            2,
             0,
             0,
             0});
@@ -346,7 +346,7 @@
             // 
             this.numeric_player1CarrySpeed.Location = new System.Drawing.Point(91, 138);
             this.numeric_player1CarrySpeed.Maximum = new decimal(new int[] {
-            10,
+            2,
             0,
             0,
             0});
@@ -369,7 +369,7 @@
             // 
             this.numeric_player1ScoutMove.Location = new System.Drawing.Point(151, 86);
             this.numeric_player1ScoutMove.Maximum = new decimal(new int[] {
-            10,
+            5000,
             0,
             0,
             0});
@@ -392,7 +392,7 @@
             // 
             this.numeric_player1CarryMove.Location = new System.Drawing.Point(91, 86);
             this.numeric_player1CarryMove.Maximum = new decimal(new int[] {
-            10,
+            5000,
             0,
             0,
             0});
@@ -1058,7 +1058,7 @@
             // 
             this.numeric_player2ScoutSpeed.Location = new System.Drawing.Point(151, 138);
             this.numeric_player2ScoutSpeed.Maximum = new decimal(new int[] {
-            10,
+            2,
             0,
             0,
             0});
@@ -1104,7 +1104,7 @@
             // 
             this.numeric_player2CarrySpeed.Location = new System.Drawing.Point(91, 138);
             this.numeric_player2CarrySpeed.Maximum = new decimal(new int[] {
-            10,
+            2,
             0,
             0,
             0});
@@ -1127,7 +1127,7 @@
             // 
             this.numeric_player2ScoutMove.Location = new System.Drawing.Point(151, 86);
             this.numeric_player2ScoutMove.Maximum = new decimal(new int[] {
-            10,
+            5000,
             0,
             0,
             0});
@@ -1150,7 +1150,7 @@
             // 
             this.numeric_player2CarryMove.Location = new System.Drawing.Point(91, 86);
             this.numeric_player2CarryMove.Maximum = new decimal(new int[] {
-            10,
+            5000,
             0,
             0,
             0});
