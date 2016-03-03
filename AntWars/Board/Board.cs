@@ -18,19 +18,19 @@ namespace AntWars.Board
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
-
+        public int SugarAmount { get; private set; }
+        public List<Ant> DyingAnts { get; private set; }
 
         public Board(Configuration conf)
         {
             this.conf = conf;
             BoardObjects = new BoardObjects(conf.Game);
+            DyingAnts = new List<Ant>();
         }
 
         public void nextTick()
         {
             // TODO Gewinnbedingungen
-            List<Ant> antsOutOfRange = new List<Ant>();
-
             foreach (Base playerbase in BoardObjects.getBases())
             {
                 playerbase.Player.AI.nextTick();
@@ -39,25 +39,22 @@ namespace AntWars.Board
             {
                 for (int i = 0; i < ant.Speed; i++)
                 {
-                    if (!BoardObjects.outOfRange(ant))
-                        ant.AI.antTick(getBoardObjectsInView(ant));
-                    else
-                        antsOutOfRange.Add(ant);
+                    ant.AI.antTick(getBoardObjectsInView(ant));
                 }
-            }
-            foreach (Ant ant in antsOutOfRange)
-            {
-                Sugar s = new Sugar();
-                if(ant.Inventory > 0)
-                {
-                    s.Coords = new Coordinates(ant.Coords.X, ant.Coords.Y);
-                    s.Amount = ant.Inventory;
-                }
-                BoardObjects.remove(ant);
-                if (s.Coords != null)
-                    BoardObjects.add(s);
             }
 
+
+            foreach (Ant ant in DyingAnts)
+            {
+                if(ant.Inventory > 0)
+                {
+                    Sugar s = new Sugar();
+                    s.Coords = new Coordinates(ant.Coords.X, ant.Coords.Y);
+                    s.Amount = ant.Inventory;
+                    BoardObjects.add(s);
+                }
+                BoardObjects.remove(ant);
+            }
         }
 
         private BoardObject[] getBoardObjectsInView(Ant ant)
@@ -132,6 +129,7 @@ namespace AntWars.Board
                 }
                 s.Amount = rand.Next(conf.Game.SugarAmountMin, conf.Game.SugarAmountMax + 1);
                 BoardObjects.add(s);
+                SugarAmount += s.Amount;
             }
         }
 

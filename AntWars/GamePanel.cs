@@ -4,11 +4,17 @@ using System.Drawing;
 using System.Windows.Forms;
 using AntWars.Board;
 using AntWars.Board.Ants;
+using AntWars.Helper;
 
 namespace AntWars
 {
     partial class GamePanel : Form
     {
+        private const string Player1Carry = "ff008000";
+        private const string Player2Carry = "ff0000ff";
+        private const string Player1Scout = "ff2e8b57";
+        private const string Player2Scout = "ff6a5acd";
+
         private Game game;
         private Multimedia.Timer timer = new Multimedia.Timer();
 
@@ -128,16 +134,16 @@ namespace AntWars
         {
             switch (inferiorElement.Name)
             {
-                case ("ff008000"): //Player1-Carry
+                case (Player1Carry): //Player1-Carry
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkGreen);
                     break;
-                case ("ff0000ff"): //Player2-Carry
+                case (Player2Carry): //Player2-Carry
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkBlue);
                     break;
-                case ("ff2e8b57"): //Player1-Scout
+                case (Player1Scout): //Player1-Scout
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSeaGreen);
                     break;
-                case ("ff6a5acd"): //Player2-Scout
+                case (Player2Scout): //Player2-Scout
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.DarkSlateBlue);
                     break;
                 default:
@@ -162,32 +168,14 @@ namespace AntWars
 
         private void setColorSignal(BoardObject obj, Color inferiorElement, Bitmap bitmap)
         {
-            if (((Signal)obj).From == game.Player1)
+            if (((Signal)obj).From == game.Player1 && string.IsNullOrEmpty(inferiorElement.Name))
             {
-                if (string.IsNullOrEmpty(inferiorElement.Name))
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Brown);
             }
-            else
+            else if (string.IsNullOrEmpty(inferiorElement.Name))
             {
-                if (string.IsNullOrEmpty(inferiorElement.Name))
+                
                     bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, System.Drawing.Color.Purple);
-            }
-        }
-
-        private void testPrint()
-        {
-            Color test = ((Bitmap)this.pb_Game.Image).GetPixel(50, 150);
-            switch (test.Name)
-            {
-                case ("ffff0000"):
-                    //Sugar
-                    break;
-                case ("ff808080"):
-                    //Scout
-                    break;
-                case ("ff000000"):
-                    //Carry
-                    break;
             }
         }
 
@@ -254,39 +242,77 @@ namespace AntWars
 
         private void checkWinningConditions()
         {
+            if (checkTickPlayerPoints()) return;
+            if (checkMaxPoints()) return;
+            if (checkSugarPlayerPoint()) return;
+        }
+
+        private bool checkSugarPlayerPoint()
+        {
+            if (game.Board.BoardObjects.getSugars().Count == 0)
+            {
+                if ((game.Player1.Points + game.Player2.Points) == game.Board.SugarAmount)
+                {
+                    if (!checkPlayerPoints())
+                    {
+                        this.stop();
+                        MessageBox.Show(Messages.OUT_OF_SUGAR, Messages.OUT_OF_SUGAR_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool checkTickPlayerPoints()
+        {
             if ((game.getCurrentTick()) >= game.Conf.Game.MaxTicks)
             {
                 this.stop();
-                if (game.Player1.Points > game.Player2.Points)
+                if (!checkPlayerPoints())
                 {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.MaxTicks,
-                                    game.Conf.Player1.PlayerName, game.Player1.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);    
+                    this.stop();
+                    MessageBox.Show(String.Format(Messages.TIME_OUT, game.Conf.Game.MaxTicks), Messages.TIME_OUT_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else if (game.Player1.Points < game.Player2.Points)
-                {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.\n{1} hat mit {2} Punkten gewonnen!", game.Conf.Game.MaxTicks,
-                                    game.Conf.Player2.PlayerName, game.Player2.Points), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show(String.Format("Die Spielzeit von {0} Ticks ist abgelaufen.", game.Conf.Game.MaxTicks), "TIMEOUT", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                
-                return;
+                return true;
             }
+            return false;
+        }
+
+        private bool checkPlayerPoints()
+        {
+            if (game.Player1.Points > game.Player2.Points)
+            {
+                this.stop();
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT, 
+                                game.Conf.Player1.PlayerName, game.Player1.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            else if (game.Player1.Points < game.Player2.Points)
+            {
+                this.stop();
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT, 
+                                    game.Conf.Player2.PlayerName, game.Player2.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
+            }
+            return false;
+        }
+
+        private bool checkMaxPoints()
+        {
             if (game.Player1.Points >= game.Conf.Game.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player1.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Conf.Player1.PlayerName), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
             }
             else if (game.Player2.Points >= game.Conf.Game.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format("{0} hat die Höchstpunktzahl erreicht!", game.Conf.Player2.PlayerName), "GEWONNEN", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Conf.Player2.PlayerName), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return true;
             }
-            // TODO: If sugar is zero count all points(sugar) in ants from each player and add it to his score --> finish game
+            return false;
         }
 
         private void setPlayernameInStatistic(Config.Configuration config)

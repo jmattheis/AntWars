@@ -74,6 +74,8 @@
             // pb_Game
             // 
             this.pb_Game.BackColor = System.Drawing.Color.White;
+            this.pb_Game.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pb_Game.BackgroundImage")));
+            this.pb_Game.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pb_Game.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pb_Game.Location = new System.Drawing.Point(0, 0);
             this.pb_Game.Name = "pb_Game";
@@ -376,7 +378,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GamePanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GamePanel";
+            this.Text = "AntWars";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GamePanel_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).EndInit();
             this.groupstats.ResumeLayout(false);

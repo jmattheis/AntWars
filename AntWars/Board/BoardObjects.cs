@@ -12,7 +12,6 @@ namespace AntWars.Board
 {
     class BoardObjects
     {
-        private static readonly int MAX_OBJ_ON_COORD = 6;
         private IList<BoardObject> boardObjects = new List<BoardObject>();
         private IList<Ant> ants = new List<Ant>();
         private IList<Signal> signals = new List<Signal>();
@@ -114,7 +113,8 @@ namespace AntWars.Board
                     }
                 }
             }
-            Array.Resize<BoardObject>(ref objs, objs.Length - 1);
+            if(objs.Length > 0)
+                Array.Resize<BoardObject>(ref objs, objs.Length - 1);
 
         }
 
@@ -190,6 +190,7 @@ namespace AntWars.Board
         /// <returns>true when moved false when the way is blocked</returns>
         public bool move(BoardObject obj, Coordinates coords)
         {
+            Ant test = (Ant)obj;
             if (!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords), obj))
             {
                 return false;

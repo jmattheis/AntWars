@@ -11,10 +11,8 @@ namespace AntWars.Board
     /// </summary>
     public class Coordinates
     {
-        public int X { get; internal set; }
-        public int Y { get; internal set; }
-
-        public Coordinates() { }
+        public int X { get; private set; }
+        public int Y { get; private set; }
 
         public Coordinates(int x, int y)
         {
@@ -35,11 +33,6 @@ namespace AntWars.Board
         public override int GetHashCode()
         {
             return X ^ Y;
-        }
-
-        public Coordinates clone()
-        {
-            return new Coordinates(X, Y);
         }
 
         /// <summary>

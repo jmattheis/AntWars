@@ -10,6 +10,7 @@ namespace AntWars.Board.Ants
     {
         internal Carry(Board board, Player owner) : base(board, owner) {
             this.Speed = owner.PlayerConfig.CarrySpeed;
+            ViewRange = owner.PlayerConfig.CarryViewRange;
         }
     }
 }

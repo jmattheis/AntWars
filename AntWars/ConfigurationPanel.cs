@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AntWars.Config;
 using System.IO;
 using AntWars.Exception;
+using AntWars.Helper;
 
 
 namespace AntWars
@@ -42,13 +43,13 @@ namespace AntWars
                     }
                     catch (InvalidDLLFileException)
                     {
-                        MessageBox.Show("The given DLL is not valid, please try another one.", "Error: Invalid DLL.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(Messages.ERROR_INVALID_DLL, Messages.ERROR_INVALID_DLL_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("There are not all configs loaded/created.", "Error: Could not start.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Messages.ERROR_COULD_NOT_START, Messages.ERROR_COULD_NOT_START_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -63,6 +64,7 @@ namespace AntWars
             configLoadedOrNewCreatedPlayer1();
             loadPlayer1(configLoader.get().Player1);
             calculateAntCostsPlayer1();
+            btn_player1ConfigSave.Focus();
         }
 
         private void btn_player1ConfigLoad_Click(object sender, EventArgs e)
@@ -76,12 +78,13 @@ namespace AntWars
                 }
                 catch (InvalidConfigurationException exception)
                 {
-                    MessageBox.Show("Cannot load this configuration because of: \n" + exception.Message, "Error: Invalid configuration.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Messages.ERROR_INVALID_CONFIG + exception.Message, Messages.ERROR_INVALID_CONFIG_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 configLoadedOrNewCreatedPlayer1();
                 loadPlayer1(configLoader.get().Player1);
             }
+            btn_player1ConfigSave.Focus();
         }
 
         private void configLoadedOrNewCreatedPlayer1()
@@ -166,7 +169,7 @@ namespace AntWars
                     return;
                 }
             }
-            MessageBox.Show("Successfully saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Messages.SAVED, Messages.SAVED_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
             configLoader.savePlayer1();
         }
 
@@ -318,6 +321,7 @@ namespace AntWars
             configLoadedOrNewCreatedPlayer2();
             loadPlayer2(configLoader.get().Player2);
             calculateAntCostsPlayer2();
+            btn_player2ConfigSave.Focus();
         }
 
         private void btn_player2ConfigLoad_Click(object sender, EventArgs e)
@@ -331,12 +335,13 @@ namespace AntWars
                 }
                 catch (InvalidConfigurationException exception)
                 {
-                    MessageBox.Show("Cannot load this configuration because of: \n" + exception.Message, "Error: Invalid configuration.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Messages.ERROR_INVALID_CONFIG + exception.Message, Messages.ERROR_INVALID_CONFIG_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 configLoadedOrNewCreatedPlayer2();
                 loadPlayer2(configLoader.get().Player2);
             }
+            btn_player2ConfigSave.Focus();
         }
 
         private void btn_player2ConfigSave_Click(object sender, EventArgs e)
@@ -353,7 +358,7 @@ namespace AntWars
                     return;
                 }
             }
-            MessageBox.Show("Successfully saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Messages.SAVED, Messages.SAVED_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
             configLoader.savePlayer2();
         }
 
@@ -412,6 +417,8 @@ namespace AntWars
             configLoader.newGame();
             configLoadedOrNewCreatedGame();
             loadGame(configLoader.get().Game);
+            checkPlayerKI();
+            btn_gameConfigSave.Focus();
         }
 
         private void btn_gameConfigSave_Click(object sender, EventArgs e)
@@ -428,7 +435,7 @@ namespace AntWars
                     return;
                 }
             }
-            MessageBox.Show("Successfully saved.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(Messages.SAVED, Messages.SAVED_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
             configLoader.saveGame();
         }
         private bool checkGameConfig()
@@ -443,7 +450,7 @@ namespace AntWars
         {
             if (min > max)
             {
-                MessageBox.Show("Min can't be higher than Max!", "Error: Invalid Value.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Messages.ERROR_MIN_HIGHER_MAX, Messages.ERROR_MIN_HIGHER_MAX_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -460,12 +467,13 @@ namespace AntWars
                 }
                 catch (InvalidConfigurationException exception)
                 {
-                    MessageBox.Show("Cannot load this configuration because of: \n" + exception.Message, "Error: Invalid configuration.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Messages.ERROR_INVALID_CONFIG + exception.Message, Messages.ERROR_INVALID_CONFIG_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 configLoadedOrNewCreatedGame();
                 loadGame(configLoader.get().Game);
             }
+            btn_gameConfigSave.Focus();
         }
 
         private void buttonView_Click(object sender, EventArgs e)
@@ -480,7 +488,7 @@ namespace AntWars
             }
             else
             {
-                MessageBox.Show("There are not all configs loaded/created.", "Error: Could not start.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Messages.ERROR_COULD_NOT_START, Messages.ERROR_COULD_NOT_START_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -567,6 +575,7 @@ namespace AntWars
                 lbl_player2AIPath.Text = res;
                 configLoader.get().Player2.AIPath = res;
             }
+            checkPlayerKI();
         }
 
         private void btn_player1loadAI_Click(object sender, EventArgs e)
@@ -577,11 +586,42 @@ namespace AntWars
                 lbl_player1AIPath.Text = res;
                 configLoader.get().Player1.AIPath = res;
             }
+            checkPlayerKI();
         }
 
         private void numeric_gameConfigMaxTicks_ValueChanged(object sender, EventArgs e)
         {
             configLoader.get().Game.MaxTicks = Convert.ToInt32(numeric_gameConfigMaxTicks.Value);
+        }
+
+        private void checkPlayerKI()
+        {
+            // TODO1: Player.AIPath muss nach übernahme der Properties von Player1/2 zur AI aus Gameconfig bezogen werden
+            // TODO2: wenn TODO1 erfüllt try catch entfernen
+            try
+            {
+                if (!String.IsNullOrEmpty(configLoader.get().Player1.AIPath))
+                {
+                    btn_player1loadAI.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    btn_player1loadAI.BackColor = Color.Red;
+                }
+
+                if (!String.IsNullOrEmpty(configLoader.get().Player2.AIPath))
+                {
+                    btn_player2loadAI.BackColor = Color.LightGreen;
+                }
+                else
+                {
+                    btn_player2loadAI.BackColor = Color.Red;
+                }
+            }
+            catch (System.NullReferenceException)
+            {
+                return;
+            }
         }
     }
 }

@@ -16,6 +16,46 @@ namespace AntWars.AI
         internal Game Game { get; set; }
         internal Base Base = null;
 
+        /// <summary>
+        /// Deine derzeitigen Punkte.
+        /// </summary>
+        protected int CurrentScore
+        {
+            get { return Player.CurrentScore; }
+        }
+
+        /// <summary>
+        /// Die bisher vergangenen Ticks.
+        /// </summary>
+        protected int CurrentTick
+        {
+            get { return Game.getCurrentTick(); }
+        }
+
+        /// <summary>
+        /// Dein aktuelles Geld.
+        /// </summary>
+        protected int CurrentMoney
+        {
+            get { return Player.Money; }
+        }
+
+        /// <summary>
+        /// Anzahl deiner Carries.
+        /// </summary>
+        protected int CurrentCarryCount
+        {
+            get { return Player.CarryCount; }
+        }
+
+        /// <summary>
+        /// Anzahl deiner Scouts.
+        /// </summary>
+        protected int CurrentScoutScount
+        {
+            get { return Player.ScoutCount; }
+        }
+
         protected bool buyScout()
         {
             Scout s = new Scout(Game.Board, Player);
@@ -38,7 +78,6 @@ namespace AntWars.AI
 
             Player.Money -= cost;
             ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf.Game);
-            ant.ViewRange = 10; // TODO get out of player or something else
             return Game.Board.BoardObjects.add(ant);
         }
 
@@ -76,14 +115,6 @@ namespace AntWars.AI
             return Base;
         }
 
-        public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
-
-        public void nextTick()
-        {
-            // extra Parameter an AI übergeben
-            int score = Player.CurrentScore;
-            int time = Game.getCurrentTick();
-            nextTick(Player.Money, score, Player.CarryCount, Player.ScoutCount, time);
-        }
+        public abstract void nextTick();
     }
 }

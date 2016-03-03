@@ -16,6 +16,8 @@ namespace AntWars.Board.Ants
         public int ViewRange { get; internal set; }
         public int UnitsGone { get; set; }
         public int Speed { get; set; }
+        public int CarryMaxInventory { get { return Owner.PlayerConfig.CarryInventory; } }
+        public int ScoutMaxInventory { get { return Owner.PlayerConfig.ScoutInventory; } }
         internal Player Owner { get; private set; }
         internal IAIAnt AI { get; set; }
         internal Board board;
@@ -29,9 +31,12 @@ namespace AntWars.Board.Ants
 
         public bool moveLeft()
         {
-            Coordinates newCoords = Coords.clone();
-            newCoords.X--;
-            if(board.BoardObjects.move(this, newCoords))
+            Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
+            if (board.BoardObjects.outOfRange(this))
+            {
+                die();
+            }
+            else if(board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
                 return true;
@@ -41,8 +46,11 @@ namespace AntWars.Board.Ants
 
         public bool moveRight()
         {
-            Coordinates newCoords = Coords.clone();
-            newCoords.X++;
+            Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
+            if (board.BoardObjects.outOfRange(this))
+            {
+                die();
+            }
             if(board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
@@ -53,8 +61,11 @@ namespace AntWars.Board.Ants
 
         public bool moveUp()
         {
-            Coordinates newCoords = Coords.clone();
-            newCoords.Y++;
+            Coordinates newCoords = new Coordinates(Coords.X, Coords.Y - 1);
+            if (board.BoardObjects.outOfRange(this))
+            {
+                die();
+            }
             if(board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
@@ -65,8 +76,11 @@ namespace AntWars.Board.Ants
 
         public bool moveDown()
         {
-            Coordinates newCoords = Coords.clone();
-            newCoords.Y--;
+            Coordinates newCoords = new Coordinates(Coords.X, Coords.Y + 1);
+            if (board.BoardObjects.outOfRange(this))
+            {
+                die();
+            }
             if(board.BoardObjects.move(this, newCoords))
             {
                 UnitsGone++;
@@ -119,6 +133,23 @@ namespace AntWars.Board.Ants
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Die Ameise am Ende des Zuges sterben lassen.
+        /// </summary>
+        public void die()
+        {
+            board.DyingAnts.Add(this);
+        }
+
+        /// <summary>
+        /// Prüfen, ob die Ameise sich noch bewegen kann.
+        /// </summary>
+        /// <returns>True wenn ja, False wenn nicht</returns>
+        public bool canMove()
+        {
+            return !board.BoardObjects.outOfRange(this);
         }
 
         public Coordinates getBaseCoords()
