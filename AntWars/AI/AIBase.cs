@@ -9,19 +9,23 @@ using System.Security.Permissions;
 
 namespace AntWars.AI
 {
+    /// <summary>
+    /// Die Basis der AI welcher Ameisen kaufen kann.
+    /// </summary>
     public abstract class AIBase : IAI
     {
-
         internal Player Player { get; set; }
         internal Game Game { get; set; }
         internal Base Base = null;
+
+        public abstract void nextTick();
 
         /// <summary>
         /// Deine derzeitigen Punkte.
         /// </summary>
         protected int CurrentScore
         {
-            get { return Player.CurrentScore; }
+            get { return Player.Points; }
         }
 
         /// <summary>
@@ -56,12 +60,20 @@ namespace AntWars.AI
             get { return Player.ScoutCount; }
         }
 
+        /// <summary>
+        /// Kauft einen Scout.
+        /// </summary>
+        /// <returns>>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyScout()
         {
             Scout s = new Scout(Game.Board, Player);      
             return buyAnt(s, Player.PlayerConfig.ScoutCost);
         }
 
+        /// <summary>
+        /// Kauft einen Carry
+        /// </summary>
+        /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyCarrier()
         {
             Carry c = new Carry(Game.Board, Player);
@@ -114,7 +126,5 @@ namespace AntWars.AI
 
             return Base;
         }
-
-        public abstract void nextTick();
     }
 }
