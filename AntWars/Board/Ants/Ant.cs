@@ -32,56 +32,34 @@ namespace AntWars.Board.Ants
         public bool moveLeft()
         {
             Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
-            if (!canMove())
-            {
-                die();
-            }
-            else if(board.BoardObjects.move(this, newCoords))
-            {
-                UnitsGone++;
-                return true;
-            }
-            return false;
+            return move(newCoords);
         }
 
         public bool moveRight()
         {
             Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
-            if (!canMove())
-            {
-                die();
-            }
-            else if(board.BoardObjects.move(this, newCoords))
-            {
-                UnitsGone++;
-                return true;
-            }
-            return false;
+            return move(newCoords);
         }
 
         public bool moveUp()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y - 1);
-            if (!canMove())
-            {
-                die();
-            }
-            else if(board.BoardObjects.move(this, newCoords))
-            {
-                UnitsGone++;
-                return true;
-            }
-            return false;
+            return move(newCoords);
         }
 
         public bool moveDown()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y + 1);
+            return move(newCoords);
+        }
+
+        private bool move(Coordinates to)
+        {
             if (!canMove())
             {
                 die();
             }
-            else if(board.BoardObjects.move(this, newCoords))
+            else if (board.BoardObjects.move(this, to))
             {
                 UnitsGone++;
                 return true;
