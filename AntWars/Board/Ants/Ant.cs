@@ -38,6 +38,7 @@ namespace AntWars.Board.Ants
         {
             this.board = board;
             Owner = owner;
+            Inventory = 0;
         }
 
         /// <summary>
