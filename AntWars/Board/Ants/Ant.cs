@@ -14,8 +14,7 @@ namespace AntWars.Board.Ants
     {
         public int Inventory { get; internal set; }
         public int ViewRange { get; internal set; }
-        public int CarryMaxInventory { get { return Owner.PlayerConfig.CarryInventory; } }
-        public int ScoutMaxInventory { get { return Owner.PlayerConfig.ScoutInventory; } }
+        public int MaxInventory { get; protected set; }
         public int Cost { get; protected set; }
 
         internal Player Owner { get; private set; }
@@ -58,13 +57,12 @@ namespace AntWars.Board.Ants
         /// <returns>True bei Erfolg, false wenn kein Zucker gefunden wurde.</returns>
         public bool pickUpSugar()
         {
-            int maxInventory = isCarry() ? Owner.PlayerConfig.CarryInventory : Owner.PlayerConfig.ScoutInventory;
             Sugar sugar;
 
-            if (board.BoardObjects.getSugar(Coords, out sugar) && Inventory < maxInventory)
+            if (board.BoardObjects.getSugar(Coords, out sugar) && Inventory < MaxInventory)
             {
                 int tempSugarAmount = sugar.Amount;
-                int maxPickUpSugar = maxInventory - Inventory;
+                int maxPickUpSugar = MaxInventory - Inventory;
 
                 if (sugar.Amount - maxPickUpSugar <= 0)
                 {
