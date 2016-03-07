@@ -10,10 +10,10 @@ namespace AntWars.Board.Ants
     /// <summary>
     /// Die Ameise.
     /// </summary>
-    public class Ant : BoardObject
+    public abstract class Ant : BoardObject
     {
-        public int Inventory { get; internal set; }
-        public int ViewRange { get; internal set; }
+        public int Inventory { get; protected set; }
+        public int ViewRange { get; protected set; }
         public int MaxInventory { get; protected set; }
         public int Cost { get; protected set; }
 
