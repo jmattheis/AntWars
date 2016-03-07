@@ -17,6 +17,9 @@ namespace AntWars.Board.Ants
         /// Das Maximale Inventory der Ant.
         /// </summary>
         public int MaxInventory { get; protected set; }
+        /// <summary>
+        /// Die Kosten der Ameise.
+        /// </summary>
         public int Cost { get; protected set; }
         /// <summary>
         /// Das Inventory von der Ameise, welches aussagt wieviel Zucker die Ameise momentan Trägt
