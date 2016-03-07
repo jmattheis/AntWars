@@ -11,13 +11,19 @@ using System.Threading;
 namespace AntWars.Board
 {
     /// <summary>
-    /// Das Board ruft die boardobjects mit ki im #nextTick() auf und enthält eine liste von allen vorhandenen BoardObjects
+    /// Das Board enthält eine liste von allen vorhandenen BoardObjects und ruft die AI auf.
     /// </summary>
     class Board
     {
+        /// <summary>
+        /// Die BoardObjects welche momentan vorhanden sind.
+        /// </summary>
         public BoardObjects BoardObjects { get; private set; }
         private Configuration conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
+        /// <summary>
+        /// Die Anzahl von Zucker die generiert wurde.
+        /// </summary>
         public int SugarAmount { get; private set; }
 
         public Board(Configuration conf)
@@ -26,6 +32,9 @@ namespace AntWars.Board
             BoardObjects = new BoardObjects(conf.Game);
         }
 
+        /// <summary>
+        /// Ruft die AI auf und die AI jeder Ameise.
+        /// </summary>
         public void nextTick()
         {
             foreach (Base playerbase in BoardObjects.getBases())
@@ -37,6 +46,18 @@ namespace AntWars.Board
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
 
+        }
+
+        /// <summary>
+        /// Generiert Zucker und Base's
+        /// </summary>
+        /// <param name="player1">Der Spieler 1</param>
+        /// <param name="player2">Der Spieler 2</param>
+        public void nullTick(Player player1, Player player2)
+        {
+            nullTick(player1);
+            nullTick(player2);
+            generateSugar(conf.Game.SugarMin, conf.Game.SugarMax);
         }
 
         private BoardObject[] getBoardObjectsInView(Ant ant)
@@ -61,13 +82,13 @@ namespace AntWars.Board
         }
 
         private void merge(ref BoardObject[] result, BoardObject[] add)
-        { 
+        {
             int array1OriginalLength = result.Length;
             Array.Resize<BoardObject>(ref result, array1OriginalLength + add.Length);
             Array.Copy(add, 0, result, array1OriginalLength, add.Length);
         }
 
-        public CoordsInView getCoordsInView(int range)
+        private CoordsInView getCoordsInView(int range)
         {
             CoordsInView coordsInView = coordsInViews[range];
             if (coordsInView == null)
@@ -76,13 +97,6 @@ namespace AntWars.Board
                 coordsInViews[range] = coordsInView;
             }
             return coordsInView;
-        }
-
-        public void nullTick(Player player1, Player player2)
-        {
-            nullTick(player1);
-            nullTick(player2);
-            generateSugar(conf.Game.SugarMin, conf.Game.SugarMax);
         }
 
         private void nullTick(Player player)

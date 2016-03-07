@@ -7,8 +7,14 @@ using AntWars.Board;
 using AntWars.Board.Ants;
 namespace AntWars.AI
 {
+    /// <summary>
+    /// Das interface für die AI.
+    /// </summary>
     interface IAI
     {
+        /// <summary>
+        /// Wird in jedem Tick einmal aufgerufen.
+        /// </summary>
         void nextTick();
     }
 }
