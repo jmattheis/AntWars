@@ -11,6 +11,7 @@ namespace AntWars.Board.Ants
         internal Scout(Board board, Player owner) : base(board, owner)
         {
             ViewRange = owner.PlayerConfig.ScoutViewRange;
+            Cost = owner.PlayerConfig.ScoutCost;
         }
     }
 }

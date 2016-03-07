@@ -11,6 +11,7 @@ namespace AntWars.Board.Ants
         internal Carry(Board board, Player owner) : base(board, owner)
         {
             ViewRange = owner.PlayerConfig.CarryViewRange;
+            Cost = owner.PlayerConfig.CarryCost;
         }
     }
 }
