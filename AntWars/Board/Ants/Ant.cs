@@ -10,24 +10,25 @@ namespace AntWars.Board.Ants
     /// <summary>
     /// Die Ameise.
     /// </summary>
-    public class Ant : BoardObject
+    public abstract class Ant : BoardObject
     {
+
+        /// <summary>
+        /// Das Maximale Inventory der Ant.
+        /// </summary>
+        public int MaxInventory { get; protected set; }
+        /// <summary>
+        /// Die Kosten der Ameise.
+        /// </summary>
+        public int Cost { get; protected set; }
         /// <summary>
         /// Das Inventory von der Ameise, welches aussagt wieviel Zucker die Ameise momentan Trägt
         /// </summary>
-        public int Inventory { get; internal set; }
+        public int Inventory { get; protected set; }
         /// <summary>
         /// Wie weit die Ameise sehen kann.
         /// </summary>
-        public int ViewRange { get; internal set; }
-        /// <summary>
-        /// Das Maximale Inventory vom Carry.
-        /// </summary>
-        public int CarryMaxInventory { get { return Owner.PlayerConfig.CarryInventory; } }
-        /// <summary>
-        /// Das Maximale Inventory vom Scout.
-        /// </summary>
-        public int ScoutMaxInventory { get { return Owner.PlayerConfig.ScoutInventory; } }
+        public int ViewRange { get; protected set; }
 
         internal Player Owner { get; private set; }
         internal IAIAnt AI { get; set; }
@@ -37,6 +38,7 @@ namespace AntWars.Board.Ants
         {
             this.board = board;
             Owner = owner;
+            Inventory = 0;
         }
 
         /// <summary>
@@ -85,13 +87,12 @@ namespace AntWars.Board.Ants
         /// <returns>True bei Erfolg, false wenn kein Zucker gefunden wurde.</returns>
         public bool pickUpSugar()
         {
-            int maxInventory = isCarry() ? Owner.PlayerConfig.CarryInventory : Owner.PlayerConfig.ScoutInventory;
             Sugar sugar;
 
-            if (board.BoardObjects.getSugar(Coords, out sugar) && Inventory < maxInventory)
+            if (board.BoardObjects.getSugar(Coords, out sugar) && Inventory < MaxInventory)
             {
                 int tempSugarAmount = sugar.Amount;
-                int maxPickUpSugar = maxInventory - Inventory;
+                int maxPickUpSugar = MaxInventory - Inventory;
 
                 if (sugar.Amount - maxPickUpSugar <= 0)
                 {

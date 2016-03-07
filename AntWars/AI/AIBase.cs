@@ -67,7 +67,7 @@ namespace AntWars.AI
         protected bool buyScout()
         {
             Scout s = new Scout(Game.Board, Player);      
-            return buyAnt(s, Player.PlayerConfig.ScoutCost);
+            return buyAnt(s);
         }
 
         /// <summary>
@@ -77,18 +77,18 @@ namespace AntWars.AI
         protected bool buyCarrier()
         {
             Carry c = new Carry(Game.Board, Player);
-            return buyAnt(c, Player.PlayerConfig.CarryCost);
+            return buyAnt(c);
         }
 
-        private bool buyAnt(Ant ant, int cost)
+        private bool buyAnt(Ant ant)
         {
             Base b = Game.Board.BoardObjects.getBase(Player);
-            if (Player.Money < cost || !resolveAntCoords(ant, b))
+            if (Player.Money < ant.Cost || !resolveAntCoords(ant, b))
             {
                 return false;
             }
 
-            Player.Money -= cost;
+            Player.Money -= ant.Cost;
             ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf.Game);
             return Game.Board.BoardObjects.add(ant);
         }
