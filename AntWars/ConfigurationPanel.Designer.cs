@@ -595,7 +595,7 @@
             this.pnl_GameConfig.Enabled = false;
             this.pnl_GameConfig.Location = new System.Drawing.Point(4, 48);
             this.pnl_GameConfig.Name = "pnl_GameConfig";
-            this.pnl_GameConfig.Size = new System.Drawing.Size(200, 354);
+            this.pnl_GameConfig.Size = new System.Drawing.Size(205, 354);
             this.pnl_GameConfig.TabIndex = 46;
             // 
             // MaxTicks
