@@ -14,24 +14,9 @@ namespace AntWars.Config
     class ConfigurationLoader
     {
         private XmlSerializer gameConfSerializer = new XmlSerializer(typeof(GameConfig));
-        private XmlSerializer playerConfSerializer = new XmlSerializer(typeof(PlayerConfig));
 
         private Configuration configuration = new Configuration();
-        public String Player1Path { get; set; }
-        public String Player2Path { get; set; }
         public String GamePath { get; set; }
-
-        public void loadPlayer1(String path)
-        {
-            Player1Path = path;
-            configuration.Player1 = deserializePlayer(path);
-        }
-
-        public void loadPlayer2(String path)
-        {
-            Player2Path = path;
-            configuration.Player2 = deserializePlayer(path);
-        }
 
         public void loadGame(String path)
         {
@@ -41,7 +26,7 @@ namespace AntWars.Config
 
         public bool isAllLoaded()
         {
-            return configuration.Player1 != null && configuration.Player2 != null && configuration.Game != null;
+            return configuration.Game != null;
         }
 
         public Configuration get()
@@ -49,24 +34,9 @@ namespace AntWars.Config
             return configuration;
         }
 
-        public void savePlayer1()
-        {
-            writeToFile(Player1Path, playerConfSerializer, get().Player1);
-        }
-
-        public void savePlayer2()
-        {
-            writeToFile(Player2Path, playerConfSerializer, get().Player2);
-        }
-
         public void saveGame()
         {
             writeToFile(GamePath, gameConfSerializer, get().Game);
-        }
-
-        private PlayerConfig deserializePlayer(String path)
-        {
-            return (PlayerConfig)deserialize(path, playerConfSerializer);
         }
 
         private Object deserialize(String path, XmlSerializer ser)
@@ -89,17 +59,6 @@ namespace AntWars.Config
             file.Close();
         }
 
-        public void newPlayer1()
-        {
-            configuration.Player1 = new PlayerConfig();
-            
-        } 
-
-        public void newPlayer2()
-        {
-            configuration.Player2 = new PlayerConfig();
-        }
-
         public void newGame()
         {
             configuration.Game = new GameConfig();
@@ -116,16 +75,6 @@ namespace AntWars.Config
             configuration.Game.Ticks = 10;
             configuration.Game.MaxTicks = 5000;
             configuration.Game.Points = 100;
-        }
-
-        public bool isNeededPathPlayer1()
-        {
-            return Player1Path == null;
-        }
-
-        public bool isNeededPathPlayer2()
-        {
-            return Player2Path == null;
         }
 
         public bool isNeededPathGame()

@@ -28,8 +28,8 @@ namespace AntWars
         {
             int startMoney = config.Game.StartMoney;
                     
-            Player1 = new Player(config.Player1, new AILoader(config.Player1.AIPath), startMoney);
-            Player2 = new Player(config.Player2, new AILoader(config.Player2.AIPath), startMoney);
+            Player1 = new Player(new AILoader(config.Game.Player1AIPath), startMoney);
+            Player2 = new Player(new AILoader(config.Game.Player2AIPath), startMoney);
             initAI(Player1);
             initAI(Player2);
 

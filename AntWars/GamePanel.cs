@@ -253,14 +253,14 @@ namespace AntWars
             {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT, 
-                                game.Conf.Player1.PlayerName, game.Player1.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                "Spieler 1", game.Player1.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             else if (game.Player1.Points < game.Player2.Points)
             {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT, 
-                                    game.Conf.Player2.PlayerName, game.Player2.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    "Spieler 2", game.Player2.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             return false;
@@ -271,13 +271,13 @@ namespace AntWars
             if (game.Player1.Points >= game.Conf.Game.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Conf.Player1.PlayerName), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, "Spieler 1"), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             else if (game.Player2.Points >= game.Conf.Game.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Conf.Player2.PlayerName), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, "Spieler 2"), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             return false;
@@ -285,15 +285,9 @@ namespace AntWars
 
         private void setPlayernameInStatistic(Config.Configuration config)
         {
-            // set playernames in statistic
-            if (config.Player1.PlayerName != "")
-            {
-                groupplayer1.Text = config.Player1.PlayerName;
-            }
-            if (config.Player2.PlayerName != "")
-            {
-                groupplayer2.Text = config.Player2.PlayerName;
-            }
+            groupplayer1.Text = "Spieler 1";
+            groupplayer2.Text = "Spieler 2";
+
         }
 
         private void GamePanel_FormClosing(object sender, FormClosingEventArgs e)

@@ -57,5 +57,8 @@ namespace AntWars.Config
         /// Die Anzahl an Punkten die ein Spieler braucht um zu gewinnen.
         /// </summary>
         public int Points { get; set; }
+
+        public String Player1AIPath { get; set; }
+        public String Player2AIPath { get; set; }
     }
 }

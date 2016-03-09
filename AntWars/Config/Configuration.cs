@@ -12,7 +12,5 @@ namespace AntWars.Config
     class Configuration
     {
         public GameConfig Game { get; set; }
-        public PlayerConfig Player1 { get; set; }
-        public PlayerConfig Player2 { get; set; }
     }
 }

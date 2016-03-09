@@ -80,7 +80,6 @@
     </Compile>
     <Compile Include="Config\ConfigurationLoader.cs" />
     <Compile Include="Config\GameConfig.cs" />
-    <Compile Include="Config\PlayerConfig.cs" />
     <Compile Include="Exception\InvalidConfigurationException.cs" />
     <Compile Include="Exception\InvalidDLLFile.cs" />
     <Compile Include="Exception\RuntimeException.cs" />
