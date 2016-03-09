@@ -64,9 +64,9 @@ namespace AntWars.AI
         /// Kauft einen Scout.
         /// </summary>
         /// <returns>>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
-        protected bool buyScout()
+        protected bool buyScout(int viewRange, int inventory)
         {
-            Scout s = new Scout(Game.Board, Player);      
+            Scout s = new Scout(Game.Board, Player, viewRange, inventory);
             return buyAnt(s);
         }
 
@@ -74,9 +74,9 @@ namespace AntWars.AI
         /// Kauft einen Carry
         /// </summary>
         /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
-        protected bool buyCarrier()
+        protected bool buyCarrier(int viewRange, int inventory)
         {
-            Carry c = new Carry(Game.Board, Player);
+            Carry c = new Carry(Game.Board, Player, viewRange, inventory);
             return buyAnt(c);
         }
 

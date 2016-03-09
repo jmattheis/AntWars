@@ -34,8 +34,13 @@ namespace AntWars.Board.Ants
         internal IAIAnt AI { get; set; }
         internal Board board;
 
-        internal Ant(Board board, Player owner)
+        internal Ant(Board board, Player owner, int viewRange, int maxInventory)
         {
+            // TODO berechnen!
+            Cost = 1;
+
+            ViewRange = viewRange;
+            MaxInventory = maxInventory;
             this.board = board;
             Owner = owner;
             Inventory = 0;

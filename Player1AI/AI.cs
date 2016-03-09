@@ -13,7 +13,7 @@ namespace PlayerAI
     {
         public override void nextTick()
         {
-            buyCarrier();
+            buyCarrier(5,5);
         }
     }
 
