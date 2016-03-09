@@ -11,9 +11,20 @@ namespace AntWars.Helper
     {
         private BoardObjects boardObjects;
 
+        /// <summary>
+        /// Die Breite von dem Kreis.
+        /// </summary>
         public int Width { get; set; }
+        /// <summary>
+        /// Die Koordinaten welchen einen Kreis darstellen.
+        /// </summary>
         public Coordinates[] circle { get; set; }
 
+        /// <summary>
+        /// Erstelle eine CoordsInView instance und berechne einen Kreis mit dem view radius
+        /// </summary>
+        /// <param name="width">der view radius</param>
+        /// <param name="boardObjects">die boardobjects</param>
         public CoordsInView(int width, BoardObjects boardObjects)
         {
             this.boardObjects = boardObjects;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntWars.Helper
 {
-    class Messages
+    static class Messages
     {
         public static readonly string OUT_OF_SUGAR = "Es ist kein Zucker mehr verfügbar.";
         public static readonly string OUT_OF_SUGAR_CAPTION = "Zucker ist alle";

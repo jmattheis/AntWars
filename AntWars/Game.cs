@@ -22,8 +22,6 @@ namespace AntWars
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Configuration Conf { get; set; }
-
-        private bool started = false;
         private int currentTick = 0;
 
         public Game(Configuration config)
@@ -43,24 +41,28 @@ namespace AntWars
             player.AI = player.AILoader.createAIInstance(this, player);
         }
 
+        /// <summary>
+        /// Initialisiert das Board.
+        /// </summary>
         public void start()
         {
             Board = new Board.Board(Conf);
             Board.nullTick(Player1, Player2);
-            started = true;
         }
 
+        /// <summary>
+        /// Ruft Ai auf.
+        /// </summary>
         public void nextTick()
         {
             currentTick++;
             Board.nextTick();
         }
 
-        public bool isStarted()
-        {
-            return started;
-        }
-
+        /// <summary>
+        /// Der momentane Tick.
+        /// </summary>
+        /// <returns></returns>
         public int getCurrentTick()
         {
             return currentTick;

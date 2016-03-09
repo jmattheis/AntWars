@@ -9,34 +9,86 @@ using System.Security.Permissions;
 
 namespace AntWars.AI
 {
+    /// <summary>
+    /// Die Basis der AI welcher Ameisen kaufen kann.
+    /// </summary>
     public abstract class AIBase : IAI
     {
-
         internal Player Player { get; set; }
         internal Game Game { get; set; }
         internal Base Base = null;
 
+        public abstract void nextTick();
+
+        /// <summary>
+        /// Deine derzeitigen Punkte.
+        /// </summary>
+        protected int CurrentScore
+        {
+            get { return Player.Points; }
+        }
+
+        /// <summary>
+        /// Die bisher vergangenen Ticks.
+        /// </summary>
+        protected int CurrentTick
+        {
+            get { return Game.getCurrentTick(); }
+        }
+
+        /// <summary>
+        /// Dein aktuelles Geld.
+        /// </summary>
+        protected int CurrentMoney
+        {
+            get { return Player.Money; }
+        }
+
+        /// <summary>
+        /// Anzahl deiner Carries.
+        /// </summary>
+        protected int CurrentCarryCount
+        {
+            get { return Player.CarryCount; }
+        }
+
+        /// <summary>
+        /// Anzahl deiner Scouts.
+        /// </summary>
+        protected int CurrentScoutScount
+        {
+            get { return Player.ScoutCount; }
+        }
+
+        /// <summary>
+        /// Kauft einen Scout.
+        /// </summary>
+        /// <returns>>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyScout()
         {
             Scout s = new Scout(Game.Board, Player);      
-            return buyAnt(s, Player.PlayerConfig.ScoutCost);
+            return buyAnt(s);
         }
 
+        /// <summary>
+        /// Kauft einen Carry
+        /// </summary>
+        /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyCarrier()
         {
             Carry c = new Carry(Game.Board, Player);
-            return buyAnt(c, Player.PlayerConfig.CarryCost);
+            return buyAnt(c);
         }
 
-        private bool buyAnt(Ant ant, int cost)
+        private bool buyAnt(Ant ant)
         {
             Base b = Game.Board.BoardObjects.getBase(Player);
-            if (Player.Money < cost || !resolveAntCoords(ant, b))
+            if (Player.Money < ant.Cost || !resolveAntCoords(ant, b))
             {
                 return false;
             }
 
-            Player.Money -= cost;
+            Player.Money -= ant.Cost;
             ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf.Game);
             return Game.Board.BoardObjects.add(ant);
         }
@@ -73,16 +125,6 @@ namespace AntWars.AI
                 Base = Game.Board.BoardObjects.getBase(Player);
 
             return Base;
-        }
-
-        public abstract void nextTick(int currentMoney, int score, int carryCount, int scoutCount, int time);
-
-        public void nextTick()
-        {
-            // extra Parameter an AI übergeben
-            int score = Player.CurrentScore;
-            int time = Game.getCurrentTick();
-            nextTick(Player.Money, score, Player.CarryCount, Player.ScoutCount, time);
         }
     }
 }

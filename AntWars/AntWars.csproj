@@ -97,6 +97,7 @@
     <Compile Include="Helper\Timer.cs" />
     <Compile Include="Helper\Utils.cs" />
     <Compile Include="AI\AIBase.cs" />
+    <Compile Include="Helper\Messages.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Board\Sugar.cs" />
     <Compile Include="Program.cs" />
