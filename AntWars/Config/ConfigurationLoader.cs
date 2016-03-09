@@ -15,28 +15,23 @@ namespace AntWars.Config
     {
         private XmlSerializer gameConfSerializer = new XmlSerializer(typeof(GameConfig));
 
-        private Configuration configuration = new Configuration();
+        private GameConfig configuration = new GameConfig();
         public String GamePath { get; set; }
 
         public void loadGame(String path)
         {
             GamePath = path;
-            configuration.Game = (GameConfig)deserialize(path, gameConfSerializer);
+            configuration = (GameConfig)deserialize(path, gameConfSerializer);
         }
 
-        public bool isAllLoaded()
-        {
-            return configuration.Game != null;
-        }
-
-        public Configuration get()
+        public GameConfig get()
         {
             return configuration;
         }
 
         public void saveGame()
         {
-            writeToFile(GamePath, gameConfSerializer, get().Game);
+            writeToFile(GamePath, gameConfSerializer, get());
         }
 
         private Object deserialize(String path, XmlSerializer ser)
@@ -61,20 +56,20 @@ namespace AntWars.Config
 
         public void newGame()
         {
-            configuration.Game = new GameConfig();
+            configuration = new GameConfig();
 
             // set sizes to a quarter of screen resolution
-            configuration.Game.BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
-            configuration.Game.BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
+            configuration.BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
+            configuration.BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
             // set standard values
-            configuration.Game.SugarMin = 5;
-            configuration.Game.SugarMax = 20;
-            configuration.Game.SugarAmountMin = 1;
-            configuration.Game.SugarAmountMax = 5;
-            configuration.Game.StartMoney = 20;
-            configuration.Game.Ticks = 10;
-            configuration.Game.MaxTicks = 5000;
-            configuration.Game.Points = 100;
+            configuration.SugarMin = 5;
+            configuration.SugarMax = 20;
+            configuration.SugarAmountMin = 1;
+            configuration.SugarAmountMax = 5;
+            configuration.StartMoney = 20;
+            configuration.Ticks = 10;
+            configuration.MaxTicks = 5000;
+            configuration.Points = 100;
         }
 
         public bool isNeededPathGame()

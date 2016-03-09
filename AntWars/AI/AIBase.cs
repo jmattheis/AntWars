@@ -93,7 +93,7 @@ namespace AntWars.AI
             }
 
             Player.Money -= ant.Cost;
-            ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf.Game);
+            ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf);
             return Game.Board.BoardObjects.add(ant);
         }
 

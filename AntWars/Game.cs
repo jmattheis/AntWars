@@ -21,15 +21,15 @@ namespace AntWars
         public Board.Board Board { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
-        public Configuration Conf { get; set; }
+        public GameConfig Conf { get; set; }
         private int currentTick = 0;
 
-        public Game(Configuration config)
+        public Game(GameConfig config)
         {
-            int startMoney = config.Game.StartMoney;
+            int startMoney = config.StartMoney;
                     
-            Player1 = new Player(new AILoader(config.Game.Player1AIPath), startMoney);
-            Player2 = new Player(new AILoader(config.Game.Player2AIPath), startMoney);
+            Player1 = new Player(new AILoader(config.Player1AIPath), startMoney);
+            Player2 = new Player(new AILoader(config.Player2AIPath), startMoney);
             initAI(Player1);
             initAI(Player2);
 

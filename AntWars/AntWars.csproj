@@ -83,7 +83,6 @@
     <Compile Include="Exception\InvalidConfigurationException.cs" />
     <Compile Include="Exception\InvalidDLLFile.cs" />
     <Compile Include="Exception\RuntimeException.cs" />
-    <Compile Include="Config\Configuration.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GamePanel.cs">
       <SubType>Form</SubType>

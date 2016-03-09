@@ -18,13 +18,13 @@ namespace AntWars
             InitializeComponent();
         }
 
-        public void start(Config.Configuration config)
+        public void start(Config.GameConfig config)
         {
             setPlayernameInStatistic(config);
             setFormSize(config);
             game = new Game(config);
             game.start();
-            initTimer(config.Game.Ticks);
+            initTimer(config.Ticks);
             Show();
         }
 
@@ -53,7 +53,7 @@ namespace AntWars
             // TODO sowas wie 'inferiorElement.Name == "ff000000"' kann doch mit 'inferiorElement == Color.Black' ausgetauscht werden
             // Das würde besser im code aussehen.
 
-            Bitmap bitmap = new Bitmap(game.Conf.Game.BoardWidth, game.Conf.Game.BoardHeight);
+            Bitmap bitmap = new Bitmap(game.Conf.BoardWidth, game.Conf.BoardHeight);
 
             foreach (BoardObject obj in boardObjects)
             {
@@ -162,28 +162,28 @@ namespace AntWars
             checkWinningConditions();
         }
 
-        public void view(Config.Configuration config)
+        public void view(Config.GameConfig config)
         {
             setPlayernameInStatistic(config);
             setFormSize(config);
             Show();
         }
 
-        public void setFormSize(Config.Configuration config)
+        public void setFormSize(Config.GameConfig config)
         {
-            this.pb_Game.Width = config.Game.BoardWidth * 4;
-            this.pb_Game.Height = config.Game.BoardHeight * 4;
-            Point statsLocation = new Point(config.Game.BoardWidth * 4, 0);
+            this.pb_Game.Width = config.BoardWidth * 4;
+            this.pb_Game.Height = config.BoardHeight * 4;
+            Point statsLocation = new Point(config.BoardWidth * 4, 0);
             this.groupstats.Location = statsLocation;
-            this.ClientSize = new Size(config.Game.BoardWidth * 4 + this.groupstats.Width, config.Game.BoardHeight * 4);
+            this.ClientSize = new Size(config.BoardWidth * 4 + this.groupstats.Width, config.BoardHeight * 4);
         }
 
         private void calcGameStatistics()
         {
             // update timer
-            if (game.Conf.Game.MaxTicks > 0)
+            if (game.Conf.MaxTicks > 0)
             {
-                labelticksshow.Text = Convert.ToString(game.Conf.Game.MaxTicks - game.getCurrentTick());
+                labelticksshow.Text = Convert.ToString(game.Conf.MaxTicks - game.getCurrentTick());
             }
             else
             {
@@ -234,13 +234,13 @@ namespace AntWars
 
         private bool checkTickPlayerPoints()
         {
-            if ((game.getCurrentTick()) >= game.Conf.Game.MaxTicks)
+            if ((game.getCurrentTick()) >= game.Conf.MaxTicks)
             {
                 this.stop();
                 if (!checkPlayerPoints())
                 {
                     this.stop();
-                    MessageBox.Show(String.Format(Messages.TIME_OUT, game.Conf.Game.MaxTicks), Messages.TIME_OUT_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(String.Format(Messages.TIME_OUT, game.Conf.MaxTicks), Messages.TIME_OUT_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 return true;
             }
@@ -268,13 +268,13 @@ namespace AntWars
 
         private bool checkMaxPoints()
         {
-            if (game.Player1.Points >= game.Conf.Game.Points)
+            if (game.Player1.Points >= game.Conf.Points)
             {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, "Spieler 1"), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
-            else if (game.Player2.Points >= game.Conf.Game.Points)
+            else if (game.Player2.Points >= game.Conf.Points)
             {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, "Spieler 2"), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -283,7 +283,7 @@ namespace AntWars
             return false;
         }
 
-        private void setPlayernameInStatistic(Config.Configuration config)
+        private void setPlayernameInStatistic(Config.GameConfig config)
         {
             groupplayer1.Text = "Spieler 1";
             groupplayer2.Text = "Spieler 2";
