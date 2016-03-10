@@ -20,11 +20,11 @@ namespace AntWars
 
         public void start(Config.GameConfig config)
         {
-            setPlayernameInStatistic(config);
             setFormSize(config);
             game = new Game(config);
             game.start();
             initTimer(config.Ticks);
+            setPlayernameInStatistic();
             Show();
         }
 
@@ -164,7 +164,7 @@ namespace AntWars
 
         public void view(Config.GameConfig config)
         {
-            setPlayernameInStatistic(config);
+            setPlayernameInStatistic();
             setFormSize(config);
             Show();
         }
@@ -253,14 +253,14 @@ namespace AntWars
             {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT, 
-                                "Spieler 1", game.Player1.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                game.Player1.AI.Playername, game.Player1.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             else if (game.Player1.Points < game.Player2.Points)
             {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT, 
-                                    "Spieler 2", game.Player2.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    game.Player2.AI.Playername, game.Player2.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             return false;
@@ -271,22 +271,22 @@ namespace AntWars
             if (game.Player1.Points >= game.Conf.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, "Spieler 1"), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Player1.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             else if (game.Player2.Points >= game.Conf.Points)
             {
                 this.stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, "Spieler 2"), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Player2.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             return false;
         }
 
-        private void setPlayernameInStatistic(Config.GameConfig config)
+        private void setPlayernameInStatistic()
         {
-            groupplayer1.Text = "Spieler 1";
-            groupplayer2.Text = "Spieler 2";
+            groupplayer1.Text = game.Player1.AI.Playername;
+            groupplayer2.Text = game.Player2.AI.Playername;
 
         }
 

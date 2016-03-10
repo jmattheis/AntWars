@@ -11,6 +11,10 @@ namespace PlayerAI
 {
     public class AI : AIBase
     {
+        public override string Playername
+        {
+            get { return "Random"; }
+        }
         public override void nextTick()
         {
             buyCarrier(5,5);

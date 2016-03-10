@@ -17,7 +17,7 @@ namespace AntWars.AI
         internal Player Player { get; set; }
         internal Game Game { get; set; }
         internal Base Base = null;
-
+        public abstract String Playername { get; }
         public abstract void nextTick();
 
         /// <summary>
