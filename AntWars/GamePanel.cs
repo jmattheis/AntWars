@@ -18,7 +18,7 @@ namespace AntWars
             InitializeComponent();
         }
 
-        public void start(Config.GameConfig config)
+        public void start(Config config)
         {
             setFormSize(config);
             game = new Game(config);
@@ -162,14 +162,14 @@ namespace AntWars
             checkWinningConditions();
         }
 
-        public void view(Config.GameConfig config)
+        public void view(Config config)
         {
             setPlayernameInStatistic();
             setFormSize(config);
             Show();
         }
 
-        public void setFormSize(Config.GameConfig config)
+        public void setFormSize(Config config)
         {
             this.pb_Game.Width = config.BoardWidth * 4;
             this.pb_Game.Height = config.BoardHeight * 4;

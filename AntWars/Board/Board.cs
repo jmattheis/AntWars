@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AntWars.Config;
+using AntWars;
 using AntWars.Helper;
 using AntWars.Board.Ants;
 using System.Threading;
@@ -19,14 +19,14 @@ namespace AntWars.Board
         /// Die BoardObjects welche momentan vorhanden sind.
         /// </summary>
         public BoardObjects BoardObjects { get; private set; }
-        private GameConfig conf;
+        private Config conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
         /// <summary>
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
         public int SugarAmount { get; private set; }
 
-        public Board(GameConfig conf)
+        public Board(Config conf)
         {
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AntWars.Config;
+using AntWars;
 using System.IO;
 using AntWars.Exception;
 using AntWars.Helper;
@@ -19,7 +19,7 @@ namespace AntWars
     {
 
         private Game game;
-        private GameConfig config = new GameConfig();
+        private Config config = new Config();
         private List<GamePanel> gamePanels = new List<GamePanel>();
 
         public ConfigurationPanel()
@@ -63,7 +63,7 @@ namespace AntWars
             pnl_GameConfig.Enabled = true;
         }
 
-        private void loadGame(GameConfig conf)
+        private void loadGame(Config conf)
         {
             numeric_gameConfigSugarMin.Value = conf.SugarMin;
             numeric_gameConfigSugarMax.Value = conf.SugarMax;
@@ -152,7 +152,7 @@ namespace AntWars
 
         private void btn_gameConfigNew_Click(object sender, EventArgs e)
         {
-            config = GameConfig.newConfig();
+            config = new Config();
             configLoadedOrNewCreatedGame();
             loadGame(config);
             checkPlayerKI();
@@ -200,7 +200,7 @@ namespace AntWars
             {
                 try
                 {
-                    config = GameConfig.loadConfig(res);
+                    config = Config.loadConfig(res);
                 }
                 catch (InvalidConfigurationException exception)
                 {

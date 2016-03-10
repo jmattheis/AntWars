@@ -73,7 +73,7 @@ namespace AntWars.AI
         /// <param name="ant">Die Ameise</param>
         /// <param name="conf">Die Gameconfig</param>
         /// <returns>die AIANt instance</returns>
-        public IAIAnt createAIAntInstance(Ant ant, Config.GameConfig conf)
+        public IAIAnt createAIAntInstance(Ant ant, Config conf)
         {
             try
             {

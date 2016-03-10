@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Drawing;
-using AntWars.Config;
+using AntWars;
 using AntWars.Board;
 using AntWars.AI;
 
@@ -21,10 +21,10 @@ namespace AntWars
         public Board.Board Board { get; set; }
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
-        public GameConfig Conf { get; set; }
+        public Config Conf { get; set; }
         private int currentTick = 0;
 
-        public Game(GameConfig config)
+        public Game(Config config)
         {
             int startMoney = config.StartMoney;
                     

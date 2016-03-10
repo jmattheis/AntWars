@@ -10,9 +10,9 @@ using System.Reflection;
 using AntWars.Exception;
 using AntWars.Helper;
 
-namespace AntWars.Config
+namespace AntWars
 {
-    public class GameConfig
+    public class Config
     {
         /// <summary>
         /// Der minimale Zucker der auf dem Feld sein darf.
@@ -74,31 +74,31 @@ namespace AntWars.Config
         /// </summary>
         public String Player2AIPath { get; set; }
 
+        /// <summary>
+        /// Pfad zur gesicherten Config
+        /// </summary>
+        [XmlIgnore]
         public String GamePath { get; set; }
 
-        public static GameConfig loadConfig(String path)
+        public Config()
         {
-            return (GameConfig)Utils.deserializeConfig(path);
+            // set sizes to a quarter of screen resolution
+            BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
+            BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
+            // set standard values
+            SugarMin = 5;
+            SugarMax = 20;
+            SugarAmountMin = 1;
+            SugarAmountMax = 5;
+            StartMoney = 20;
+            Ticks = 10;
+            MaxTicks = 5000;
+            Points = 100;
         }
 
-        public static GameConfig newConfig()
+        public static Config loadConfig(String path)
         {
-            GameConfig config = new GameConfig();
-
-            // set sizes to a quarter of screen resolution
-            config.BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
-            config.BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
-            // set standard values
-            config.SugarMin = 5;
-            config.SugarMax = 20;
-            config.SugarAmountMin = 1;
-            config.SugarAmountMax = 5;
-            config.StartMoney = 20;
-            config.Ticks = 10;
-            config.MaxTicks = 5000;
-            config.Points = 100;
-
-            return config;
+            return Utils.deserializeConfig(path);
         }
 
         public bool isNeededPathGame()
@@ -108,9 +108,7 @@ namespace AntWars.Config
 
         public void saveConfig()
         {
-            FileStream file = new FileStream(GamePath, FileMode.Create);
-            Utils.xmlSerializer.Serialize(file, this);
-            file.Close();
+            Utils.saveConfigToFile(this);
         }
     }
 }

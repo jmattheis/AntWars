@@ -78,7 +78,7 @@
     <Compile Include="ConfigurationPanel.Designer.cs">
       <DependentUpon>ConfigurationPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Config\GameConfig.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Exception\InvalidConfigurationException.cs" />
     <Compile Include="Exception\InvalidDLLFile.cs" />
     <Compile Include="Exception\RuntimeException.cs" />
