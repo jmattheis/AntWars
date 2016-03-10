@@ -19,7 +19,7 @@ namespace AntWars
     {
 
         private Game game;
-        private ConfigurationLoader configLoader = new ConfigurationLoader();
+        private GameConfig config = new GameConfig();
         private List<GamePanel> gamePanels = new List<GamePanel>();
 
         public ConfigurationPanel()
@@ -35,7 +35,7 @@ namespace AntWars
                 gamePanel.FormClosed += new FormClosedEventHandler(gamePanelCloseEvent);
                 try
                 {
-                    gamePanel.start(configLoader.get());
+                    gamePanel.start(config);
                     gamePanels.Add(gamePanel);
                     disableControls();
                 }
@@ -107,66 +107,66 @@ namespace AntWars
 
         private void numeric_gameConfigSugarMin_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().SugarMin = Convert.ToInt32(numeric_gameConfigSugarMin.Value);
+            config.SugarMin = Convert.ToInt32(numeric_gameConfigSugarMin.Value);
         }
 
         private void numeric_gameConfigSugarAmountMin_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().SugarAmountMin = Convert.ToInt32(numeric_gameConfigSugarAmountMin.Value);
+            config.SugarAmountMin = Convert.ToInt32(numeric_gameConfigSugarAmountMin.Value);
         }
 
         private void numeric_gameConfigBoardWidth_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().BoardWidth = Convert.ToInt32(numeric_gameConfigBoardWidth.Value);
+            config.BoardWidth = Convert.ToInt32(numeric_gameConfigBoardWidth.Value);
         }
 
         private void numeric_gameConfigPoints_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().Points = Convert.ToInt32(numeric_gameConfigPoints.Value);
+            config.Points = Convert.ToInt32(numeric_gameConfigPoints.Value);
         }
 
         private void numeric_gameConfigStartMoney_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().StartMoney = Convert.ToInt32(numeric_gameConfigStartMoney.Value);
+            config.StartMoney = Convert.ToInt32(numeric_gameConfigStartMoney.Value);
         }
 
         private void numeric_gameConfigTime_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().Ticks = Convert.ToInt32(numeric_gameConfigTicks.Value);
+            config.Ticks = Convert.ToInt32(numeric_gameConfigTicks.Value);
         }
 
         private void numeric_gameConfigBoardHeigth_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().BoardHeight = Convert.ToInt32(numeric_gameConfigBoardHeigth.Value);
+            config.BoardHeight = Convert.ToInt32(numeric_gameConfigBoardHeigth.Value);
         }
 
         private void numeric_gameConfigSugarAmountMax_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().SugarAmountMax = Convert.ToInt32(numeric_gameConfigSugarAmountMax.Value);
+            config.SugarAmountMax = Convert.ToInt32(numeric_gameConfigSugarAmountMax.Value);
         }
 
         private void numeric_gameConfigSugarMax_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().SugarMax = Convert.ToInt32(numeric_gameConfigSugarMax.Value);
+            config.SugarMax = Convert.ToInt32(numeric_gameConfigSugarMax.Value);
         }
 
         private void btn_gameConfigNew_Click(object sender, EventArgs e)
         {
-            configLoader.newGame();
+            config = GameConfig.newConfig();
             configLoadedOrNewCreatedGame();
-            loadGame(configLoader.get());
+            loadGame(config);
             checkPlayerKI();
             btn_gameConfigSave.Focus();
         }
 
         private void btn_gameConfigSave_Click(object sender, EventArgs e)
         {
-            if (configLoader.isNeededPathGame())
+            if (config.isNeededPathGame())
             {
                 String path = openSaveDialog();
                 if (path != null)
                 {
-                    configLoader.GamePath = path;
+                    config.GamePath = path;
                 }
                 else
                 {
@@ -174,13 +174,12 @@ namespace AntWars
                 }
             }
             MessageBox.Show(Messages.SAVED, Messages.SAVED_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            configLoader.save();
+            config.saveConfig();
         }
         private bool checkGameConfig()
         {
-            GameConfig conf = configLoader.get();
-            if (!checkMinMax(conf.SugarMin, conf.SugarMax)) return false;
-            if (!checkMinMax(conf.SugarAmountMin, conf.SugarAmountMax)) return false;
+            if (!checkMinMax(config.SugarMin, config.SugarMax)) return false;
+            if (!checkMinMax(config.SugarAmountMin, config.SugarAmountMax)) return false;
             return true;
         }
 
@@ -201,7 +200,7 @@ namespace AntWars
             {
                 try
                 {
-                    configLoader.load(res);
+                    config = GameConfig.loadConfig(res);
                 }
                 catch (InvalidConfigurationException exception)
                 {
@@ -209,7 +208,7 @@ namespace AntWars
                     return;
                 }
                 configLoadedOrNewCreatedGame();
-                loadGame(configLoader.get());
+                loadGame(config);
             }
             btn_gameConfigSave.Focus();
         }
@@ -219,7 +218,7 @@ namespace AntWars
             if (checkGameConfig())
             {
                 GamePanel gamePanel = new GamePanel();
-                gamePanel.view(configLoader.get());
+                gamePanel.view(config);
             }
             else
             {
@@ -283,7 +282,7 @@ namespace AntWars
             String res = openDialog();
             if (res != null)
             {
-                configLoader.get().Player2AIPath = res;
+                config.Player2AIPath = res;
             }
             checkPlayerKI();
         }
@@ -293,14 +292,14 @@ namespace AntWars
             String res = openDialog();
             if (res != null)
             {
-                configLoader.get().Player1AIPath = res;
+                config.Player1AIPath = res;
             }
             checkPlayerKI();
         }
 
         private void numeric_gameConfigMaxTicks_ValueChanged(object sender, EventArgs e)
         {
-            configLoader.get().MaxTicks = Convert.ToInt32(numeric_gameConfigMaxTicks.Value);
+            config.MaxTicks = Convert.ToInt32(numeric_gameConfigMaxTicks.Value);
         }
 
         private void checkPlayerKI()
@@ -309,7 +308,7 @@ namespace AntWars
             // TODO2: wenn TODO1 erfüllt try catch entfernen
             try
             {
-                if (!String.IsNullOrEmpty(configLoader.get().Player1AIPath))
+                if (!String.IsNullOrEmpty(config.Player1AIPath))
                 {
                     btn_player1loadAI.BackColor = Color.LightGreen;
                 }
@@ -318,7 +317,7 @@ namespace AntWars
                     btn_player1loadAI.BackColor = Color.Red;
                 }
 
-                if (!String.IsNullOrEmpty(configLoader.get().Player2AIPath))
+                if (!String.IsNullOrEmpty(config.Player2AIPath))
                 {
                     btn_player2loadAI.BackColor = Color.LightGreen;
                 }

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
+using System.Reflection;
+using AntWars.Exception;
+using AntWars.Helper;
 
 namespace AntWars.Config
 {
@@ -67,5 +73,44 @@ namespace AntWars.Config
         /// Pfad zur AI von Spieler 2.
         /// </summary>
         public String Player2AIPath { get; set; }
+
+        public String GamePath { get; set; }
+
+        public static GameConfig loadConfig(String path)
+        {
+            return (GameConfig)Utils.deserializeConfig(path);
+        }
+
+        public static GameConfig newConfig()
+        {
+            GameConfig config = new GameConfig();
+
+            // set sizes to a quarter of screen resolution
+            config.BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
+            config.BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
+            // set standard values
+            config.SugarMin = 5;
+            config.SugarMax = 20;
+            config.SugarAmountMin = 1;
+            config.SugarAmountMax = 5;
+            config.StartMoney = 20;
+            config.Ticks = 10;
+            config.MaxTicks = 5000;
+            config.Points = 100;
+
+            return config;
+        }
+
+        public bool isNeededPathGame()
+        {
+            return GamePath == null;
+        }
+
+        public void saveConfig()
+        {
+            FileStream file = new FileStream(GamePath, FileMode.Create);
+            Utils.xmlSerializer.Serialize(file, this);
+            file.Close();
+        }
     }
 }
