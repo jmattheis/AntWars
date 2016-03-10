@@ -17,14 +17,12 @@ namespace AntWars.Board.Ants
         /// Das Maximale Inventory der Ant.
         /// </summary>
         public int MaxInventory { get; protected set; }
-        /// <summary>
-        /// Die Kosten der Ameise.
-        /// </summary>
-        public int Cost { get; protected set; }
+
         /// <summary>
         /// Das Inventory von der Ameise, welches aussagt wieviel Zucker die Ameise momentan Trägt
         /// </summary>
         public int Inventory { get; protected set; }
+
         /// <summary>
         /// Wie weit die Ameise sehen kann.
         /// </summary>
@@ -36,9 +34,6 @@ namespace AntWars.Board.Ants
 
         internal Ant(Board board, Player owner, int viewRange, int maxInventory)
         {
-            // TODO berechnen!
-            Cost = 1;
-
             ViewRange = viewRange;
             MaxInventory = maxInventory;
             this.board = board;

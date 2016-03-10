@@ -86,13 +86,14 @@ namespace AntWars.AI
 
         private bool buyAnt(Ant ant)
         {
+            int cost = 1; // TODO Berechnen!
             Base b = Game.Board.BoardObjects.getBase(Player);
-            if (Player.Money < ant.Cost || !resolveAntCoords(ant, b))
+            if (Player.Money < cost || !resolveAntCoords(ant, b))
             {
                 return false;
             }
 
-            Player.Money -= ant.Cost;
+            Player.Money -= cost;
             ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf);
             return Game.Board.BoardObjects.add(ant);
         }
