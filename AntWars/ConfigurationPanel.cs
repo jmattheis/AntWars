@@ -174,7 +174,7 @@ namespace AntWars
                 }
             }
             MessageBox.Show(Messages.SAVED, Messages.SAVED_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
-            configLoader.saveGame();
+            configLoader.save();
         }
         private bool checkGameConfig()
         {
@@ -201,7 +201,7 @@ namespace AntWars
             {
                 try
                 {
-                    configLoader.loadGame(res);
+                    configLoader.load(res);
                 }
                 catch (InvalidConfigurationException exception)
                 {

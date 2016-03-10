@@ -58,7 +58,14 @@ namespace AntWars.Config
         /// </summary>
         public int Points { get; set; }
 
+        /// <summary>
+        /// Pfad zur AI von Spieler 1.
+        /// </summary>
         public String Player1AIPath { get; set; }
+
+        /// <summary>
+        /// Pfad zur AI von Spieler 2.
+        /// </summary>
         public String Player2AIPath { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace AntWars.Config
         private GameConfig configuration = new GameConfig();
         public String GamePath { get; set; }
 
-        public void loadGame(String path)
+        public void load(String path)
         {
             GamePath = path;
             configuration = (GameConfig)deserialize(path, gameConfSerializer);
@@ -29,7 +29,7 @@ namespace AntWars.Config
             return configuration;
         }
 
-        public void saveGame()
+        public void save()
         {
             writeToFile(GamePath, gameConfSerializer, get());
         }
