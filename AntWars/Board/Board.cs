@@ -21,6 +21,7 @@ namespace AntWars.Board
         public BoardObjects BoardObjects { get; private set; }
         private Config conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
+        private Coordinates toAdd = new Coordinates();
         /// <summary>
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
@@ -67,7 +68,8 @@ namespace AntWars.Board
             for (int i = 0; i < coords.Length; i++)
             {
                 Coordinates c = coords[i];
-                Coordinates toAdd = new Coordinates(c.X + ant.Coords.X, c.Y + ant.Coords.Y);
+                toAdd.X = c.X + ant.Coords.X;
+                toAdd.Y = c.Y + ant.Coords.Y;
                 if (BoardObjects.isValidCoords(toAdd))
                 {
                     BoardObject[] boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(toAdd);

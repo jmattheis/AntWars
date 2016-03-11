@@ -11,13 +11,18 @@ namespace AntWars.Board
     /// </summary>
     public class Coordinates
     {
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        public int X { get; internal set; }
+        public int Y { get; internal set; }
 
         public Coordinates(int x, int y)
         {
             X = x;
             Y = y;
+        }
+
+        public Coordinates()
+        {
+
         }
 
         public override bool Equals(System.Object obj)
