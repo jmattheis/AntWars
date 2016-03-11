@@ -164,7 +164,6 @@ namespace AntWars
 
         public void view(Config config)
         {
-            setPlayernameInStatistic();
             setFormSize(config);
             Show();
         }
