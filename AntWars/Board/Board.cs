@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AntWars.Config;
+using AntWars;
 using AntWars.Helper;
 using AntWars.Board.Ants;
 using System.Threading;
@@ -19,17 +19,17 @@ namespace AntWars.Board
         /// Die BoardObjects welche momentan vorhanden sind.
         /// </summary>
         public BoardObjects BoardObjects { get; private set; }
-        private Configuration conf;
+        private Config conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
         /// <summary>
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
         public int SugarAmount { get; private set; }
 
-        public Board(Configuration conf)
+        public Board(Config conf)
         {
             this.conf = conf;
-            BoardObjects = new BoardObjects(conf.Game);
+            BoardObjects = new BoardObjects(conf);
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace AntWars.Board
         {
             nullTick(player1);
             nullTick(player2);
-            generateSugar(conf.Game.SugarMin, conf.Game.SugarMax);
+            generateSugar(conf.SugarMin, conf.SugarMax);
         }
 
         private BoardObject[] getBoardObjectsInView(Ant ant)
@@ -117,13 +117,13 @@ namespace AntWars.Board
             for (int i = 0; i < count; i++)
             {
                 Sugar s = new Sugar();
-                s.Coords = Utils.generateCoords(conf.Game.BoardWidth, conf.Game.BoardHeight);
+                s.Coords = Utils.generateCoords(conf.BoardWidth, conf.BoardHeight);
                 if (BoardObjects.hasBaseOnCoords(s.Coords) || BoardObjects.hasSugarOnCoords(s.Coords))
                 {
                     i--;
                     continue;
                 }
-                s.Amount = rand.Next(conf.Game.SugarAmountMin, conf.Game.SugarAmountMax + 1);
+                s.Amount = rand.Next(conf.SugarAmountMin, conf.SugarAmountMax + 1);
                 BoardObjects.add(s);
                 SugarAmount += s.Amount;
             }
@@ -135,11 +135,11 @@ namespace AntWars.Board
             // Bases immer gegenüber spawnen lassen
             if (this.BoardObjects.getBases().Count == 1)
             {
-                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeight, this.BoardObjects.getBases()[0]);
+                b.Coords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight, this.BoardObjects.getBases()[0]);
             }
             else
             {
-                b.Coords = Utils.generateBaseCoords(conf.Game.BoardWidth, conf.Game.BoardHeight);
+                b.Coords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight);
             }
             return b;
         }

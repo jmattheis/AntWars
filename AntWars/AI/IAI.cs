@@ -16,5 +16,7 @@ namespace AntWars.AI
         /// Wird in jedem Tick einmal aufgerufen.
         /// </summary>
         void nextTick();
+
+        String Playername { get; }
     }
 }

@@ -17,7 +17,7 @@ namespace AntWars.AI
         internal Player Player { get; set; }
         internal Game Game { get; set; }
         internal Base Base = null;
-
+        public abstract String Playername { get; }
         public abstract void nextTick();
 
         /// <summary>
@@ -63,33 +63,38 @@ namespace AntWars.AI
         /// <summary>
         /// Kauft einen Scout.
         /// </summary>
+        /// <param name="viewRange">Die Sichtweite der Ameise</param>
+        /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann</param>
         /// <returns>>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
-        protected bool buyScout()
+        protected bool buyScout(int viewRange, int inventory)
         {
-            Scout s = new Scout(Game.Board, Player);      
+            Scout s = new Scout(Game.Board, Player, viewRange, inventory);
             return buyAnt(s);
         }
 
         /// <summary>
         /// Kauft einen Carry
         /// </summary>
+        /// <param name="viewRange">Die Sichtweite der Ameise</param>
+        /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann</param>
         /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
-        protected bool buyCarrier()
+        protected bool buyCarrier(int viewRange, int inventory)
         {
-            Carry c = new Carry(Game.Board, Player);
+            Carry c = new Carry(Game.Board, Player, viewRange, inventory);
             return buyAnt(c);
         }
 
         private bool buyAnt(Ant ant)
         {
+            int cost = 1; // TODO Berechnen!
             Base b = Game.Board.BoardObjects.getBase(Player);
-            if (Player.Money < ant.Cost || !resolveAntCoords(ant, b))
+            if (Player.Money < cost || !resolveAntCoords(ant, b))
             {
                 return false;
             }
 
-            Player.Money -= ant.Cost;
-            ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf.Game);
+            Player.Money -= cost;
+            ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf);
             return Game.Board.BoardObjects.add(ant);
         }
 

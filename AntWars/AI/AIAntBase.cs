@@ -18,7 +18,7 @@ namespace AntWars.AI
         /// </summary>
         public Ant Ant { get; internal set; }
 
-        internal Config.GameConfig Conf { get; set; }
+        internal Config Conf { get; set; }
 
         /// <summary>
         /// Die BoardWidth
