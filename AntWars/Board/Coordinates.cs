@@ -35,6 +35,11 @@ namespace AntWars.Board
             return X ^ Y;
         }
 
+        public bool isInRange(int range, Coordinates c)
+        {
+            return Math.Abs(c.X - X) <= range && Math.Abs(c.Y - Y) <= range;
+        }
+
         /// <summary>
         /// Liste von angrenzenden Koordinaten
         /// </summary>

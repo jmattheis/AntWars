@@ -8,10 +8,8 @@ namespace AntWars.Board.Ants
 {
     public class Scout : Ant
     {
-        internal Scout(Board board, Player owner): base(board, owner)
-        {
-            Speed = owner.PlayerConfig.ScoutSpeed;
-            ViewRange = owner.PlayerConfig.ScoutViewRange;
-        }
+        internal Scout(Board board, Player owner, int viewRange, int inventory)
+            : base(board, owner, viewRange, inventory)
+        { }
     }
 }

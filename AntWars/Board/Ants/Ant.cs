@@ -10,43 +10,86 @@ namespace AntWars.Board.Ants
     /// <summary>
     /// Die Ameise.
     /// </summary>
-    public class Ant : BoardObject
+    public abstract class Ant : BoardObject
     {
-        public int Inventory { get; internal set; }
-        public int ViewRange { get; internal set; }
+        /// <summary>
+        /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 
+        /// </summary>
+        public bool MovedThisTick { get; set; }
+
+        /// <summary>
+        /// Wie weit die Ameise gehen kann. 
+        /// </summary>
+        public int MoveRange { get; set; }
+
+        /// <summary>
+        /// Wie weit die Ameise schon gegangen ist.
+        /// </summary>
         public int UnitsGone { get; set; }
-        public int Speed { get; set; }
-        public int CarryMaxInventory { get { return Owner.PlayerConfig.CarryInventory; } }
-        public int ScoutMaxInventory { get { return Owner.PlayerConfig.ScoutInventory; } }
+       
+        /// <summary>
+        /// Das Maximale Inventory der Ant.
+        /// </summary>
+        public int MaxInventory { get; protected set; }
+
+        /// <summary>
+        /// Das Inventory von der Ameise, welches aussagt wieviel Zucker die Ameise momentan Trägt
+        /// </summary>
+        public int Inventory { get; protected set; }
+
+        /// <summary>
+        /// Wie weit die Ameise sehen kann.
+        /// </summary>
+        public int ViewRange { get; protected set; }
+
         internal Player Owner { get; private set; }
         internal IAIAnt AI { get; set; }
         internal Board board;
 
-        internal Ant(Board board, Player owner)
+        internal Ant(Board board, Player owner, int viewRange, int maxInventory)
         {
+            ViewRange = viewRange;
+            MaxInventory = maxInventory;
             this.board = board;
             this.UnitsGone = 0;
             Owner = owner;
+            Inventory = 0;
         }
 
+        /// <summary>
+        /// Lässt die Ameise nach links bewegen
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveLeft()
         {
             Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
             return move(newCoords);
         }
 
+        /// <summary>
+        /// Lässt die Ameise nach rechts bewegen
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveRight()
         {
             Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
             return move(newCoords);
         }
 
+        /// <summary>
+        /// Lässt die Ameise nach oben bewegen
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveUp()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y - 1);
             return move(newCoords);
         }
 
+        /// <summary>
+        /// Lässt die Ameise nach unten bewegen
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveDown()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y + 1);
@@ -73,9 +116,7 @@ namespace AntWars.Board.Ants
         /// <returns>True wenn ja, False wenn nicht</returns>
         public bool canMove()
         {
-            if (isCarry() && UnitsGone >= Owner.PlayerConfig.CarryMoveRange)
-                return false;
-            if (isScout() && UnitsGone >= Owner.PlayerConfig.ScoutMoveRange)
+            if (UnitsGone >= MoveRange)
                 return false;
             return true;
         }
@@ -86,13 +127,12 @@ namespace AntWars.Board.Ants
         /// <returns>True bei Erfolg, false wenn kein Zucker gefunden wurde.</returns>
         public bool pickUpSugar()
         {
-            int maxInventory = isCarry() ? Owner.PlayerConfig.CarryInventory : Owner.PlayerConfig.ScoutInventory;
             Sugar sugar;
 
-            if (board.BoardObjects.getSugar(Coords, out sugar) && Inventory < maxInventory)
+            if (board.BoardObjects.getSugar(Coords, out sugar) && Inventory < MaxInventory)
             {
                 int tempSugarAmount = sugar.Amount;
-                int maxPickUpSugar = maxInventory - Inventory;
+                int maxPickUpSugar = MaxInventory - Inventory;
 
                 if (sugar.Amount - maxPickUpSugar <= 0)
                 {
@@ -116,7 +156,9 @@ namespace AntWars.Board.Ants
         /// <returns>True bei Erfolg, false wenn die Ameise nicht auf der Base steht.</returns>
         public bool dropSugarOnBase()
         {
-            if (Coords.Equals(board.BoardObjects.getBase(Owner).Coords))
+            int range = (int)((Owner.CarryCount + Owner.ScoutCount) / 50);
+            if (range > 3) { range = 3; }
+            if (Coords.isInRange(range, getBaseCoords()))
             {
                 Owner.Money += Inventory;
                 Owner.Points += Inventory;
@@ -134,6 +176,9 @@ namespace AntWars.Board.Ants
             board.DyingAnts.Add(this);
         }
 
+        /// Gibt die Koordinaten von der zugehörigen Base zurück.
+        /// </summary>
+        /// <returns>Die Koordinaten von der Base</returns>
         public Coordinates getBaseCoords()
         {
             return board.BoardObjects.getBase(Owner).Coords;

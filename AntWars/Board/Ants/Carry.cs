@@ -8,9 +8,8 @@ namespace AntWars.Board.Ants
 {
     public class Carry : Ant
     {
-        internal Carry(Board board, Player owner) : base(board, owner) {
-            this.Speed = owner.PlayerConfig.CarrySpeed;
-            ViewRange = owner.PlayerConfig.CarryViewRange;
-        }
+        internal Carry(Board board, Player owner, int viewRange, int inventory)
+            : base(board, owner, viewRange, inventory)
+        { }
     }
 }
