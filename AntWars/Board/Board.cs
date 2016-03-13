@@ -25,13 +25,13 @@ namespace AntWars.Board
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
         public int SugarAmount { get; private set; }
-        public List<Ant> DyingAnts { get; private set; }
+        public HashSet<Ant> DyingAnts { get; private set; }
 
         public Board(Config conf)
         {
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);
-            DyingAnts = new List<Ant>();
+            DyingAnts = new HashSet<Ant>();
         }
 
         /// <summary>
@@ -65,8 +65,7 @@ namespace AntWars.Board
                 DeadAnts.Add(ant);
             }
 
-            foreach (Ant ant in DeadAnts)
-                DyingAnts.Remove(ant);
+            DyingAnts.Clear();
         }
 
         /// <summary>

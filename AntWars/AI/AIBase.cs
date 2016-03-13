@@ -65,6 +65,7 @@ namespace AntWars.AI
         /// </summary>
         /// <param name="viewRange">Die Sichtweite der Ameise</param>
         /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann</param>
+        /// <param name="moveRange">Wie weit die Ameise gehen kann</param>
         /// <returns>>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyScout(int viewRange, int inventory, int moveRange)
         {
@@ -77,6 +78,7 @@ namespace AntWars.AI
         /// </summary>
         /// <param name="viewRange">Die Sichtweite der Ameise</param>
         /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann</param>
+        /// <param name="moveRange">Wie weit die Ameise gehen kann</param>
         /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyCarrier(int viewRange, int inventory, int moveRange)
         {

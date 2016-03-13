@@ -160,7 +160,6 @@ namespace AntWars.Board
         /// <returns>true wenn das BoardObject gemoved wurde andernfalls false.</returns>
         public bool move(BoardObject obj, Coordinates coords)
         {
-            Ant test = (Ant)obj;
             if (!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords), obj))
             {
                 return false;
@@ -169,15 +168,6 @@ namespace AntWars.Board
             obj.Coords = coords;
             addToMap(obj);
             return true;
-        }
-
-        public bool outOfRange(Ant ant)
-        {
-            if (ant.UnitsGone >= ant.MoveRange)
-            {
-                    return true;
-            }
-            return false;
         }
 
         /// <summary>
