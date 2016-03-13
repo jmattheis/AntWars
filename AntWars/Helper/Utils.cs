@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
+using AntWars.Exception;
 
 namespace AntWars.Helper
 {
-    class Utils
+    static class Utils
     {
         public static Random random = new Random();
+
+        public static XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
 
         public static Coordinates generateBaseCoords(int boardWidth, int boardHeight)
         {
@@ -52,5 +58,26 @@ namespace AntWars.Helper
             }
         }
 
+        public static Config deserializeConfig(String path)
+        {
+            try
+            {
+                FileStream file = new FileStream(path, FileMode.Open);
+                Config config = (Config)xmlSerializer.Deserialize(file);
+                file.Close();
+                return config;
+            }
+            catch (System.Exception e)
+            {
+                throw new InvalidConfigurationException(e.Message);
+            }
+        }
+
+        public static void saveConfigToFile(Config config)
+        {
+            FileStream file = new FileStream(config.GamePath, FileMode.Create);
+            Utils.xmlSerializer.Serialize(file, config);
+            file.Close();
+        }
     }
 }

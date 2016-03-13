@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AntWars.Config;
+using AntWars;
 using AntWars.Board.Ants;
 using AntWars.AI;
 
@@ -18,11 +18,6 @@ namespace AntWars
         /// Punkte vom Spieler
         /// </summary>
         public int Points { get; set; }
-
-        /// <summary>
-        /// Die Configuration vom Spieler
-        /// </summary>
-        public PlayerConfig PlayerConfig { get; set; }
 
         /// <summary>
         /// Der AI loader welcher instancen von der AI erstellt.
@@ -49,9 +44,8 @@ namespace AntWars
         /// </summary>
         public int CarryCount { get; set; }
 
-        public Player(PlayerConfig config, AILoader aiLoader, int money)
+        public Player(AILoader aiLoader, int money)
         {
-            PlayerConfig = config;
             AILoader = aiLoader;
             Money = money;
             ScoutCount = 0;

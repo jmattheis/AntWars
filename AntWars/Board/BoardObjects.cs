@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AntWars.Board.Ants;
 using AntWars.Helper;
-using AntWars.Config;
+using AntWars;
 
 namespace AntWars.Board
 {
@@ -20,10 +20,10 @@ namespace AntWars.Board
         private IList<Signal> signals = new List<Signal>();
         private IList<Base> bases = new List<Base>();
         private IList<Sugar> sugars = new List<Sugar>();
-        private GameConfig conf;
+        private Config conf;
         private BoardObject[,][] boardObjectList;
 
-        public BoardObjects(GameConfig conf)
+        public BoardObjects(Config conf)
         {
             this.conf = conf;
             boardObjectList = new BoardObject[conf.BoardWidth + 1, conf.BoardHeight + 1][];
