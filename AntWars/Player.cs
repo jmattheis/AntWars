@@ -29,16 +29,9 @@ namespace AntWars
         /// </summary>
         public IAI AI { get; set; }
 
-<<<<<<< HEAD
-        //TODO beim erstellen/laden einer Config müssen Kosten neu berechnet werden
-        public int ScoutSpeed { get; set; }
-        public int CarrySpeed { get; set; }
-        public int CurrentScore { get; set; }
-=======
         /// <summary>
         /// Das momentane Geld vom Spieler.
         /// </summary>
->>>>>>> origin/master
         public int Money { get; set; }
 
         /// <summary>

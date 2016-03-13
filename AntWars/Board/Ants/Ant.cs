@@ -46,7 +46,7 @@ namespace AntWars.Board.Ants
         internal IAIAnt AI { get; set; }
         internal Board board;
 
-        internal Ant(Board board, Player owner, int viewRange, int maxInventory)
+        internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRange)
         {
             ViewRange = viewRange;
             MaxInventory = maxInventory;
@@ -54,6 +54,8 @@ namespace AntWars.Board.Ants
             this.UnitsGone = 0;
             Owner = owner;
             Inventory = 0;
+            MoveRange = moveRange;
+            MovedThisTick = false;
         }
 
         /// <summary>
@@ -102,8 +104,9 @@ namespace AntWars.Board.Ants
             {
                 die();
             }
-            else if (board.BoardObjects.move(this, to))
+            else if (!MovedThisTick && board.BoardObjects.move(this, to))
             {
+                MovedThisTick = true;
                 UnitsGone++;
                 return true;
             }

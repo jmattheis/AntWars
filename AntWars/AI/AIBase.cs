@@ -66,9 +66,9 @@ namespace AntWars.AI
         /// <param name="viewRange">Die Sichtweite der Ameise</param>
         /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann</param>
         /// <returns>>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
-        protected bool buyScout(int viewRange, int inventory)
+        protected bool buyScout(int viewRange, int inventory, int moveRange)
         {
-            Scout s = new Scout(Game.Board, Player, viewRange, inventory);
+            Scout s = new Scout(Game.Board, Player, viewRange, inventory, moveRange);
             return buyAnt(s);
         }
 
@@ -78,9 +78,9 @@ namespace AntWars.AI
         /// <param name="viewRange">Die Sichtweite der Ameise</param>
         /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann</param>
         /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
-        protected bool buyCarrier(int viewRange, int inventory)
+        protected bool buyCarrier(int viewRange, int inventory, int moveRange)
         {
-            Carry c = new Carry(Game.Board, Player, viewRange, inventory);
+            Carry c = new Carry(Game.Board, Player, viewRange, inventory, moveRange);
             return buyAnt(c);
         }
 
