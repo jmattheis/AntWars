@@ -187,7 +187,7 @@ namespace AntWars
         {
             if (min > max)
             {
-                MessageBox.Show(Messages.ERROR_MIN_HIGHER_MAX, Messages.ERROR_MIN_HIGHER_MAX_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Messages.ERROR_MIN_HIGHER_MAX, Messages.ERROR_INVALID_VALUE_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             return true;
@@ -330,6 +330,12 @@ namespace AntWars
             {
                 return;
             }
+        }
+
+        private void buttonCostCalculator_Click(object sender, EventArgs e)
+        {
+            CostCalculator costCalc = new CostCalculator();
+            costCalc.Show();
         }
     }
 }

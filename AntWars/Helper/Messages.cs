@@ -24,6 +24,11 @@ namespace AntWars.Helper
         public static readonly string SAVED = "Erfolgreich gespeichert";
         public static readonly string SAVED_CAPTION = "Gespeichert";
         public static readonly string ERROR_MIN_HIGHER_MAX = "Der Minimalwert darf nicht größer als der Maximalwert sein!";
-        public static readonly string ERROR_MIN_HIGHER_MAX_CAPTION = "Fehler: Ungültiger Wert";
+        public static readonly string ERROR_INVALID_VALUE_CAPTION = "Fehler: Ungültiger Wert";
+        public static readonly string ERROR_INVALID_VALUE = "Der Wert {0} in {1} kann darf nicht kleiner als {2} oder größer als {3} sein!";
+        public static readonly string VIEWRANGE = "Sichtweite";
+        public static readonly string MOVERANGE = "Reichweite";
+        public static readonly string INVENTORY = "Inventar";
+        public static readonly string COST = "Kosten";
     }
 }
