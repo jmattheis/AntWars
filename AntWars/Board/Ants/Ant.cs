@@ -176,7 +176,8 @@ namespace AntWars.Board.Ants
         /// </summary>
         public void die()
         {
-            board.DyingAnts.Add(this);
+            if(!board.DyingAnts.Contains(this))
+                board.DyingAnts.Add(this);
         }
 
         /// Gibt die Koordinaten von der zugehörigen Base zurück.

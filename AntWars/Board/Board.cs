@@ -49,7 +49,6 @@ namespace AntWars.Board
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
 
-            DyingAnts = DyingAnts.Distinct().ToList();
             foreach (Ant ant in DyingAnts)
             {
                 if(ant.Inventory > 0)
