@@ -13,16 +13,16 @@ namespace AntWars.Helper
         /// Berechnet die Kosten anhand der übergebenen Ameise.
         /// </summary>
         /// <param name="ant">Die Ameise</param>
-        public static void calculateCost(ref Ant ant)
+        public static int calculateCost(Ant ant)
         {
             // TODO: Kommentierung kann nach MoveRange-Implementierung entfernt werden.
             /*if (ant.isCarry())
             {
-                ant.Cost = calculateCostCarry(ant.ViewRange, ant.MoveRange, ant.MaxInventory);
+                return calculateCostCarry(ant.ViewRange, ant.MoveRange, ant.MaxInventory);
             }
             if (ant.isScout())
             {
-                ant.Cost = calculateCostScout(ant.ViewRange, ant.MoveRange, ant.MaxInventory);
+                return calculateCostScout(ant.ViewRange, ant.MoveRange, ant.MaxInventory);
             }*/
         }
 
