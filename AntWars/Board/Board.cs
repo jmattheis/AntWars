@@ -39,7 +39,6 @@ namespace AntWars.Board
         /// </summary>
         public void nextTick()
         {
-            // TODO Gewinnbedingungen
             foreach (Base playerbase in BoardObjects.getBases())
             {
                 playerbase.Player.AI.nextTick();
@@ -49,8 +48,6 @@ namespace AntWars.Board
                 ant.MovedThisTick = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
-
-            List<Ant> DeadAnts = new List<Ant>();
 
             foreach (Ant ant in DyingAnts)
             {
@@ -62,7 +59,6 @@ namespace AntWars.Board
                     BoardObjects.add(s);
                 }
                 BoardObjects.remove(ant);
-                DeadAnts.Add(ant);
             }
 
             DyingAnts.Clear();

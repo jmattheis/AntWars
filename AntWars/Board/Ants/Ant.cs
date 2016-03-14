@@ -20,12 +20,12 @@ namespace AntWars.Board.Ants
         /// <summary>
         /// Wie weit die Ameise gehen kann. 
         /// </summary>
-        public int MoveRange { get; set; }
+        public int MoveRange { get; internal set; }
 
         /// <summary>
         /// Wie weit die Ameise schon gegangen ist.
         /// </summary>
-        public int UnitsGone { get; set; }
+        public int UnitsGone { get; internal set; }
        
         /// <summary>
         /// Das Maximale Inventory der Ant.
