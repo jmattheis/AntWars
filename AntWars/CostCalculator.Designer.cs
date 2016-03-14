@@ -250,7 +250,6 @@
             this.label_scoutCost.Size = new System.Drawing.Size(13, 13);
             this.label_scoutCost.TabIndex = 27;
             this.label_scoutCost.Text = "0";
-            this.label_scoutCost.Click += new System.EventHandler(this.label_scoutCost_Click);
             // 
             // label_carryCost
             // 
@@ -260,7 +259,6 @@
             this.label_carryCost.Size = new System.Drawing.Size(13, 13);
             this.label_carryCost.TabIndex = 28;
             this.label_carryCost.Text = "0";
-            this.label_carryCost.Click += new System.EventHandler(this.label_carryCost_Click);
             // 
             // CostCalculator
             // 
@@ -283,7 +281,6 @@
             this.Controls.Add(this.Sichtweite);
             this.Name = "CostCalculator";
             this.Text = "CostCalculator";
-            this.Load += new System.EventHandler(this.CostCalculator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numeric_scoutViewRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_carryViewRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_carryMoveRange)).EndInit();

@@ -35,11 +35,6 @@ namespace AntWars
             calcScout();
         }
 
-        private void label_scoutCost_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void numeric_carryViewRange_ValueChanged(object sender, EventArgs e)
         {
             calcCarry();
@@ -53,16 +48,6 @@ namespace AntWars
         private void numeric_carryInventory_ValueChanged(object sender, EventArgs e)
         {
             calcCarry();
-        }
-
-        private void label_carryCost_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CostCalculator_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void calcScout()
