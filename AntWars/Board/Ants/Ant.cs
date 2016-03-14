@@ -15,7 +15,7 @@ namespace AntWars.Board.Ants
         /// <summary>
         /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 
         /// </summary>
-        public bool MovedThisTick { get; set; }
+        public bool MovedThisTick { get; internal set; }
 
         /// <summary>
         /// Wie weit die Ameise gehen kann. 
