@@ -36,7 +36,7 @@ namespace AntWars.Board
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);
             DyingAnts = new List<Ant>();
-            Diagonal = Convert.ToInt32((Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2))));
+            Diagonal = Convert.ToInt32(Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2)));
         }
 
         /// <summary>
