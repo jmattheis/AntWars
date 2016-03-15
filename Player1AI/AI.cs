@@ -17,7 +17,7 @@ namespace PlayerAI
         }
         public override void nextTick()
         {
-            buyCarrier(5,5);
+            buyCarrier(5,5, 500);
         }
     }
 
@@ -32,6 +32,8 @@ namespace PlayerAI
             switch (rand.Next(0, 4))
             {
                 case 1:
+                    Ant.moveDown();
+                    Ant.moveDown();
                     Ant.moveDown();
                     break;
                 case 2:
