@@ -20,9 +20,9 @@ namespace AntWars.Board
         /// </summary>
         public BoardObjects BoardObjects { get; private set; }
         /// <summary>
-        /// Die Diagonale des Spielfeldes
+        /// Die Diagonale des Spielfeldes.
         /// </summary>
-        public int diagonal;
+        public int Diagonal { get; private set; }
         internal Config conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
         /// <summary>
@@ -36,7 +36,7 @@ namespace AntWars.Board
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);
             DyingAnts = new List<Ant>();
-            diagonal = Convert.ToInt32((Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2))));
+            Diagonal = Convert.ToInt32((Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2))));
         }
 
         /// <summary>

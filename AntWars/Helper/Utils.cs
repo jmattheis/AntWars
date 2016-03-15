@@ -79,28 +79,5 @@ namespace AntWars.Helper
             Utils.xmlSerializer.Serialize(file, config);
             file.Close();
         }
-
-        /// <summary>
-        /// Überprüft ob die Attribute der Ameise in dem vorgegebenem Bereich sind.
-        /// </summary>
-        /// <param name="viewRange">Die Sichtweite der Ameise.</param>
-        /// <param name="moveRange">Die Reichweite der Ameise.</param>
-        /// <param name="inventory">Die Inventargröße der Ameise.</param>
-        public static void checkAttributes(int viewRange, int moveRange, int inventory)
-        {
-            // TODO: Get Min and Max from CostCalculator-Form or from global const
-            if (viewRange < 1 || viewRange > 10)
-            {
-                throw new ArgumentException(String.Format(Messages.ERROR_INVALID_VALUE, viewRange, Messages.VIEWRANGE, 1, 10));
-            }
-            if (moveRange < 1 || moveRange > 10)
-            {
-                throw new ArgumentException(String.Format(Messages.ERROR_INVALID_VALUE, moveRange, Messages.MOVERANGE, 1, 10));
-            }
-            if (inventory < 1 || inventory > 10)
-            {
-                throw new ArgumentException(String.Format(Messages.ERROR_INVALID_VALUE, inventory, Messages.INVENTORY, 1, 10));
-            }
-        }
     }
 }

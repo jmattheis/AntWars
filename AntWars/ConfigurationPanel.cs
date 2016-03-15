@@ -18,7 +18,6 @@ namespace AntWars
     partial class ConfigurationPanel : Form
     {
 
-        private Game game;
         private Config config = new Config();
         private List<GamePanel> gamePanels = new List<GamePanel>();
 

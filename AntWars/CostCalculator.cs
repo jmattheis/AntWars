@@ -54,16 +54,16 @@ namespace AntWars
         {
             label_scoutCost.Text = Convert.ToString(Helper.CostCalculator.calculateCostScout(Convert.ToInt32(numeric_scoutViewRange.Value),
                                                                                              Convert.ToInt32(numeric_scoutMoveRange.Value),
-                                                                                             Convert.ToInt32(numeric_scoutInventory.Value)
-                                                                                             ));
+                                                                                             Convert.ToInt32(numeric_scoutInventory.Value),
+                                                                                             ""));
         }
 
         private void calcCarry()
         {
             label_carryCost.Text = Convert.ToString(Helper.CostCalculator.calculateCostCarry(Convert.ToInt32(numeric_carryViewRange.Value),
                                                                                              Convert.ToInt32(numeric_carryMoveRange.Value),
-                                                                                             Convert.ToInt32(numeric_carryInventory.Value)
-                                                                                             ));
+                                                                                             Convert.ToInt32(numeric_carryInventory.Value),
+                                                                                             ""));
         }
     }
 }

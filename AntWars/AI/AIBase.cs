@@ -62,29 +62,31 @@ namespace AntWars.AI
 
         /// <summary>
         /// Kauft einen Scout.
+        /// Zur Berechnung der Bewegungsreichweite einer Ameise wird die Diagonale des Spielfeldes mit dem gewählten moveRangeFactor multipliziert.
+        /// (Eine Umrundung des Spielfeldes benötigt mindestens einen moveRangeFactor von Drei.)
         /// </summary>
-        /// <param name="viewRange">Die Sichtweite der Ameise</param>
-        /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann</param>
-        /// <param name="moveRange">Wie weit die Ameise gehen kann</param>
+        /// <param name="viewRange">Die Sichtweite der Ameise.</param>
+        /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann.</param>
+        /// <param name="moveRangeFactor">Der Faktor für die Bewegungsreichweite der Ameise.</param>
         /// <returns>>true wenn der Scout erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
-        protected bool buyScout(int viewRange, int inventory, int moveRange)
+        protected bool buyScout(int viewRange, int inventory, int moveRangeFactor)
         {
-            Helper.Utils.checkAttributes(viewRange, moveRange, inventory);
-            Scout s = new Scout(Game.Board, Player, viewRange, inventory, moveRange);
+            Scout s = new Scout(Game.Board, Player, viewRange, inventory, moveRangeFactor);
             return buyAnt(s);
         }
 
         /// <summary>
-        /// Kauft einen Carry
+        /// Kauft einen Carry.
+        /// /// Zur Berechnung der Bewegungsreichweite einer Ameise wird die Diagonale des Spielfeldes mit dem gewählten moveRangeFactor multipliziert.
+        /// (Eine Umrundung des Spielfeldes benötigt mindestens einen moveRangeFactor von Drei.)
         /// </summary>
-        /// <param name="viewRange">Die Sichtweite der Ameise</param>
-        /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann</param>
-        /// <param name="moveRange">Wie weit die Ameise gehen kann</param>
+        /// <param name="viewRange">Die Sichtweite der Ameise.</param>
+        /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann.</param>
+        /// <param name="moveRangeFactor">Wie weit die Ameise gehen kann.</param>
         /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
-        protected bool buyCarrier(int viewRange, int inventory, int moveRange)
+        protected bool buyCarrier(int viewRange, int inventory, int moveRangeFactor)
         {
-            Helper.Utils.checkAttributes(viewRange, moveRange, inventory);
-            Carry c = new Carry(Game.Board, Player, viewRange, inventory, moveRange);
+            Carry c = new Carry(Game.Board, Player, viewRange, inventory, moveRangeFactor);
             return buyAnt(c);
         }
 
