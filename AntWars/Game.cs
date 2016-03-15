@@ -22,7 +22,7 @@ namespace AntWars
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
         public Config Conf { get; set; }
-        private int currentTick = 0;
+        
 
         public Game(Config config)
         {
@@ -54,7 +54,7 @@ namespace AntWars
         /// </summary>
         public void nextTick()
         {
-            currentTick++;
+            
             Board.nextTick();
         }
 
@@ -64,7 +64,7 @@ namespace AntWars
         /// <returns></returns>
         public int getCurrentTick()
         {
-            return currentTick;
+            return Board.CurrentTick;
         }
     }
 }

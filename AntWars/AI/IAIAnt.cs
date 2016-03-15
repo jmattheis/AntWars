@@ -18,5 +18,7 @@ namespace AntWars.AI
         /// </summary>
         /// <param name="view">Alle BoardObject's die die Ameise sieht</param>
         void antTick(BoardObject[] view);
+
+        void notify(Coordinates coords);
     }
 }

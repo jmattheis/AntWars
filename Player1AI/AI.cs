@@ -17,7 +17,8 @@ namespace PlayerAI
         }
         public override void nextTick()
         {
-            buyCarrier(5,5, 500);
+            buyCarrier(5,5, 556);
+            buyScout(5, 5, 555);
         }
     }
 
@@ -26,6 +27,13 @@ namespace PlayerAI
         private Random rand = new Random();
         public override void antTick(BoardObject[] view)
         {
+            Scout scout = Ant as Scout;
+            if(scout != null)
+            {
+                // its a Scout
+                scout.notifyOtherAnts(new Coordinates(2, 4));
+            }
+
             // Zucker aufheben Test
             Ant.pickUpSugar();
             // RANDOM FTW
@@ -47,6 +55,11 @@ namespace PlayerAI
                     break;
 
             }
+        }
+
+        public override void notify(Coordinates coords)
+        {
+            // nothing todo hier.
         }
     }
 }
