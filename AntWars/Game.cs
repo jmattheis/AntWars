@@ -27,7 +27,6 @@ namespace AntWars
         public Game(Config config)
         {
             int startMoney = config.StartMoney;
-                    
             Player1 = new Player(new AILoader(config.Player1AIPath), startMoney);
             Player2 = new Player(new AILoader(config.Player2AIPath), startMoney);
             initAI(Player1);

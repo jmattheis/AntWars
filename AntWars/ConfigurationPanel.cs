@@ -275,8 +275,7 @@ namespace AntWars
             }
             return false;
         }
-
-
+        
         private void btn_player2loadAI_Click(object sender, EventArgs e)
         {
             String res = openDialog();
