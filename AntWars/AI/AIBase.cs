@@ -77,7 +77,7 @@ namespace AntWars.AI
 
         /// <summary>
         /// Kauft einen Carry.
-        /// /// Zur Berechnung der Bewegungsreichweite einer Ameise wird die Diagonale des Spielfeldes mit dem gewählten moveRangeFactor multipliziert.
+        /// Zur Berechnung der Bewegungsreichweite einer Ameise wird die Diagonale des Spielfeldes mit dem gewählten moveRangeFactor multipliziert.
         /// (Eine Umrundung des Spielfeldes benötigt mindestens einen moveRangeFactor von Drei.)
         /// </summary>
         /// <param name="viewRange">Die Sichtweite der Ameise.</param>
