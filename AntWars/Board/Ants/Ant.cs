@@ -12,7 +12,21 @@ namespace AntWars.Board.Ants
     /// </summary>
     public abstract class Ant : BoardObject
     {
+        /// <summary>
+        /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 
+        /// </summary>
+        public bool MovedThisTick { get; internal set; }
 
+        /// <summary>
+        /// Wie weit die Ameise gehen kann. 
+        /// </summary>
+        public int MoveRange { get; internal set; }
+
+        /// <summary>
+        /// Wie weit die Ameise schon gegangen ist.
+        /// </summary>
+        public int UnitsGone { get; internal set; }
+       
         /// <summary>
         /// Das Maximale Inventory der Ant.
         /// </summary>
@@ -32,13 +46,16 @@ namespace AntWars.Board.Ants
         internal IAIAnt AI { get; set; }
         internal Board board;
 
-        internal Ant(Board board, Player owner, int viewRange, int maxInventory)
+        internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRange)
         {
             ViewRange = viewRange;
             MaxInventory = maxInventory;
             this.board = board;
+            this.UnitsGone = 0;
             Owner = owner;
             Inventory = 0;
+            MoveRange = moveRange;
+            MovedThisTick = false;
         }
 
         /// <summary>
@@ -48,7 +65,7 @@ namespace AntWars.Board.Ants
         public bool moveLeft()
         {
             Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
-            return board.BoardObjects.move(this, newCoords);
+            return move(newCoords);
         }
 
         /// <summary>
@@ -58,7 +75,7 @@ namespace AntWars.Board.Ants
         public bool moveRight()
         {
             Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
-            return board.BoardObjects.move(this, newCoords);
+            return move(newCoords);
         }
 
         /// <summary>
@@ -68,7 +85,7 @@ namespace AntWars.Board.Ants
         public bool moveUp()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y - 1);
-            return board.BoardObjects.move(this, newCoords);
+            return move(newCoords);
         }
 
         /// <summary>
@@ -78,7 +95,33 @@ namespace AntWars.Board.Ants
         public bool moveDown()
         {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y + 1);
-            return board.BoardObjects.move(this, newCoords);
+            return move(newCoords);
+        }
+
+        private bool move(Coordinates to)
+        {
+            if (!canMove())
+            {
+                die();
+            }
+            else if (!MovedThisTick && board.BoardObjects.move(this, to))
+            {
+                MovedThisTick = true;
+                UnitsGone++;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Prüfen, ob die Ameise sich noch bewegen kann.
+        /// </summary>
+        /// <returns>True wenn ja, False wenn nicht</returns>
+        public bool canMove()
+        {
+            if (UnitsGone >= MoveRange)
+                return false;
+            return true;
         }
 
         /// <summary>
@@ -129,6 +172,14 @@ namespace AntWars.Board.Ants
         }
 
         /// <summary>
+        /// Die Ameise am Ende des Zuges sterben lassen.
+        /// </summary>
+        public void die()
+        {
+            if(!board.DyingAnts.Contains(this))
+                board.DyingAnts.Add(this);
+        }
+
         /// Gibt die Koordinaten von der zugehörigen Base zurück.
         /// </summary>
         /// <returns>Die Koordinaten von der Base</returns>

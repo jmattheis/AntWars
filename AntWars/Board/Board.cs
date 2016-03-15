@@ -25,11 +25,13 @@ namespace AntWars.Board
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
         public int SugarAmount { get; private set; }
+        public List<Ant> DyingAnts { get; private set; }
 
         public Board(Config conf)
         {
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);
+            DyingAnts = new List<Ant>();
         }
 
         /// <summary>
@@ -43,9 +45,23 @@ namespace AntWars.Board
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
+                ant.MovedThisTick = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
 
+            foreach (Ant ant in DyingAnts)
+            {
+                if(ant.Inventory > 0)
+                {
+                    Sugar s = new Sugar();
+                    s.Coords = new Coordinates(ant.Coords.X, ant.Coords.Y);
+                    s.Amount = ant.Inventory;
+                    BoardObjects.add(s);
+                }
+                BoardObjects.remove(ant);
+            }
+
+            DyingAnts.Clear();
         }
 
         /// <summary>
