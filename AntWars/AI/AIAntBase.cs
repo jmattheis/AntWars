@@ -31,5 +31,7 @@ namespace AntWars.AI
         public int BoardHeight { get { return Conf.BoardHeight; } }
 
         public abstract void antTick(BoardObject[] view);
+
+        public abstract void notify(Coordinates coords);
     }
 }

@@ -30,9 +30,12 @@ namespace AntWars.Board
         /// </summary>
         public int SugarAmount { get; private set; }
         public List<Ant> DyingAnts { get; private set; }
+        public int CurrentTick { get; internal set; }
+
 
         public Board(Config conf)
         {
+            this.CurrentTick = 0;
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);
             DyingAnts = new List<Ant>();
@@ -44,6 +47,7 @@ namespace AntWars.Board
         /// </summary>
         public void nextTick()
         {
+            CurrentTick++;
             foreach (Base playerbase in BoardObjects.getBases())
             {
                 playerbase.Player.AI.nextTick();
@@ -81,14 +85,43 @@ namespace AntWars.Board
             generateSugar(conf.SugarMin, conf.SugarMax);
         }
 
+        /// <summary>
+        /// Benachrichtigt andere Ameisen.
+        /// </summary>
+        /// <param name="coords">Die Koordinaten welche den anderen Ameisen mitgeteilt werden soll</param>
+        /// <param name="ant">Die Ameise welche mitteilt</param>
+        public void notifyAnts(Coordinates coords, Ant ant)
+        {
+            BoardObject[] objs = getBoardObjectsInView(ant.Coords, ant.ViewRange * 2);
+            for (int i = 0; i < objs.Length; i++)
+            {
+                BoardObject obj = objs[i];
+                if(obj == ant)
+                {
+                    continue;
+                }
+
+                if (obj.isAnt())
+                {
+                    Ant antToNotify = obj as Ant;
+                    antToNotify.AI.notify(coords);
+                }
+            }
+        }
+
         private BoardObject[] getBoardObjectsInView(Ant ant)
         {
+            return getBoardObjectsInView(ant.Coords, ant.ViewRange);
+        }
+
+        private BoardObject[] getBoardObjectsInView(Coordinates antCoords, int viewRange)
+        {
             BoardObject[] result = new BoardObject[0];
-            Coordinates[] coords = getCoordsInView(ant.ViewRange).circle;
+            Coordinates[] coords = getCoordsInView(viewRange).circle;
             for (int i = 0; i < coords.Length; i++)
             {
                 Coordinates c = coords[i];
-                Coordinates toAdd = new Coordinates(c.X + ant.Coords.X, c.Y + ant.Coords.Y);
+                Coordinates toAdd = new Coordinates(c.X + antCoords.X, c.Y + antCoords.Y);
                 if (BoardObjects.isValidCoords(toAdd))
                 {
                     BoardObject[] boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(toAdd);
