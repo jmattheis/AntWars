@@ -63,6 +63,7 @@
             this.btn_gameConfigLoad = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.buttonView = new System.Windows.Forms.Button();
+            this.buttonCostCalculator = new System.Windows.Forms.Button();
             this.ppanel.SuspendLayout();
             this.pnl_GameConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_gameConfigMaxTicks)).BeginInit();
@@ -79,17 +80,13 @@
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(594, 12);
+            this.Start.Location = new System.Drawing.Point(183, 12);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(75, 23);
             this.Start.TabIndex = 41;
             this.Start.Text = "Start";
             this.Start.UseVisualStyleBackColor = true;
             this.Start.Click += new System.EventHandler(this.Start_Click);
-            // 
-            // GameTick
-            // 
-            this.GameTick.Tick += new System.EventHandler(this.GameTick_Tick);
             // 
             // btn_player1loadAI
             // 
@@ -116,7 +113,7 @@
             this.ppanel.Controls.Add(this.pnl_GameConfig);
             this.ppanel.Controls.Add(this.btn_gameConfigSave);
             this.ppanel.Controls.Add(this.btn_gameConfigLoad);
-            this.ppanel.Location = new System.Drawing.Point(233, 42);
+            this.ppanel.Location = new System.Drawing.Point(25, 41);
             this.ppanel.Name = "ppanel";
             this.ppanel.Size = new System.Drawing.Size(215, 408);
             this.ppanel.TabIndex = 43;
@@ -487,7 +484,8 @@
             // 
             // buttonView
             // 
-            this.buttonView.Location = new System.Drawing.Point(513, 13);
+            this.buttonView.Enabled = false;
+            this.buttonView.Location = new System.Drawing.Point(102, 12);
             this.buttonView.Name = "buttonView";
             this.buttonView.Size = new System.Drawing.Size(75, 23);
             this.buttonView.TabIndex = 40;
@@ -495,18 +493,28 @@
             this.buttonView.UseVisualStyleBackColor = true;
             this.buttonView.Click += new System.EventHandler(this.buttonView_Click);
             // 
+            // buttonCostCalculator
+            // 
+            this.buttonCostCalculator.Location = new System.Drawing.Point(12, 12);
+            this.buttonCostCalculator.Name = "buttonCostCalculator";
+            this.buttonCostCalculator.Size = new System.Drawing.Size(84, 23);
+            this.buttonCostCalculator.TabIndex = 44;
+            this.buttonCostCalculator.Text = "Kostenrechner";
+            this.buttonCostCalculator.UseVisualStyleBackColor = true;
+            this.buttonCostCalculator.Click += new System.EventHandler(this.buttonCostCalculator_Click);
+            // 
             // ConfigurationPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 457);
+            this.ClientSize = new System.Drawing.Size(271, 457);
+            this.Controls.Add(this.buttonCostCalculator);
             this.Controls.Add(this.buttonView);
             this.Controls.Add(this.ppanel);
             this.Controls.Add(this.Start);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigurationPanel";
             this.Text = "Spielkonfiguration";
-            this.Load += new System.EventHandler(this.ConfigurationPanel_Load);
             this.ppanel.ResumeLayout(false);
             this.pnl_GameConfig.ResumeLayout(false);
             this.pnl_GameConfig.PerformLayout();
@@ -559,5 +567,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label MaxTicks;
         private System.Windows.Forms.NumericUpDown numeric_gameConfigMaxTicks;
+        private System.Windows.Forms.Button buttonCostCalculator;
     }
 }

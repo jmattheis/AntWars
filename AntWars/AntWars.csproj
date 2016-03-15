@@ -79,6 +79,12 @@
       <DependentUpon>ConfigurationPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
+    <Compile Include="CostCalculator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CostCalculator.Designer.cs">
+      <DependentUpon>CostCalculator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Exception\InvalidConfigurationException.cs" />
     <Compile Include="Exception\InvalidDLLFile.cs" />
     <Compile Include="Exception\RuntimeException.cs" />
@@ -90,16 +96,20 @@
       <DependentUpon>GamePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\CoordsInView.cs" />
+    <Compile Include="Helper\CostCalculator.cs" />
+    <Compile Include="Helper\Messages.cs" />
     <Compile Include="Helper\Timer.cs" />
     <Compile Include="Helper\Utils.cs" />
     <Compile Include="AI\AIBase.cs" />
-    <Compile Include="Helper\Messages.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Board\Sugar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConfigurationPanel.resx">
       <DependentUpon>ConfigurationPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CostCalculator.resx">
+      <DependentUpon>CostCalculator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GamePanel.resx">
       <DependentUpon>GamePanel.cs</DependentUpon>
