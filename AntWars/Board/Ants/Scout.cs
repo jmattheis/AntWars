@@ -16,9 +16,9 @@ namespace AntWars.Board.Ants
         { }
 
         /// <summary>
-        /// Notify other ants in the viewrange * 2
+        /// Benachrichtigt andere Ameise in der Sichtweite * 2.
         /// </summary>
-        /// <param name="coords">Die Koordinaten welche den anderen Ameisem mitgeteielt werden soll</param>
+        /// <param name="coords">Die Koordinaten welche den anderen Ameisem mitgeteilt werden soll</param>
         /// <returns>true wenn erfolgreich false wenn noch cooldown ist</returns>
         public bool notifyOtherAnts(Coordinates coords)
         {

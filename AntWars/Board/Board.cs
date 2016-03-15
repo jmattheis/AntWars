@@ -103,7 +103,6 @@ namespace AntWars.Board
 
                 if (obj.isAnt())
                 {
-
                     Ant antToNotify = obj as Ant;
                     antToNotify.AI.notify(coords);
                 }
