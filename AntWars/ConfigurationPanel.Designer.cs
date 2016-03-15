@@ -88,10 +88,6 @@
             this.Start.UseVisualStyleBackColor = true;
             this.Start.Click += new System.EventHandler(this.Start_Click);
             // 
-            // GameTick
-            // 
-            this.GameTick.Tick += new System.EventHandler(this.GameTick_Tick);
-            // 
             // btn_player1loadAI
             // 
             this.btn_player1loadAI.Location = new System.Drawing.Point(122, 272);
@@ -488,6 +484,7 @@
             // 
             // buttonView
             // 
+            this.buttonView.Enabled = false;
             this.buttonView.Location = new System.Drawing.Point(102, 12);
             this.buttonView.Name = "buttonView";
             this.buttonView.Size = new System.Drawing.Size(75, 23);
@@ -518,7 +515,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigurationPanel";
             this.Text = "Spielkonfiguration";
-            this.Load += new System.EventHandler(this.ConfigurationPanel_Load);
             this.ppanel.ResumeLayout(false);
             this.pnl_GameConfig.ResumeLayout(false);
             this.pnl_GameConfig.PerformLayout();

@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GamePanel));
-            this.timer_GameTick = new System.Windows.Forms.Timer(this.components);
             this.pb_Game = new System.Windows.Forms.PictureBox();
             this.groupstats = new System.Windows.Forms.GroupBox();
             this.groupplayer2 = new System.Windows.Forms.GroupBox();
@@ -66,10 +64,6 @@
             this.groupplayer1.SuspendLayout();
             this.groupgamestats.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // timer_GameTick
-            // 
-            this.timer_GameTick.Tick += new System.EventHandler(this.timer_GameTick_Tick);
             // 
             // pb_Game
             // 
@@ -394,7 +388,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timer_GameTick;
         private System.Windows.Forms.PictureBox pb_Game;
         private System.Windows.Forms.GroupBox groupstats;
         private System.Windows.Forms.GroupBox groupgamestats;

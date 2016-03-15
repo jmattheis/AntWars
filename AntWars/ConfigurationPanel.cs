@@ -49,17 +49,13 @@ namespace AntWars
             }
         }
 
-        private void GameTick_Tick(object sender, EventArgs e)
-        {
-            //game.nextTick();
-        }
-
         private void configLoadedOrNewCreatedGame()
         {
             btn_gameConfigLoad.Enabled = false;
             btn_gameConfigNew.Enabled = false;
             btn_gameConfigSave.Enabled = true;
             pnl_GameConfig.Enabled = true;
+            buttonView.Enabled = true;
         }
 
         private void loadGame(Config conf)
@@ -74,12 +70,6 @@ namespace AntWars
             numeric_gameConfigTicks.Value = conf.Ticks;
             numeric_gameConfigMaxTicks.Value = conf.MaxTicks;
             numeric_gameConfigPoints.Value = conf.Points;
-        }
-
-
-        private void ConfigurationPanel_Load(object sender, EventArgs e)
-        {
-
         }
 
         private String openDialog()
@@ -102,7 +92,6 @@ namespace AntWars
             }
             return null;
         }
-
 
         private void numeric_gameConfigSugarMin_ValueChanged(object sender, EventArgs e)
         {
@@ -175,6 +164,7 @@ namespace AntWars
             MessageBox.Show(Messages.SAVED, Messages.SAVED_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
             config.saveConfig();
         }
+
         private bool checkGameConfig()
         {
             if (!checkMinMax(config.SugarMin, config.SugarMax)) return false;
@@ -207,6 +197,7 @@ namespace AntWars
                     return;
                 }
                 configLoadedOrNewCreatedGame();
+                checkPlayerKI();
                 loadGame(config);
             }
             btn_gameConfigSave.Focus();
@@ -302,31 +293,22 @@ namespace AntWars
 
         private void checkPlayerKI()
         {
-            // TODO1: Player.AIPath muss nach übernahme der Properties von Player1/2 zur AI aus Gameconfig bezogen werden
-            // TODO2: wenn TODO1 erfüllt try catch entfernen
-            try
+            if (!String.IsNullOrEmpty(config.Player1AIPath))
             {
-                if (!String.IsNullOrEmpty(config.Player1AIPath))
-                {
-                    btn_player1loadAI.BackColor = Color.LightGreen;
-                }
-                else
-                {
-                    btn_player1loadAI.BackColor = Color.Red;
-                }
-
-                if (!String.IsNullOrEmpty(config.Player2AIPath))
-                {
-                    btn_player2loadAI.BackColor = Color.LightGreen;
-                }
-                else
-                {
-                    btn_player2loadAI.BackColor = Color.Red;
-                }
+                btn_player1loadAI.BackColor = Color.LightGreen;
             }
-            catch (System.NullReferenceException)
+            else
             {
-                return;
+                btn_player1loadAI.BackColor = Color.Red;
+            }
+
+            if (!String.IsNullOrEmpty(config.Player2AIPath))
+            {
+                btn_player2loadAI.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                btn_player2loadAI.BackColor = Color.Red;
             }
         }
 
