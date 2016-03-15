@@ -54,7 +54,7 @@ namespace AntWars.Board.Ants
             this.UnitsGone = 0;
             Owner = owner;
             Inventory = 0;
-            MoveRange = moveRange;
+            MoveRange = moveRange * board.diagonal;
             MovedThisTick = false;
         }
 

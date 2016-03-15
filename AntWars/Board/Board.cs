@@ -19,7 +19,11 @@ namespace AntWars.Board
         /// Die BoardObjects welche momentan vorhanden sind.
         /// </summary>
         public BoardObjects BoardObjects { get; private set; }
-        private Config conf;
+        /// <summary>
+        /// Die Diagonale des Spielfeldes
+        /// </summary>
+        public int diagonal;
+        internal Config conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
         /// <summary>
         /// Die Anzahl von Zucker die generiert wurde.
@@ -32,6 +36,7 @@ namespace AntWars.Board
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);
             DyingAnts = new List<Ant>();
+            diagonal = Convert.ToInt32((Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2))));
         }
 
         /// <summary>
