@@ -18,9 +18,9 @@ namespace AntWars.Board.Ants
         public bool MovedThisTick { get; internal set; }
 
         /// <summary>
-        /// Wie weit die Ameise gehen kann. 
+        /// Der Faktor für die Berechnung der Bewegungsreichweite.
         /// </summary>
-        public int MoveRange { get; internal set; }
+        public int MoveRangeFactor { get; internal set; }
 
         /// <summary>
         /// Wie weit die Ameise schon gegangen ist.
@@ -28,12 +28,12 @@ namespace AntWars.Board.Ants
         public int UnitsGone { get; internal set; }
        
         /// <summary>
-        /// Das Maximale Inventory der Ant.
+        /// Das Maximale Inventar der Ant.
         /// </summary>
         public int MaxInventory { get; protected set; }
 
         /// <summary>
-        /// Das Inventory von der Ameise, welches aussagt wieviel Zucker die Ameise momentan Trägt
+        /// Das Inventar von der Ameise, welches aussagt wieviel Zucker die Ameise momentan trägt.
         /// </summary>
         public int Inventory { get; protected set; }
 
@@ -42,11 +42,16 @@ namespace AntWars.Board.Ants
         /// </summary>
         public int ViewRange { get; protected set; }
 
+        /// <summary>
+        /// Wie weit die Ameise gehen kann. 
+        /// </summary>
+        public int MoveRange { get; protected set; }
+
         internal Player Owner { get; private set; }
         internal IAIAnt AI { get; set; }
         internal Board board;
 
-        internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRange)
+        internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRangeFactor)
         {
             ViewRange = viewRange;
             MaxInventory = maxInventory;
@@ -54,7 +59,8 @@ namespace AntWars.Board.Ants
             this.UnitsGone = 0;
             Owner = owner;
             Inventory = 0;
-            MoveRange = moveRange;
+            MoveRangeFactor = moveRangeFactor;
+            MoveRange = MoveRangeFactor * board.Diagonal;
             MovedThisTick = false;
         }
 
