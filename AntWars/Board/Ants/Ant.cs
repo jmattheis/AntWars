@@ -15,7 +15,7 @@ namespace AntWars.Board.Ants
         /// <summary>
         /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 
         /// </summary>
-        public bool MovedThisTick { get; internal set; }
+        public bool TookAction { get; internal set; }
 
         /// <summary>
         /// Der Faktor für die Berechnung der Bewegungsreichweite.
@@ -61,7 +61,7 @@ namespace AntWars.Board.Ants
             Inventory = 0;
             MoveRangeFactor = moveRangeFactor;
             MoveRange = MoveRangeFactor * board.Diagonal;
-            MovedThisTick = false;
+            TookAction = false;
         }
 
         /// <summary>
@@ -149,9 +149,9 @@ namespace AntWars.Board.Ants
             {
                 die();
             }
-            else if (!MovedThisTick && board.BoardObjects.move(this, to))
+            else if (!TookAction && board.BoardObjects.move(this, to))
             {
-                MovedThisTick = true;
+                TookAction = true;
                 UnitsGone++;
                 return true;
             }
@@ -204,28 +204,59 @@ namespace AntWars.Board.Ants
         /// <returns>True bei Erfolg, false wenn die Ameise nicht auf der Base steht.</returns>
         public bool dropSugarOnBase()
         {
-            if (isInBase())
+            if (!TookAction)
             {
-                Owner.Money += Inventory;
-                Owner.Points += Inventory;
-                Inventory = 0;
-                return true;
+                if (isInBase())
+                {
+                    Owner.Money += Inventory;
+                    Owner.Points += Inventory;
+                    Inventory = 0;
+                    return true;    
+                }
             }
             return false;
         }
 
         /// <summary>
         /// Verringert die UnitsGone einer Ameise um einen bestimmten Prozentsatz.
-        /// Diese Aktion wird als Bewegung gewertet.
         /// </summary>
-        public void restore()
+        /// <returns>True bei Regenerierung, false wenn Ameise nicht in der Base steht oder bereits eine Aktion ausgeführt hat.</returns>
+        public bool restore()
         {
-            if (isInBase())
+            if (!TookAction)
             {
-                // 0.2 kann später durch den bestimmten oder aufgewerteten Prozentsatz der Base ersetzt werden.
-                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.2)));
-                MovedThisTick = true;
+                if (isInBase())
+                {
+                    // 0.2 kann später durch den bestimmten oder aufgewerteten Prozentsatz der Base ersetzt werden.
+                    UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.2)));
+                    // TODO: Nach Implementierung von Health, hier Health regenerieren.
+                    TookAction = true;
+                    return true;
+                }
             }
+            return false;
+        }
+
+        /// <summary>
+        /// Ameise isst ein Stück Zucker aus ihrem Inventar.
+        /// Verringert die UnitsGone der Ameise um einen bestimmten Prozentsatz.
+        /// Verringert die MoveRange der Ameise um einen bestimmten Prozentsatz.
+        /// </summary>
+        /// <returns>true bei Regenerierung, fals wenn Ameise keinen Zucker bei sich trägt oder bereits eine Aktion ausgeführt hat.</returns>
+        public bool eatSugar()
+        {
+            if (!TookAction)
+            {
+                if (Inventory > 0)
+                {
+                    Inventory--;
+                    UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.1)));
+                    MoveRange = Convert.ToInt32(Math.Ceiling(MoveRange * (1 - 0.05)));
+                    TookAction = true;
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
