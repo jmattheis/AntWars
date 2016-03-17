@@ -30,39 +30,39 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GamePanel));
             this.pb_Game = new System.Windows.Forms.PictureBox();
-            this.groupstats = new System.Windows.Forms.GroupBox();
-            this.groupplayer2 = new System.Windows.Forms.GroupBox();
-            this.labelplayer2antsshow = new System.Windows.Forms.Label();
-            this.labelplayer2ants = new System.Windows.Forms.Label();
-            this.labelplayer2scoutsshow = new System.Windows.Forms.Label();
-            this.labelplayer2scouts = new System.Windows.Forms.Label();
-            this.labelplayer2carriesshow = new System.Windows.Forms.Label();
-            this.labelplayer2carries = new System.Windows.Forms.Label();
-            this.labelplayer2moneyshow = new System.Windows.Forms.Label();
-            this.labelplayer2money = new System.Windows.Forms.Label();
-            this.labelplayer2pointsshow = new System.Windows.Forms.Label();
-            this.labelplayer2points = new System.Windows.Forms.Label();
-            this.groupplayer1 = new System.Windows.Forms.GroupBox();
-            this.labelplayer1antsshow = new System.Windows.Forms.Label();
-            this.labelplayer1ants = new System.Windows.Forms.Label();
-            this.labelplayer1scoutsshow = new System.Windows.Forms.Label();
-            this.labelplayer1scouts = new System.Windows.Forms.Label();
-            this.labelplayer1carriesshow = new System.Windows.Forms.Label();
-            this.labelplayer1carries = new System.Windows.Forms.Label();
-            this.labelplayer1moneyshow = new System.Windows.Forms.Label();
-            this.labelplayer1money = new System.Windows.Forms.Label();
-            this.labelplayer1pointsshow = new System.Windows.Forms.Label();
-            this.labelplayer1points = new System.Windows.Forms.Label();
-            this.groupgamestats = new System.Windows.Forms.GroupBox();
-            this.labelsugarshow = new System.Windows.Forms.Label();
-            this.labelsugar = new System.Windows.Forms.Label();
-            this.labelticksshow = new System.Windows.Forms.Label();
-            this.labelticks = new System.Windows.Forms.Label();
+            this.grp_stats = new System.Windows.Forms.GroupBox();
+            this.grp_player2 = new System.Windows.Forms.GroupBox();
+            this.lbl_player2AntsValue = new System.Windows.Forms.Label();
+            this.lbl_player2Ants = new System.Windows.Forms.Label();
+            this.lbl_player2ScoutsValue = new System.Windows.Forms.Label();
+            this.lbl_player2Scouts = new System.Windows.Forms.Label();
+            this.lbl_player2CarriesValue = new System.Windows.Forms.Label();
+            this.lbl_player2Carries = new System.Windows.Forms.Label();
+            this.lbl_player2MoneyValue = new System.Windows.Forms.Label();
+            this.lbl_player2Money = new System.Windows.Forms.Label();
+            this.lbl_player2PointsValue = new System.Windows.Forms.Label();
+            this.lbl_player2Points = new System.Windows.Forms.Label();
+            this.grp_player1 = new System.Windows.Forms.GroupBox();
+            this.lbl_player1AntsValue = new System.Windows.Forms.Label();
+            this.lbl_player1Ants = new System.Windows.Forms.Label();
+            this.lbl_player1ScoutsValue = new System.Windows.Forms.Label();
+            this.lbl_player1Scouts = new System.Windows.Forms.Label();
+            this.lbl_player1CarriesValue = new System.Windows.Forms.Label();
+            this.lbl_player1Carries = new System.Windows.Forms.Label();
+            this.lbl_player1MoneyValue = new System.Windows.Forms.Label();
+            this.lbl_player1Money = new System.Windows.Forms.Label();
+            this.lbl_player1PointsValue = new System.Windows.Forms.Label();
+            this.lbl_player1Points = new System.Windows.Forms.Label();
+            this.grp_gamestats = new System.Windows.Forms.GroupBox();
+            this.lbl_sugarValue = new System.Windows.Forms.Label();
+            this.lbl_sugar = new System.Windows.Forms.Label();
+            this.lbl_ticksValue = new System.Windows.Forms.Label();
+            this.lbl_ticks = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).BeginInit();
-            this.groupstats.SuspendLayout();
-            this.groupplayer2.SuspendLayout();
-            this.groupplayer1.SuspendLayout();
-            this.groupgamestats.SuspendLayout();
+            this.grp_stats.SuspendLayout();
+            this.grp_player2.SuspendLayout();
+            this.grp_player1.SuspendLayout();
+            this.grp_gamestats.SuspendLayout();
             this.SuspendLayout();
             // 
             // pb_Game
@@ -77,297 +77,297 @@
             this.pb_Game.TabIndex = 0;
             this.pb_Game.TabStop = false;
             // 
-            // groupstats
+            // grp_stats
             // 
-            this.groupstats.Controls.Add(this.groupplayer2);
-            this.groupstats.Controls.Add(this.groupplayer1);
-            this.groupstats.Controls.Add(this.groupgamestats);
-            this.groupstats.Location = new System.Drawing.Point(290, 12);
-            this.groupstats.Name = "groupstats";
-            this.groupstats.Size = new System.Drawing.Size(142, 340);
-            this.groupstats.TabIndex = 1;
-            this.groupstats.TabStop = false;
-            this.groupstats.Text = "Statistics";
+            this.grp_stats.Controls.Add(this.grp_player2);
+            this.grp_stats.Controls.Add(this.grp_player1);
+            this.grp_stats.Controls.Add(this.grp_gamestats);
+            this.grp_stats.Location = new System.Drawing.Point(290, 12);
+            this.grp_stats.Name = "grp_stats";
+            this.grp_stats.Size = new System.Drawing.Size(142, 340);
+            this.grp_stats.TabIndex = 1;
+            this.grp_stats.TabStop = false;
+            this.grp_stats.Text = "Statistics";
             // 
-            // groupplayer2
+            // grp_player2
             // 
-            this.groupplayer2.Controls.Add(this.labelplayer2antsshow);
-            this.groupplayer2.Controls.Add(this.labelplayer2ants);
-            this.groupplayer2.Controls.Add(this.labelplayer2scoutsshow);
-            this.groupplayer2.Controls.Add(this.labelplayer2scouts);
-            this.groupplayer2.Controls.Add(this.labelplayer2carriesshow);
-            this.groupplayer2.Controls.Add(this.labelplayer2carries);
-            this.groupplayer2.Controls.Add(this.labelplayer2moneyshow);
-            this.groupplayer2.Controls.Add(this.labelplayer2money);
-            this.groupplayer2.Controls.Add(this.labelplayer2pointsshow);
-            this.groupplayer2.Controls.Add(this.labelplayer2points);
-            this.groupplayer2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupplayer2.Location = new System.Drawing.Point(7, 166);
-            this.groupplayer2.Name = "groupplayer2";
-            this.groupplayer2.Size = new System.Drawing.Size(135, 88);
-            this.groupplayer2.TabIndex = 4;
-            this.groupplayer2.TabStop = false;
-            this.groupplayer2.Text = "Player 2";
+            this.grp_player2.Controls.Add(this.lbl_player2AntsValue);
+            this.grp_player2.Controls.Add(this.lbl_player2Ants);
+            this.grp_player2.Controls.Add(this.lbl_player2ScoutsValue);
+            this.grp_player2.Controls.Add(this.lbl_player2Scouts);
+            this.grp_player2.Controls.Add(this.lbl_player2CarriesValue);
+            this.grp_player2.Controls.Add(this.lbl_player2Carries);
+            this.grp_player2.Controls.Add(this.lbl_player2MoneyValue);
+            this.grp_player2.Controls.Add(this.lbl_player2Money);
+            this.grp_player2.Controls.Add(this.lbl_player2PointsValue);
+            this.grp_player2.Controls.Add(this.lbl_player2Points);
+            this.grp_player2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.grp_player2.Location = new System.Drawing.Point(7, 166);
+            this.grp_player2.Name = "grp_player2";
+            this.grp_player2.Size = new System.Drawing.Size(135, 88);
+            this.grp_player2.TabIndex = 4;
+            this.grp_player2.TabStop = false;
+            this.grp_player2.Text = "Player 2";
             // 
-            // labelplayer2antsshow
+            // lbl_player2AntsValue
             // 
-            this.labelplayer2antsshow.AutoSize = true;
-            this.labelplayer2antsshow.Location = new System.Drawing.Point(92, 68);
-            this.labelplayer2antsshow.Name = "labelplayer2antsshow";
-            this.labelplayer2antsshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer2antsshow.TabIndex = 9;
-            this.labelplayer2antsshow.Text = "99999";
+            this.lbl_player2AntsValue.AutoSize = true;
+            this.lbl_player2AntsValue.Location = new System.Drawing.Point(92, 68);
+            this.lbl_player2AntsValue.Name = "lbl_player2AntsValue";
+            this.lbl_player2AntsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player2AntsValue.TabIndex = 9;
+            this.lbl_player2AntsValue.Text = "99999";
             // 
-            // labelplayer2ants
+            // lbl_player2Ants
             // 
-            this.labelplayer2ants.AutoSize = true;
-            this.labelplayer2ants.Location = new System.Drawing.Point(7, 68);
-            this.labelplayer2ants.Name = "labelplayer2ants";
-            this.labelplayer2ants.Size = new System.Drawing.Size(28, 13);
-            this.labelplayer2ants.TabIndex = 8;
-            this.labelplayer2ants.Text = "Ants";
+            this.lbl_player2Ants.AutoSize = true;
+            this.lbl_player2Ants.Location = new System.Drawing.Point(7, 68);
+            this.lbl_player2Ants.Name = "lbl_player2Ants";
+            this.lbl_player2Ants.Size = new System.Drawing.Size(28, 13);
+            this.lbl_player2Ants.TabIndex = 8;
+            this.lbl_player2Ants.Text = "Ants";
             // 
-            // labelplayer2scoutsshow
+            // lbl_player2ScoutsValue
             // 
-            this.labelplayer2scoutsshow.AutoSize = true;
-            this.labelplayer2scoutsshow.Location = new System.Drawing.Point(92, 55);
-            this.labelplayer2scoutsshow.Name = "labelplayer2scoutsshow";
-            this.labelplayer2scoutsshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer2scoutsshow.TabIndex = 7;
-            this.labelplayer2scoutsshow.Text = "99999";
+            this.lbl_player2ScoutsValue.AutoSize = true;
+            this.lbl_player2ScoutsValue.Location = new System.Drawing.Point(92, 55);
+            this.lbl_player2ScoutsValue.Name = "lbl_player2ScoutsValue";
+            this.lbl_player2ScoutsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player2ScoutsValue.TabIndex = 7;
+            this.lbl_player2ScoutsValue.Text = "99999";
             // 
-            // labelplayer2scouts
+            // lbl_player2Scouts
             // 
-            this.labelplayer2scouts.AutoSize = true;
-            this.labelplayer2scouts.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.labelplayer2scouts.Location = new System.Drawing.Point(7, 55);
-            this.labelplayer2scouts.Name = "labelplayer2scouts";
-            this.labelplayer2scouts.Size = new System.Drawing.Size(40, 13);
-            this.labelplayer2scouts.TabIndex = 6;
-            this.labelplayer2scouts.Text = "Scouts";
+            this.lbl_player2Scouts.AutoSize = true;
+            this.lbl_player2Scouts.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.lbl_player2Scouts.Location = new System.Drawing.Point(7, 55);
+            this.lbl_player2Scouts.Name = "lbl_player2Scouts";
+            this.lbl_player2Scouts.Size = new System.Drawing.Size(40, 13);
+            this.lbl_player2Scouts.TabIndex = 6;
+            this.lbl_player2Scouts.Text = "Scouts";
             // 
-            // labelplayer2carriesshow
+            // lbl_player2CarriesValue
             // 
-            this.labelplayer2carriesshow.AutoSize = true;
-            this.labelplayer2carriesshow.Location = new System.Drawing.Point(92, 42);
-            this.labelplayer2carriesshow.Name = "labelplayer2carriesshow";
-            this.labelplayer2carriesshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer2carriesshow.TabIndex = 5;
-            this.labelplayer2carriesshow.Text = "99999";
+            this.lbl_player2CarriesValue.AutoSize = true;
+            this.lbl_player2CarriesValue.Location = new System.Drawing.Point(92, 42);
+            this.lbl_player2CarriesValue.Name = "lbl_player2CarriesValue";
+            this.lbl_player2CarriesValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player2CarriesValue.TabIndex = 5;
+            this.lbl_player2CarriesValue.Text = "99999";
             // 
-            // labelplayer2carries
+            // lbl_player2Carries
             // 
-            this.labelplayer2carries.AutoSize = true;
-            this.labelplayer2carries.ForeColor = System.Drawing.Color.DarkBlue;
-            this.labelplayer2carries.Location = new System.Drawing.Point(7, 42);
-            this.labelplayer2carries.Name = "labelplayer2carries";
-            this.labelplayer2carries.Size = new System.Drawing.Size(39, 13);
-            this.labelplayer2carries.TabIndex = 4;
-            this.labelplayer2carries.Text = "Carries";
+            this.lbl_player2Carries.AutoSize = true;
+            this.lbl_player2Carries.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbl_player2Carries.Location = new System.Drawing.Point(7, 42);
+            this.lbl_player2Carries.Name = "lbl_player2Carries";
+            this.lbl_player2Carries.Size = new System.Drawing.Size(39, 13);
+            this.lbl_player2Carries.TabIndex = 4;
+            this.lbl_player2Carries.Text = "Carries";
             // 
-            // labelplayer2moneyshow
+            // lbl_player2MoneyValue
             // 
-            this.labelplayer2moneyshow.AutoSize = true;
-            this.labelplayer2moneyshow.Location = new System.Drawing.Point(92, 29);
-            this.labelplayer2moneyshow.Name = "labelplayer2moneyshow";
-            this.labelplayer2moneyshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer2moneyshow.TabIndex = 3;
-            this.labelplayer2moneyshow.Text = "99999";
+            this.lbl_player2MoneyValue.AutoSize = true;
+            this.lbl_player2MoneyValue.Location = new System.Drawing.Point(92, 29);
+            this.lbl_player2MoneyValue.Name = "lbl_player2MoneyValue";
+            this.lbl_player2MoneyValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player2MoneyValue.TabIndex = 3;
+            this.lbl_player2MoneyValue.Text = "99999";
             // 
-            // labelplayer2money
+            // lbl_player2Money
             // 
-            this.labelplayer2money.AutoSize = true;
-            this.labelplayer2money.Location = new System.Drawing.Point(7, 29);
-            this.labelplayer2money.Name = "labelplayer2money";
-            this.labelplayer2money.Size = new System.Drawing.Size(39, 13);
-            this.labelplayer2money.TabIndex = 2;
-            this.labelplayer2money.Text = "Money";
+            this.lbl_player2Money.AutoSize = true;
+            this.lbl_player2Money.Location = new System.Drawing.Point(7, 29);
+            this.lbl_player2Money.Name = "lbl_player2Money";
+            this.lbl_player2Money.Size = new System.Drawing.Size(39, 13);
+            this.lbl_player2Money.TabIndex = 2;
+            this.lbl_player2Money.Text = "Money";
             // 
-            // labelplayer2pointsshow
+            // lbl_player2PointsValue
             // 
-            this.labelplayer2pointsshow.AutoSize = true;
-            this.labelplayer2pointsshow.Location = new System.Drawing.Point(92, 16);
-            this.labelplayer2pointsshow.Name = "labelplayer2pointsshow";
-            this.labelplayer2pointsshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer2pointsshow.TabIndex = 1;
-            this.labelplayer2pointsshow.Text = "99999";
+            this.lbl_player2PointsValue.AutoSize = true;
+            this.lbl_player2PointsValue.Location = new System.Drawing.Point(92, 16);
+            this.lbl_player2PointsValue.Name = "lbl_player2PointsValue";
+            this.lbl_player2PointsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player2PointsValue.TabIndex = 1;
+            this.lbl_player2PointsValue.Text = "99999";
             // 
-            // labelplayer2points
+            // lbl_player2Points
             // 
-            this.labelplayer2points.AutoSize = true;
-            this.labelplayer2points.Location = new System.Drawing.Point(7, 16);
-            this.labelplayer2points.Name = "labelplayer2points";
-            this.labelplayer2points.Size = new System.Drawing.Size(36, 13);
-            this.labelplayer2points.TabIndex = 0;
-            this.labelplayer2points.Text = "Points";
+            this.lbl_player2Points.AutoSize = true;
+            this.lbl_player2Points.Location = new System.Drawing.Point(7, 16);
+            this.lbl_player2Points.Name = "lbl_player2Points";
+            this.lbl_player2Points.Size = new System.Drawing.Size(36, 13);
+            this.lbl_player2Points.TabIndex = 0;
+            this.lbl_player2Points.Text = "Points";
             // 
-            // groupplayer1
+            // grp_player1
             // 
-            this.groupplayer1.Controls.Add(this.labelplayer1antsshow);
-            this.groupplayer1.Controls.Add(this.labelplayer1ants);
-            this.groupplayer1.Controls.Add(this.labelplayer1scoutsshow);
-            this.groupplayer1.Controls.Add(this.labelplayer1scouts);
-            this.groupplayer1.Controls.Add(this.labelplayer1carriesshow);
-            this.groupplayer1.Controls.Add(this.labelplayer1carries);
-            this.groupplayer1.Controls.Add(this.labelplayer1moneyshow);
-            this.groupplayer1.Controls.Add(this.labelplayer1money);
-            this.groupplayer1.Controls.Add(this.labelplayer1pointsshow);
-            this.groupplayer1.Controls.Add(this.labelplayer1points);
-            this.groupplayer1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupplayer1.Location = new System.Drawing.Point(7, 75);
-            this.groupplayer1.Name = "groupplayer1";
-            this.groupplayer1.Size = new System.Drawing.Size(135, 85);
-            this.groupplayer1.TabIndex = 1;
-            this.groupplayer1.TabStop = false;
-            this.groupplayer1.Text = "Player 1";
+            this.grp_player1.Controls.Add(this.lbl_player1AntsValue);
+            this.grp_player1.Controls.Add(this.lbl_player1Ants);
+            this.grp_player1.Controls.Add(this.lbl_player1ScoutsValue);
+            this.grp_player1.Controls.Add(this.lbl_player1Scouts);
+            this.grp_player1.Controls.Add(this.lbl_player1CarriesValue);
+            this.grp_player1.Controls.Add(this.lbl_player1Carries);
+            this.grp_player1.Controls.Add(this.lbl_player1MoneyValue);
+            this.grp_player1.Controls.Add(this.lbl_player1Money);
+            this.grp_player1.Controls.Add(this.lbl_player1PointsValue);
+            this.grp_player1.Controls.Add(this.lbl_player1Points);
+            this.grp_player1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.grp_player1.Location = new System.Drawing.Point(7, 75);
+            this.grp_player1.Name = "grp_player1";
+            this.grp_player1.Size = new System.Drawing.Size(135, 85);
+            this.grp_player1.TabIndex = 1;
+            this.grp_player1.TabStop = false;
+            this.grp_player1.Text = "Player 1";
             // 
-            // labelplayer1antsshow
+            // lbl_player1AntsValue
             // 
-            this.labelplayer1antsshow.AutoSize = true;
-            this.labelplayer1antsshow.Location = new System.Drawing.Point(92, 68);
-            this.labelplayer1antsshow.Name = "labelplayer1antsshow";
-            this.labelplayer1antsshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer1antsshow.TabIndex = 9;
-            this.labelplayer1antsshow.Text = "99999";
+            this.lbl_player1AntsValue.AutoSize = true;
+            this.lbl_player1AntsValue.Location = new System.Drawing.Point(92, 68);
+            this.lbl_player1AntsValue.Name = "lbl_player1AntsValue";
+            this.lbl_player1AntsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player1AntsValue.TabIndex = 9;
+            this.lbl_player1AntsValue.Text = "99999";
             // 
-            // labelplayer1ants
+            // lbl_player1Ants
             // 
-            this.labelplayer1ants.AutoSize = true;
-            this.labelplayer1ants.Location = new System.Drawing.Point(7, 68);
-            this.labelplayer1ants.Name = "labelplayer1ants";
-            this.labelplayer1ants.Size = new System.Drawing.Size(28, 13);
-            this.labelplayer1ants.TabIndex = 8;
-            this.labelplayer1ants.Text = "Ants";
+            this.lbl_player1Ants.AutoSize = true;
+            this.lbl_player1Ants.Location = new System.Drawing.Point(7, 68);
+            this.lbl_player1Ants.Name = "lbl_player1Ants";
+            this.lbl_player1Ants.Size = new System.Drawing.Size(28, 13);
+            this.lbl_player1Ants.TabIndex = 8;
+            this.lbl_player1Ants.Text = "Ants";
             // 
-            // labelplayer1scoutsshow
+            // lbl_player1ScoutsValue
             // 
-            this.labelplayer1scoutsshow.AutoSize = true;
-            this.labelplayer1scoutsshow.Location = new System.Drawing.Point(92, 55);
-            this.labelplayer1scoutsshow.Name = "labelplayer1scoutsshow";
-            this.labelplayer1scoutsshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer1scoutsshow.TabIndex = 7;
-            this.labelplayer1scoutsshow.Text = "99999";
+            this.lbl_player1ScoutsValue.AutoSize = true;
+            this.lbl_player1ScoutsValue.Location = new System.Drawing.Point(92, 55);
+            this.lbl_player1ScoutsValue.Name = "lbl_player1ScoutsValue";
+            this.lbl_player1ScoutsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player1ScoutsValue.TabIndex = 7;
+            this.lbl_player1ScoutsValue.Text = "99999";
             // 
-            // labelplayer1scouts
+            // lbl_player1Scouts
             // 
-            this.labelplayer1scouts.AutoSize = true;
-            this.labelplayer1scouts.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.labelplayer1scouts.Location = new System.Drawing.Point(7, 55);
-            this.labelplayer1scouts.Name = "labelplayer1scouts";
-            this.labelplayer1scouts.Size = new System.Drawing.Size(40, 13);
-            this.labelplayer1scouts.TabIndex = 6;
-            this.labelplayer1scouts.Text = "Scouts";
+            this.lbl_player1Scouts.AutoSize = true;
+            this.lbl_player1Scouts.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.lbl_player1Scouts.Location = new System.Drawing.Point(7, 55);
+            this.lbl_player1Scouts.Name = "lbl_player1Scouts";
+            this.lbl_player1Scouts.Size = new System.Drawing.Size(40, 13);
+            this.lbl_player1Scouts.TabIndex = 6;
+            this.lbl_player1Scouts.Text = "Scouts";
             // 
-            // labelplayer1carriesshow
+            // lbl_player1CarriesValue
             // 
-            this.labelplayer1carriesshow.AutoSize = true;
-            this.labelplayer1carriesshow.Location = new System.Drawing.Point(92, 42);
-            this.labelplayer1carriesshow.Name = "labelplayer1carriesshow";
-            this.labelplayer1carriesshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer1carriesshow.TabIndex = 5;
-            this.labelplayer1carriesshow.Text = "99999";
+            this.lbl_player1CarriesValue.AutoSize = true;
+            this.lbl_player1CarriesValue.Location = new System.Drawing.Point(92, 42);
+            this.lbl_player1CarriesValue.Name = "lbl_player1CarriesValue";
+            this.lbl_player1CarriesValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player1CarriesValue.TabIndex = 5;
+            this.lbl_player1CarriesValue.Text = "99999";
             // 
-            // labelplayer1carries
+            // lbl_player1Carries
             // 
-            this.labelplayer1carries.AutoSize = true;
-            this.labelplayer1carries.ForeColor = System.Drawing.Color.DarkGreen;
-            this.labelplayer1carries.Location = new System.Drawing.Point(7, 42);
-            this.labelplayer1carries.Name = "labelplayer1carries";
-            this.labelplayer1carries.Size = new System.Drawing.Size(39, 13);
-            this.labelplayer1carries.TabIndex = 4;
-            this.labelplayer1carries.Text = "Carries";
+            this.lbl_player1Carries.AutoSize = true;
+            this.lbl_player1Carries.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lbl_player1Carries.Location = new System.Drawing.Point(7, 42);
+            this.lbl_player1Carries.Name = "lbl_player1Carries";
+            this.lbl_player1Carries.Size = new System.Drawing.Size(39, 13);
+            this.lbl_player1Carries.TabIndex = 4;
+            this.lbl_player1Carries.Text = "Carries";
             // 
-            // labelplayer1moneyshow
+            // lbl_player1MoneyValue
             // 
-            this.labelplayer1moneyshow.AutoSize = true;
-            this.labelplayer1moneyshow.Location = new System.Drawing.Point(92, 29);
-            this.labelplayer1moneyshow.Name = "labelplayer1moneyshow";
-            this.labelplayer1moneyshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer1moneyshow.TabIndex = 3;
-            this.labelplayer1moneyshow.Text = "99999";
+            this.lbl_player1MoneyValue.AutoSize = true;
+            this.lbl_player1MoneyValue.Location = new System.Drawing.Point(92, 29);
+            this.lbl_player1MoneyValue.Name = "lbl_player1MoneyValue";
+            this.lbl_player1MoneyValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player1MoneyValue.TabIndex = 3;
+            this.lbl_player1MoneyValue.Text = "99999";
             // 
-            // labelplayer1money
+            // lbl_player1Money
             // 
-            this.labelplayer1money.AutoSize = true;
-            this.labelplayer1money.Location = new System.Drawing.Point(7, 29);
-            this.labelplayer1money.Name = "labelplayer1money";
-            this.labelplayer1money.Size = new System.Drawing.Size(39, 13);
-            this.labelplayer1money.TabIndex = 2;
-            this.labelplayer1money.Text = "Money";
+            this.lbl_player1Money.AutoSize = true;
+            this.lbl_player1Money.Location = new System.Drawing.Point(7, 29);
+            this.lbl_player1Money.Name = "lbl_player1Money";
+            this.lbl_player1Money.Size = new System.Drawing.Size(39, 13);
+            this.lbl_player1Money.TabIndex = 2;
+            this.lbl_player1Money.Text = "Money";
             // 
-            // labelplayer1pointsshow
+            // lbl_player1PointsValue
             // 
-            this.labelplayer1pointsshow.AutoSize = true;
-            this.labelplayer1pointsshow.Location = new System.Drawing.Point(92, 16);
-            this.labelplayer1pointsshow.Name = "labelplayer1pointsshow";
-            this.labelplayer1pointsshow.Size = new System.Drawing.Size(37, 13);
-            this.labelplayer1pointsshow.TabIndex = 1;
-            this.labelplayer1pointsshow.Text = "99999";
+            this.lbl_player1PointsValue.AutoSize = true;
+            this.lbl_player1PointsValue.Location = new System.Drawing.Point(92, 16);
+            this.lbl_player1PointsValue.Name = "lbl_player1PointsValue";
+            this.lbl_player1PointsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player1PointsValue.TabIndex = 1;
+            this.lbl_player1PointsValue.Text = "99999";
             // 
-            // labelplayer1points
+            // lbl_player1Points
             // 
-            this.labelplayer1points.AutoSize = true;
-            this.labelplayer1points.Location = new System.Drawing.Point(7, 16);
-            this.labelplayer1points.Name = "labelplayer1points";
-            this.labelplayer1points.Size = new System.Drawing.Size(36, 13);
-            this.labelplayer1points.TabIndex = 0;
-            this.labelplayer1points.Text = "Points";
+            this.lbl_player1Points.AutoSize = true;
+            this.lbl_player1Points.Location = new System.Drawing.Point(7, 16);
+            this.lbl_player1Points.Name = "lbl_player1Points";
+            this.lbl_player1Points.Size = new System.Drawing.Size(36, 13);
+            this.lbl_player1Points.TabIndex = 0;
+            this.lbl_player1Points.Text = "Points";
             // 
-            // groupgamestats
+            // grp_gamestats
             // 
-            this.groupgamestats.Controls.Add(this.labelsugarshow);
-            this.groupgamestats.Controls.Add(this.labelsugar);
-            this.groupgamestats.Controls.Add(this.labelticksshow);
-            this.groupgamestats.Controls.Add(this.labelticks);
-            this.groupgamestats.Location = new System.Drawing.Point(7, 20);
-            this.groupgamestats.Name = "groupgamestats";
-            this.groupgamestats.Size = new System.Drawing.Size(129, 49);
-            this.groupgamestats.TabIndex = 0;
-            this.groupgamestats.TabStop = false;
-            this.groupgamestats.Text = "Game";
+            this.grp_gamestats.Controls.Add(this.lbl_sugarValue);
+            this.grp_gamestats.Controls.Add(this.lbl_sugar);
+            this.grp_gamestats.Controls.Add(this.lbl_ticksValue);
+            this.grp_gamestats.Controls.Add(this.lbl_ticks);
+            this.grp_gamestats.Location = new System.Drawing.Point(7, 20);
+            this.grp_gamestats.Name = "grp_gamestats";
+            this.grp_gamestats.Size = new System.Drawing.Size(129, 49);
+            this.grp_gamestats.TabIndex = 0;
+            this.grp_gamestats.TabStop = false;
+            this.grp_gamestats.Text = "Game";
             // 
-            // labelsugarshow
+            // lbl_sugarValue
             // 
-            this.labelsugarshow.AutoSize = true;
-            this.labelsugarshow.Location = new System.Drawing.Point(92, 33);
-            this.labelsugarshow.Name = "labelsugarshow";
-            this.labelsugarshow.Size = new System.Drawing.Size(37, 13);
-            this.labelsugarshow.TabIndex = 10;
-            this.labelsugarshow.Text = "99999";
+            this.lbl_sugarValue.AutoSize = true;
+            this.lbl_sugarValue.Location = new System.Drawing.Point(92, 33);
+            this.lbl_sugarValue.Name = "lbl_sugarValue";
+            this.lbl_sugarValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_sugarValue.TabIndex = 10;
+            this.lbl_sugarValue.Text = "99999";
             // 
-            // labelsugar
+            // lbl_sugar
             // 
-            this.labelsugar.AutoSize = true;
-            this.labelsugar.Location = new System.Drawing.Point(7, 33);
-            this.labelsugar.Name = "labelsugar";
-            this.labelsugar.Size = new System.Drawing.Size(35, 13);
-            this.labelsugar.TabIndex = 2;
-            this.labelsugar.Text = "Sugar";
+            this.lbl_sugar.AutoSize = true;
+            this.lbl_sugar.Location = new System.Drawing.Point(7, 33);
+            this.lbl_sugar.Name = "lbl_sugar";
+            this.lbl_sugar.Size = new System.Drawing.Size(35, 13);
+            this.lbl_sugar.TabIndex = 2;
+            this.lbl_sugar.Text = "Sugar";
             // 
-            // labelticksshow
+            // lbl_ticksValue
             // 
-            this.labelticksshow.AutoSize = true;
-            this.labelticksshow.Location = new System.Drawing.Point(92, 20);
-            this.labelticksshow.Name = "labelticksshow";
-            this.labelticksshow.Size = new System.Drawing.Size(37, 13);
-            this.labelticksshow.TabIndex = 1;
-            this.labelticksshow.Text = "99999";
+            this.lbl_ticksValue.AutoSize = true;
+            this.lbl_ticksValue.Location = new System.Drawing.Point(92, 20);
+            this.lbl_ticksValue.Name = "lbl_ticksValue";
+            this.lbl_ticksValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_ticksValue.TabIndex = 1;
+            this.lbl_ticksValue.Text = "99999";
             // 
-            // labelticks
+            // lbl_ticks
             // 
-            this.labelticks.AutoSize = true;
-            this.labelticks.Location = new System.Drawing.Point(7, 20);
-            this.labelticks.Name = "labelticks";
-            this.labelticks.Size = new System.Drawing.Size(33, 13);
-            this.labelticks.TabIndex = 0;
-            this.labelticks.Text = "Ticks";
+            this.lbl_ticks.AutoSize = true;
+            this.lbl_ticks.Location = new System.Drawing.Point(7, 20);
+            this.lbl_ticks.Name = "lbl_ticks";
+            this.lbl_ticks.Size = new System.Drawing.Size(33, 13);
+            this.lbl_ticks.TabIndex = 0;
+            this.lbl_ticks.Text = "Ticks";
             // 
             // GamePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(444, 353);
-            this.Controls.Add(this.groupstats);
+            this.Controls.Add(this.grp_stats);
             this.Controls.Add(this.pb_Game);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GamePanel";
@@ -375,13 +375,13 @@
             this.Text = "AntWars";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GamePanel_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).EndInit();
-            this.groupstats.ResumeLayout(false);
-            this.groupplayer2.ResumeLayout(false);
-            this.groupplayer2.PerformLayout();
-            this.groupplayer1.ResumeLayout(false);
-            this.groupplayer1.PerformLayout();
-            this.groupgamestats.ResumeLayout(false);
-            this.groupgamestats.PerformLayout();
+            this.grp_stats.ResumeLayout(false);
+            this.grp_player2.ResumeLayout(false);
+            this.grp_player2.PerformLayout();
+            this.grp_player1.ResumeLayout(false);
+            this.grp_player1.PerformLayout();
+            this.grp_gamestats.ResumeLayout(false);
+            this.grp_gamestats.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -389,33 +389,33 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pb_Game;
-        private System.Windows.Forms.GroupBox groupstats;
-        private System.Windows.Forms.GroupBox groupgamestats;
-        private System.Windows.Forms.Label labelticks;
-        private System.Windows.Forms.Label labelticksshow;
-        private System.Windows.Forms.GroupBox groupplayer1;
-        private System.Windows.Forms.GroupBox groupplayer2;
-        private System.Windows.Forms.Label labelplayer2moneyshow;
-        private System.Windows.Forms.Label labelplayer2money;
-        private System.Windows.Forms.Label labelplayer2pointsshow;
-        private System.Windows.Forms.Label labelplayer2points;
-        private System.Windows.Forms.Label labelplayer1moneyshow;
-        private System.Windows.Forms.Label labelplayer1money;
-        private System.Windows.Forms.Label labelplayer1pointsshow;
-        private System.Windows.Forms.Label labelplayer1points;
-        private System.Windows.Forms.Label labelplayer2carriesshow;
-        private System.Windows.Forms.Label labelplayer2carries;
-        private System.Windows.Forms.Label labelplayer1scoutsshow;
-        private System.Windows.Forms.Label labelplayer1scouts;
-        private System.Windows.Forms.Label labelplayer1carriesshow;
-        private System.Windows.Forms.Label labelplayer1carries;
-        private System.Windows.Forms.Label labelplayer2scoutsshow;
-        private System.Windows.Forms.Label labelplayer2scouts;
-        private System.Windows.Forms.Label labelplayer2antsshow;
-        private System.Windows.Forms.Label labelplayer2ants;
-        private System.Windows.Forms.Label labelplayer1antsshow;
-        private System.Windows.Forms.Label labelplayer1ants;
-        private System.Windows.Forms.Label labelsugarshow;
-        private System.Windows.Forms.Label labelsugar;
+        private System.Windows.Forms.GroupBox grp_stats;
+        private System.Windows.Forms.GroupBox grp_gamestats;
+        private System.Windows.Forms.Label lbl_ticks;
+        private System.Windows.Forms.Label lbl_ticksValue;
+        private System.Windows.Forms.GroupBox grp_player1;
+        private System.Windows.Forms.GroupBox grp_player2;
+        private System.Windows.Forms.Label lbl_player2MoneyValue;
+        private System.Windows.Forms.Label lbl_player2Money;
+        private System.Windows.Forms.Label lbl_player2PointsValue;
+        private System.Windows.Forms.Label lbl_player2Points;
+        private System.Windows.Forms.Label lbl_player1MoneyValue;
+        private System.Windows.Forms.Label lbl_player1Money;
+        private System.Windows.Forms.Label lbl_player1PointsValue;
+        private System.Windows.Forms.Label lbl_player1Points;
+        private System.Windows.Forms.Label lbl_player2CarriesValue;
+        private System.Windows.Forms.Label lbl_player2Carries;
+        private System.Windows.Forms.Label lbl_player1ScoutsValue;
+        private System.Windows.Forms.Label lbl_player1Scouts;
+        private System.Windows.Forms.Label lbl_player1CarriesValue;
+        private System.Windows.Forms.Label lbl_player1Carries;
+        private System.Windows.Forms.Label lbl_player2ScoutsValue;
+        private System.Windows.Forms.Label lbl_player2Scouts;
+        private System.Windows.Forms.Label lbl_player2AntsValue;
+        private System.Windows.Forms.Label lbl_player2Ants;
+        private System.Windows.Forms.Label lbl_player1AntsValue;
+        private System.Windows.Forms.Label lbl_player1Ants;
+        private System.Windows.Forms.Label lbl_sugarValue;
+        private System.Windows.Forms.Label lbl_sugar;
     }
 }
