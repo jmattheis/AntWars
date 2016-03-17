@@ -17,8 +17,8 @@ namespace PlayerAI
         }
         public override void nextTick()
         {
-            buyCarrier(5,5, 5);
-            buyScout(5, 5, 5);
+            buyCarrier(1, 1, 1);
+            buyScout(1, 1, 1);
         }
     }
 
@@ -37,11 +37,9 @@ namespace PlayerAI
             // Zucker aufheben Test
             Ant.pickUpSugar();
             // RANDOM FTW
-            switch (rand.Next(0, 4))
+            switch (rand.Next(0, 7))
             {
                 case 1:
-                    Ant.moveDown();
-                    Ant.moveDown();
                     Ant.moveDown();
                     break;
                 case 2:
@@ -53,6 +51,19 @@ namespace PlayerAI
                 case 0:
                     Ant.moveUp();
                     break;
+                case 4:
+                    Ant.moveLowerLeft();
+                    break;
+                case 5:
+                    Ant.moveLowerRight();
+                    break;
+                case 6:
+                    Ant.moveUpperLeft();
+                    break;
+                case 7:
+                    Ant.moveUpperRight();
+                    break;
+
 
             }
         }
