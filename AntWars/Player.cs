@@ -32,7 +32,7 @@ namespace AntWars
         /// <summary>
         /// Das momentane Geld vom Spieler.
         /// </summary>
-        public int Money { get; set; }
+        public double Money { get; set; }
 
         /// <summary>
         /// Die Anzahl von Scount auf dem Feld.
@@ -44,7 +44,7 @@ namespace AntWars
         /// </summary>
         public int CarryCount { get; set; }
 
-        public Player(AILoader aiLoader, int money)
+        public Player(AILoader aiLoader, double money)
         {
             AILoader = aiLoader;
             Money = money;

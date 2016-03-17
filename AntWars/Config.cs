@@ -47,7 +47,7 @@ namespace AntWars
         /// <summary>
         /// Das Startmoney von beiden Spielern
         /// </summary>
-        public int StartMoney { get; set; }
+        public double StartMoney { get; set; }
 
         /// <summary>
         /// Die Ticks per seconds.

@@ -39,7 +39,7 @@ namespace AntWars.AI
         /// <summary>
         /// Dein aktuelles Geld.
         /// </summary>
-        protected int CurrentMoney
+        protected double CurrentMoney
         {
             get { return Player.Money; }
         }
@@ -92,7 +92,7 @@ namespace AntWars.AI
 
         private bool buyAnt(Ant ant)
         {
-            int cost = Helper.CostCalculator.calculateCost(ant);
+            double cost = Helper.CostCalculator.calculateCost(ant);
             Base b = Game.Board.BoardObjects.getBase(Player);
             if (Player.Money < cost || !resolveAntCoords(ant, b))
             {
