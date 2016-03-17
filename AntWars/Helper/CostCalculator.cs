@@ -73,7 +73,7 @@ namespace AntWars.Helper
 
         private static double calculate(double viewRangeWithQuantifier, double moveRangeFactorWithQuantifier, double inventoryWithQuantifier)
         {
-            return Math.Round(((viewRangeWithQuantifier + moveRangeFactorWithQuantifier + inventoryWithQuantifier) / 2) * 100) / 100;
+            return Math.Round(((viewRangeWithQuantifier + moveRangeFactorWithQuantifier + inventoryWithQuantifier) / 2), 2);
         }
 
         /// <summary>
