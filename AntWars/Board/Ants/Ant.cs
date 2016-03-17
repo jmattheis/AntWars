@@ -65,22 +65,61 @@ namespace AntWars.Board.Ants
         }
 
         /// <summary>
-        /// Lässt die Ameise nach links bewegen
+        /// Lässt die Ameise nach links bewegen.
         /// </summary>
-        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveLeft()
         {
             Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
             return move(newCoords);
         }
+        /// <summary>
+        /// Lässt die Ameise diagonal nach links oben bewegen.
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
+        public bool moveUpperLeft()
+        {
+            Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y - 1);
+            return move(newCoords);
+        }
 
         /// <summary>
-        /// Lässt die Ameise nach rechts bewegen
+        /// Lässt die Ameise diagonal nach links unten bewegen.
         /// </summary>
-        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
+        public bool moveLowerLeft()
+        {
+            Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y + 1);
+            return move(newCoords);
+        }
+
+        /// <summary>
+        /// Lässt die Ameise nach rechts bewegen.
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveRight()
         {
             Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
+            return move(newCoords);
+        }
+
+        /// <summary>
+        /// Lässt die Ameise diagonal nach rechts oben bewegen.
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
+        public bool moveUpperRight()
+        {
+            Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y - 1);
+            return move(newCoords);
+        }
+
+        /// <summary>
+        /// Lässt die Ameise diagonal nach rechts unten bewegen.
+        /// </summary>
+        /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
+        public bool moveLowerRight()
+        {
+            Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y + 1);
             return move(newCoords);
         }
 
