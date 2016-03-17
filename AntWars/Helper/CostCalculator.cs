@@ -27,7 +27,7 @@ namespace AntWars.Helper
         /// Berechnet die Kosten anhand der übergebenen Ameise.
         /// </summary>
         /// <param name="ant">Die Ameise</param>
-        public static int calculateCost(Ant ant)
+        public static double calculateCost(Ant ant)
         {
 
             if (ant.isCarry())
@@ -48,7 +48,7 @@ namespace AntWars.Helper
         /// <param name="moveRange">Die Reichweite der Ameise.</param>
         /// <param name="inventory">Die Inventargröße der Ameise.</param>
         /// <returns>Die berechneten Kosten der Ameise.</returns>
-        public static int calculateCostScout(int viewRange, int moveRangeFactor, int inventory, string playername)
+        public static double calculateCostScout(int viewRange, int moveRangeFactor, int inventory, string playername)
         {
             double viewRangeWithQuantifier = viewRange * VIEWRANGE_SCOUT_QUANTIFIER;
             double inventoryWithQuantifier = inventory * INVENTORY_SCOUT_QUANTIFIER;
@@ -63,7 +63,7 @@ namespace AntWars.Helper
         /// <param name="moveRange">Die Reichweite der Ameise.</param>
         /// <param name="inventory">Die Inventargröße der Ameise.</param>
         /// <returns>Die berechneten Kosten der Ameise.</returns>
-        public static int calculateCostCarry(int viewRange, int moveRangeFactor, int inventory, string playername)
+        public static double calculateCostCarry(int viewRange, int moveRangeFactor, int inventory, string playername)
         {
             double viewRangeWithQuantifier = viewRange * VIEWRANGE_CARRY_QUANTIFIER;
             double inventoryWithQuantifier = inventory * INVENTORY_CARRY_QUANTIFIER;
@@ -71,9 +71,9 @@ namespace AntWars.Helper
             return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier);
         }
 
-        private static int calculate(double viewRangeWithQuantifier, double moveRangeFactorWithQuantifier, double inventoryWithQuantifier)
+        private static double calculate(double viewRangeWithQuantifier, double moveRangeFactorWithQuantifier, double inventoryWithQuantifier)
         {
-            return Convert.ToInt32(Math.Ceiling((viewRangeWithQuantifier + moveRangeFactorWithQuantifier + inventoryWithQuantifier) / 2));
+            return Math.Round(((viewRangeWithQuantifier + moveRangeFactorWithQuantifier + inventoryWithQuantifier) / 2), 2);
         }
 
         /// <summary>
