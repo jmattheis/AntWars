@@ -32,6 +32,6 @@ namespace AntWars.AI
 
         public abstract void antTick(BoardObject[] view);
 
-        public abstract void notify(Coordinates coords);
+        public abstract void notify(HashSet<Coordinates> coords);
     }
 }

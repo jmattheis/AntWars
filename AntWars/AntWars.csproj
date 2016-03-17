@@ -71,7 +71,6 @@
     <Compile Include="Board\Ants\Scout.cs" />
     <Compile Include="Board\BoardObjects.cs" />
     <Compile Include="Board\Coordinates.cs" />
-    <Compile Include="Board\Signal.cs" />
     <Compile Include="ConfigurationPanel.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -17,7 +17,6 @@ namespace AntWars.Board
     {
         private IList<BoardObject> boardObjects = new List<BoardObject>();
         private IList<Ant> ants = new List<Ant>();
-        private IList<Signal> signals = new List<Signal>();
         private IList<Base> bases = new List<Base>();
         private IList<Sugar> sugars = new List<Sugar>();
         private Config conf;
@@ -46,10 +45,6 @@ namespace AntWars.Board
                 Ant ant = (Ant)boardObject;
                 ants.Add(ant);
                 ant.Owner.incrementAnts(ant);
-            }
-            else if (boardObject.isSignal())
-            {
-                signals.Add((Signal)boardObject);
             }
             else if (boardObject.isBase())
             {
@@ -123,14 +118,6 @@ namespace AntWars.Board
 
         /// <summary>
         /// </summary>
-        /// <returns>Alle Signale</returns>
-        public IList<Signal> getSignals()
-        {
-            return new ReadOnlyCollection<Signal>(signals);
-        }
-
-        /// <summary>
-        /// </summary>
         /// <returns>Alle Bases</returns>
         public IList<Base> getBases()
         {
@@ -190,10 +177,6 @@ namespace AntWars.Board
             {
                 ants.Remove((Ant)boardObject);
             }
-            else if (boardObject.isSignal())
-            {
-                signals.Remove((Signal)boardObject);
-            }
             else if (boardObject.isBase())
             {
                 bases.Remove((Base)boardObject);
@@ -248,22 +231,6 @@ namespace AntWars.Board
             foreach (BoardObject obj in getBoardObjectsFromCoords(coords))
             {
                 if (obj.isAnt())
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="coords">Die Koordinaten</param>
-        /// <returns>true wenn ein Signal auf den Koordinaten ist.</returns>
-        public bool hasSignalOnCoords(Coordinates coords)
-        {
-            foreach (BoardObject obj in getBoardObjectsFromCoords(coords))
-            {
-                if (obj.isSignal())
                 {
                     return true;
                 }
