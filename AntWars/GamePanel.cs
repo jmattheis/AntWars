@@ -123,8 +123,8 @@ namespace AntWars
             this.pb_Game.Width = config.BoardWidth * 4;
             this.pb_Game.Height = config.BoardHeight * 4;
             Point statsLocation = new Point(config.BoardWidth * 4, 0);
-            this.groupstats.Location = statsLocation;
-            this.ClientSize = new Size(config.BoardWidth * 4 + this.groupstats.Width, config.BoardHeight * 4);
+            this.grp_stats.Location = statsLocation;
+            this.ClientSize = new Size(config.BoardWidth * 4 + this.grp_stats.Width, config.BoardHeight * 4);
         }
 
         private void calcGameStatistics()
@@ -132,29 +132,29 @@ namespace AntWars
             // update timer
             if (game.Conf.MaxTicks > 0)
             {
-                labelticksshow.Text = Convert.ToString(game.Conf.MaxTicks - game.getCurrentTick());
+                lbl_ticksValue.Text = Convert.ToString(game.Conf.MaxTicks - game.getCurrentTick());
             }
             else
             {
-                labelticksshow.Text = Convert.ToString(game.getCurrentTick());
+                lbl_ticksValue.Text = Convert.ToString(game.getCurrentTick());
             }
 
             // update player1
-            labelplayer1pointsshow.Text = game.Player1.Points.ToString();
-            labelplayer1moneyshow.Text = game.Player1.Money.ToString();
-            labelplayer1carriesshow.Text = game.Player1.CarryCount.ToString();
-            labelplayer1scoutsshow.Text = game.Player1.ScoutCount.ToString();
-            labelplayer1antsshow.Text = Convert.ToString(game.Player1.ScoutCount + game.Player1.CarryCount);
+            lbl_player1PointsValue.Text = game.Player1.Points.ToString();
+            lbl_player1MoneyValue.Text = game.Player1.Money.ToString();
+            lbl_player1CarriesValue.Text = game.Player1.CarryCount.ToString();
+            lbl_player1ScoutsValue.Text = game.Player1.ScoutCount.ToString();
+            lbl_player1AntsValue.Text = Convert.ToString(game.Player1.ScoutCount + game.Player1.CarryCount);
 
             // update player2
-            labelplayer2pointsshow.Text = game.Player2.Points.ToString();
-            labelplayer2moneyshow.Text = game.Player2.Money.ToString();
-            labelplayer2carriesshow.Text = game.Player2.CarryCount.ToString();
-            labelplayer2scoutsshow.Text = game.Player2.ScoutCount.ToString();
-            labelplayer2antsshow.Text = Convert.ToString(game.Player2.ScoutCount + game.Player2.CarryCount);
+            lbl_player2PointsValue.Text = game.Player2.Points.ToString();
+            lbl_player2MoneyValue.Text = game.Player2.Money.ToString();
+            lbl_player2CarriesValue.Text = game.Player2.CarryCount.ToString();
+            lbl_player2ScoutsValue.Text = game.Player2.ScoutCount.ToString();
+            lbl_player2AntsValue.Text = Convert.ToString(game.Player2.ScoutCount + game.Player2.CarryCount);
 
             // update sugar
-            labelsugarshow.Text = game.Board.BoardObjects.getSugars().Count.ToString();
+            lbl_sugarValue.Text = game.Board.BoardObjects.getSugars().Count.ToString();
         }
 
         private void checkWinningConditions()
@@ -234,8 +234,8 @@ namespace AntWars
 
         private void setPlayernameInStatistic()
         {
-            groupplayer1.Text = game.Player1.AI.Playername;
-            groupplayer2.Text = game.Player2.AI.Playername;
+            grp_player1.Text = game.Player1.AI.Playername;
+            grp_player2.Text = game.Player2.AI.Playername;
         }
 
         private void GamePanel_FormClosing(object sender, FormClosingEventArgs e)

@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Sichtweite = new System.Windows.Forms.Label();
-            this.Reichweite = new System.Windows.Forms.Label();
-            this.Inventar = new System.Windows.Forms.Label();
-            this.Kosten = new System.Windows.Forms.Label();
-            this.Carry = new System.Windows.Forms.Label();
-            this.Scout = new System.Windows.Forms.Label();
+            this.lbl_viewrange = new System.Windows.Forms.Label();
+            this.lbl_moverange = new System.Windows.Forms.Label();
+            this.lbl_inventory = new System.Windows.Forms.Label();
+            this.lbl_costs = new System.Windows.Forms.Label();
+            this.lbl_carry = new System.Windows.Forms.Label();
+            this.lbl_scout = new System.Windows.Forms.Label();
             this.numeric_scoutViewRange = new System.Windows.Forms.NumericUpDown();
             this.numeric_carryViewRange = new System.Windows.Forms.NumericUpDown();
             this.numeric_carryMoveRange = new System.Windows.Forms.NumericUpDown();
@@ -50,59 +50,59 @@
             ((System.ComponentModel.ISupportInitialize)(this.numeric_scoutMoveRange)).BeginInit();
             this.SuspendLayout();
             // 
-            // Sichtweite
+            // lbl_viewrange
             // 
-            this.Sichtweite.AutoSize = true;
-            this.Sichtweite.Location = new System.Drawing.Point(4, 27);
-            this.Sichtweite.Name = "Sichtweite";
-            this.Sichtweite.Size = new System.Drawing.Size(56, 13);
-            this.Sichtweite.TabIndex = 0;
-            this.Sichtweite.Text = "Sichtweite";
+            this.lbl_viewrange.AutoSize = true;
+            this.lbl_viewrange.Location = new System.Drawing.Point(4, 27);
+            this.lbl_viewrange.Name = "lbl_viewrange";
+            this.lbl_viewrange.Size = new System.Drawing.Size(56, 13);
+            this.lbl_viewrange.TabIndex = 0;
+            this.lbl_viewrange.Text = "Sichtweite";
             // 
-            // Reichweite
+            // lbl_moverange
             // 
-            this.Reichweite.AutoSize = true;
-            this.Reichweite.Location = new System.Drawing.Point(4, 53);
-            this.Reichweite.Name = "Reichweite";
-            this.Reichweite.Size = new System.Drawing.Size(60, 13);
-            this.Reichweite.TabIndex = 1;
-            this.Reichweite.Text = "Reichweite";
+            this.lbl_moverange.AutoSize = true;
+            this.lbl_moverange.Location = new System.Drawing.Point(4, 53);
+            this.lbl_moverange.Name = "lbl_moverange";
+            this.lbl_moverange.Size = new System.Drawing.Size(60, 13);
+            this.lbl_moverange.TabIndex = 1;
+            this.lbl_moverange.Text = "Reichweite";
             // 
-            // Inventar
+            // lbl_inventory
             // 
-            this.Inventar.AutoSize = true;
-            this.Inventar.Location = new System.Drawing.Point(4, 79);
-            this.Inventar.Name = "Inventar";
-            this.Inventar.Size = new System.Drawing.Size(46, 13);
-            this.Inventar.TabIndex = 2;
-            this.Inventar.Text = "Inventar";
+            this.lbl_inventory.AutoSize = true;
+            this.lbl_inventory.Location = new System.Drawing.Point(4, 79);
+            this.lbl_inventory.Name = "lbl_inventory";
+            this.lbl_inventory.Size = new System.Drawing.Size(46, 13);
+            this.lbl_inventory.TabIndex = 2;
+            this.lbl_inventory.Text = "Inventar";
             // 
-            // Kosten
+            // lbl_costs
             // 
-            this.Kosten.AutoSize = true;
-            this.Kosten.Location = new System.Drawing.Point(4, 100);
-            this.Kosten.Name = "Kosten";
-            this.Kosten.Size = new System.Drawing.Size(40, 13);
-            this.Kosten.TabIndex = 4;
-            this.Kosten.Text = "Kosten";
+            this.lbl_costs.AutoSize = true;
+            this.lbl_costs.Location = new System.Drawing.Point(4, 100);
+            this.lbl_costs.Name = "lbl_costs";
+            this.lbl_costs.Size = new System.Drawing.Size(40, 13);
+            this.lbl_costs.TabIndex = 4;
+            this.lbl_costs.Text = "Kosten";
             // 
-            // Carry
+            // lbl_carry
             // 
-            this.Carry.AutoSize = true;
-            this.Carry.Location = new System.Drawing.Point(241, 9);
-            this.Carry.Name = "Carry";
-            this.Carry.Size = new System.Drawing.Size(31, 13);
-            this.Carry.TabIndex = 5;
-            this.Carry.Text = "Carry";
+            this.lbl_carry.AutoSize = true;
+            this.lbl_carry.Location = new System.Drawing.Point(241, 9);
+            this.lbl_carry.Name = "lbl_carry";
+            this.lbl_carry.Size = new System.Drawing.Size(31, 13);
+            this.lbl_carry.TabIndex = 5;
+            this.lbl_carry.Text = "Carry";
             // 
-            // Scout
+            // lbl_scout
             // 
-            this.Scout.AutoSize = true;
-            this.Scout.Location = new System.Drawing.Point(194, 9);
-            this.Scout.Name = "Scout";
-            this.Scout.Size = new System.Drawing.Size(35, 13);
-            this.Scout.TabIndex = 6;
-            this.Scout.Text = "Scout";
+            this.lbl_scout.AutoSize = true;
+            this.lbl_scout.Location = new System.Drawing.Point(194, 9);
+            this.lbl_scout.Name = "lbl_scout";
+            this.lbl_scout.Size = new System.Drawing.Size(35, 13);
+            this.lbl_scout.TabIndex = 6;
+            this.lbl_scout.Text = "Scout";
             // 
             // numeric_scoutViewRange
             // 
@@ -273,12 +273,12 @@
             this.Controls.Add(this.numeric_carryMoveRange);
             this.Controls.Add(this.numeric_carryViewRange);
             this.Controls.Add(this.numeric_scoutViewRange);
-            this.Controls.Add(this.Scout);
-            this.Controls.Add(this.Carry);
-            this.Controls.Add(this.Kosten);
-            this.Controls.Add(this.Inventar);
-            this.Controls.Add(this.Reichweite);
-            this.Controls.Add(this.Sichtweite);
+            this.Controls.Add(this.lbl_scout);
+            this.Controls.Add(this.lbl_carry);
+            this.Controls.Add(this.lbl_costs);
+            this.Controls.Add(this.lbl_inventory);
+            this.Controls.Add(this.lbl_moverange);
+            this.Controls.Add(this.lbl_viewrange);
             this.Name = "CostCalculator";
             this.Text = "CostCalculator";
             ((System.ComponentModel.ISupportInitialize)(this.numeric_scoutViewRange)).EndInit();
@@ -294,12 +294,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label Sichtweite;
-        private System.Windows.Forms.Label Reichweite;
-        private System.Windows.Forms.Label Inventar;
-        private System.Windows.Forms.Label Kosten;
-        private System.Windows.Forms.Label Carry;
-        private System.Windows.Forms.Label Scout;
+        private System.Windows.Forms.Label lbl_viewrange;
+        private System.Windows.Forms.Label lbl_moverange;
+        private System.Windows.Forms.Label lbl_inventory;
+        private System.Windows.Forms.Label lbl_costs;
+        private System.Windows.Forms.Label lbl_carry;
+        private System.Windows.Forms.Label lbl_scout;
         private System.Windows.Forms.NumericUpDown numeric_scoutViewRange;
         private System.Windows.Forms.NumericUpDown numeric_carryViewRange;
         private System.Windows.Forms.NumericUpDown numeric_carryMoveRange;
