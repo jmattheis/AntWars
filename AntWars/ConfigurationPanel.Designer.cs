@@ -34,9 +34,9 @@
             this.GameTick = new System.Windows.Forms.Timer(this.components);
             this.btn_player1loadAI = new System.Windows.Forms.Button();
             this.lbl_player1Dll = new System.Windows.Forms.Label();
-            this.ppanel = new System.Windows.Forms.GroupBox();
+            this.grp_config = new System.Windows.Forms.GroupBox();
             this.btn_new = new System.Windows.Forms.Button();
-            this.pnl_GameConfig = new System.Windows.Forms.Panel();
+            this.pnl_config = new System.Windows.Forms.Panel();
             this.lbl_maxTicks = new System.Windows.Forms.Label();
             this.lbl_player2Dll = new System.Windows.Forms.Label();
             this.btn_player2loadAI = new System.Windows.Forms.Button();
@@ -64,8 +64,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.btn_view = new System.Windows.Forms.Button();
             this.btn_costCalculator = new System.Windows.Forms.Button();
-            this.ppanel.SuspendLayout();
-            this.pnl_GameConfig.SuspendLayout();
+            this.grp_config.SuspendLayout();
+            this.pnl_config.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_maxTicks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_sugarAmountMin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_sugarAmountMax)).BeginInit();
@@ -107,18 +107,18 @@
             this.lbl_player1Dll.TabIndex = 26;
             this.lbl_player1Dll.Text = "DLL für Spieler1-KI";
             // 
-            // ppanel
+            // grp_config
             // 
-            this.ppanel.Controls.Add(this.btn_new);
-            this.ppanel.Controls.Add(this.pnl_GameConfig);
-            this.ppanel.Controls.Add(this.btn_save);
-            this.ppanel.Controls.Add(this.btn_load);
-            this.ppanel.Location = new System.Drawing.Point(25, 41);
-            this.ppanel.Name = "ppanel";
-            this.ppanel.Size = new System.Drawing.Size(215, 408);
-            this.ppanel.TabIndex = 43;
-            this.ppanel.TabStop = false;
-            this.ppanel.Text = "Spielkonfiguration";
+            this.grp_config.Controls.Add(this.btn_new);
+            this.grp_config.Controls.Add(this.pnl_config);
+            this.grp_config.Controls.Add(this.btn_save);
+            this.grp_config.Controls.Add(this.btn_load);
+            this.grp_config.Location = new System.Drawing.Point(25, 41);
+            this.grp_config.Name = "grp_config";
+            this.grp_config.Size = new System.Drawing.Size(215, 408);
+            this.grp_config.TabIndex = 43;
+            this.grp_config.TabStop = false;
+            this.grp_config.Text = "Spielkonfiguration";
             // 
             // btn_new
             // 
@@ -130,37 +130,37 @@
             this.btn_new.UseVisualStyleBackColor = true;
             this.btn_new.Click += new System.EventHandler(this.btn_gameConfigNew_Click);
             // 
-            // pnl_GameConfig
+            // pnl_config
             // 
-            this.pnl_GameConfig.Controls.Add(this.lbl_maxTicks);
-            this.pnl_GameConfig.Controls.Add(this.lbl_player2Dll);
-            this.pnl_GameConfig.Controls.Add(this.btn_player2loadAI);
-            this.pnl_GameConfig.Controls.Add(this.lbl_player1Dll);
-            this.pnl_GameConfig.Controls.Add(this.btn_player1loadAI);
-            this.pnl_GameConfig.Controls.Add(this.nmc_maxTicks);
-            this.pnl_GameConfig.Controls.Add(this.lbl_points);
-            this.pnl_GameConfig.Controls.Add(this.lbl_ticks);
-            this.pnl_GameConfig.Controls.Add(this.lbl_startMoney);
-            this.pnl_GameConfig.Controls.Add(this.lbl_boardHeigth);
-            this.pnl_GameConfig.Controls.Add(this.lbl_boardWidth);
-            this.pnl_GameConfig.Controls.Add(this.lbl_sugarAmountMax);
-            this.pnl_GameConfig.Controls.Add(this.nmc_sugarAmountMin);
-            this.pnl_GameConfig.Controls.Add(this.nmc_sugarAmountMax);
-            this.pnl_GameConfig.Controls.Add(this.nmc_boardWidth);
-            this.pnl_GameConfig.Controls.Add(this.nmc_points);
-            this.pnl_GameConfig.Controls.Add(this.nmc_startMoney);
-            this.pnl_GameConfig.Controls.Add(this.nmc_ticks);
-            this.pnl_GameConfig.Controls.Add(this.nmc_boardHeigth);
-            this.pnl_GameConfig.Controls.Add(this.lbl_sugarAmountMin);
-            this.pnl_GameConfig.Controls.Add(this.lbl_sugarMax);
-            this.pnl_GameConfig.Controls.Add(this.nmc_sugarMin);
-            this.pnl_GameConfig.Controls.Add(this.nmc_sugarMax);
-            this.pnl_GameConfig.Controls.Add(this.lbl_sugarMin);
-            this.pnl_GameConfig.Enabled = false;
-            this.pnl_GameConfig.Location = new System.Drawing.Point(4, 48);
-            this.pnl_GameConfig.Name = "pnl_GameConfig";
-            this.pnl_GameConfig.Size = new System.Drawing.Size(205, 354);
-            this.pnl_GameConfig.TabIndex = 46;
+            this.pnl_config.Controls.Add(this.lbl_maxTicks);
+            this.pnl_config.Controls.Add(this.lbl_player2Dll);
+            this.pnl_config.Controls.Add(this.btn_player2loadAI);
+            this.pnl_config.Controls.Add(this.lbl_player1Dll);
+            this.pnl_config.Controls.Add(this.btn_player1loadAI);
+            this.pnl_config.Controls.Add(this.nmc_maxTicks);
+            this.pnl_config.Controls.Add(this.lbl_points);
+            this.pnl_config.Controls.Add(this.lbl_ticks);
+            this.pnl_config.Controls.Add(this.lbl_startMoney);
+            this.pnl_config.Controls.Add(this.lbl_boardHeigth);
+            this.pnl_config.Controls.Add(this.lbl_boardWidth);
+            this.pnl_config.Controls.Add(this.lbl_sugarAmountMax);
+            this.pnl_config.Controls.Add(this.nmc_sugarAmountMin);
+            this.pnl_config.Controls.Add(this.nmc_sugarAmountMax);
+            this.pnl_config.Controls.Add(this.nmc_boardWidth);
+            this.pnl_config.Controls.Add(this.nmc_points);
+            this.pnl_config.Controls.Add(this.nmc_startMoney);
+            this.pnl_config.Controls.Add(this.nmc_ticks);
+            this.pnl_config.Controls.Add(this.nmc_boardHeigth);
+            this.pnl_config.Controls.Add(this.lbl_sugarAmountMin);
+            this.pnl_config.Controls.Add(this.lbl_sugarMax);
+            this.pnl_config.Controls.Add(this.nmc_sugarMin);
+            this.pnl_config.Controls.Add(this.nmc_sugarMax);
+            this.pnl_config.Controls.Add(this.lbl_sugarMin);
+            this.pnl_config.Enabled = false;
+            this.pnl_config.Location = new System.Drawing.Point(4, 48);
+            this.pnl_config.Name = "pnl_config";
+            this.pnl_config.Size = new System.Drawing.Size(205, 354);
+            this.pnl_config.TabIndex = 46;
             // 
             // lbl_maxTicks
             // 
@@ -510,14 +510,14 @@
             this.ClientSize = new System.Drawing.Size(271, 457);
             this.Controls.Add(this.btn_costCalculator);
             this.Controls.Add(this.btn_view);
-            this.Controls.Add(this.ppanel);
+            this.Controls.Add(this.grp_config);
             this.Controls.Add(this.btn_start);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigurationPanel";
             this.Text = "Spielkonfiguration";
-            this.ppanel.ResumeLayout(false);
-            this.pnl_GameConfig.ResumeLayout(false);
-            this.pnl_GameConfig.PerformLayout();
+            this.grp_config.ResumeLayout(false);
+            this.pnl_config.ResumeLayout(false);
+            this.pnl_config.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_maxTicks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_sugarAmountMin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_sugarAmountMax)).EndInit();
@@ -536,11 +536,11 @@
 
         private System.Windows.Forms.Button btn_start;
         private System.Windows.Forms.Timer GameTick;
-        private System.Windows.Forms.GroupBox ppanel;
+        private System.Windows.Forms.GroupBox grp_config;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_load;
         private System.Windows.Forms.Button btn_new;
-        private System.Windows.Forms.Panel pnl_GameConfig;
+        private System.Windows.Forms.Panel pnl_config;
         private System.Windows.Forms.Label lbl_sugarMax;
         private System.Windows.Forms.NumericUpDown nmc_sugarMin;
         private System.Windows.Forms.NumericUpDown nmc_sugarMax;

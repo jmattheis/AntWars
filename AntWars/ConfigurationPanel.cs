@@ -54,7 +54,7 @@ namespace AntWars
             btn_load.Enabled = false;
             btn_new.Enabled = false;
             btn_save.Enabled = true;
-            pnl_GameConfig.Enabled = true;
+            pnl_config.Enabled = true;
             btn_view.Enabled = true;
         }
 
@@ -251,7 +251,7 @@ namespace AntWars
         /// <param name="state">true für aktivieren, false für deaktivieren</param>
         private void changeControlState(bool state)
         {
-            pnl_GameConfig.Enabled = state;
+            pnl_config.Enabled = state;
         }
 
         private bool isGameRunning(object sender)
