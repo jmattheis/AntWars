@@ -31,7 +31,9 @@ namespace PlayerAI
             if(scout != null)
             {
                 // its a Scout
-                scout.notifyOtherAnts(new Coordinates(2, 4));
+                HashSet<Coordinates> set = new HashSet<Coordinates>();
+                set.Add(new Coordinates(2, 4));
+                scout.notifyOtherAnts(set);
             }
 
             // Zucker aufheben Test
@@ -57,7 +59,7 @@ namespace PlayerAI
             }
         }
 
-        public override void notify(Coordinates coords)
+        public override void notify(HashSet<Coordinates> coords)
         {
             // nothing todo hier.
         }

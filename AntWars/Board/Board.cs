@@ -90,7 +90,7 @@ namespace AntWars.Board
         /// </summary>
         /// <param name="coords">Die Koordinaten welche den anderen Ameisen mitgeteilt werden soll</param>
         /// <param name="ant">Die Ameise welche mitteilt</param>
-        public void notifyAnts(Coordinates coords, Ant ant)
+        public void notifyAnts(HashSet<Coordinates> coords, Ant ant)
         {
             BoardObject[] objs = getBoardObjectsInView(ant.Coords, ant.ViewRange * 2);
             for (int i = 0; i < objs.Length; i++)

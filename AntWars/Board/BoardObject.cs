@@ -62,14 +62,5 @@ namespace AntWars.Board
         {
             return GetType() == typeof(Scout);
         }
-
-        /// <summary>
-        /// Überprüft ob das BoardObject eine Zucker ist.
-        /// </summary>
-        /// <returns>true wenn es eine Zucker ist</returns>
-        public bool isSignal()
-        {
-            return GetType() == typeof(Signal);
-        }
     }
 }
