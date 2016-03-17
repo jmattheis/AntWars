@@ -51,25 +51,25 @@ namespace AntWars
 
         private void configLoadedOrNewCreatedGame()
         {
-            btn_gameConfigLoad.Enabled = false;
-            btn_gameConfigNew.Enabled = false;
-            btn_gameConfigSave.Enabled = true;
-            pnl_GameConfig.Enabled = true;
-            buttonView.Enabled = true;
+            btn_load.Enabled = false;
+            btn_new.Enabled = false;
+            btn_save.Enabled = true;
+            pnl_config.Enabled = true;
+            btn_view.Enabled = true;
         }
 
         private void loadGame(Config conf)
         {
-            numeric_gameConfigSugarMin.Value = conf.SugarMin;
-            numeric_gameConfigSugarMax.Value = conf.SugarMax;
-            numeric_gameConfigSugarAmountMin.Value = conf.SugarAmountMin;
-            numeric_gameConfigSugarAmountMax.Value = conf.SugarAmountMax;
-            numeric_gameConfigBoardWidth.Value = conf.BoardWidth;
-            numeric_gameConfigBoardHeigth.Value = conf.BoardHeight;
-            numeric_gameConfigStartMoney.Value = (decimal)conf.StartMoney;
-            numeric_gameConfigTicks.Value = conf.Ticks;
-            numeric_gameConfigMaxTicks.Value = conf.MaxTicks;
-            numeric_gameConfigPoints.Value = conf.Points;
+            nmc_sugarMin.Value = conf.SugarMin;
+            nmc_sugarMax.Value = conf.SugarMax;
+            nmc_sugarAmountMin.Value = conf.SugarAmountMin;
+            nmc_sugarAmountMax.Value = conf.SugarAmountMax;
+            nmc_boardWidth.Value = conf.BoardWidth;
+            nmc_boardHeigth.Value = conf.BoardHeight;
+            nmc_startMoney.Value = (decimal)conf.StartMoney;
+            nmc_ticks.Value = conf.Ticks;
+            nmc_maxTicks.Value = conf.MaxTicks;
+            nmc_points.Value = conf.Points;
         }
 
         private String openDialog()
@@ -95,47 +95,47 @@ namespace AntWars
 
         private void numeric_gameConfigSugarMin_ValueChanged(object sender, EventArgs e)
         {
-            config.SugarMin = Convert.ToInt32(numeric_gameConfigSugarMin.Value);
+            config.SugarMin = Convert.ToInt32(nmc_sugarMin.Value);
         }
 
         private void numeric_gameConfigSugarAmountMin_ValueChanged(object sender, EventArgs e)
         {
-            config.SugarAmountMin = Convert.ToInt32(numeric_gameConfigSugarAmountMin.Value);
+            config.SugarAmountMin = Convert.ToInt32(nmc_sugarAmountMin.Value);
         }
 
         private void numeric_gameConfigBoardWidth_ValueChanged(object sender, EventArgs e)
         {
-            config.BoardWidth = Convert.ToInt32(numeric_gameConfigBoardWidth.Value);
+            config.BoardWidth = Convert.ToInt32(nmc_boardWidth.Value);
         }
 
         private void numeric_gameConfigPoints_ValueChanged(object sender, EventArgs e)
         {
-            config.Points = Convert.ToInt32(numeric_gameConfigPoints.Value);
+            config.Points = Convert.ToInt32(nmc_points.Value);
         }
 
         private void numeric_gameConfigStartMoney_ValueChanged(object sender, EventArgs e)
         {
-            config.StartMoney = Convert.ToDouble(numeric_gameConfigStartMoney.Value);
+            config.StartMoney = Convert.ToDouble(nmc_startMoney.Value);
         }
 
         private void numeric_gameConfigTime_ValueChanged(object sender, EventArgs e)
         {
-            config.Ticks = Convert.ToInt32(numeric_gameConfigTicks.Value);
+            config.Ticks = Convert.ToInt32(nmc_ticks.Value);
         }
 
         private void numeric_gameConfigBoardHeigth_ValueChanged(object sender, EventArgs e)
         {
-            config.BoardHeight = Convert.ToInt32(numeric_gameConfigBoardHeigth.Value);
+            config.BoardHeight = Convert.ToInt32(nmc_boardHeigth.Value);
         }
 
         private void numeric_gameConfigSugarAmountMax_ValueChanged(object sender, EventArgs e)
         {
-            config.SugarAmountMax = Convert.ToInt32(numeric_gameConfigSugarAmountMax.Value);
+            config.SugarAmountMax = Convert.ToInt32(nmc_sugarAmountMax.Value);
         }
 
         private void numeric_gameConfigSugarMax_ValueChanged(object sender, EventArgs e)
         {
-            config.SugarMax = Convert.ToInt32(numeric_gameConfigSugarMax.Value);
+            config.SugarMax = Convert.ToInt32(nmc_sugarMax.Value);
         }
 
         private void btn_gameConfigNew_Click(object sender, EventArgs e)
@@ -144,7 +144,7 @@ namespace AntWars
             configLoadedOrNewCreatedGame();
             loadGame(config);
             checkPlayerKI();
-            btn_gameConfigSave.Focus();
+            btn_save.Focus();
         }
 
         private void btn_gameConfigSave_Click(object sender, EventArgs e)
@@ -200,7 +200,7 @@ namespace AntWars
                 checkPlayerKI();
                 loadGame(config);
             }
-            btn_gameConfigSave.Focus();
+            btn_save.Focus();
         }
 
         private void buttonView_Click(object sender, EventArgs e)
@@ -251,7 +251,7 @@ namespace AntWars
         /// <param name="state">true für aktivieren, false für deaktivieren</param>
         private void changeControlState(bool state)
         {
-            pnl_GameConfig.Enabled = state;
+            pnl_config.Enabled = state;
         }
 
         private bool isGameRunning(object sender)
@@ -288,7 +288,7 @@ namespace AntWars
 
         private void numeric_gameConfigMaxTicks_ValueChanged(object sender, EventArgs e)
         {
-            config.MaxTicks = Convert.ToInt32(numeric_gameConfigMaxTicks.Value);
+            config.MaxTicks = Convert.ToInt32(nmc_maxTicks.Value);
         }
 
         private void checkPlayerKI()
