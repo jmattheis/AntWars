@@ -215,7 +215,21 @@ namespace AntWars.Board.Ants
         }
 
         /// <summary>
-        /// Überprüft ob die Ameise auf innerhalb der Base steht.
+        /// Verringert die UnitsGone einer Ameise um einen bestimmten Prozentsatz.
+        /// Diese Aktion wird als Bewegung gewertet.
+        /// </summary>
+        public void restore()
+        {
+            if (isInBase())
+            {
+                // 0.2 kann später durch den bestimmten oder aufgewerteten Prozentsatz der Base ersetzt werden.
+                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.2)));
+                MovedThisTick = true;
+            }
+        }
+
+        /// <summary>
+        /// Überprüft ob die Ameise innerhalb der Base steht.
         /// </summary>
         /// <returns>true, wenn die Ameise innerhalb der Base steht, ansonsten false</returns>
         public bool isInBase()
