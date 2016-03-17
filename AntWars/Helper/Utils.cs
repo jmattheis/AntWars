@@ -17,18 +17,32 @@ namespace AntWars.Helper
 
         public static XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
 
+        private const int MIN_FACTOR = 10;
+
+        private const int MAX_FACTOR = 5;
+
         public static Coordinates generateBaseCoords(int boardWidth, int boardHeight)
         {
+
+            int minX = boardWidth / MIN_FACTOR;
+            int maxX = boardWidth / MAX_FACTOR;
+            int minY = boardHeight / MIN_FACTOR;
+            int maxY = boardHeight / MAX_FACTOR;
+
             switch(random.Next(0,4))
             {
                 case 0:
-                    return new Coordinates(random.Next(boardWidth), 0);
+                    // quadrant 1
+                    return new Coordinates(random.Next(minX, maxX), random.Next(minY, maxY));
                 case 1:
-                    return new Coordinates(--boardWidth, random.Next(boardHeight));
+                    // quadrant 2
+                    return new Coordinates(random.Next(boardWidth - maxX, boardWidth - minX), random.Next(minY, maxY));
                 case 2:
-                    return new Coordinates(random.Next(boardWidth), --boardHeight);
+                    // quadrant 3
+                    return new Coordinates(random.Next(minX, maxX), random.Next(boardHeight - maxY, boardHeight - minY));
                 case 3:
-                    return new Coordinates(0, random.Next(boardHeight));
+                    // quadrant 4
+                    return new Coordinates(random.Next(boardWidth - maxX, boardWidth - minX), random.Next(boardHeight - maxY, boardHeight - minY));
                 default:
                     throw new RuntimeException("C# is wrong.");
             }
