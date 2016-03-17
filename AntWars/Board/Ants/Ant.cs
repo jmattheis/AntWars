@@ -79,7 +79,7 @@ namespace AntWars.Board.Ants
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveUpperLeft()
         {
-            Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y + 1);
+            Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y - 1);
             return move(newCoords);
         }
 
@@ -89,7 +89,7 @@ namespace AntWars.Board.Ants
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveLowerLeft()
         {
-            Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y - 1);
+            Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y + 1);
             return move(newCoords);
         }
 
@@ -109,7 +109,7 @@ namespace AntWars.Board.Ants
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveUpperRight()
         {
-            Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y + 1);
+            Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y - 1);
             return move(newCoords);
         }
 
@@ -119,7 +119,7 @@ namespace AntWars.Board.Ants
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveLowerRight()
         {
-            Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y - 1);
+            Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y + 1);
             return move(newCoords);
         }
 
