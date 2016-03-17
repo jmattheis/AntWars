@@ -40,7 +40,7 @@ namespace AntWars
         public int ScoutCount { get; set; }
 
         /// <summary>
-        /// Die Anzahl von carries auf dem Feld.
+        /// Die Anzahl von Carries auf dem Feld.
         /// </summary>
         public int CarryCount { get; set; }
 
