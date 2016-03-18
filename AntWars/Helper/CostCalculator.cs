@@ -23,6 +23,24 @@ namespace AntWars.Helper
         private const int INVENTORY_MIN = 1;
         private const int INVENTORY_MAX = 10;
 
+        private const int UPGRADE_MIN = 0;
+        private const int UPGRADE_MAX = 3;
+        private const int UPGRADE_MULTIPLAYER = 20;
+
+        /// <summary>
+        /// Berechnet die Kosten anhand des level's
+        /// </summary>
+        /// <param name="currentLevel">Das momentane level von einem Basen upgrade.</param>
+        /// <returns>die Kosten</returns>
+        public static double calculateUpgradeCost(int currentLevel)
+        {
+            if(currentLevel < UPGRADE_MAX)
+            {
+                return ++currentLevel * UPGRADE_MULTIPLAYER;
+            }
+            throw new ArgumentException("current level is higher than max");
+        }
+
         /// <summary>
         /// Berechnet die Kosten anhand der übergebenen Ameise.
         /// </summary>
