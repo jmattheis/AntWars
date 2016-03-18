@@ -21,36 +21,46 @@ namespace AntWars.Helper
 
         private const int MAX_FACTOR = 5;
 
-        public static Coordinates generateBaseCoords(int boardWidth, int boardHeight)
+        public static Coordinates[] generateBaseCoords(int boardWidth, int boardHeight)
         {
+            Coordinates[] baseCoords = new Coordinates[2];
 
+            int rand1 = random.Next(1, 5);
+            int rand2;
+            do
+            {
+                rand2 = random.Next(1, 5);
+            } while (rand2 == rand1);
+
+            baseCoords[0] = getRandomCoordsInQuadrant(rand1, boardWidth, boardHeight);
+            baseCoords[1] = getRandomCoordsInQuadrant(rand2, boardWidth, boardHeight);
+
+            return baseCoords;
+        }
+
+        public static Coordinates getRandomCoordsInQuadrant(int quadrant, int boardWidth, int boardHeight)
+        {
             int minX = boardWidth / MIN_FACTOR;
             int maxX = boardWidth / MAX_FACTOR;
             int minY = boardHeight / MIN_FACTOR;
             int maxY = boardHeight / MAX_FACTOR;
 
-            switch(random.Next(0,4))
+            switch (quadrant)
             {
-                case 0:
+                case 1:
                     // quadrant 1
                     return new Coordinates(random.Next(minX, maxX), random.Next(minY, maxY));
-                case 1:
+                case 2:
                     // quadrant 2
                     return new Coordinates(random.Next(boardWidth - maxX, boardWidth - minX), random.Next(minY, maxY));
-                case 2:
+                case 3:
                     // quadrant 3
                     return new Coordinates(random.Next(minX, maxX), random.Next(boardHeight - maxY, boardHeight - minY));
-                case 3:
+                case 4:
+                default:
                     // quadrant 4
                     return new Coordinates(random.Next(boardWidth - maxX, boardWidth - minX), random.Next(boardHeight - maxY, boardHeight - minY));
-                default:
-                    throw new RuntimeException("C# is wrong.");
             }
-        }
-
-        public static Coordinates generateBaseCoords(int boardWidth, int boardHeight, Base enemyBase)
-        {
-            return new Coordinates(--boardWidth - enemyBase.Coords.X, --boardHeight - enemyBase.Coords.Y);
         }
 
         public static Coordinates generateCoords(int boardWidth, int boardHeight)
@@ -68,7 +78,7 @@ namespace AntWars.Helper
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
-          
+
             }
         }
 

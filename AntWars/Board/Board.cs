@@ -25,6 +25,8 @@ namespace AntWars.Board
         public int Diagonal { get; private set; }
         internal Config conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
+
+        private Coordinates[] baseCoords = new Coordinates[2];
         /// <summary>
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
@@ -40,6 +42,7 @@ namespace AntWars.Board
             BoardObjects = new BoardObjects(conf);
             DyingAnts = new List<Ant>();
             Diagonal = Convert.ToInt32(Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2)));
+            baseCoords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight);
         }
 
         /// <summary>
@@ -186,15 +189,8 @@ namespace AntWars.Board
         private Base generateBase(Player player)
         {
             Base b = new Base(player);
-            // Bases immer gegenüber spawnen lassen
-            if (this.BoardObjects.getBases().Count == 1)
-            {
-                b.Coords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight, this.BoardObjects.getBases()[0]);
-            }
-            else
-            {
-                b.Coords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight);
-            }
+            // Bases zufällig in verschiedenen Quadranten spawnen lassen
+            b.Coords = baseCoords[BoardObjects.getBases().Count];
             return b;
         }
     }
