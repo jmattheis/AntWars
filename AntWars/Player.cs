@@ -104,5 +104,15 @@ namespace AntWars
             }
             return false;
         }
+
+        /// <summary>
+        /// Gibt dem Spieler Geld.
+        /// </summary>
+        /// <param name="amount">Die Anzahl an Geld</param>
+        public void addMoney(double amount)
+        {
+            if(amount < 0) { throw new ArgumentException("Money may not be less than 0"); }
+            Money += amount;
+        }
     }
 }
