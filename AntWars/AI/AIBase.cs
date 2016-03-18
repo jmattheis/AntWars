@@ -90,6 +90,25 @@ namespace AntWars.AI
             return buyAnt(c);
         }
 
+        /// <summary>
+        /// Verbessert die Reichweite der Basis.
+        /// </summary>
+        /// <returns>false wenn man zuwenig Geld hat</returns>
+        public bool upgradeRange()
+        {
+            try
+            {
+                double cost = Helper.CostCalculator.calculateUpgradeCost(getBase().Range);
+                if (Player.pay(cost))
+                {
+                    Base.Range++;
+                    return true;
+                }
+            }
+            catch (ArgumentException) { } // tritt auf wenn das level zu hoch ist
+            return false;
+        }
+
         private bool buyAnt(Ant ant)
         {
             double cost = Helper.CostCalculator.calculateCost(ant);
@@ -126,21 +145,6 @@ namespace AntWars.AI
                 }
                 return false;
             }
-        }
-
-        public bool upgradeRange()
-        {
-            try
-            {
-                double cost = Helper.CostCalculator.calculateUpgradeCost(getBase().Range);
-                if (Player.pay(cost))
-                {
-                    Base.Range++;
-                    return true;
-                }
-            }
-            catch (ArgumentException) { } // tritt auf wenn das level zu hoch ist
-            return false;
         }
 
         private Base getBase()
