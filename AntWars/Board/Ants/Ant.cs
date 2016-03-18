@@ -223,6 +223,8 @@ namespace AntWars.Board.Ants
         {
             if(!board.DyingAnts.Contains(this))
                 board.DyingAnts.Add(this);
+
+            Owner.decreaseAnts(this);
         }
 
         /// Gibt die Koordinaten von der zugehörigen Base zurück.
