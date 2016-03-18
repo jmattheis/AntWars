@@ -54,7 +54,7 @@ namespace AntWars.Board
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                ant.MovedThisTick = false;
+                ant.TookAction = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
 
