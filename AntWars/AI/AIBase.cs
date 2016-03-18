@@ -90,6 +90,22 @@ namespace AntWars.AI
             return buyAnt(c);
         }
 
+        /// <summary>
+        /// Kauft einen Warrior.
+        /// Zur Berechnung der Bewegungsreichweite einer Ameise wird die Diagonale des Spielfeldes mit dem gewählten moveRangeFactor multipliziert.
+        /// (Eine Umrundung des Spielfeldes benötigt mindestens einen moveRangeFactor von Drei.)
+        /// </summary>
+        /// <param name="attackPower">Die Angriffsstärke der Ameise.</param>
+        /// <param name="viewRange">Die Sichtweite der Ameise.</param>
+        /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann.</param>
+        /// <param name="moveRangeFactor">Wie weit die Ameise gehen kann.</param>
+        /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
+        protected bool buyWarrior(int attackPower, int viewRange, int inventory, int moveRangeFactor)
+        {
+            Warrior w = new Warrior(attackPower, Game.Board, Player, viewRange, inventory, moveRangeFactor);
+            return buyAnt(w);
+        }
+
         private bool buyAnt(Ant ant)
         {
             double cost = Helper.CostCalculator.calculateCost(ant);

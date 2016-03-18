@@ -40,6 +40,11 @@ namespace AntWars
         public int ScoutCount { get; set; }
 
         /// <summary>
+        /// Die Anzahl der Warriors auf dem Feld.
+        /// </summary>
+        public int WarriorCount { get; set; }
+
+        /// <summary>
         /// Die Anzahl von carries auf dem Feld.
         /// </summary>
         public int CarryCount { get; set; }
@@ -61,13 +66,19 @@ namespace AntWars
             if (ant.isCarry())
             {
                 CarryCount++;
-            } else if(ant.isScout())
+            }
+            else if (ant.isScout())
             {
                 ScoutCount++;
-            } else
+            }
+            else if (ant.isWarrior())
+            {
+                WarriorCount++;
+            }
+            else
             {
                 throw new RuntimeException("Unknown ant type.");
-            }    
+            }
         }
     }
 }

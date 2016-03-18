@@ -12,16 +12,26 @@ namespace AntWars.Helper
     {
         private const double VIEWRANGE_SCOUT_QUANTIFIER = 0.75;
         private const double VIEWRANGE_CARRY_QUANTIFIER = 1.25;
+        private const double VIEWRANGE_WARRIOR_QUANTIFIER = 1;
+
         private const double MOVERANGE_SCOUT_QUANTIFIER = 1;
         private const double MOVERANGE_CARRY_QUANTIFIER = 1;
+        private const double MOVERANGE_WARRIOR_QUANTIFIER = 1;
+
         private const double INVENTORY_SCOUT_QUANTIFIER = 1.25;
         private const double INVENTORY_CARRY_QUANTIFIER = 0.75;
+        private const double INVENTORY_WARRIOR_QUANTIFIER = 2;
+
+        private const double ATTACKPOWER_WARRIOR_QUANTIFIER = 1;
+
         private const int VIEWRANGE_MIN = 1;
         private const int VIEWRANGE_MAX = 10;
         private const int MOVERANGE_MIN = 1;
         private const int MOVERANGE_MAX = 10;
         private const int INVENTORY_MIN = 1;
         private const int INVENTORY_MAX = 10;
+        private const int ATTACKPOWER_MIN = 1;
+        private const int ATTACKPOWER_MAX = 10;
 
         /// <summary>
         /// Berechnet die Kosten anhand der übergebenen Ameise.
@@ -34,9 +44,13 @@ namespace AntWars.Helper
             {
                 return calculateCostCarry(ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Owner.AI.Playername);
             }
-            if (ant.isScout())
+            else if (ant.isScout())
             {
                 return calculateCostScout(ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Owner.AI.Playername);
+            }
+            else if (ant.isWarrior())
+            {
+                return calculateCostWarrior((ant as Warrior).AttackPower, ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Owner.AI.Playername);
             }
             throw new RuntimeException("Unknown ant type.");
         }
@@ -55,7 +69,7 @@ namespace AntWars.Helper
             double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_SCOUT_QUANTIFIER;
             return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier);
         }
-        
+
         /// <summary>
         /// Berechnet die Kosten der Carry-Ameise.
         /// </summary>
@@ -71,9 +85,25 @@ namespace AntWars.Helper
             return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier);
         }
 
-        private static double calculate(double viewRangeWithQuantifier, double moveRangeFactorWithQuantifier, double inventoryWithQuantifier)
+        /// <summary>
+        /// Berechnet die Kosten der Scout-Ameise.
+        /// </summary>
+        /// <param name="viewRange">Die Sichtweite der Ameise.</param>
+        /// <param name="moveRange">Die Reichweite der Ameise.</param>
+        /// <param name="inventory">Die Inventargröße der Ameise.</param>
+        /// <returns>Die berechneten Kosten der Ameise.</returns>
+        public static double calculateCostWarrior(int attackPower, int viewRange, int moveRangeFactor, int inventory, string playername)
         {
-            return Math.Round(((viewRangeWithQuantifier + moveRangeFactorWithQuantifier + inventoryWithQuantifier) / 2), 2);
+            double viewRangeWithQuantifier = viewRange * VIEWRANGE_SCOUT_QUANTIFIER;
+            double inventoryWithQuantifier = inventory * INVENTORY_SCOUT_QUANTIFIER;
+            double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_SCOUT_QUANTIFIER;
+            double attackPowerWithQuantifier = attackPower * ATTACKPOWER_WARRIOR_QUANTIFIER;
+            return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier, attackPowerWithQuantifier);
+        }
+
+        private static double calculate(params double[] numbers)
+        {
+            return Math.Round((numbers.Sum() / 2), 2);
         }
 
         /// <summary>
@@ -84,11 +114,12 @@ namespace AntWars.Helper
         /// <param name="inventory">Die Inventargröße der Ameise.</param>
         public static void checkAttributes(int viewRange, int moveRange, int inventory, string playername)
         {
+            // TODO für Warrior umschreiben, wird momentan nirgends genutzt
             if (viewRange < VIEWRANGE_MIN || viewRange > VIEWRANGE_MAX)
             {
-                MessageBox.Show(String.Format(Messages.ERROR_INVALID_VALUE, viewRange, Messages.VIEWRANGE, VIEWRANGE_MIN, VIEWRANGE_MAX), 
-                                String.Format(Messages.ERROR_INVALID_VALUE_PLAYER_CAPTION, playername), 
-                                MessageBoxButtons.OK, 
+                MessageBox.Show(String.Format(Messages.ERROR_INVALID_VALUE, viewRange, Messages.VIEWRANGE, VIEWRANGE_MIN, VIEWRANGE_MAX),
+                                String.Format(Messages.ERROR_INVALID_VALUE_PLAYER_CAPTION, playername),
+                                MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
             }
             if (moveRange < MOVERANGE_MIN || moveRange > MOVERANGE_MAX)
