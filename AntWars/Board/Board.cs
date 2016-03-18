@@ -26,7 +26,6 @@ namespace AntWars.Board
         internal Config conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
 
-        private Coordinates[] baseCoords = new Coordinates[2];
         /// <summary>
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
@@ -42,7 +41,6 @@ namespace AntWars.Board
             BoardObjects = new BoardObjects(conf);
             DyingAnts = new List<Ant>();
             Diagonal = Convert.ToInt32(Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2)));
-            baseCoords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight);
         }
 
         /// <summary>
@@ -83,8 +81,9 @@ namespace AntWars.Board
         /// <param name="player2">Der Spieler 2</param>
         public void nullTick(Player player1, Player player2)
         {
-            nullTick(player1);
-            nullTick(player2);
+            Coordinates[] baseCoords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight);
+            nullTick(player1, baseCoords[0]);
+            nullTick(player2, baseCoords[1]);
             generateSugar(conf.SugarMin, conf.SugarMax);
         }
 
@@ -156,9 +155,10 @@ namespace AntWars.Board
             return coordsInView;
         }
 
-        private void nullTick(Player player)
+        private void nullTick(Player player, Coordinates baseCoords)
         {
-            Base b = generateBase(player);
+            Base b = new Base(player);
+            b.Coords = baseCoords;
 
             if (!BoardObjects.add(b))
             {
@@ -184,14 +184,6 @@ namespace AntWars.Board
                 BoardObjects.add(s);
                 SugarAmount += s.Amount;
             }
-        }
-
-        private Base generateBase(Player player)
-        {
-            Base b = new Base(player);
-            // Bases zufällig in verschiedenen Quadranten spawnen lassen
-            b.Coords = baseCoords[BoardObjects.getBases().Count];
-            return b;
         }
     }
 }
