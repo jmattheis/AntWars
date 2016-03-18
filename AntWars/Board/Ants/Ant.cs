@@ -239,16 +239,13 @@ namespace AntWars.Board.Ants
         /// <returns>true bei Regenerierung, fals wenn Ameise keinen Zucker bei sich trägt oder bereits eine Aktion ausgeführt hat.</returns>
         public bool eatSugar()
         {
-            if (!TookAction)
+            if (!TookAction && Inventory > 0)
             {
-                if (Inventory > 0)
-                {
-                    Inventory--;
-                    UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.1)));
-                    MoveRange = Convert.ToInt32(Math.Ceiling(MoveRange * (1 - 0.05)));
-                    TookAction = true;
-                    return true;
-                }
+                Inventory--;
+                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.1)));
+                MoveRange = Convert.ToInt32(Math.Ceiling(MoveRange * (1 - 0.05)));
+                TookAction = true;
+                return true;
             }
             return false;
         }
