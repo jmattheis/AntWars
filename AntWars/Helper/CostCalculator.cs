@@ -23,7 +23,6 @@ namespace AntWars.Helper
         private const int INVENTORY_MIN = 1;
         private const int INVENTORY_MAX = 10;
 
-        private const int UPGRADE_MIN = 0;
         private const int UPGRADE_MAX = 3;
         private const int UPGRADE_MULTIPLIER = 20;
 
