@@ -224,14 +224,7 @@ namespace AntWars.Board.Ants
             if(!board.DyingAnts.Contains(this))
                 board.DyingAnts.Add(this);
 
-            if (isCarry())
-            {
-                Owner.CarryCount--;
-            }
-            if (isScout())
-            {
-                Owner.ScoutCount--;
-            }
+            Owner.decreaseAnts(this);
         }
 
         /// Gibt die Koordinaten von der zugehörigen Base zurück.

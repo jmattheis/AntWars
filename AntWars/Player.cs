@@ -53,9 +53,9 @@ namespace AntWars
         }
 
         /// <summary>
-        /// Erhöht die Anzahl der Carries oder Scouts
+        /// Erhöht die Anzahl der Ameisen eines Ameisentyps um eins.
         /// </summary>
-        /// <param name="ant">Die neue Ameise</param>
+        /// <param name="ant">Die neue Ameise.</param>
         public void incrementAnts(Ant ant)
         {
             if (ant.isCarry())
@@ -68,6 +68,26 @@ namespace AntWars
             {
                 throw new RuntimeException("Unknown ant type.");
             }    
+        }
+
+        /// <summary>
+        /// Verringert die Anzahl der Ameisen eines Ameisentyps um eins.
+        /// </summary>
+        /// <param name="ant">Die zu verringernde Ameise.</param>
+        public void decreaseAnts(Ant ant)
+        {
+            if (ant.isCarry())
+            {
+                CarryCount--;
+            }
+            else if (ant.isScout())
+            {
+                ScoutCount--;
+            }
+            else
+            {
+                throw new RuntimeException("Unknown ant type.");
+            }
         }
     }
 }
