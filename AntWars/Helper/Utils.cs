@@ -17,26 +17,50 @@ namespace AntWars.Helper
 
         public static XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
 
-        public static Coordinates generateBaseCoords(int boardWidth, int boardHeight)
+        private const int MIN_FACTOR = 10;
+
+        private const int MAX_FACTOR = 5;
+
+        public static Queue<Coordinates> generateBaseCoords(int boardWidth, int boardHeight)
         {
-            switch(random.Next(0,4))
+            Queue<Coordinates> baseCoords = new Queue<Coordinates>();
+
+            int rand1 = random.Next(1, 5);
+            int rand2;
+            do
             {
-                case 0:
-                    return new Coordinates(random.Next(boardWidth), 0);
-                case 1:
-                    return new Coordinates(--boardWidth, random.Next(boardHeight));
-                case 2:
-                    return new Coordinates(random.Next(boardWidth), --boardHeight);
-                case 3:
-                    return new Coordinates(0, random.Next(boardHeight));
-                default:
-                    throw new RuntimeException("C# is wrong.");
-            }
+                rand2 = random.Next(1, 5);
+            } while (rand2 == rand1);
+
+            baseCoords.Enqueue(getRandomCoordsInQuadrant(rand1, boardWidth, boardHeight));
+            baseCoords.Enqueue(getRandomCoordsInQuadrant(rand2, boardWidth, boardHeight));
+
+            return baseCoords;
         }
 
-        public static Coordinates generateBaseCoords(int boardWidth, int boardHeight, Base enemyBase)
+        public static Coordinates getRandomCoordsInQuadrant(int quadrant, int boardWidth, int boardHeight)
         {
-            return new Coordinates(--boardWidth - enemyBase.Coords.X, --boardHeight - enemyBase.Coords.Y);
+            int minX = boardWidth / MIN_FACTOR;
+            int maxX = boardWidth / MAX_FACTOR;
+            int minY = boardHeight / MIN_FACTOR;
+            int maxY = boardHeight / MAX_FACTOR;
+
+            switch (quadrant)
+            {
+                case 1:
+                    // quadrant 1
+                    return new Coordinates(random.Next(minX, maxX), random.Next(minY, maxY));
+                case 2:
+                    // quadrant 2
+                    return new Coordinates(random.Next(boardWidth - maxX, boardWidth - minX), random.Next(minY, maxY));
+                case 3:
+                    // quadrant 3
+                    return new Coordinates(random.Next(minX, maxX), random.Next(boardHeight - maxY, boardHeight - minY));
+                case 4:
+                default:
+                    // quadrant 4
+                    return new Coordinates(random.Next(boardWidth - maxX, boardWidth - minX), random.Next(boardHeight - maxY, boardHeight - minY));
+            }
         }
 
         public static Coordinates generateCoords(int boardWidth, int boardHeight)
@@ -54,7 +78,7 @@ namespace AntWars.Helper
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
-          
+
             }
         }
 
