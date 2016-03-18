@@ -94,7 +94,7 @@ namespace AntWars
         /// Zieht dem Spieler Geld ab.
         /// </summary>
         /// <param name="amount">Die Anzahl an Geld</param>
-        /// <returns>true wenn der Spiele genügend Geld hat andernfalls false</returns>
+        /// <returns>true wenn der Spieler genügend Geld hat andernfalls false</returns>
         public bool pay(double amount)
         {
             if(Money >= amount)
