@@ -18,6 +18,7 @@ namespace AntWars.Board
         internal Base(Player p)
         {
             Player = p;
+            Range = 0;
         }
 
     }

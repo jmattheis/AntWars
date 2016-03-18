@@ -94,7 +94,7 @@ namespace AntWars.AI
         {
             double cost = Helper.CostCalculator.calculateCost(ant);
             Base b = Game.Board.BoardObjects.getBase(Player);
-            if (!resolveAntCoords(ant, b) || Player.pay(cost))
+            if (resolveAntCoords(ant, b) && !Player.pay(cost))
             {
                 return false;
             }
@@ -132,7 +132,7 @@ namespace AntWars.AI
         {
             try
             {
-                double cost = Helper.CostCalculator.calculateUpgradeCost(Base.Range);
+                double cost = Helper.CostCalculator.calculateUpgradeCost(getBase().Range);
                 if (Player.pay(cost))
                 {
                     Base.Range++;

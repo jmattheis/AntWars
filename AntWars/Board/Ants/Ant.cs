@@ -50,6 +50,7 @@ namespace AntWars.Board.Ants
         internal Player Owner { get; private set; }
         internal IAIAnt AI { get; set; }
         internal Board board;
+        private Base Base;
 
         internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRangeFactor)
         {
@@ -256,9 +257,17 @@ namespace AntWars.Board.Ants
         /// <returns>true, wenn die Ameise innerhalb der Base steht, ansonsten false</returns>
         public bool isInBase()
         {
-            int range = (int)((Owner.CarryCount + Owner.ScoutCount) / 50);
-            if (range > 3) { range = 3; }
+            int range = getBase().Range;
             return Coords.isInRange(range, getBaseCoords());
+        }
+
+        private Base getBase()
+        {
+            if(Base == null)
+            {
+                Base = board.BoardObjects.getBase(Owner);
+            }
+            return Base;
         }
 
         /// <summary>
@@ -277,7 +286,7 @@ namespace AntWars.Board.Ants
         /// <returns>Die Koordinaten von der Base</returns>
         public Coordinates getBaseCoords()
         {
-            return board.BoardObjects.getBase(Owner).Coords;
+            return getBase().Coords;
         }
     }
 
