@@ -204,15 +204,12 @@ namespace AntWars.Board.Ants
         /// <returns>True bei Erfolg, false wenn die Ameise nicht auf der Base steht.</returns>
         public bool dropSugarOnBase()
         {
-            if (!TookAction)
+            if (!TookAction && isInBase())
             {
-                if (isInBase())
-                {
-                    Owner.Money += Inventory;
-                    Owner.Points += Inventory;
-                    Inventory = 0;
-                    return true;    
-                }
+                Owner.Money += Inventory;
+                Owner.Points += Inventory;
+                Inventory = 0;
+                return true;    
             }
             return false;
         }
@@ -223,16 +220,13 @@ namespace AntWars.Board.Ants
         /// <returns>True bei Regenerierung, false wenn Ameise nicht in der Base steht oder bereits eine Aktion ausgeführt hat.</returns>
         public bool restore()
         {
-            if (!TookAction)
+            if (!TookAction && isInBase())
             {
-                if (isInBase())
-                {
-                    // 0.2 kann später durch den bestimmten oder aufgewerteten Prozentsatz der Base ersetzt werden.
-                    UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.2)));
-                    // TODO: Nach Implementierung von Health, hier Health regenerieren.
-                    TookAction = true;
-                    return true;
-                }
+                // 0.2 kann später durch den bestimmten oder aufgewerteten Prozentsatz der Base ersetzt werden.
+                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.2)));
+                // TODO: Nach Implementierung von Health, hier Health regenerieren.
+                TookAction = true;
+                return true;
             }
             return false;
         }
@@ -267,11 +261,7 @@ namespace AntWars.Board.Ants
         {
             int range = (int)((Owner.CarryCount + Owner.ScoutCount) / 50);
             if (range > 3) { range = 3; }
-            if (Coords.isInRange(range, getBaseCoords()))
-            {
-                return true;
-            }
-            return false;
+            return Coords.isInRange(range, getBaseCoords());
         }
 
         /// <summary>
