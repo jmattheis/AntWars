@@ -32,7 +32,7 @@ namespace AntWars
         /// <summary>
         /// Das momentane Geld vom Spieler.
         /// </summary>
-        public double Money { get; set; }
+        public double Money { get; private set; }
 
         /// <summary>
         /// Die Anzahl von Scount auf dem Feld.
@@ -88,6 +88,21 @@ namespace AntWars
             {
                 throw new RuntimeException("Unknown ant type.");
             }
+        }
+
+        /// <summary>
+        /// Zieht dem Spieler Geld ab.
+        /// </summary>
+        /// <param name="amount">Die Anzahl an Geld</param>
+        /// <returns>true wenn der Spiele genügend Geld hat andernfalls false</returns>
+        public bool pay(double amount)
+        {
+            if(Money >= amount)
+            {
+                Money -= amount;
+                return true;
+            }
+            return false;
         }
     }
 }
