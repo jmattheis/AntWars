@@ -206,7 +206,7 @@ namespace AntWars.Board.Ants
         {
             if (!TookAction && isInBase())
             {
-                Owner.Money += Inventory;
+                Owner.addMoney(Inventory);
                 Owner.Points += Inventory;
                 Inventory = 0;
                 return true;    
