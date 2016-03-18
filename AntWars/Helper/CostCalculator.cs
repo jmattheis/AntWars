@@ -25,7 +25,7 @@ namespace AntWars.Helper
 
         private const int UPGRADE_MIN = 0;
         private const int UPGRADE_MAX = 3;
-        private const int UPGRADE_MULTIPLAYER = 20;
+        private const int UPGRADE_MULTIPLIER = 20;
 
         /// <summary>
         /// Berechnet die Kosten anhand des level's
@@ -36,7 +36,7 @@ namespace AntWars.Helper
         {
             if(currentLevel < UPGRADE_MAX)
             {
-                return ++currentLevel * UPGRADE_MULTIPLAYER;
+                return ++currentLevel * UPGRADE_MULTIPLIER;
             }
             throw new ArgumentException("current level is higher than max");
         }
