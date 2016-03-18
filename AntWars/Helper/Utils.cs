@@ -21,9 +21,9 @@ namespace AntWars.Helper
 
         private const int MAX_FACTOR = 5;
 
-        public static Coordinates[] generateBaseCoords(int boardWidth, int boardHeight)
+        public static Queue<Coordinates> generateBaseCoords(int boardWidth, int boardHeight)
         {
-            Coordinates[] baseCoords = new Coordinates[2];
+            Queue<Coordinates> baseCoords = new Queue<Coordinates>();
 
             int rand1 = random.Next(1, 5);
             int rand2;
@@ -32,8 +32,8 @@ namespace AntWars.Helper
                 rand2 = random.Next(1, 5);
             } while (rand2 == rand1);
 
-            baseCoords[0] = getRandomCoordsInQuadrant(rand1, boardWidth, boardHeight);
-            baseCoords[1] = getRandomCoordsInQuadrant(rand2, boardWidth, boardHeight);
+            baseCoords.Enqueue(getRandomCoordsInQuadrant(rand1, boardWidth, boardHeight));
+            baseCoords.Enqueue(getRandomCoordsInQuadrant(rand2, boardWidth, boardHeight));
 
             return baseCoords;
         }

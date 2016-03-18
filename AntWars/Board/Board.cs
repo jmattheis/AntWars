@@ -81,9 +81,9 @@ namespace AntWars.Board
         /// <param name="player2">Der Spieler 2</param>
         public void nullTick(Player player1, Player player2)
         {
-            Coordinates[] baseCoords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight);
-            nullTick(player1, baseCoords[0]);
-            nullTick(player2, baseCoords[1]);
+            Queue<Coordinates> baseCoords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight);
+            nullTick(player1, baseCoords.Dequeue());
+            nullTick(player2, baseCoords.Dequeue());
             generateSugar(conf.SugarMin, conf.SugarMax);
         }
 
