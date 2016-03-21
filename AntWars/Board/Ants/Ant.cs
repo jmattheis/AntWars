@@ -43,9 +43,14 @@ namespace AntWars.Board.Ants
         public int ViewRange { get; protected set; }
 
         /// <summary>
-        /// Lebenspunkte der Ameisen.
+        /// Lebenspunkte der Ameise.
         /// </summary>
         public int Health { get; protected set; }
+
+        /// <summary>
+        /// Angriffstärke der Ameise.
+        /// </summary>
+        public int AttackPower { get; protected set; }
 
         /// <summary>
         /// Wie weit die Ameise gehen kann. 

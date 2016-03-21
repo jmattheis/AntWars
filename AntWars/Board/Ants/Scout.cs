@@ -13,7 +13,9 @@ namespace AntWars.Board.Ants
 
         internal Scout(Board board, Player owner, int viewRange, int inventory, int moveRange, int hp)
             : base(board, owner, viewRange, inventory, moveRange, hp)
-        { }
+        {
+            AttackPower = 0;
+        }
 
         /// <summary>
         /// Benachrichtigt andere Ameise in der Sichtweite * 2.

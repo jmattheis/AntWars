@@ -102,7 +102,7 @@ namespace AntWars.AI
         /// <param name="inventory">Die Maximale Anzahl an Zucker, die die Ameise tragen kann.</param>
         /// <param name="moveRangeFactor">Wie weit die Ameise gehen kann.</param>
         /// <param name="hp">Lebenspunkte der Ameise.</param>
-        /// <returns>true wenn der Carry erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
+        /// <returns>true wenn der Warrior erfolgreich gekauft wird andernfalls wenn man nicht genug Geld hat false.</returns>
         protected bool buyWarrior(int attackPower, int viewRange, int inventory, int moveRangeFactor, int hp)
         {
             Warrior w = new Warrior(attackPower, Game.Board, Player, viewRange, inventory, moveRangeFactor, hp);
