@@ -18,6 +18,7 @@ namespace AntWars
             InitializeComponent();
             calcCarry();
             calcScout();
+            calcWarrior();
         }
 
         private void numeric_scoutViewRange_ValueChanged(object sender, EventArgs e)
@@ -68,6 +69,16 @@ namespace AntWars
                                                                                              ""));
         }
 
+        private void calcWarrior()
+        {
+            lbl_warriorCost.Text = Convert.ToString(Helper.CostCalculator.calculateCostWarrior(0, // TODO Attackpower in Form hinzufügen
+                                                                                             Convert.ToInt32(nmc_warriorViewRange.Value),
+                                                                                             Convert.ToInt32(nmc_warriorMoveRange.Value),
+                                                                                             Convert.ToInt32(nmc_warriorInventory.Value),
+                                                                                             Convert.ToInt32(nmc_warriorHealth.Value),
+                                                                                             ""));
+        }
+
         private void numeric_scoutHealth_ValueChanged(object sender, EventArgs e)
         {
             calcScout();
@@ -76,6 +87,26 @@ namespace AntWars
         private void numeric_CarryHealth_ValueChanged(object sender, EventArgs e)
         {
             calcScout();
+        }
+
+        private void numeric_warriorInventory_ValueChanged(object sender, EventArgs e)
+        {
+            calcWarrior();
+        }
+
+        private void numeric_warriorMoveRange_ValueChanged(object sender, EventArgs e)
+        {
+            calcWarrior();
+        }
+
+        private void numeric_warriorViewRange_ValueChanged(object sender, EventArgs e)
+        {
+            calcWarrior();
+        }
+
+        private void numeric_warriorHealth_ValueChanged(object sender, EventArgs e)
+        {
+            calcWarrior();
         }
     }
 }

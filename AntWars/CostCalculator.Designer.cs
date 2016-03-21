@@ -45,6 +45,12 @@
             this.lbl_health = new System.Windows.Forms.Label();
             this.nmc_scoutHealth = new System.Windows.Forms.NumericUpDown();
             this.nmc_carryHealth = new System.Windows.Forms.NumericUpDown();
+            this.lbl_warrior = new System.Windows.Forms.Label();
+            this.nmc_warriorHealth = new System.Windows.Forms.NumericUpDown();
+            this.nmc_warriorViewRange = new System.Windows.Forms.NumericUpDown();
+            this.nmc_warriorMoveRange = new System.Windows.Forms.NumericUpDown();
+            this.nmc_warriorInventory = new System.Windows.Forms.NumericUpDown();
+            this.lbl_warriorCost = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutViewRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryViewRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryMoveRange)).BeginInit();
@@ -53,6 +59,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutMoveRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutHealth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryHealth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorHealth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorViewRange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorMoveRange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorInventory)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_viewrange
@@ -320,11 +330,127 @@
             0});
             this.nmc_carryHealth.ValueChanged += new System.EventHandler(this.numeric_CarryHealth_ValueChanged);
             // 
+            // lbl_warrior
+            // 
+            this.lbl_warrior.AutoSize = true;
+            this.lbl_warrior.Location = new System.Drawing.Point(275, 9);
+            this.lbl_warrior.Name = "lbl_warrior";
+            this.lbl_warrior.Size = new System.Drawing.Size(41, 13);
+            this.lbl_warrior.TabIndex = 32;
+            this.lbl_warrior.Text = "Warrior";
+            // 
+            // nmc_warriorHealth
+            // 
+            this.nmc_warriorHealth.Location = new System.Drawing.Point(278, 32);
+            this.nmc_warriorHealth.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmc_warriorHealth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_warriorHealth.Name = "nmc_warriorHealth";
+            this.nmc_warriorHealth.Size = new System.Drawing.Size(37, 20);
+            this.nmc_warriorHealth.TabIndex = 33;
+            this.nmc_warriorHealth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_warriorHealth.ValueChanged += new System.EventHandler(this.numeric_warriorHealth_ValueChanged);
+            // 
+            // nmc_warriorViewRange
+            // 
+            this.nmc_warriorViewRange.Location = new System.Drawing.Point(278, 58);
+            this.nmc_warriorViewRange.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmc_warriorViewRange.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_warriorViewRange.Name = "nmc_warriorViewRange";
+            this.nmc_warriorViewRange.Size = new System.Drawing.Size(37, 20);
+            this.nmc_warriorViewRange.TabIndex = 34;
+            this.nmc_warriorViewRange.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_warriorViewRange.ValueChanged += new System.EventHandler(this.numeric_warriorViewRange_ValueChanged);
+            // 
+            // nmc_warriorMoveRange
+            // 
+            this.nmc_warriorMoveRange.Location = new System.Drawing.Point(278, 84);
+            this.nmc_warriorMoveRange.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmc_warriorMoveRange.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_warriorMoveRange.Name = "nmc_warriorMoveRange";
+            this.nmc_warriorMoveRange.Size = new System.Drawing.Size(37, 20);
+            this.nmc_warriorMoveRange.TabIndex = 35;
+            this.nmc_warriorMoveRange.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_warriorMoveRange.ValueChanged += new System.EventHandler(this.numeric_warriorMoveRange_ValueChanged);
+            // 
+            // nmc_warriorInventory
+            // 
+            this.nmc_warriorInventory.Location = new System.Drawing.Point(278, 110);
+            this.nmc_warriorInventory.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmc_warriorInventory.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_warriorInventory.Name = "nmc_warriorInventory";
+            this.nmc_warriorInventory.Size = new System.Drawing.Size(37, 20);
+            this.nmc_warriorInventory.TabIndex = 36;
+            this.nmc_warriorInventory.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_warriorInventory.ValueChanged += new System.EventHandler(this.numeric_warriorInventory_ValueChanged);
+            // 
+            // lbl_warriorCost
+            // 
+            this.lbl_warriorCost.AutoSize = true;
+            this.lbl_warriorCost.Location = new System.Drawing.Point(302, 142);
+            this.lbl_warriorCost.Name = "lbl_warriorCost";
+            this.lbl_warriorCost.Size = new System.Drawing.Size(13, 13);
+            this.lbl_warriorCost.TabIndex = 37;
+            this.lbl_warriorCost.Text = "0";
+            // 
             // CostCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 164);
+            this.ClientSize = new System.Drawing.Size(351, 164);
+            this.Controls.Add(this.lbl_warriorCost);
+            this.Controls.Add(this.nmc_warriorInventory);
+            this.Controls.Add(this.nmc_warriorMoveRange);
+            this.Controls.Add(this.nmc_warriorViewRange);
+            this.Controls.Add(this.nmc_warriorHealth);
+            this.Controls.Add(this.lbl_warrior);
             this.Controls.Add(this.nmc_carryHealth);
             this.Controls.Add(this.nmc_scoutHealth);
             this.Controls.Add(this.lbl_health);
@@ -352,6 +478,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutMoveRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutHealth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryHealth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorHealth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorViewRange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorMoveRange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorInventory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,5 +506,11 @@
         private System.Windows.Forms.Label lbl_health;
         private System.Windows.Forms.NumericUpDown nmc_scoutHealth;
         private System.Windows.Forms.NumericUpDown nmc_carryHealth;
+        private System.Windows.Forms.Label lbl_warrior;
+        private System.Windows.Forms.NumericUpDown nmc_warriorHealth;
+        private System.Windows.Forms.NumericUpDown nmc_warriorViewRange;
+        private System.Windows.Forms.NumericUpDown nmc_warriorMoveRange;
+        private System.Windows.Forms.NumericUpDown nmc_warriorInventory;
+        private System.Windows.Forms.Label lbl_warriorCost;
     }
 }
