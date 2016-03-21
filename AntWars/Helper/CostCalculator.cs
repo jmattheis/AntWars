@@ -89,7 +89,7 @@ namespace AntWars.Helper
             double inventoryWithQuantifier = inventory * INVENTORY_SCOUT_QUANTIFIER;
             double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_SCOUT_QUANTIFIER;
             double healthWithQuantifier = health * HEALTH_SCOUT_QUANTIFIER;
-            return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier);
+            return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier, healthWithQuantifier);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace AntWars.Helper
             double inventoryWithQuantifier = inventory * INVENTORY_CARRY_QUANTIFIER;
             double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_CARRY_QUANTIFIER;
             double healthWithQuantifier = health * HEALTH_SCOUT_QUANTIFIER;
-            return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier);
+            return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier, healthWithQuantifier);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace AntWars.Helper
             double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_SCOUT_QUANTIFIER;
             double attackPowerWithQuantifier = attackPower * ATTACKPOWER_WARRIOR_QUANTIFIER;
             double healthWithQuantifier = health * HEALTH_WARRIOR_QUANTIFIER;
-            return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier, attackPowerWithQuantifier);
+            return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier, attackPowerWithQuantifier, healthWithQuantifier);
         }
 
         private static double calculate(params double[] numbers)

@@ -42,18 +42,23 @@
             this.nmc_scoutMoveRange = new System.Windows.Forms.NumericUpDown();
             this.lbl_scoutCost = new System.Windows.Forms.Label();
             this.lbl_carryCost = new System.Windows.Forms.Label();
+            this.lbl_health = new System.Windows.Forms.Label();
+            this.nmc_scoutHealth = new System.Windows.Forms.NumericUpDown();
+            this.nmc_carryHealth = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutViewRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryViewRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryMoveRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryInventory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutInventory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutMoveRange)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutHealth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_carryHealth)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_viewrange
             // 
             this.lbl_viewrange.AutoSize = true;
-            this.lbl_viewrange.Location = new System.Drawing.Point(4, 27);
+            this.lbl_viewrange.Location = new System.Drawing.Point(4, 60);
             this.lbl_viewrange.Name = "lbl_viewrange";
             this.lbl_viewrange.Size = new System.Drawing.Size(56, 13);
             this.lbl_viewrange.TabIndex = 0;
@@ -62,7 +67,7 @@
             // lbl_moverange
             // 
             this.lbl_moverange.AutoSize = true;
-            this.lbl_moverange.Location = new System.Drawing.Point(4, 53);
+            this.lbl_moverange.Location = new System.Drawing.Point(4, 86);
             this.lbl_moverange.Name = "lbl_moverange";
             this.lbl_moverange.Size = new System.Drawing.Size(60, 13);
             this.lbl_moverange.TabIndex = 1;
@@ -71,7 +76,7 @@
             // lbl_inventory
             // 
             this.lbl_inventory.AutoSize = true;
-            this.lbl_inventory.Location = new System.Drawing.Point(4, 79);
+            this.lbl_inventory.Location = new System.Drawing.Point(4, 112);
             this.lbl_inventory.Name = "lbl_inventory";
             this.lbl_inventory.Size = new System.Drawing.Size(46, 13);
             this.lbl_inventory.TabIndex = 2;
@@ -80,7 +85,7 @@
             // lbl_costs
             // 
             this.lbl_costs.AutoSize = true;
-            this.lbl_costs.Location = new System.Drawing.Point(4, 100);
+            this.lbl_costs.Location = new System.Drawing.Point(4, 142);
             this.lbl_costs.Name = "lbl_costs";
             this.lbl_costs.Size = new System.Drawing.Size(40, 13);
             this.lbl_costs.TabIndex = 4;
@@ -89,7 +94,7 @@
             // lbl_carry
             // 
             this.lbl_carry.AutoSize = true;
-            this.lbl_carry.Location = new System.Drawing.Point(241, 9);
+            this.lbl_carry.Location = new System.Drawing.Point(232, 9);
             this.lbl_carry.Name = "lbl_carry";
             this.lbl_carry.Size = new System.Drawing.Size(31, 13);
             this.lbl_carry.TabIndex = 5;
@@ -98,7 +103,7 @@
             // lbl_scout
             // 
             this.lbl_scout.AutoSize = true;
-            this.lbl_scout.Location = new System.Drawing.Point(194, 9);
+            this.lbl_scout.Location = new System.Drawing.Point(189, 9);
             this.lbl_scout.Name = "lbl_scout";
             this.lbl_scout.Size = new System.Drawing.Size(35, 13);
             this.lbl_scout.TabIndex = 6;
@@ -106,7 +111,7 @@
             // 
             // nmc_scoutViewRange
             // 
-            this.nmc_scoutViewRange.Location = new System.Drawing.Point(192, 25);
+            this.nmc_scoutViewRange.Location = new System.Drawing.Point(192, 58);
             this.nmc_scoutViewRange.Maximum = new decimal(new int[] {
             10,
             0,
@@ -129,7 +134,7 @@
             // 
             // nmc_carryViewRange
             // 
-            this.nmc_carryViewRange.Location = new System.Drawing.Point(235, 25);
+            this.nmc_carryViewRange.Location = new System.Drawing.Point(235, 58);
             this.nmc_carryViewRange.Maximum = new decimal(new int[] {
             10,
             0,
@@ -152,7 +157,7 @@
             // 
             // nmc_carryMoveRange
             // 
-            this.nmc_carryMoveRange.Location = new System.Drawing.Point(235, 51);
+            this.nmc_carryMoveRange.Location = new System.Drawing.Point(235, 84);
             this.nmc_carryMoveRange.Maximum = new decimal(new int[] {
             10,
             0,
@@ -175,7 +180,7 @@
             // 
             // nmc_carryInventory
             // 
-            this.nmc_carryInventory.Location = new System.Drawing.Point(235, 77);
+            this.nmc_carryInventory.Location = new System.Drawing.Point(235, 110);
             this.nmc_carryInventory.Maximum = new decimal(new int[] {
             10,
             0,
@@ -198,7 +203,7 @@
             // 
             // nmc_scoutInventory
             // 
-            this.nmc_scoutInventory.Location = new System.Drawing.Point(192, 77);
+            this.nmc_scoutInventory.Location = new System.Drawing.Point(192, 110);
             this.nmc_scoutInventory.Maximum = new decimal(new int[] {
             10,
             0,
@@ -221,7 +226,7 @@
             // 
             // nmc_scoutMoveRange
             // 
-            this.nmc_scoutMoveRange.Location = new System.Drawing.Point(192, 51);
+            this.nmc_scoutMoveRange.Location = new System.Drawing.Point(192, 84);
             this.nmc_scoutMoveRange.Maximum = new decimal(new int[] {
             10,
             0,
@@ -245,7 +250,7 @@
             // lbl_scoutCost
             // 
             this.lbl_scoutCost.AutoSize = true;
-            this.lbl_scoutCost.Location = new System.Drawing.Point(216, 100);
+            this.lbl_scoutCost.Location = new System.Drawing.Point(216, 142);
             this.lbl_scoutCost.Name = "lbl_scoutCost";
             this.lbl_scoutCost.Size = new System.Drawing.Size(13, 13);
             this.lbl_scoutCost.TabIndex = 27;
@@ -254,17 +259,75 @@
             // lbl_carryCost
             // 
             this.lbl_carryCost.AutoSize = true;
-            this.lbl_carryCost.Location = new System.Drawing.Point(259, 100);
+            this.lbl_carryCost.Location = new System.Drawing.Point(259, 142);
             this.lbl_carryCost.Name = "lbl_carryCost";
             this.lbl_carryCost.Size = new System.Drawing.Size(13, 13);
             this.lbl_carryCost.TabIndex = 28;
             this.lbl_carryCost.Text = "0";
             // 
+            // lbl_health
+            // 
+            this.lbl_health.AutoSize = true;
+            this.lbl_health.Location = new System.Drawing.Point(4, 34);
+            this.lbl_health.Name = "lbl_health";
+            this.lbl_health.Size = new System.Drawing.Size(75, 13);
+            this.lbl_health.TabIndex = 29;
+            this.lbl_health.Text = "Lebenspunkte";
+            // 
+            // nmc_scoutHealth
+            // 
+            this.nmc_scoutHealth.Location = new System.Drawing.Point(192, 32);
+            this.nmc_scoutHealth.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmc_scoutHealth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_scoutHealth.Name = "nmc_scoutHealth";
+            this.nmc_scoutHealth.Size = new System.Drawing.Size(37, 20);
+            this.nmc_scoutHealth.TabIndex = 30;
+            this.nmc_scoutHealth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_scoutHealth.ValueChanged += new System.EventHandler(this.numeric_scoutHealth_ValueChanged);
+            // 
+            // nmc_carryHealth
+            // 
+            this.nmc_carryHealth.Location = new System.Drawing.Point(235, 32);
+            this.nmc_carryHealth.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmc_carryHealth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_carryHealth.Name = "nmc_carryHealth";
+            this.nmc_carryHealth.Size = new System.Drawing.Size(37, 20);
+            this.nmc_carryHealth.TabIndex = 31;
+            this.nmc_carryHealth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_carryHealth.ValueChanged += new System.EventHandler(this.numeric_CarryHealth_ValueChanged);
+            // 
             // CostCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(280, 120);
+            this.ClientSize = new System.Drawing.Size(282, 164);
+            this.Controls.Add(this.nmc_carryHealth);
+            this.Controls.Add(this.nmc_scoutHealth);
+            this.Controls.Add(this.lbl_health);
             this.Controls.Add(this.lbl_carryCost);
             this.Controls.Add(this.lbl_scoutCost);
             this.Controls.Add(this.nmc_scoutMoveRange);
@@ -287,6 +350,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryInventory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutInventory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutMoveRange)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutHealth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_carryHealth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,5 +373,8 @@
         private System.Windows.Forms.NumericUpDown nmc_scoutMoveRange;
         private System.Windows.Forms.Label lbl_scoutCost;
         private System.Windows.Forms.Label lbl_carryCost;
+        private System.Windows.Forms.Label lbl_health;
+        private System.Windows.Forms.NumericUpDown nmc_scoutHealth;
+        private System.Windows.Forms.NumericUpDown nmc_carryHealth;
     }
 }

@@ -55,6 +55,7 @@ namespace AntWars
             lbl_scoutCost.Text = Convert.ToString(Helper.CostCalculator.calculateCostScout(Convert.ToInt32(nmc_scoutViewRange.Value),
                                                                                              Convert.ToInt32(nmc_scoutMoveRange.Value),
                                                                                              Convert.ToInt32(nmc_scoutInventory.Value),
+                                                                                             Convert.ToInt32(nmc_scoutHealth.Value),
                                                                                              ""));
         }
 
@@ -63,7 +64,18 @@ namespace AntWars
             lbl_carryCost.Text = Convert.ToString(Helper.CostCalculator.calculateCostCarry(Convert.ToInt32(nmc_carryViewRange.Value),
                                                                                              Convert.ToInt32(nmc_carryMoveRange.Value),
                                                                                              Convert.ToInt32(nmc_carryInventory.Value),
+                                                                                             Convert.ToInt32(nmc_carryHealth.Value),
                                                                                              ""));
+        }
+
+        private void numeric_scoutHealth_ValueChanged(object sender, EventArgs e)
+        {
+            calcScout();
+        }
+
+        private void numeric_CarryHealth_ValueChanged(object sender, EventArgs e)
+        {
+            calcScout();
         }
     }
 }
