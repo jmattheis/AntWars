@@ -22,6 +22,10 @@ namespace AntWars.Helper
         private const double INVENTORY_CARRY_QUANTIFIER = 0.75;
         private const double INVENTORY_WARRIOR_QUANTIFIER = 2;
 
+        private const double HEALTH_SCOUT_QUANTIFIER = 1;
+        private const double HEALTH_CARRY_QUANTIFIER = 1;
+        private const double HEALTH_WARRIOR_QUANTIFIER = 0.75;
+
         private const double ATTACKPOWER_WARRIOR_QUANTIFIER = 1;
 
         private const int VIEWRANGE_MIN = 1;
@@ -59,15 +63,15 @@ namespace AntWars.Helper
 
             if (ant.isCarry())
             {
-                return calculateCostCarry(ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Owner.AI.Playername);
+                return calculateCostCarry(ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Health, ant.Owner.AI.Playername);
             }
             else if (ant.isScout())
             {
-                return calculateCostScout(ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Owner.AI.Playername);
+                return calculateCostScout(ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Health, ant.Owner.AI.Playername);
             }
             else if (ant.isWarrior())
             {
-                return calculateCostWarrior((ant as Warrior).AttackPower, ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Owner.AI.Playername);
+                return calculateCostWarrior((ant as Warrior).AttackPower, ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Health, ant.Owner.AI.Playername);
             }
             throw new RuntimeException("Unknown ant type.");
         }
@@ -79,11 +83,12 @@ namespace AntWars.Helper
         /// <param name="moveRange">Die Reichweite der Ameise.</param>
         /// <param name="inventory">Die Inventargröße der Ameise.</param>
         /// <returns>Die berechneten Kosten der Ameise.</returns>
-        public static double calculateCostScout(int viewRange, int moveRangeFactor, int inventory, string playername)
+        public static double calculateCostScout(int viewRange, int moveRangeFactor, int inventory, int health, string playername)
         {
             double viewRangeWithQuantifier = viewRange * VIEWRANGE_SCOUT_QUANTIFIER;
             double inventoryWithQuantifier = inventory * INVENTORY_SCOUT_QUANTIFIER;
             double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_SCOUT_QUANTIFIER;
+            double healthWithQuantifier = health * HEALTH_SCOUT_QUANTIFIER;
             return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier);
         }
 
@@ -94,11 +99,12 @@ namespace AntWars.Helper
         /// <param name="moveRange">Die Reichweite der Ameise.</param>
         /// <param name="inventory">Die Inventargröße der Ameise.</param>
         /// <returns>Die berechneten Kosten der Ameise.</returns>
-        public static double calculateCostCarry(int viewRange, int moveRangeFactor, int inventory, string playername)
+        public static double calculateCostCarry(int viewRange, int moveRangeFactor, int inventory, int health, string playername)
         {
             double viewRangeWithQuantifier = viewRange * VIEWRANGE_CARRY_QUANTIFIER;
             double inventoryWithQuantifier = inventory * INVENTORY_CARRY_QUANTIFIER;
             double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_CARRY_QUANTIFIER;
+            double healthWithQuantifier = health * HEALTH_SCOUT_QUANTIFIER;
             return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier);
         }
 
@@ -109,12 +115,13 @@ namespace AntWars.Helper
         /// <param name="moveRange">Die Reichweite der Ameise.</param>
         /// <param name="inventory">Die Inventargröße der Ameise.</param>
         /// <returns>Die berechneten Kosten der Ameise.</returns>
-        public static double calculateCostWarrior(int attackPower, int viewRange, int moveRangeFactor, int inventory, string playername)
+        public static double calculateCostWarrior(int attackPower, int viewRange, int moveRangeFactor, int inventory, int health, string playername)
         {
             double viewRangeWithQuantifier = viewRange * VIEWRANGE_SCOUT_QUANTIFIER;
             double inventoryWithQuantifier = inventory * INVENTORY_SCOUT_QUANTIFIER;
             double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_SCOUT_QUANTIFIER;
             double attackPowerWithQuantifier = attackPower * ATTACKPOWER_WARRIOR_QUANTIFIER;
+            double healthWithQuantifier = health * HEALTH_WARRIOR_QUANTIFIER;
             return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier, attackPowerWithQuantifier);
         }
 

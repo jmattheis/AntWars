@@ -10,8 +10,8 @@ namespace AntWars.Board.Ants
     {
         public int AttackPower { get; internal set; }
 
-        internal Warrior(int attackPower, Board board, Player owner, int viewRange, int inventory, int moveRange)
-            : base(board, owner, viewRange, inventory, moveRange)
+        internal Warrior(int attackPower, Board board, Player owner, int viewRange, int inventory, int moveRange, int hp)
+            : base(board, owner, viewRange, inventory, moveRange, hp)
         {
             AttackPower = attackPower;
         }

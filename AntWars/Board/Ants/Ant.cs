@@ -43,6 +43,11 @@ namespace AntWars.Board.Ants
         public int ViewRange { get; protected set; }
 
         /// <summary>
+        /// Lebenspunkte der Ameisen.
+        /// </summary>
+        public int Health { get; protected set; }
+
+        /// <summary>
         /// Wie weit die Ameise gehen kann. 
         /// </summary>
         public int MoveRange { get; protected set; }
@@ -52,7 +57,7 @@ namespace AntWars.Board.Ants
         internal Board board;
         private Base Base;
 
-        internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRangeFactor)
+        internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRangeFactor, int hp)
         {
             ViewRange = viewRange;
             MaxInventory = maxInventory;
@@ -62,6 +67,7 @@ namespace AntWars.Board.Ants
             Inventory = 0;
             MoveRangeFactor = moveRangeFactor;
             MoveRange = MoveRangeFactor * board.Diagonal;
+            Health = hp;
             TookAction = false;
         }
 
