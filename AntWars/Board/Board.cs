@@ -25,6 +25,7 @@ namespace AntWars.Board
         public int Diagonal { get; private set; }
         internal Config conf;
         private CoordsInView[] coordsInViews = new CoordsInView[20];
+
         /// <summary>
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
@@ -54,7 +55,7 @@ namespace AntWars.Board
             }
             foreach (Ant ant in BoardObjects.getRandomAnts())
             {
-                ant.MovedThisTick = false;
+                ant.TookAction = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
 
@@ -80,8 +81,9 @@ namespace AntWars.Board
         /// <param name="player2">Der Spieler 2</param>
         public void nullTick(Player player1, Player player2)
         {
-            nullTick(player1);
-            nullTick(player2);
+            Queue<Coordinates> baseCoords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight);
+            nullTick(player1, baseCoords.Dequeue());
+            nullTick(player2, baseCoords.Dequeue());
             generateSugar(conf.SugarMin, conf.SugarMax);
         }
 
@@ -153,9 +155,10 @@ namespace AntWars.Board
             return coordsInView;
         }
 
-        private void nullTick(Player player)
+        private void nullTick(Player player, Coordinates baseCoords)
         {
-            Base b = generateBase(player);
+            Base b = new Base(player);
+            b.Coords = baseCoords;
 
             if (!BoardObjects.add(b))
             {
@@ -181,21 +184,6 @@ namespace AntWars.Board
                 BoardObjects.add(s);
                 SugarAmount += s.Amount;
             }
-        }
-
-        private Base generateBase(Player player)
-        {
-            Base b = new Base(player);
-            // Bases immer gegenüber spawnen lassen
-            if (this.BoardObjects.getBases().Count == 1)
-            {
-                b.Coords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight, this.BoardObjects.getBases()[0]);
-            }
-            else
-            {
-                b.Coords = Utils.generateBaseCoords(conf.BoardWidth, conf.BoardHeight);
-            }
-            return b;
         }
     }
 }

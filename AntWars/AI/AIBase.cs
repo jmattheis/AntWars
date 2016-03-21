@@ -106,16 +106,32 @@ namespace AntWars.AI
             return buyAnt(w);
         }
 
+        /// Verbessert die Reichweite der Basis.
+        /// </summary>
+        /// <returns>false wenn man zuwenig Geld hat</returns>
+        public bool upgradeRange()
+        {
+            try
+            {
+                double cost = Helper.CostCalculator.calculateUpgradeCost(getBase().Range);
+                if (Player.pay(cost))
+                {
+                    Base.Range++;
+                    return true;
+                }
+            }
+            catch (ArgumentException) { } // tritt auf wenn das level zu hoch ist
+            return false;
+        }
+
         private bool buyAnt(Ant ant)
         {
             double cost = Helper.CostCalculator.calculateCost(ant);
             Base b = Game.Board.BoardObjects.getBase(Player);
-            if (Player.Money < cost || !resolveAntCoords(ant, b))
+            if (resolveAntCoords(ant, b) && !Player.pay(cost))
             {
                 return false;
             }
-
-            Player.Money -= cost;
             ant.AI = Player.AILoader.createAIAntInstance(ant, Game.Conf);
             return Game.Board.BoardObjects.add(ant);
         }

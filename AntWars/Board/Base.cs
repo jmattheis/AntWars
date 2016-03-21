@@ -13,9 +13,12 @@ namespace AntWars.Board
     {
         internal Player Player { get; private set; }
 
+        public int Range { get; internal set; }
+
         internal Base(Player p)
         {
             Player = p;
+            Range = 0;
         }
 
     }

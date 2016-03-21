@@ -53,7 +53,6 @@ namespace AntWars
         /// </summary>
         public void nextTick()
         {
-            
             Board.nextTick();
         }
 

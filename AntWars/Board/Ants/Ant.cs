@@ -15,7 +15,7 @@ namespace AntWars.Board.Ants
         /// <summary>
         /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 
         /// </summary>
-        public bool MovedThisTick { get; internal set; }
+        public bool TookAction { get; internal set; }
 
         /// <summary>
         /// Der Faktor für die Berechnung der Bewegungsreichweite.
@@ -50,6 +50,7 @@ namespace AntWars.Board.Ants
         internal Player Owner { get; private set; }
         internal IAIAnt AI { get; set; }
         internal Board board;
+        private Base Base;
 
         internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRangeFactor)
         {
@@ -61,7 +62,7 @@ namespace AntWars.Board.Ants
             Inventory = 0;
             MoveRangeFactor = moveRangeFactor;
             MoveRange = MoveRangeFactor * board.Diagonal;
-            MovedThisTick = false;
+            TookAction = false;
         }
 
         /// <summary>
@@ -149,9 +150,9 @@ namespace AntWars.Board.Ants
             {
                 die();
             }
-            else if (!MovedThisTick && board.BoardObjects.move(this, to))
+            else if (!TookAction && board.BoardObjects.move(this, to))
             {
-                MovedThisTick = true;
+                TookAction = true;
                 UnitsGone++;
                 return true;
             }
@@ -204,16 +205,69 @@ namespace AntWars.Board.Ants
         /// <returns>True bei Erfolg, false wenn die Ameise nicht auf der Base steht.</returns>
         public bool dropSugarOnBase()
         {
-            int range = (int)((Owner.CarryCount + Owner.ScoutCount) / 50);
-            if (range > 3) { range = 3; }
-            if (Coords.isInRange(range, getBaseCoords()))
+            if (!TookAction && isInBase())
             {
-                Owner.Money += Inventory;
+                Owner.addMoney(Inventory);
                 Owner.Points += Inventory;
                 Inventory = 0;
+                return true;    
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Verringert die UnitsGone einer Ameise um einen bestimmten Prozentsatz.
+        /// </summary>
+        /// <returns>True bei Regenerierung, false wenn Ameise nicht in der Base steht oder bereits eine Aktion ausgeführt hat.</returns>
+        public bool restore()
+        {
+            if (!TookAction && isInBase())
+            {
+                // 0.2 kann später durch den bestimmten oder aufgewerteten Prozentsatz der Base ersetzt werden.
+                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.2)));
+                // TODO: Nach Implementierung von Health, hier Health regenerieren.
+                TookAction = true;
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Ameise isst ein Stück Zucker aus ihrem Inventar.
+        /// Verringert die UnitsGone der Ameise um einen bestimmten Prozentsatz.
+        /// Verringert die MoveRange der Ameise um einen bestimmten Prozentsatz.
+        /// </summary>
+        /// <returns>true bei Regenerierung, fals wenn Ameise keinen Zucker bei sich trägt oder bereits eine Aktion ausgeführt hat.</returns>
+        public bool eatSugar()
+        {
+            if (!TookAction && Inventory > 0)
+            {
+                Inventory--;
+                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.1)));
+                MoveRange = Convert.ToInt32(Math.Ceiling(MoveRange * (1 - 0.05)));
+                TookAction = true;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Überprüft ob die Ameise innerhalb der Base steht.
+        /// </summary>
+        /// <returns>true, wenn die Ameise innerhalb der Base steht, ansonsten false</returns>
+        public bool isInBase()
+        {
+            int range = getBase().Range;
+            return Coords.isInRange(range, getBaseCoords());
+        }
+
+        private Base getBase()
+        {
+            if(Base == null)
+            {
+                Base = board.BoardObjects.getBase(Owner);
+            }
+            return Base;
         }
 
         /// <summary>
@@ -223,6 +277,8 @@ namespace AntWars.Board.Ants
         {
             if(!board.DyingAnts.Contains(this))
                 board.DyingAnts.Add(this);
+
+            Owner.decreaseAnts(this);
         }
 
         /// Gibt die Koordinaten von der zugehörigen Base zurück.
@@ -230,7 +286,7 @@ namespace AntWars.Board.Ants
         /// <returns>Die Koordinaten von der Base</returns>
         public Coordinates getBaseCoords()
         {
-            return board.BoardObjects.getBase(Owner).Coords;
+            return getBase().Coords;
         }
     }
 
