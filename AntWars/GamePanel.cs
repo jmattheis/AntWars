@@ -75,6 +75,10 @@ namespace AntWars
             {
                 setColor(bitmap, obj, Color.Green, Color.DarkBlue, (obj as Ant).Owner);
             }
+            else if (obj.isWarrior())
+            {
+                setColor(bitmap, obj, Color.Red, Color.DarkViolet, (obj as Ant).Owner);
+            }
             else if (obj.isBase())
             {
                 setColor(bitmap, obj, Color.GreenYellow, Color.BlueViolet, (obj as Base).Player);
