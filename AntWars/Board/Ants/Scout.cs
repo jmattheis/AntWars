@@ -11,9 +11,11 @@ namespace AntWars.Board.Ants
         private const int NOTIFY_COOLDOWN_IN_TICKS = 100;
         private int usedNotifyInTick = -NOTIFY_COOLDOWN_IN_TICKS;
 
-        internal Scout(Board board, Player owner, int viewRange, int inventory, int moveRange)
-            : base(board, owner, viewRange, inventory, moveRange)
-        { }
+        internal Scout(Board board, Player owner, int viewRange, int inventory, int moveRange, int hp)
+            : base(board, owner, viewRange, inventory, moveRange, hp)
+        {
+            AttackPower = 0;
+        }
 
         /// <summary>
         /// Benachrichtigt andere Ameise in der Sichtweite * 2.
