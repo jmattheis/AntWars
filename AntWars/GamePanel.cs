@@ -75,6 +75,10 @@ namespace AntWars
             {
                 setColor(bitmap, obj, Color.Green, Color.DarkBlue, (obj as Ant).Owner);
             }
+            else if (obj.isWarrior())
+            {
+                setColor(bitmap, obj, Color.Red, Color.DarkViolet, (obj as Ant).Owner);
+            }
             else if (obj.isBase())
             {
                 setColor(bitmap, obj, Color.GreenYellow, Color.BlueViolet, (obj as Base).Player);
@@ -144,14 +148,16 @@ namespace AntWars
             lbl_player1MoneyValue.Text = game.Player1.Money.ToString();
             lbl_player1CarriesValue.Text = game.Player1.CarryCount.ToString();
             lbl_player1ScoutsValue.Text = game.Player1.ScoutCount.ToString();
-            lbl_player1AntsValue.Text = Convert.ToString(game.Player1.ScoutCount + game.Player1.CarryCount);
+            lbl_player1WarriorsValue.Text = game.Player1.WarriorCount.ToString();
+            lbl_player1AntsValue.Text = Convert.ToString(game.Player1.ScoutCount + game.Player1.CarryCount + game.Player1.WarriorCount);
 
             // update player2
             lbl_player2PointsValue.Text = game.Player2.Points.ToString();
             lbl_player2MoneyValue.Text = game.Player2.Money.ToString();
             lbl_player2CarriesValue.Text = game.Player2.CarryCount.ToString();
             lbl_player2ScoutsValue.Text = game.Player2.ScoutCount.ToString();
-            lbl_player2AntsValue.Text = Convert.ToString(game.Player2.ScoutCount + game.Player2.CarryCount);
+            lbl_player2WarriorsValue.Text = game.Player2.WarriorCount.ToString();
+            lbl_player2AntsValue.Text = Convert.ToString(game.Player2.ScoutCount + game.Player2.CarryCount + game.Player2.WarriorCount);
 
             // update sugar
             lbl_sugarValue.Text = game.Board.BoardObjects.getSugars().Count.ToString();
