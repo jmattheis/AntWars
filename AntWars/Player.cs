@@ -95,6 +95,10 @@ namespace AntWars
             {
                 ScoutCount--;
             }
+            else if (ant.isWarrior())
+            {
+                WarriorCount--;
+            }
             else
             {
                 throw new RuntimeException("Unknown ant type.");
