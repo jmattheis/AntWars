@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using AntWars.Board;
 using AntWars.Board.Ants;
 
-namespace AntWars.AI
-{
+namespace AntWars.AI {
+
     /// <summary>
     /// Die Basis für die KI der Ameise.
     /// </summary>
-    public abstract class AIAntBase : IAIAnt
-    {
+    public abstract class AIAntBase : IAIAnt {
+
         /// <summary>
         /// Die Ameise für die momentane AI instance.
         /// </summary>

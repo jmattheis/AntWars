@@ -7,10 +7,10 @@ using AntWars.Board.Ants;
 using AntWars.Helper;
 using System.Drawing;
 
-namespace AntWars
-{
-    partial class GamePanel : Form
-    {
+namespace AntWars {
+
+    partial class GamePanel : Form {
+
         private const string Player1Carry = "ff008000";
         private const string Player2Carry = "ff0000ff";
         private const string Player1Scout = "ff2e8b57";
@@ -19,13 +19,11 @@ namespace AntWars
         private Game game;
         private Multimedia.Timer timer = new Multimedia.Timer();
 
-        public GamePanel()
-        {
+        public GamePanel() {
             InitializeComponent();
         }
 
-        public void start(Config config)
-        {
+        public void start(Config config) {
             setFormSize(config);
             game = new Game(config);
             game.start();
@@ -34,30 +32,25 @@ namespace AntWars
             Show();
         }
 
-        public void stop()
-        {
+        public void stop() {
             timer.Stop();
         }
 
-        private void initTimer(int period)
-        {
+        private void initTimer(int period) {
             timer.Period = Convert.ToInt32(1000 / Convert.ToDecimal(period));
             timer.Resolution = 1;
             timer.Tick += new EventHandler(timer_GameTick_Tick);
             timer.Start();
         }
 
-        public void print()
-        {
+        public void print() {
             print(game.Board.BoardObjects.get());
         }
 
-        private void print(IList<BoardObject> boardObjects)
-        {
+        private void print(IList<BoardObject> boardObjects) {
             Bitmap bitmap = new Bitmap(game.Conf.BoardWidth, game.Conf.BoardHeight);
 
-            foreach (BoardObject obj in boardObjects)
-            {
+            foreach (BoardObject obj in boardObjects) {
                 setColor(obj, bitmap);
             }
 
@@ -65,65 +58,45 @@ namespace AntWars
             pb_Game.Image = bitmap;
         }
 
-        private void setColor(BoardObject obj, Bitmap bitmap)
-        {
-            if (obj.isCarry())
-            {
+        private void setColor(BoardObject obj, Bitmap bitmap) {
+            if (obj.isCarry()) {
                 setColor(bitmap, obj, Color.DarkGreen, Color.Blue, (obj as Ant).Owner);
-            }
-            else if (obj.isScout())
-            {
+            } else if (obj.isScout()) {
                 setColor(bitmap, obj, Color.Green, Color.DarkBlue, (obj as Ant).Owner);
-            }
-            else if (obj.isWarrior())
-            {
+            } else if (obj.isWarrior()) {
                 setColor(bitmap, obj, Color.Red, Color.DarkViolet, (obj as Ant).Owner);
-            }
-            else if (obj.isBase())
-            {
+            } else if (obj.isBase()) {
                 setColor(bitmap, obj, Color.GreenYellow, Color.BlueViolet, (obj as Base).Player);
-            }
-            else if (obj.isSugar())
-            {
+            } else if (obj.isSugar()) {
                 setColor(bitmap, obj, Color.Black, Color.Transparent, null);
             }
         }
 
-        private void setColor(Bitmap bitmap, BoardObject obj, Color player1Color, Color player2Color, Player player1)
-        {
-            if (player1 == null || player1 == game.Player1)
-            {
+        private void setColor(Bitmap bitmap, BoardObject obj, Color player1Color, Color player2Color, Player player1) {
+            if (player1 == null || player1 == game.Player1) {
                 bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, player1Color);
-            }
-            else
-            {
+            } else {
                 bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, player2Color);
             }
         }
 
-        private void timer_GameTick_Tick(object sender, EventArgs e)
-        {
+        private void timer_GameTick_Tick(object sender, EventArgs e) {
             game.nextTick();
-            try
-            {
-                this.Invoke((MethodInvoker)delegate
-                {
+            try {
+                this.Invoke((MethodInvoker) delegate {
                     calcGameStatistics();
                     print();
                 });
-            }
-            catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
+            } catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
             checkWinningConditions();
         }
 
-        public void view(Config config)
-        {
+        public void view(Config config) {
             setFormSize(config);
             Show();
         }
 
-        public void setFormSize(Config config)
-        {
+        public void setFormSize(Config config) {
             this.pb_Game.Width = config.BoardWidth * 4;
             this.pb_Game.Height = config.BoardHeight * 4;
             Point statsLocation = new Point(config.BoardWidth * 4, 0);
@@ -131,15 +104,11 @@ namespace AntWars
             this.ClientSize = new Size(config.BoardWidth * 4 + this.grp_stats.Width, config.BoardHeight * 4);
         }
 
-        private void calcGameStatistics()
-        {
+        private void calcGameStatistics() {
             // update timer
-            if (game.Conf.MaxTicks > 0)
-            {
+            if (game.Conf.MaxTicks > 0) {
                 lbl_ticksValue.Text = Convert.ToString(game.Conf.MaxTicks - game.getCurrentTick());
-            }
-            else
-            {
+            } else {
                 lbl_ticksValue.Text = Convert.ToString(game.getCurrentTick());
             }
 
@@ -163,21 +132,19 @@ namespace AntWars
             lbl_sugarValue.Text = game.Board.BoardObjects.getSugars().Count.ToString();
         }
 
-        private void checkWinningConditions()
-        {
-            if (checkTickPlayerPoints()) return;
-            if (checkMaxPoints()) return;
-            if (checkSugarPlayerPoint()) return;
+        private void checkWinningConditions() {
+            if (checkTickPlayerPoints())
+                return;
+            if (checkMaxPoints())
+                return;
+            if (checkSugarPlayerPoint())
+                return;
         }
 
-        private bool checkSugarPlayerPoint()
-        {
-            if (game.Board.BoardObjects.getSugars().Count == 0)
-            {
-                if ((game.Player1.Points + game.Player2.Points) == game.Board.SugarAmount)
-                {
-                    if (!checkPlayerPoints())
-                    {
+        private bool checkSugarPlayerPoint() {
+            if (game.Board.BoardObjects.getSugars().Count == 0) {
+                if ((game.Player1.Points + game.Player2.Points) == game.Board.SugarAmount) {
+                    if (!checkPlayerPoints()) {
                         this.stop();
                         MessageBox.Show(Messages.OUT_OF_SUGAR, Messages.OUT_OF_SUGAR_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -187,13 +154,10 @@ namespace AntWars
             return false;
         }
 
-        private bool checkTickPlayerPoints()
-        {
-            if ((game.getCurrentTick()) >= game.Conf.MaxTicks)
-            {
+        private bool checkTickPlayerPoints() {
+            if ((game.getCurrentTick()) >= game.Conf.MaxTicks) {
                 this.stop();
-                if (!checkPlayerPoints())
-                {
+                if (!checkPlayerPoints()) {
                     this.stop();
                     MessageBox.Show(String.Format(Messages.TIME_OUT, game.Conf.MaxTicks), Messages.TIME_OUT_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -202,17 +166,13 @@ namespace AntWars
             return false;
         }
 
-        private bool checkPlayerPoints()
-        {
-            if (game.Player1.Points > game.Player2.Points)
-            {
+        private bool checkPlayerPoints() {
+            if (game.Player1.Points > game.Player2.Points) {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT,
                                 game.Player1.AI.Playername, game.Player1.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
-            }
-            else if (game.Player1.Points < game.Player2.Points)
-            {
+            } else if (game.Player1.Points < game.Player2.Points) {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT,
                                     game.Player2.AI.Playername, game.Player2.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -221,16 +181,12 @@ namespace AntWars
             return false;
         }
 
-        private bool checkMaxPoints()
-        {
-            if (game.Player1.Points >= game.Conf.Points)
-            {
+        private bool checkMaxPoints() {
+            if (game.Player1.Points >= game.Conf.Points) {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Player1.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
-            }
-            else if (game.Player2.Points >= game.Conf.Points)
-            {
+            } else if (game.Player2.Points >= game.Conf.Points) {
                 this.stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Player2.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -238,14 +194,12 @@ namespace AntWars
             return false;
         }
 
-        private void setPlayernameInStatistic()
-        {
+        private void setPlayernameInStatistic() {
             grp_player1.Text = game.Player1.AI.Playername;
             grp_player2.Text = game.Player2.AI.Playername;
         }
 
-        private void GamePanel_FormClosing(object sender, FormClosingEventArgs e)
-        {
+        private void GamePanel_FormClosing(object sender, FormClosingEventArgs e) {
             timer.Stop();
         }
     }

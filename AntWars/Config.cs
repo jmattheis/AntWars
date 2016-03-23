@@ -10,10 +10,10 @@ using System.Reflection;
 using AntWars.Exception;
 using AntWars.Helper;
 
-namespace AntWars
-{
-    public class Config
-    {
+namespace AntWars {
+
+    public class Config {
+
         /// <summary>
         /// Der minimale Zucker der auf dem Feld sein darf.
         /// </summary>
@@ -80,8 +80,7 @@ namespace AntWars
         [XmlIgnore]
         public String GamePath { get; set; }
 
-        public Config()
-        {
+        public Config() {
             // set sizes to a quarter of screen resolution
             BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
             BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
@@ -96,18 +95,15 @@ namespace AntWars
             Points = 100;
         }
 
-        public static Config loadConfig(String path)
-        {
+        public static Config loadConfig(String path) {
             return Utils.deserializeConfig(path);
         }
 
-        public bool isNeededPathGame()
-        {
+        public bool isNeededPathGame() {
             return GamePath == null;
         }
 
-        public void saveConfig()
-        {
+        public void saveConfig() {
             Utils.saveConfigToFile(this);
         }
     }

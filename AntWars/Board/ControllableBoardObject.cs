@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AntWars.Board
-{
-    public class ControllableBoardObject : BoardObject
-    {
+namespace AntWars.Board {
+
+    public class ControllableBoardObject : BoardObject {
 
         /// <summary>
         /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 
@@ -46,8 +45,7 @@ namespace AntWars.Board
 
         internal Board board;
 
-        internal ControllableBoardObject(Board board, int viewRange, int moveRangeFactor, int hp, int attackPower)
-        {
+        internal ControllableBoardObject(Board board, int viewRange, int moveRangeFactor, int hp, int attackPower) {
             ViewRange = viewRange;
             this.board = board;
             MoveRangeFactor = moveRangeFactor;
@@ -62,8 +60,7 @@ namespace AntWars.Board
         /// Lässt die Ameise nach links bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
-        public bool moveLeft()
-        {
+        public bool moveLeft() {
             Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y);
             return move(newCoords);
         }
@@ -71,8 +68,7 @@ namespace AntWars.Board
         /// Lässt die Ameise diagonal nach links oben bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
-        public bool moveUpperLeft()
-        {
+        public bool moveUpperLeft() {
             Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y - 1);
             return move(newCoords);
         }
@@ -81,8 +77,7 @@ namespace AntWars.Board
         /// Lässt die Ameise diagonal nach links unten bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
-        public bool moveLowerLeft()
-        {
+        public bool moveLowerLeft() {
             Coordinates newCoords = new Coordinates(Coords.X - 1, Coords.Y + 1);
             return move(newCoords);
         }
@@ -91,8 +86,7 @@ namespace AntWars.Board
         /// Lässt die Ameise nach rechts bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
-        public bool moveRight()
-        {
+        public bool moveRight() {
             Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y);
             return move(newCoords);
         }
@@ -101,8 +95,7 @@ namespace AntWars.Board
         /// Lässt die Ameise diagonal nach rechts oben bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
-        public bool moveUpperRight()
-        {
+        public bool moveUpperRight() {
             Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y - 1);
             return move(newCoords);
         }
@@ -111,8 +104,7 @@ namespace AntWars.Board
         /// Lässt die Ameise diagonal nach rechts unten bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
-        public bool moveLowerRight()
-        {
+        public bool moveLowerRight() {
             Coordinates newCoords = new Coordinates(Coords.X + 1, Coords.Y + 1);
             return move(newCoords);
         }
@@ -121,8 +113,7 @@ namespace AntWars.Board
         /// Lässt die Ameise nach oben bewegen
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
-        public bool moveUp()
-        {
+        public bool moveUp() {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y - 1);
             return move(newCoords);
         }
@@ -131,8 +122,7 @@ namespace AntWars.Board
         /// Lässt die Ameise nach unten bewegen
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
-        public bool moveDown()
-        {
+        public bool moveDown() {
             Coordinates newCoords = new Coordinates(Coords.X, Coords.Y + 1);
             return move(newCoords);
         }
@@ -141,26 +131,20 @@ namespace AntWars.Board
         /// Prüfen, ob die Ameise sich noch bewegen kann.
         /// </summary>
         /// <returns>True wenn ja, False wenn nicht</returns>
-        public bool canMove()
-        {
+        public bool canMove() {
             if (UnitsGone >= MoveRange)
                 return false;
             return true;
         }
 
-        public virtual bool fight()
-        {
+        public virtual bool fight() {
             throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
         }
 
-        private bool move(Coordinates to)
-        {
-            if (!canMove() && this.isAnt())
-            {
+        private bool move(Coordinates to) {
+            if (!canMove() && this.isAnt()) {
                 (this as Ants.Ant).die();
-            }
-            else if (!TookAction && board.BoardObjects.move(this, to))
-            {
+            } else if (!TookAction && board.BoardObjects.move(this, to)) {
                 TookAction = true;
                 UnitsGone++;
                 return true;
