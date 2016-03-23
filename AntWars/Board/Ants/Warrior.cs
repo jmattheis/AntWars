@@ -10,12 +10,10 @@ namespace AntWars.Board.Ants
     {
 
         internal Warrior(int attackPower, Board board, Player owner, int viewRange, int inventory, int moveRange, int hp)
-            : base(board, owner, viewRange, inventory, moveRange, hp)
-        {
-            AttackPower = attackPower;
-        }
+            : base(board, owner, viewRange, inventory, moveRange, hp, attackPower)
+        { }
 
-        public bool fight()
+        public override bool fight()
         {
             return false;
         }
