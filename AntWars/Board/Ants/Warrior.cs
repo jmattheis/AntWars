@@ -13,7 +13,7 @@ namespace AntWars.Board.Ants
             : base(board, owner, viewRange, inventory, moveRange, hp, attackPower)
         { }
 
-        public bool fight()
+        public override bool fight()
         {
             return false;
         }

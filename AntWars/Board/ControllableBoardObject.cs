@@ -171,5 +171,11 @@ namespace AntWars.Board
             // TODO improve Exception & Comments
             throw new RuntimeException("");
         }
+
+        public virtual bool fight()
+        {
+            // TODO improve Exception & Comments
+            throw new RuntimeException("");
+        }
     }
 }
