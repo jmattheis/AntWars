@@ -8,7 +8,7 @@ namespace AntWars.Board
 {
     public class ControllableBoardObject : BoardObject
     {
-        
+
         /// <summary>
         /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 
         /// </summary>
@@ -137,21 +137,6 @@ namespace AntWars.Board
             return move(newCoords);
         }
 
-        private bool move(Coordinates to)
-        {
-            if (!canMove() && this.isAnt())
-            {
-                (this as Ants.Ant).die();
-            }
-            else if (!TookAction && board.BoardObjects.move(this, to))
-            {
-                TookAction = true;
-                UnitsGone++;
-                return true;
-            }
-            return false;
-        }
-
         /// <summary>
         /// Prüfen, ob die Ameise sich noch bewegen kann.
         /// </summary>
@@ -167,6 +152,21 @@ namespace AntWars.Board
         {
             // TODO improve Exception & Comments
             throw new NotImplementedException("");
+        }
+
+        private bool move(Coordinates to)
+        {
+            if (!canMove() && this.isAnt())
+            {
+                (this as Ants.Ant).die();
+            }
+            else if (!TookAction && board.BoardObjects.move(this, to))
+            {
+                TookAction = true;
+                UnitsGone++;
+                return true;
+            }
+            return false;
         }
     }
 }
