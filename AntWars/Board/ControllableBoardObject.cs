@@ -150,8 +150,7 @@ namespace AntWars.Board
 
         public virtual bool fight()
         {
-            // TODO improve Exception & Comments
-            throw new NotImplementedException("");
+            throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
         }
 
         private bool move(Coordinates to)

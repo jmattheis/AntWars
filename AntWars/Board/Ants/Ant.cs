@@ -161,8 +161,7 @@ namespace AntWars.Board.Ants
         /// <returns>true wenn erfolgreich false wenn noch cooldown ist</returns>
         public virtual bool notifyOtherAnts(HashSet<Coordinates> coords)
         {
-            // TODO improve Exception & Comments
-            throw new NotImplementedException("");
+            throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
         }
     }
 
