@@ -28,13 +28,13 @@ namespace PlayerAI
         private Random rand = new Random();
         public override void antTick(BoardObject[] view)
         {
-            Scout scout = Ant as Scout;
-            if(scout != null)
+
+            if (Ant.isScout())
             {
                 // its a Scout
                 HashSet<Coordinates> set = new HashSet<Coordinates>();
                 set.Add(new Coordinates(2, 4));
-                scout.notifyOtherAnts(set);
+                Ant.notifyOtherAnts(set);
             }
 
             // Zucker aufheben Test
