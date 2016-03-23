@@ -10,7 +10,7 @@ namespace AntWars.Board
     {
         internal Board board;
 
-        internal ControllableBoardObject(Board board, int viewRange, int moveRangeFactor, int hp)
+        internal ControllableBoardObject(Board board, int viewRange, int moveRangeFactor, int hp, int attackPower)
         {
             ViewRange = viewRange;
             this.board = board;
@@ -19,6 +19,7 @@ namespace AntWars.Board
             Health = hp;
             TookAction = false;
             this.UnitsGone = 0;
+            AttackPower = attackPower;
         }
         /// <summary>
         /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 

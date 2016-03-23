@@ -27,8 +27,8 @@ namespace AntWars.Board.Ants
         internal IAIAnt AI { get; set; }
         private Base Base;
 
-        internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRangeFactor, int hp)
-            : base(board, viewRange, moveRangeFactor, hp)
+        internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRangeFactor, int hp, int attackPower)
+            : base(board, viewRange, moveRangeFactor, hp, attackPower)
         {
             MaxInventory = maxInventory;
             Owner = owner;
