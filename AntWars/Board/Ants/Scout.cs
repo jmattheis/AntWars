@@ -20,7 +20,7 @@ namespace AntWars.Board.Ants
         /// </summary>
         /// <param name="coords">Die Koordinaten welche den anderen Ameisem mitgeteilt werden soll</param>
         /// <returns>true wenn erfolgreich false wenn noch cooldown ist</returns>
-        public bool notifyOtherAnts(HashSet<Coordinates> coords)
+        public override bool notifyOtherAnts(HashSet<Coordinates> coords)
         {
             if(usedNotifyInTick + NOTIFY_COOLDOWN_IN_TICKS <= board.CurrentTick)
             {

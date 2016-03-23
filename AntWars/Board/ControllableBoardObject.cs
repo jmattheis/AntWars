@@ -160,5 +160,16 @@ namespace AntWars.Board
                 return false;
             return true;
         }
+
+        /// <summary>
+        /// Benachrichtigt andere Ameise in der Sichtweite * 2.
+        /// </summary>
+        /// <param name="coords">Die Koordinaten welche den anderen Ameisem mitgeteilt werden soll</param>
+        /// <returns>true wenn erfolgreich false wenn noch cooldown ist</returns>
+        public virtual bool notifyOtherAnts(HashSet<Coordinates> coords)
+        {
+            // TODO improve Exception & Comments
+            throw new RuntimeException("");
+        }
     }
 }
