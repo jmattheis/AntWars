@@ -8,19 +8,7 @@ namespace AntWars.Board
 {
     public class ControllableBoardObject : BoardObject
     {
-        internal Board board;
-
-        internal ControllableBoardObject(Board board, int viewRange, int moveRangeFactor, int hp, int attackPower)
-        {
-            ViewRange = viewRange;
-            this.board = board;
-            MoveRangeFactor = moveRangeFactor;
-            MoveRange = MoveRangeFactor * board.Diagonal;
-            Health = hp;
-            TookAction = false;
-            this.UnitsGone = 0;
-            AttackPower = attackPower;
-        }
+        
         /// <summary>
         /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 
         /// </summary>
@@ -55,6 +43,20 @@ namespace AntWars.Board
         /// Wie weit die Ameise gehen kann. 
         /// </summary>
         public int MoveRange { get; protected set; }
+
+        internal Board board;
+
+        internal ControllableBoardObject(Board board, int viewRange, int moveRangeFactor, int hp, int attackPower)
+        {
+            ViewRange = viewRange;
+            this.board = board;
+            MoveRangeFactor = moveRangeFactor;
+            MoveRange = MoveRangeFactor * board.Diagonal;
+            Health = hp;
+            TookAction = false;
+            this.UnitsGone = 0;
+            AttackPower = attackPower;
+        }
 
         /// <summary>
         /// Lässt die Ameise nach links bewegen.
