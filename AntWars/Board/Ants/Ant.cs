@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AntWars.Board.Ants
-{
+namespace AntWars.Board.Ants {
+
     /// <summary>
     /// Die Ameise.
     /// </summary>
-    public abstract class Ant : ControllableBoardObject
-    {
-       
+    public abstract class Ant : ControllableBoardObject {
+
         /// <summary>
         /// Das Maximale Inventar der Ant.
         /// </summary>
@@ -28,8 +27,7 @@ namespace AntWars.Board.Ants
         private Base Base;
 
         internal Ant(Board board, Player owner, int viewRange, int maxInventory, int moveRangeFactor, int hp, int attackPower)
-            : base(board, viewRange, moveRangeFactor, hp, attackPower)
-        {
+            : base(board, viewRange, moveRangeFactor, hp, attackPower) {
             MaxInventory = maxInventory;
             Owner = owner;
             Inventory = 0;
@@ -39,23 +37,18 @@ namespace AntWars.Board.Ants
         /// Zucker aufnehmen. Die Ameise muss auf dem Zucker stehen.
         /// </summary>
         /// <returns>True bei Erfolg, false wenn kein Zucker gefunden wurde.</returns>
-        public bool pickUpSugar()
-        {
+        public bool pickUpSugar() {
             Sugar sugar;
 
-            if (board.BoardObjects.getSugar(Coords, out sugar) && Inventory < MaxInventory)
-            {
+            if (board.BoardObjects.getSugar(Coords, out sugar) && Inventory < MaxInventory) {
                 int tempSugarAmount = sugar.Amount;
                 int maxPickUpSugar = MaxInventory - Inventory;
 
-                if (sugar.Amount - maxPickUpSugar <= 0)
-                {
+                if (sugar.Amount - maxPickUpSugar <= 0) {
                     // Zucker bei 0 entfernen
                     sugar.Amount = 0;
                     board.BoardObjects.remove(sugar);
-                }
-                else
-                {
+                } else {
                     sugar.Amount = sugar.Amount - maxPickUpSugar;
                 }
                 Inventory += (tempSugarAmount - sugar.Amount);
@@ -68,14 +61,12 @@ namespace AntWars.Board.Ants
         /// Zucker bei der Base abgeben. Die Ameise muss auf der Base stehen.
         /// </summary>
         /// <returns>True bei Erfolg, false wenn die Ameise nicht auf der Base steht.</returns>
-        public bool dropSugarOnBase()
-        {
-            if (!TookAction && isInBase())
-            {
+        public bool dropSugarOnBase() {
+            if (!TookAction && isInBase()) {
                 Owner.addMoney(Inventory);
                 Owner.Points += Inventory;
                 Inventory = 0;
-                return true;    
+                return true;
             }
             return false;
         }
@@ -84,10 +75,8 @@ namespace AntWars.Board.Ants
         /// Verringert die UnitsGone einer Ameise um einen bestimmten Prozentsatz.
         /// </summary>
         /// <returns>True bei Regenerierung, false wenn Ameise nicht in der Base steht oder bereits eine Aktion ausgeführt hat.</returns>
-        public bool restore()
-        {
-            if (!TookAction && isInBase())
-            {
+        public bool restore() {
+            if (!TookAction && isInBase()) {
                 // 0.2 kann später durch den bestimmten oder aufgewerteten Prozentsatz der Base ersetzt werden.
                 UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.2)));
                 // TODO: Nach Implementierung von Health, hier Health regenerieren.
@@ -103,10 +92,8 @@ namespace AntWars.Board.Ants
         /// Verringert die MoveRange der Ameise um einen bestimmten Prozentsatz.
         /// </summary>
         /// <returns>true bei Regenerierung, fals wenn Ameise keinen Zucker bei sich trägt oder bereits eine Aktion ausgeführt hat.</returns>
-        public bool eatSugar()
-        {
-            if (!TookAction && Inventory > 0)
-            {
+        public bool eatSugar() {
+            if (!TookAction && Inventory > 0) {
                 Inventory--;
                 UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.1)));
                 MoveRange = Convert.ToInt32(Math.Ceiling(MoveRange * (1 - 0.05)));
@@ -120,16 +107,13 @@ namespace AntWars.Board.Ants
         /// Überprüft ob die Ameise innerhalb der Base steht.
         /// </summary>
         /// <returns>true, wenn die Ameise innerhalb der Base steht, ansonsten false</returns>
-        public bool isInBase()
-        {
+        public bool isInBase() {
             int range = getBase().Range;
             return Coords.isInRange(range, getBaseCoords());
         }
 
-        private Base getBase()
-        {
-            if(Base == null)
-            {
+        private Base getBase() {
+            if (Base == null) {
                 Base = board.BoardObjects.getBase(Owner);
             }
             return Base;
@@ -138,9 +122,8 @@ namespace AntWars.Board.Ants
         /// <summary>
         /// Die Ameise am Ende des Zuges sterben lassen.
         /// </summary>
-        public void die()
-        {
-            if(!board.DyingAnts.Contains(this))
+        public void die() {
+            if (!board.DyingAnts.Contains(this))
                 board.DyingAnts.Add(this);
 
             Owner.decreaseAnts(this);
@@ -149,8 +132,7 @@ namespace AntWars.Board.Ants
         /// Gibt die Koordinaten von der zugehörigen Base zurück.
         /// </summary>
         /// <returns>Die Koordinaten von der Base</returns>
-        public Coordinates getBaseCoords()
-        {
+        public Coordinates getBaseCoords() {
             return getBase().Coords;
         }
 
@@ -159,8 +141,7 @@ namespace AntWars.Board.Ants
         /// </summary>
         /// <param name="coords">Die Koordinaten welche den anderen Ameisem mitgeteilt werden soll</param>
         /// <returns>true wenn erfolgreich false wenn noch cooldown ist</returns>
-        public virtual bool notifyOtherAnts(HashSet<Coordinates> coords)
-        {
+        public virtual bool notifyOtherAnts(HashSet<Coordinates> coords) {
             throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
         }
     }

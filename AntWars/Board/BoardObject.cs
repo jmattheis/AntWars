@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using AntWars.Board.Ants;
 using AntWars.Board;
 
-namespace AntWars.Board
-{
+namespace AntWars.Board {
+
     /// <summary>
     /// Das BoardObject der startpunkt für alles was auf dem Board ist.
     /// </summary>
-    public class BoardObject
-    {
+    public class BoardObject {
+
         /// <summary>
         /// Die Koordinate vom Object.
         /// </summary>
@@ -22,8 +22,7 @@ namespace AntWars.Board
         /// Überprüft ob das BoardObject eine Ameise ist.
         /// </summary>
         /// <returns>true wenn es eine Ameise ist</returns>
-        public bool isAnt()
-        {
+        public bool isAnt() {
             return GetType() == typeof(Ant) || isScout() || isCarry() || isWarrior();
         }
 
@@ -31,8 +30,7 @@ namespace AntWars.Board
         /// Überprüft ob das BoardObject Zucker ist.
         /// </summary>
         /// <returns>true wenn es eine Zucker ist</returns>
-        public bool isSugar()
-        {
+        public bool isSugar() {
             return GetType() == typeof(Sugar);
         }
 
@@ -40,8 +38,7 @@ namespace AntWars.Board
         /// Überprüft ob das BoardObject eine Basis ist.
         /// </summary>
         /// <returns>true wenn es eine Basis ist</returns>
-        public bool isBase()
-        {
+        public bool isBase() {
             return GetType() == typeof(Base);
         }
 
@@ -49,8 +46,7 @@ namespace AntWars.Board
         /// Überprüft ob das BoardObject ein Carry ist.
         /// </summary>
         /// <returns>true wenn es ein Carry ist</returns>
-        public bool isCarry()
-        {
+        public bool isCarry() {
             return GetType() == typeof(Carry);
         }
 
@@ -58,8 +54,7 @@ namespace AntWars.Board
         /// Überprüft ob das BoardObject ein Scout ist.
         /// </summary>
         /// <returns>true wenn es ein Scout ist</returns>
-        public bool isScout()
-        {
+        public bool isScout() {
             return GetType() == typeof(Scout);
         }
 
@@ -67,8 +62,7 @@ namespace AntWars.Board
         /// Überprüft ob das BoardObject ein Warrior ist.
         /// </summary>
         /// <returns>true wenn es ein Warrior ist</returns>
-        public bool isWarrior()
-        {
+        public bool isWarrior() {
             return GetType() == typeof(Warrior);
         }
     }

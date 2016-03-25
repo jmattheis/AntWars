@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AntWars.Helper
-{
-    static class Messages
-    {
+namespace AntWars.Helper {
+
+    static class Messages {
+
         /// <summary>
         /// Es ist kein Zucker mehr verfügbar.
         /// </summary>

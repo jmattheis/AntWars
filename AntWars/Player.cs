@@ -7,13 +7,13 @@ using AntWars;
 using AntWars.Board.Ants;
 using AntWars.AI;
 
-namespace AntWars
-{
+namespace AntWars {
+
     /// <summary>
     /// Der Player.
     /// </summary>
-    class Player
-    {
+    class Player {
+
         /// <summary>
         /// Punkte vom Spieler
         /// </summary>
@@ -49,8 +49,7 @@ namespace AntWars
         /// </summary>
         public int CarryCount { get; set; }
 
-        public Player(AILoader aiLoader, double money)
-        {
+        public Player(AILoader aiLoader, double money) {
             AILoader = aiLoader;
             Money = money;
             ScoutCount = 0;
@@ -61,22 +60,14 @@ namespace AntWars
         /// Erhöht die Anzahl der Ameisen eines Ameisentyps um eins.
         /// </summary>
         /// <param name="ant">Die neue Ameise.</param>
-        public void incrementAnts(Ant ant)
-        {
-            if (ant.isCarry())
-            {
+        public void incrementAnts(Ant ant) {
+            if (ant.isCarry()) {
                 CarryCount++;
-            }
-            else if (ant.isScout())
-            {
+            } else if (ant.isScout()) {
                 ScoutCount++;
-            }
-            else if (ant.isWarrior())
-            {
+            } else if (ant.isWarrior()) {
                 WarriorCount++;
-            }
-            else
-            {
+            } else {
                 throw new RuntimeException("Unknown ant type.");
             }
         }
@@ -85,22 +76,14 @@ namespace AntWars
         /// Verringert die Anzahl der Ameisen eines Ameisentyps um eins.
         /// </summary>
         /// <param name="ant">Die zu verringernde Ameise.</param>
-        public void decreaseAnts(Ant ant)
-        {
-            if (ant.isCarry())
-            {
+        public void decreaseAnts(Ant ant) {
+            if (ant.isCarry()) {
                 CarryCount--;
-            }
-            else if (ant.isScout())
-            {
+            } else if (ant.isScout()) {
                 ScoutCount--;
-            }
-            else if (ant.isWarrior())
-            {
+            } else if (ant.isWarrior()) {
                 WarriorCount--;
-            }
-            else
-            {
+            } else {
                 throw new RuntimeException("Unknown ant type.");
             }
         }
@@ -110,10 +93,8 @@ namespace AntWars
         /// </summary>
         /// <param name="amount">Die Anzahl an Geld</param>
         /// <returns>true wenn der Spieler genügend Geld hat andernfalls false</returns>
-        public bool pay(double amount)
-        {
-            if(Money >= amount)
-            {
+        public bool pay(double amount) {
+            if (Money >= amount) {
                 Money -= amount;
                 return true;
             }
@@ -124,9 +105,8 @@ namespace AntWars
         /// Gibt dem Spieler Geld.
         /// </summary>
         /// <param name="amount">Die Anzahl an Geld</param>
-        public void addMoney(double amount)
-        {
-            if(amount < 0) { throw new ArgumentException("Money may not be less than 0"); }
+        public void addMoney(double amount) {
+            if (amount < 0) { throw new ArgumentException("Money may not be less than 0"); }
             Money += amount;
         }
     }
