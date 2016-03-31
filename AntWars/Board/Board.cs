@@ -55,19 +55,6 @@ namespace AntWars.Board {
                 ant.TookAction = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
-
-            foreach (ControllableBoardObject obj in DyingObjects) {
-
-                if (obj.isAnt() && (obj as Ant).Inventory > 0) {
-                    Sugar s = new Sugar();
-                    s.Coords = new Coordinates(obj.Coords.X, obj.Coords.Y);
-                    s.Amount = (obj as Ant).Inventory;
-                    BoardObjects.add(s);
-                }
-                BoardObjects.remove(obj);
-            }
-
-            DyingObjects.Clear();
         }
 
         /// <summary>
@@ -162,6 +149,23 @@ namespace AntWars.Board {
                 BoardObjects.add(s);
                 SugarAmount += s.Amount;
             }
+        }
+
+        private void resolveDeaths() {
+
+            foreach (ControllableBoardObject obj in DyingObjects) {
+
+                Ant ant = (obj as Ant);
+                if (obj.isAnt() && ant.Inventory > 0) {
+                    Sugar s = new Sugar();
+                    s.Coords = ant.Coords;
+                    s.Amount = ant.Inventory;
+                    BoardObjects.add(s);
+                }
+                BoardObjects.remove(obj);
+            }
+
+            DyingObjects.Clear();
         }
     }
 }

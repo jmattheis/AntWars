@@ -134,6 +134,12 @@ namespace AntWars.Board.Ants {
         public virtual bool notifyOtherAnts(HashSet<Coordinates> coords) {
             throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
         }
+
+        public override void die() {
+            base.die();
+            Owner.decreaseAnts(this);
+        }
+
     }
 
 }

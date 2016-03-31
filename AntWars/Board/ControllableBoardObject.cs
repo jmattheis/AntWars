@@ -154,16 +154,11 @@ namespace AntWars.Board {
         }
 
         /// <summary>
-        /// Die Ameise am Ende des Zuges sterben lassen.
+        /// Die Einheit am Ende des Zuges sterben lassen.
         /// </summary>
-        public void die() {
+        public virtual void die() {
             if (!board.DyingObjects.Contains(this))
                 board.DyingObjects.Add(this);
-
-            if (isAnt()) {
-                Ant ant = this as Ant;
-                ant.Owner.decreaseAnts(ant);
-            }
         }
     }
 }
