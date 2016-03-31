@@ -119,16 +119,6 @@ namespace AntWars.Board.Ants {
             return Base;
         }
 
-        /// <summary>
-        /// Die Ameise am Ende des Zuges sterben lassen.
-        /// </summary>
-        public void die() {
-            if (!board.DyingAnts.Contains(this))
-                board.DyingAnts.Add(this);
-
-            Owner.decreaseAnts(this);
-        }
-
         /// Gibt die Koordinaten von der zugehörigen Base zurück.
         /// </summary>
         /// <returns>Die Koordinaten von der Base</returns>
