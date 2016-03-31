@@ -138,7 +138,7 @@ namespace AntWars.Board {
             return true;
         }
 
-        public virtual bool fight() {
+        public virtual bool fight(ControllableBoardObject target) {
             throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
         }
 
