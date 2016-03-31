@@ -160,5 +160,16 @@ namespace AntWars.Board {
             if (!board.DyingObjects.Contains(this))
                 board.DyingObjects.Add(this);
         }
+
+        /// <summary>
+        /// Die Einheit nimmt Schaden.
+        /// </summary>
+        /// <param name="dmg">Anzahl an Schaden.</param>
+        public void takeDamage(int dmg) {
+            Health -= dmg;
+            if (Health <= 0) {
+                die();
+            }
+        }
     }
 }
