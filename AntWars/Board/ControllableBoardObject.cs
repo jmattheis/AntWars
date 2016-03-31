@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AntWars.Board.Ants;
 
 namespace AntWars.Board {
 
@@ -142,14 +143,22 @@ namespace AntWars.Board {
         }
 
         private bool move(Coordinates to) {
-            if (!canMove() && this.isAnt()) {
-                (this as Ants.Ant).die();
+            if (!canMove()) {
+                die();
             } else if (!TookAction && board.BoardObjects.move(this, to)) {
                 TookAction = true;
                 UnitsGone++;
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// Die Einheit am Ende des Zuges sterben lassen.
+        /// </summary>
+        public virtual void die() {
+            if (!board.DyingObjects.Contains(this))
+                board.DyingObjects.Add(this);
         }
     }
 }

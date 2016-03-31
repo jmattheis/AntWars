@@ -31,7 +31,7 @@ namespace AntWars.Board {
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
         public int SugarAmount { get; private set; }
-        public List<Ant> DyingAnts { get; private set; }
+        public List<ControllableBoardObject> DyingObjects { get; private set; }
         public int CurrentTick { get; internal set; }
 
 
@@ -39,7 +39,7 @@ namespace AntWars.Board {
             this.CurrentTick = 0;
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);
-            DyingAnts = new List<Ant>();
+            DyingObjects = new List<ControllableBoardObject>();
             Diagonal = Convert.ToInt32(Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2)));
         }
 
@@ -55,18 +55,6 @@ namespace AntWars.Board {
                 ant.TookAction = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
-
-            foreach (Ant ant in DyingAnts) {
-                if (ant.Inventory > 0) {
-                    Sugar s = new Sugar();
-                    s.Coords = new Coordinates(ant.Coords.X, ant.Coords.Y);
-                    s.Amount = ant.Inventory;
-                    BoardObjects.add(s);
-                }
-                BoardObjects.remove(ant);
-            }
-
-            DyingAnts.Clear();
         }
 
         /// <summary>
@@ -161,6 +149,23 @@ namespace AntWars.Board {
                 BoardObjects.add(s);
                 SugarAmount += s.Amount;
             }
+        }
+
+        private void resolveDeaths() {
+
+            foreach (ControllableBoardObject obj in DyingObjects) {
+
+                Ant ant = (obj as Ant);
+                if (obj.isAnt() && ant.Inventory > 0) {
+                    Sugar s = new Sugar();
+                    s.Coords = ant.Coords;
+                    s.Amount = ant.Inventory;
+                    BoardObjects.add(s);
+                }
+                BoardObjects.remove(obj);
+            }
+
+            DyingObjects.Clear();
         }
     }
 }
