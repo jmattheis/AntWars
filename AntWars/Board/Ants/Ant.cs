@@ -77,7 +77,7 @@ namespace AntWars.Board.Ants {
         /// <returns>True bei Regenerierung, false wenn Ameise nicht in der Base steht oder bereits eine Aktion ausgeführt hat.</returns>
         public bool recover() {
             if (!TookAction && isInBase()) {
-                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1d - (getBase().RecoverLevel / 10))));
+                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1d - (getBase().RecoverLevel / 10d))));
                 // TODO: Nach Implementierung von Health, hier Health regenerieren.
                 TookAction = true;
                 return true;
