@@ -55,6 +55,7 @@ namespace AntWars.Board {
                 ant.TookAction = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
+            resolveDeaths();
         }
 
         /// <summary>
