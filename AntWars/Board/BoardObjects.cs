@@ -110,15 +110,20 @@ namespace AntWars.Board {
         /// <summary>
         /// Gibt die Boardobjects von einer bestimmten Koordinate wieder.
         /// </summary>
-        /// <param name="coords">Die Coordinaten</param>
+        /// <param name="x">Die X Koordinate</param>
+        /// <param name="y">Die Y Koordinate</param>
         /// <returns>Die BoardObjects von den Koordinaten</returns>
-        public BoardObject[] getBoardObjectsFromCoords(Coordinates coords) {
-            BoardObject[] objsInCoords = boardObjectList[coords.X, coords.Y];
+        public BoardObject[] getBoardObjectsFromCoords(int x, int y) {
+            BoardObject[] objsInCoords = boardObjectList[x, y];
             if (objsInCoords == null) {
                 objsInCoords = new BoardObject[0];
-                boardObjectList[coords.X, coords.Y] = objsInCoords;
+                boardObjectList[x, y] = objsInCoords;
             }
             return objsInCoords;
+        }
+
+        public BoardObject[] getBoardObjectsFromCoords(Coordinates coords) {
+            return getBoardObjectsFromCoords(coords.X, coords.Y);
         }
 
 
@@ -127,7 +132,7 @@ namespace AntWars.Board {
         /// </summary>
         /// <returns>true wenn das BoardObject gemoved wurde andernfalls false.</returns>
         public bool move(BoardObject obj, Coordinates coords) {
-            if (!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords), obj)) {
+            if (!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords.X, coords.Y), obj)) {
                 return false;
             }
             removeFromMap(obj);
@@ -136,12 +141,14 @@ namespace AntWars.Board {
             return true;
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="coords"></param>
         /// <returns>true wenn die Koordinaten nicht außerhalb des Spielfeldes sind.</returns>
         public bool isValidCoords(Coordinates coords) {
-            return !(coords.X < 0 || coords.X > (conf.BoardWidth - 1) || coords.Y < 0 || coords.Y > (conf.BoardHeight - 1));
+            return isValidCoords(coords.X, coords.Y);
+        }
+
+        /// <returns>true wenn die Koordinaten nicht außerhalb des Spielfeldes sind.</returns>
+        public bool isValidCoords(int x, int y) {
+            return !(x < 0 || x > (conf.BoardWidth - 1) || y < 0 || y > (conf.BoardHeight - 1));
         }
 
         /// <summary>

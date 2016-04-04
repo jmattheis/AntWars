@@ -98,17 +98,42 @@ namespace AntWars.Board {
             BoardObject[] result = new BoardObject[0];
             Coordinates[] coords = getCoordsInView(viewRange).circle;
             for (int i = 0;i < coords.Length;i++) {
-                Coordinates c = coords[i];
-                Coordinates toAdd = new Coordinates(c.X + antCoords.X, c.Y + antCoords.Y);
-                if (BoardObjects.isValidCoords(toAdd)) {
-                    BoardObject[] boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(toAdd);
-                    if (boardobjectsformcoords.Length != 0) {
-                        merge(ref result, boardobjectsformcoords);
-                    }
-                }
+                addBoardObjectsToArrayForPartCoordinates(ref result, coords[i], antCoords, viewRange);
             }
 
             return result;
+        }
+
+        private void addBoardObjectsToArrayForPartCoordinates(ref BoardObject[] result, Coordinates coords ,Coordinates current, int viewrange) {
+            int x1 = coords.X;
+            int x2 = Math.Abs(x1);
+
+            int y1 = coords.Y;
+            int y2 = Math.Abs(y1);
+
+
+            merge(x1 + current.X, y1 + current.Y, ref result); // upper left
+            viewrange++;
+            if (coords.X == current.X && coords.Y == current.Y) return; // on the ant
+            if (coords.X == 0) {
+                merge(0, y2 + current.Y, ref result);
+                return;
+            }
+            if (coords.Y == 0) {
+                merge(x2 + current.X,  0, ref result);
+                return;
+            }
+            merge(x2 + current.X, y1 + current.Y, ref result); // upper right
+            merge(x1 + current.X, y2 + current.Y, ref result); // lower left
+            merge(x2 + current.X, y2 + current.Y, ref result); // lower right
+        }
+
+        private void merge(int x, int y, ref BoardObject[] result) {
+            if (!BoardObjects.isValidCoords(x, y)) return;
+            BoardObject[] boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(x, y);
+            if (boardobjectsformcoords.Length != 0) {
+                merge(ref result, boardobjectsformcoords);
+            }
         }
 
         private void merge(ref BoardObject[] result, BoardObject[] add) {

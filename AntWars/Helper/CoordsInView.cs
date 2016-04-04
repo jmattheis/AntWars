@@ -31,8 +31,8 @@ namespace AntWars.Helper {
             Width = width;
             int boxMinX = 0 - Width;
             int boxMinY = 0 - Width;
-            int boxMaxX = 0 + Width;
-            int boxMaxY = 0 + Width;
+            int boxMaxX = 0;
+            int boxMaxY = 0;
             List<Coordinates> coordinatesInsideView = new List<Coordinates>();
             for (int x = boxMinX;x <= boxMaxX;x++) {
                 for (int y = boxMinY;y <= boxMaxY;y++) {
