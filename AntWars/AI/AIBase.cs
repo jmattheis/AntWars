@@ -115,7 +115,7 @@ namespace AntWars.AI {
 
         private bool buyAnt(Ant ant) {
             double cost = Helper.CostCalculator.calculateCost(ant);
-            Base b = Game.Board.BoardObjects.getBase(Player);
+            Base b = getBase();
             if (!resolveAntCoords(ant, b) || !Player.pay(cost)) {
                 return false;
             }
