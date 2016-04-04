@@ -104,8 +104,8 @@ namespace AntWars.AI {
         /// </summary>
         /// <returns>false wenn man zuwenig Geld hat oder das Upgrade schon die höhste Stufe hat</returns>
         public bool upgradeRange() {
-            if (payUpgrade(getBase().Range)) {
-                getBase().Range++;
+            if (payUpgrade(getBase().RangeLevel)) {
+                getBase().RangeLevel++;
                 return true;
             }
             return false;
@@ -116,8 +116,8 @@ namespace AntWars.AI {
         /// </summary>
         /// <returns>false wenn man zuwenig Geld hat oder das Upgrade schon die höhste Stufe hat</returns>
         public bool upgradeRecover() {
-            if (payUpgrade(getBase().Recover)) {
-                getBase().Recover++;
+            if (payUpgrade(getBase().RecoverLevel)) {
+                getBase().RecoverLevel++;
                 return true;
             }
             return false;

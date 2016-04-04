@@ -14,20 +14,19 @@ namespace AntWars.Board {
         internal Player Player { get; private set; }
 
         /// <summary>
-        /// Die Größe der Base.
+        /// Das Level der Reichweite, gibt an mit wieviel Feldern abstand die Ameise Zucker ablegen/sich erholen kann.
         /// </summary>
-        public int Range { get; internal set; }
+        public int RangeLevel { get; internal set; }
 
         /// <summary>
-        /// Der Factor wie schnell sich eine Ameise erholen kann.
+        /// Das Level der Erholungrate gibt an um wieviel % sich die Ameise erholen kann. Rechnung: (level/10)%
         /// </summary>
-        public int Recover { get; internal set; }
+        public int RecoverLevel { get; internal set; }
 
         internal Base(Player p) {
             Player = p;
-            Range = 0;
-            Recover = 0;
+            RangeLevel = 0;
+            RecoverLevel = 1;
         }
-
     }
 }
