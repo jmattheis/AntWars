@@ -116,11 +116,11 @@ namespace AntWars.Board {
             viewrange++;
             if (coords.X == current.X && coords.Y == current.Y) return; // on the ant
             if (coords.X == 0) {
-                merge(0, y2 + current.Y, ref result);
+                merge(current.X, y2 + current.Y, ref result);
                 return;
             }
             if (coords.Y == 0) {
-                merge(x2 + current.X,  0, ref result);
+                merge(x2 + current.X, current.Y, ref result);
                 return;
             }
             merge(x2 + current.X, y1 + current.Y, ref result); // upper right
