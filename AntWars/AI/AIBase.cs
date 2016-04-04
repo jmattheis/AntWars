@@ -99,18 +99,37 @@ namespace AntWars.AI {
             return buyAnt(w);
         }
 
+        /// <summary>
         /// Verbessert die Reichweite der Basis.
         /// </summary>
-        /// <returns>false wenn man zuwenig Geld hat</returns>
+        /// <returns>false wenn man zuwenig Geld hat oder das Upgrade schon die höhste Stufe hat</returns>
         public bool upgradeRange() {
-            try {
-                double cost = Helper.CostCalculator.calculateUpgradeCost(getBase().Range);
-                if (Player.pay(cost)) {
-                    Base.Range++;
-                    return true;
-                }
-            } catch (ArgumentException) { } // tritt auf wenn das level zu hoch ist
+            if (payUpgrade(getBase().RangeLevel)) {
+                getBase().RangeLevel++;
+                return true;
+            }
             return false;
+        }
+
+        /// <summary>
+        /// Verbessert die Erholungsrate der Basis.
+        /// </summary>
+        /// <returns>false wenn man zuwenig Geld hat oder das Upgrade schon die höhste Stufe hat</returns>
+        public bool upgradeRecover() {
+            if (payUpgrade(getBase().RecoverLevel)) {
+                getBase().RecoverLevel++;
+                return true;
+            }
+            return false;
+        }
+
+        private bool payUpgrade(int level) {
+            try {
+                double cost = Helper.CostCalculator.calculateUpgradeCost(level);
+                return Player.pay(cost);
+            } catch (ArgumentException) { // wird geworfen wenn das level zuhoch ist
+                return false;
+            }
         }
 
         private bool buyAnt(Ant ant) {

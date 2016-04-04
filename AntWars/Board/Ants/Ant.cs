@@ -75,10 +75,9 @@ namespace AntWars.Board.Ants {
         /// Verringert die UnitsGone einer Ameise um einen bestimmten Prozentsatz.
         /// </summary>
         /// <returns>True bei Regenerierung, false wenn Ameise nicht in der Base steht oder bereits eine Aktion ausgeführt hat.</returns>
-        public bool restore() {
+        public bool recover() {
             if (!TookAction && isInBase()) {
-                // 0.2 kann später durch den bestimmten oder aufgewerteten Prozentsatz der Base ersetzt werden.
-                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1 - 0.2)));
+                UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1d - (getBase().RecoverLevel / 10d))));
                 // TODO: Nach Implementierung von Health, hier Health regenerieren.
                 TookAction = true;
                 return true;
@@ -108,7 +107,7 @@ namespace AntWars.Board.Ants {
         /// </summary>
         /// <returns>true, wenn die Ameise innerhalb der Base steht, ansonsten false</returns>
         public bool isInBase() {
-            int range = getBase().Range;
+            int range = getBase().RangeLevel;
             return Coords.isInRange(range, getBaseCoords());
         }
 
