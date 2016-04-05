@@ -53,7 +53,7 @@ namespace AntWars.Board {
             }
             foreach (Ant ant in BoardObjects.getRandomAnts()) {
                 ant.TookAction = false;
-                ant.AI.antTick(getBoardObjectsInView(ant));
+                ant.AI.antTick();
             }
             resolveDeaths();
         }
@@ -90,7 +90,7 @@ namespace AntWars.Board {
             }
         }
 
-        private BoardObject[] getBoardObjectsInView(Ant ant) {
+        public BoardObject[] getBoardObjectsInView(Ant ant) {
             return getBoardObjectsInView(ant.Coords, ant.ViewRange);
         }
 

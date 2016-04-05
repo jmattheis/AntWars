@@ -17,7 +17,7 @@ namespace AntWars.AI {
         /// Wird in jedem Tick für jede Ameise einmal aufgerufen.
         /// </summary>
         /// <param name="view">Alle BoardObject's die die Ameise sieht</param>
-        void antTick(BoardObject[] view);
+        void antTick();
 
         void notify(HashSet<Coordinates> coords);
     }
