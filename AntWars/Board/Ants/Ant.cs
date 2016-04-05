@@ -22,6 +22,12 @@ namespace AntWars.Board.Ants {
         /// </summary>
         public int Inventory { get; protected set; }
 
+        public BoardObject[] View {
+            get {
+                return board.getBoardObjectsInView(this);
+            }
+        }
+
         internal Player Owner { get; private set; }
         internal IAIAnt AI { get; set; }
         private Base Base;

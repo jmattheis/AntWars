@@ -30,7 +30,7 @@ namespace AntWars.AI {
         /// </summary>
         public int BoardHeight { get { return Conf.BoardHeight; } }
 
-        public abstract void antTick(BoardObject[] view);
+        public abstract void antTick();
 
         public abstract void notify(HashSet<Coordinates> coords);
     }

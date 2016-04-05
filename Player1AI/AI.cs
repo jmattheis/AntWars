@@ -21,7 +21,7 @@ namespace PlayerAI {
 
     public class AIAnt : AIAntBase {
         private Random rand = new Random();
-        public override void antTick(BoardObject[] view) {
+        public override void antTick() {
 
             if (Ant.isScout()) {
                 // its a Scout
