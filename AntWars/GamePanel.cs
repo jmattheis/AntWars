@@ -48,13 +48,16 @@ namespace AntWars {
         }
 
         private void print(BoardObject[] boardObjects) {
-            Bitmap bitmap = new Bitmap(game.Conf.BoardWidth, game.Conf.BoardHeight);
+            Bitmap tmp = new Bitmap(game.Conf.BoardWidth, game.Conf.BoardHeight);
 
             for(int i = 0; i < boardObjects.Length;i++) {
-                setColor(boardObjects[i], bitmap);
+                setColor(boardObjects[i], tmp);
             }
-
-            bitmap = new Bitmap(bitmap, bitmap.Width * 4, bitmap.Height * 4);
+            if (pb_Game.Image != null) {
+                pb_Game.Image.Dispose();
+            }
+            Bitmap bitmap = new Bitmap(tmp, tmp.Width * 4, tmp.Height * 4);
+            tmp.Dispose();
             pb_Game.Image = bitmap;
         }
 
