@@ -96,6 +96,7 @@
     <Compile Include="GamePanel.Designer.cs">
       <DependentUpon>GamePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\AntProviderQueue.cs" />
     <Compile Include="Helper\CoordsInView.cs" />
     <Compile Include="Helper\CostCalculator.cs" />
     <Compile Include="Helper\Messages.cs" />
