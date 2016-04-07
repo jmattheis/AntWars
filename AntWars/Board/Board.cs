@@ -34,7 +34,6 @@ namespace AntWars.Board {
         public List<ControllableBoardObject> DyingObjects { get; private set; }
         public int CurrentTick { get; internal set; }
 
-
         public Board(Config conf) {
             this.CurrentTick = 0;
             this.conf = conf;
@@ -98,13 +97,13 @@ namespace AntWars.Board {
             BoardObject[] result = new BoardObject[0];
             Coordinates[] coords = getCoordsInView(viewRange).circle;
             for (int i = 0;i < coords.Length;i++) {
-                addBoardObjectsToArrayForPartCoordinates(ref result, coords[i], antCoords, viewRange);
+                addBoardObjectsToArrayForPartCoordinates(coords[i], antCoords, viewRange, ref result);
             }
 
             return result;
         }
 
-        private void addBoardObjectsToArrayForPartCoordinates(ref BoardObject[] result, Coordinates coords ,Coordinates current, int viewrange) {
+         private void addBoardObjectsToArrayForPartCoordinates(Coordinates coords, Coordinates current, int viewrange, ref BoardObject[] result) {
             int x1 = coords.X;
             int x2 = Math.Abs(x1);
 
@@ -114,7 +113,7 @@ namespace AntWars.Board {
 
             merge(x1 + current.X, y1 + current.Y, ref result); // upper left
             viewrange++;
-            if (coords.X == current.X && coords.Y == current.Y) return; // on the ant
+            if (coords.X == 0 && coords.Y == 0) return; // on the ant
             if (coords.X == 0) {
                 merge(current.X, y2 + current.Y, ref result);
                 return;
@@ -128,11 +127,13 @@ namespace AntWars.Board {
             merge(x2 + current.X, y2 + current.Y, ref result); // lower right
         }
 
-        private void merge(int x, int y, ref BoardObject[] result) {
+        private void merge(int x, int y,ref BoardObject[] result) {
             if (!BoardObjects.isValidCoords(x, y)) return;
             BoardObject[] boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(x, y);
             if (boardobjectsformcoords.Length != 0) {
-                merge(ref result, boardobjectsformcoords);
+                int array1OriginalLength = result.Length;
+                Array.Resize<BoardObject>(ref result, array1OriginalLength + boardobjectsformcoords.Length);
+                Array.Copy(boardobjectsformcoords, 0, result, array1OriginalLength, boardobjectsformcoords.Length);
             }
         }
 

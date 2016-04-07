@@ -47,11 +47,11 @@ namespace AntWars {
             print(game.Board.BoardObjects.get());
         }
 
-        private void print(IList<BoardObject> boardObjects) {
+        private void print(BoardObject[] boardObjects) {
             Bitmap bitmap = new Bitmap(game.Conf.BoardWidth, game.Conf.BoardHeight);
 
-            foreach (BoardObject obj in boardObjects) {
-                setColor(obj, bitmap);
+            for(int i = 0; i < boardObjects.Length;i++) {
+                setColor(boardObjects[i], bitmap);
             }
 
             bitmap = new Bitmap(bitmap, bitmap.Width * 4, bitmap.Height * 4);
@@ -82,12 +82,15 @@ namespace AntWars {
 
         private void timer_GameTick_Tick(object sender, EventArgs e) {
             game.nextTick();
-            try {
-                this.Invoke((MethodInvoker) delegate {
-                    calcGameStatistics();
-                    print();
-                });
-            } catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
+            BoardObject[] objects = game.Board.BoardObjects.get();
+            System.Threading.Tasks.Task.Factory.StartNew(() => { 
+                try {
+                    this.Invoke((MethodInvoker) delegate {
+                        calcGameStatistics();
+                        print(objects);
+                    });
+                } catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
+            });
             checkWinningConditions();
         }
 

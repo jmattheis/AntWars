@@ -15,7 +15,7 @@ namespace AntWars.Board {
     /// </summary>
     class BoardObjects {
 
-        private IList<BoardObject> boardObjects = new List<BoardObject>();
+        private BoardObject[] boardObjects = new BoardObject[0];
         private IList<Ant> ants = new List<Ant>();
         private IList<Base> bases = new List<Base>();
         private IList<Sugar> sugars = new List<Sugar>();
@@ -36,7 +36,7 @@ namespace AntWars.Board {
             if (!addToMap(boardObject)) {
                 return false;
             }
-            boardObjects.Add(boardObject);
+            add(ref boardObjects, boardObject);
             if (boardObject.isAnt()) {
                 Ant ant = (Ant) boardObject;
                 ants.Add(ant);
@@ -52,8 +52,8 @@ namespace AntWars.Board {
         /// <summary>
         /// </summary>
         /// <returns>Alle BoardObjects</returns>
-        public IList<BoardObject> get() {
-            return new ReadOnlyCollection<BoardObject>(boardObjects);
+        public BoardObject[] get() {
+            return boardObjects;
         }
 
         /// <summary>
@@ -156,7 +156,7 @@ namespace AntWars.Board {
         /// </summary>
         /// <param name="boardObject">Das Boardobject was gelöscht werden soll.</param>
         public void remove(BoardObject boardObject) {
-            boardObjects.Remove(boardObject);
+            remove(ref boardObjects, boardObject);
             if (boardObject.isAnt()) {
                 ants.Remove((Ant) boardObject);
             } else if (boardObject.isBase()) {
