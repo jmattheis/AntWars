@@ -10,9 +10,10 @@ namespace AntWars.Board {
     /// Stellt die x und y coordinate vom board dar.
     /// </summary>
     public class Coordinates {
-
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        private volatile int _x;
+        private volatile int _y;
+        public int X { get { return _x; } private set { _x = value; } }
+        public int Y { get { return _y; } private set { _y = value; } }
 
         public Coordinates(int x, int y) {
             X = x;

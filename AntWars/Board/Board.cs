@@ -33,6 +33,8 @@ namespace AntWars.Board {
         public int SugarAmount { get; private set; }
         public List<ControllableBoardObject> DyingObjects { get; private set; }
         public int CurrentTick { get; internal set; }
+        private List<Task> taskList = new List<Task>();
+        private AntProviderQueue antProviderQuere;
 
 
         public Board(Config conf) {
@@ -41,6 +43,7 @@ namespace AntWars.Board {
             BoardObjects = new BoardObjects(conf);
             DyingObjects = new List<ControllableBoardObject>();
             Diagonal = Convert.ToInt32(Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2)));
+            antProviderQuere = new AntProviderQueue(this);
         }
 
         /// <summary>
@@ -51,10 +54,9 @@ namespace AntWars.Board {
             foreach (Base playerbase in BoardObjects.getBases()) {
                 playerbase.Player.AI.nextTick();
             }
-            foreach (Ant ant in BoardObjects.getRandomAnts()) {
-                ant.TookAction = false;
-                ant.AI.antTick(getBoardObjectsInView(ant));
-            }
+            
+            antProviderQuere.refresh();
+            antProviderQuere.isFin();
             resolveDeaths();
         }
 
@@ -68,6 +70,14 @@ namespace AntWars.Board {
             nullTick(player1, baseCoords.Dequeue());
             nullTick(player2, baseCoords.Dequeue());
             generateSugar(conf.SugarMin, conf.SugarMax);
+
+            for(int i = 0; i  < 6; i++)
+            {
+                taskList.Add(Task.Factory.StartNew(() =>
+                {
+                    antProviderQuere.doItBro();
+                }));
+            }
         }
 
         /// <summary>
@@ -90,7 +100,7 @@ namespace AntWars.Board {
             }
         }
 
-        private BoardObject[] getBoardObjectsInView(Ant ant) {
+        public BoardObject[] getBoardObjectsInView(Ant ant) {
             return getBoardObjectsInView(ant.Coords, ant.ViewRange);
         }
 
@@ -192,6 +202,21 @@ namespace AntWars.Board {
             }
 
             DyingObjects.Clear();
+        }
+    }
+
+    class ThreadRunner
+    {
+        public volatile bool isFInished = true;
+
+        public void set(AntProviderQueue q)
+        {
+
+        }
+
+        public void doIt()
+        {
+            
         }
     }
 }

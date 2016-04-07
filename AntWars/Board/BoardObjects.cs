@@ -135,6 +135,7 @@ namespace AntWars.Board {
             if (!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords.X, coords.Y), obj)) {
                 return false;
             }
+            
             removeFromMap(obj);
             obj.Coords = coords;
             addToMap(obj);
@@ -268,6 +269,10 @@ namespace AntWars.Board {
 
         private void removeFromMap(BoardObject boardObject) {
             BoardObject[] objsInCoords = boardObjectList[boardObject.Coords.X, boardObject.Coords.Y];
+            if(objsInCoords.Length == 0)
+            {
+                return;
+            }
             remove(ref objsInCoords, boardObject);
             boardObjectList[boardObject.Coords.X, boardObject.Coords.Y] = objsInCoords;
         }
