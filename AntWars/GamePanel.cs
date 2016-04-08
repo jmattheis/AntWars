@@ -85,7 +85,9 @@ namespace AntWars {
 
         private void timer_GameTick_Tick(object sender, EventArgs e) {
             game.nextTick();
-            BoardObject[] objects = game.Board.BoardObjects.get();
+
+            // cloning, the print method get invoked in an other thread, therefore the BoardObject-Array could be change till that.
+            BoardObject[] objects = game.Board.BoardObjects.get().Clone() as BoardObject[];
             System.Threading.Tasks.Task.Factory.StartNew(() => { 
                 try {
                     this.Invoke((MethodInvoker) delegate {
