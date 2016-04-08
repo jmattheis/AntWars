@@ -25,7 +25,6 @@ namespace AntWars.Board {
         /// </summary>
         public int Diagonal { get; private set; }
         internal Config conf;
-        private CoordsInView[] coordsInViews = new CoordsInView[20];
 
         /// <summary>
         /// Die Anzahl von Zucker die generiert wurde.
@@ -95,7 +94,7 @@ namespace AntWars.Board {
 
         private BoardObject[] getBoardObjectsInView(Coordinates antCoords, int viewRange) {
             BoardObject[] result = new BoardObject[0];
-            Coordinates[] coords = getCoordsInView(viewRange).circle;
+            Coordinates[] coords = CircleCalculator.calculatePartCircle(viewRange);
             for (int i = 0;i < coords.Length;i++) {
                 addBoardObjectsToArrayForPartCoordinates(coords[i], antCoords, viewRange, ref result);
             }
@@ -141,15 +140,6 @@ namespace AntWars.Board {
             int array1OriginalLength = result.Length;
             Array.Resize<BoardObject>(ref result, array1OriginalLength + add.Length);
             Array.Copy(add, 0, result, array1OriginalLength, add.Length);
-        }
-
-        private CoordsInView getCoordsInView(int range) {
-            CoordsInView coordsInView = coordsInViews[range];
-            if (coordsInView == null) {
-                coordsInView = new CoordsInView(range, BoardObjects);
-                coordsInViews[range] = coordsInView;
-            }
-            return coordsInView;
         }
 
         private void nullTick(Player player, Coordinates baseCoords) {
