@@ -29,6 +29,7 @@ namespace AntWars {
             game.start();
             initTimer(config.Ticks);
             setPlayernameInStatistic();
+            setColorInStatistic();
             Show();
         }
 
@@ -64,13 +65,13 @@ namespace AntWars {
 
         private void setColor(BoardObject obj, Bitmap bitmap) {
             if (obj.isCarry()) {
-                setColor(bitmap, obj, Color.DarkGreen, Color.Blue, (obj as Ant).Owner);
+                setColor(bitmap, obj, Color.LimeGreen, Color.DodgerBlue, (obj as Ant).Owner);
             } else if (obj.isScout()) {
-                setColor(bitmap, obj, Color.Green, Color.DarkBlue, (obj as Ant).Owner);
+                setColor(bitmap, obj, Color.Green, Color.Blue, (obj as Ant).Owner);
             } else if (obj.isWarrior()) {
-                setColor(bitmap, obj, Color.Red, Color.DarkViolet, (obj as Ant).Owner);
+                setColor(bitmap, obj, Color.Lime, Color.DeepSkyBlue, (obj as Ant).Owner);
             } else if (obj.isBase()) {
-                setColor(bitmap, obj, Color.GreenYellow, Color.BlueViolet, (obj as Base).Player);
+                setColor(bitmap, obj, Color.YellowGreen, Color.BlueViolet, (obj as Base).Player);
             } else if (obj.isSugar()) {
                 setColor(bitmap, obj, Color.Black, Color.Transparent, null);
             }
@@ -97,6 +98,7 @@ namespace AntWars {
 
         public void view(Config config) {
             setFormSize(config);
+            setColorInStatistic();
             Show();
         }
 
@@ -201,6 +203,18 @@ namespace AntWars {
         private void setPlayernameInStatistic() {
             grp_player1.Text = game.Player1.AI.Playername;
             grp_player2.Text = game.Player2.AI.Playername;
+        }
+
+        private void setColorInStatistic() {
+            lbl_player1Carries.ForeColor = Color.LimeGreen;
+            lbl_player1Scouts.ForeColor = Color.Green;
+            lbl_player1Warrior.ForeColor = Color.Lime;
+            grp_player1.ForeColor = Color.YellowGreen;
+
+            lbl_player2Carries.ForeColor = Color.DodgerBlue;
+            lbl_player2Scouts.ForeColor = Color.Blue;
+            lbl_player2Warrior.ForeColor = Color.DeepSkyBlue;
+            grp_player2.ForeColor = Color.BlueViolet;
         }
 
         private void GamePanel_FormClosing(object sender, FormClosingEventArgs e) {
