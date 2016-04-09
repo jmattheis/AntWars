@@ -65,7 +65,7 @@ namespace AntWars {
 
         private void setColor(BoardObject obj, Bitmap bitmap) {
             if (obj.isCarry()) {
-                setColor(bitmap, obj, Color.LimeGreen, Color.DodgerBlue, (obj as Ant).Owner);
+                setColor(bitmap, obj, Color.Olive, Color.DarkCyan, (obj as Ant).Owner);
             } else if (obj.isScout()) {
                 setColor(bitmap, obj, Color.Green, Color.Blue, (obj as Ant).Owner);
             } else if (obj.isWarrior()) {
@@ -206,12 +206,12 @@ namespace AntWars {
         }
 
         private void setColorInStatistic() {
-            lbl_player1Carries.ForeColor = Color.LimeGreen;
+            lbl_player1Carries.ForeColor = Color.Olive;
             lbl_player1Scouts.ForeColor = Color.Green;
             lbl_player1Warrior.ForeColor = Color.Lime;
             grp_player1.ForeColor = Color.YellowGreen;
 
-            lbl_player2Carries.ForeColor = Color.DodgerBlue;
+            lbl_player2Carries.ForeColor = Color.DarkCyan;
             lbl_player2Scouts.ForeColor = Color.Blue;
             lbl_player2Warrior.ForeColor = Color.DeepSkyBlue;
             grp_player2.ForeColor = Color.BlueViolet;
