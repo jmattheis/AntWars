@@ -35,7 +35,7 @@ namespace AntWars.AI {
         public abstract void notify(HashSet<Coordinates> coords);
 
         /// <summary>
-        /// Initialisiert eine neue Instanz der Random-Klasse unter Verwendung eines Startwerts.
+        /// Initialisiert eine neue Instanz der Random-Klasse unter Verwendung eines Seeds.
         /// </summary>
         /// <returns>Instanz der Random-Klasse</returns>
         public Random getRandom() {
