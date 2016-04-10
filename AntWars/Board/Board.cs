@@ -129,9 +129,9 @@ namespace AntWars.Board {
 
         private void merge(int x, int y, ref BoardObject[] result) {
             if (!BoardObjects.isValidCoords(x, y)) return;
-            BoardObject[] boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(x, y);
-            if (boardobjectsformcoords.Length != 0) {
-                ArrayUtils.merge(ref result, boardobjectsformcoords);
+            BoardObject[] boardObjectsFromCoords = BoardObjects.getBoardObjectsFromCoords(x, y);
+            if (boardObjectsFromCoords.Length != 0) {
+                ArrayUtils.merge(ref result, boardObjectsFromCoords);
             }
         }
 
