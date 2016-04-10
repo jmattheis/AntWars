@@ -5,16 +5,23 @@ using System.Windows.Forms;
 using AntWars.Board;
 using AntWars.Board.Ants;
 using AntWars.Helper;
-using System.Drawing;
 
 namespace AntWars {
 
     partial class GamePanel : Form {
 
-        private const string Player1Carry = "ff008000";
-        private const string Player2Carry = "ff0000ff";
-        private const string Player1Scout = "ff2e8b57";
-        private const string Player2Scout = "ff6a5acd";
+        private static readonly Color COLOR_PLAYER1_CARRY = Color.Olive;
+        private static readonly Color COLOR_PLAYER1_SCOUT = Color.Green;
+        private static readonly Color COLOR_PLAYER1_WARRIOR = Color.Lime;
+        private static readonly Color COLOR_PLAYER1_BASE = Color.YellowGreen;
+
+        private static readonly Color COLOR_PLAYER2_CARRY = Color.DarkCyan;
+        private static readonly Color COLOR_PLAYER2_SCOUT = Color.Blue;
+        private static readonly Color COLOR_PLAYER2_WARRIOR = Color.DeepSkyBlue;
+        private static readonly Color COLOR_PLAYER2_BASE = Color.BlueViolet;
+
+        private static readonly Color COLOR_GAME_SUGAR = Color.Black;
+
 
         private Game game;
         private Multimedia.Timer timer = new Multimedia.Timer();
@@ -65,15 +72,15 @@ namespace AntWars {
 
         private void setColor(BoardObject obj, Bitmap bitmap) {
             if (obj.isCarry()) {
-                setColor(bitmap, obj, Color.Olive, Color.DarkCyan, (obj as Ant).Owner);
+                setColor(bitmap, obj, COLOR_PLAYER1_CARRY, COLOR_PLAYER2_CARRY, (obj as Ant).Owner);
             } else if (obj.isScout()) {
-                setColor(bitmap, obj, Color.Green, Color.Blue, (obj as Ant).Owner);
+                setColor(bitmap, obj, COLOR_PLAYER1_SCOUT, COLOR_PLAYER2_SCOUT, (obj as Ant).Owner);
             } else if (obj.isWarrior()) {
-                setColor(bitmap, obj, Color.Lime, Color.DeepSkyBlue, (obj as Ant).Owner);
+                setColor(bitmap, obj, COLOR_PLAYER1_WARRIOR, COLOR_PLAYER2_WARRIOR, (obj as Ant).Owner);
             } else if (obj.isBase()) {
-                setColor(bitmap, obj, Color.YellowGreen, Color.BlueViolet, (obj as Base).Player);
+                setColor(bitmap, obj, COLOR_PLAYER1_BASE, COLOR_PLAYER2_BASE, (obj as Base).Player);
             } else if (obj.isSugar()) {
-                setColor(bitmap, obj, Color.Black, Color.Transparent, null);
+                setColor(bitmap, obj, COLOR_GAME_SUGAR, Color.Transparent, null);
             }
         }
 
@@ -206,15 +213,15 @@ namespace AntWars {
         }
 
         private void setColorInStatistic() {
-            lbl_player1Carries.ForeColor = Color.Olive;
-            lbl_player1Scouts.ForeColor = Color.Green;
-            lbl_player1Warrior.ForeColor = Color.Lime;
-            grp_player1.ForeColor = Color.YellowGreen;
+            lbl_player1Carries.ForeColor = COLOR_PLAYER1_CARRY;
+            lbl_player1Scouts.ForeColor = COLOR_PLAYER1_SCOUT;
+            lbl_player1Warrior.ForeColor = COLOR_PLAYER1_WARRIOR;
+            grp_player1.ForeColor = COLOR_PLAYER1_BASE;
 
-            lbl_player2Carries.ForeColor = Color.DarkCyan;
-            lbl_player2Scouts.ForeColor = Color.Blue;
-            lbl_player2Warrior.ForeColor = Color.DeepSkyBlue;
-            grp_player2.ForeColor = Color.BlueViolet;
+            lbl_player2Carries.ForeColor = COLOR_PLAYER2_CARRY;
+            lbl_player2Scouts.ForeColor = COLOR_PLAYER2_SCOUT;
+            lbl_player2Warrior.ForeColor = COLOR_PLAYER2_WARRIOR;
+            grp_player2.ForeColor = COLOR_PLAYER2_BASE;
         }
 
         private void GamePanel_FormClosing(object sender, FormClosingEventArgs e) {
