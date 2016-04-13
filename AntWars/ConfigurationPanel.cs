@@ -163,6 +163,7 @@ namespace AntWars {
                 configLoadedOrNewCreatedGame();
                 checkPlayerKI();
                 loadGame(config);
+                config.GamePath = res;
             }
             btn_save.Focus();
         }
