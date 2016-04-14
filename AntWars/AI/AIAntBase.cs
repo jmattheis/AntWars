@@ -20,6 +20,8 @@ namespace AntWars.AI {
 
         internal Config Conf { get; set; }
 
+        private static readonly Random randomInstance = new Random();
+
         /// <summary>
         /// Die BoardWidth
         /// </summary>
@@ -35,11 +37,12 @@ namespace AntWars.AI {
         public abstract void notify(HashSet<Coordinates> coords);
 
         /// <summary>
-        /// Initialisiert eine neue Instanz der Random-Klasse unter Verwendung eines Seeds.
+        /// Gibt eine Instanz der Klasse Random zurück.
         /// </summary>
         /// <returns>Instanz der Random-Klasse</returns>
-        public Random getRandom() {
-            return new Random(Guid.NewGuid().GetHashCode());
+        public Random getRandom()
+        {
+            return randomInstance;
         }
     }
 }
