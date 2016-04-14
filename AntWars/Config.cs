@@ -96,7 +96,9 @@ namespace AntWars {
         }
 
         public static Config loadConfig(String path) {
-            return Utils.deserializeConfig(path);
+            Config config = Utils.deserializeConfig(path);
+            config.GamePath = path;
+            return config;
         }
 
         public bool isNeededPathGame() {
