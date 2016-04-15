@@ -13,7 +13,7 @@ namespace PlayerAI {
             get { return "Random"; }
         }
         public override void nextTick() {
-            buyWarrior(1, 10, 1, 3, 1);
+            buyWarrior(1, 10, 1, 3, 10);
         }
     }
 
@@ -26,6 +26,14 @@ namespace PlayerAI {
                 HashSet<Coordinates> set = new HashSet<Coordinates>();
                 set.Add(new Coordinates(2, 4));
                 Ant.notifyOtherAnts(set);
+            }
+
+            if (Ant.isWarrior()) {
+                foreach (BoardObject bObject in view) {
+                    if (bObject != Ant && bObject.isAnt() && bObject.Coords.isInRange(1, Ant.Coords)) {
+                        Ant.fight(bObject as Ant);
+                    }
+                }
             }
 
             // Zucker aufheben Test
