@@ -49,11 +49,13 @@ namespace AntWars.Board {
             foreach (Base playerbase in BoardObjects.getBases()) {
                 playerbase.Player.AI.nextTick();
             }
-            foreach (Ant ant in BoardObjects.getRandomAnts()) {
+            IList<Ant> antList = BoardObjects.getRandomAnts();
+            for (int i = 0; i < antList.Count; i++) {
+                Ant ant = antList[i];
                 ant.TookAction = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
+                resolveDeaths();
             }
-            resolveDeaths();
         }
 
         /// <summary>
