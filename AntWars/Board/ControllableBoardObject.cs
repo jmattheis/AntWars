@@ -152,8 +152,7 @@ namespace AntWars.Board {
         /// Die Einheit am Ende des Zuges sterben lassen.
         /// </summary>
         internal virtual void die() {
-            if (!board.DyingObjects.Contains(this))
-                board.DyingObjects.Add(this);
+            board.killBoardObject(this);
         }
 
         /// <summary>
