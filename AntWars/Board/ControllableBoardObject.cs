@@ -145,7 +145,26 @@ namespace AntWars.Board {
         /// <param name="target"></param>
         /// <returns></returns>
         public virtual bool fight(ControllableBoardObject target) {
-            throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
+            throw new InvalidOperationException("Object isn't allowed to call the fight method.");
+        }
+
+        /// <summary>
+        /// Die Einheit am Ende des Zuges sterben lassen.
+        /// </summary>
+        internal virtual void die() {
+            if (!board.DyingObjects.Contains(this))
+                board.DyingObjects.Add(this);
+        }
+
+        /// <summary>
+        /// Die Einheit nimmt Schaden.
+        /// </summary>
+        /// <param name="dmg">Anzahl an Schaden.</param>
+        internal void takeDamage(int dmg) {
+            Health -= dmg;
+            if (Health <= 0) {
+                die();
+            }
         }
 
         private bool move(Coordinates to) {
@@ -157,25 +176,6 @@ namespace AntWars.Board {
                 return true;
             }
             return false;
-        }
-
-        /// <summary>
-        /// Die Einheit am Ende des Zuges sterben lassen.
-        /// </summary>
-        public virtual void die() {
-            if (!board.DyingObjects.Contains(this))
-                board.DyingObjects.Add(this);
-        }
-
-        /// <summary>
-        /// Die Einheit nimmt Schaden.
-        /// </summary>
-        /// <param name="dmg">Anzahl an Schaden.</param>
-        public void takeDamage(int dmg) {
-            Health -= dmg;
-            if (Health <= 0) {
-                die();
-            }
         }
     }
 }
