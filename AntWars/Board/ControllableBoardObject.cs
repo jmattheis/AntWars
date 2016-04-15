@@ -148,17 +148,10 @@ namespace AntWars.Board {
             throw new InvalidOperationException("Object isn't allowed to call the fight method.");
         }
 
-        /// <summary>
-        /// Die Einheit am Ende des Zuges sterben lassen.
-        /// </summary>
         internal virtual void die() {
             board.killBoardObject(this);
         }
 
-        /// <summary>
-        /// Die Einheit nimmt Schaden.
-        /// </summary>
-        /// <param name="dmg">Anzahl an Schaden.</param>
         internal void takeDamage(int dmg) {
             Health -= dmg;
             if (Health <= 0) {

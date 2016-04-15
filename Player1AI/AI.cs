@@ -29,9 +29,11 @@ namespace PlayerAI {
             }
 
             if (Ant.isWarrior()) {
-                foreach (BoardObject bObject in view) {
+                for (int i = 0; i < view.Length; i++) {
+                    BoardObject bObject = view[i];
                     if (bObject != Ant && bObject.isAnt() && bObject.Coords.isInRange(1, Ant.Coords)) {
                         Ant.fight(bObject as Ant);
+                        break;
                     }
                 }
             }
