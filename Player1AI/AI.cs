@@ -7,30 +7,21 @@ using AntWars.Board;
 using AntWars.Board.Ants;
 using AntWars.AI;
 
-namespace PlayerAI
-{
-    public class AI : AIBase
-    {
-        public override string Playername
-        {
+namespace PlayerAI {
+    public class AI : AIBase {
+        public override string Playername {
             get { return "Random"; }
         }
-        public override void nextTick()
-        {
-            buyWarrior(1, 1, 1, 1, 1);
-            buyScout(1, 1, 1, 1);
-            buyCarrier(1, 1, 1, 1);
+        public override void nextTick() {
+            buyWarrior(1, 10, 1, 3, 1);
         }
     }
 
-    public class AIAnt : AIAntBase
-    {
+    public class AIAnt : AIAntBase {
         private Random rand = new Random();
-        public override void antTick(BoardObject[] view)
-        {
+        public override void antTick(BoardObject[] view) {
 
-            if (Ant.isScout())
-            {
+            if (Ant.isScout()) {
                 // its a Scout
                 HashSet<Coordinates> set = new HashSet<Coordinates>();
                 set.Add(new Coordinates(2, 4));
@@ -40,8 +31,7 @@ namespace PlayerAI
             // Zucker aufheben Test
             Ant.pickUpSugar();
             // RANDOM FTW
-            switch (rand.Next(0, 7))
-            {
+            switch (rand.Next(0, 7)) {
                 case 1:
                     Ant.moveDown();
                     break;
@@ -71,8 +61,7 @@ namespace PlayerAI
             }
         }
 
-        public override void notify(HashSet<Coordinates> coords)
-        {
+        public override void notify(HashSet<Coordinates> coords) {
             // nothing todo hier.
         }
     }

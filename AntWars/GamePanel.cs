@@ -47,14 +47,17 @@ namespace AntWars {
             print(game.Board.BoardObjects.get());
         }
 
-        private void print(IList<BoardObject> boardObjects) {
-            Bitmap bitmap = new Bitmap(game.Conf.BoardWidth, game.Conf.BoardHeight);
+        private void print(BoardObject[] boardObjects) {
+            Bitmap tmp = new Bitmap(game.Conf.BoardWidth, game.Conf.BoardHeight);
 
-            foreach (BoardObject obj in boardObjects) {
-                setColor(obj, bitmap);
+            for(int i = 0; i < boardObjects.Length;i++) {
+                setColor(boardObjects[i], tmp);
             }
-
-            bitmap = new Bitmap(bitmap, bitmap.Width * 4, bitmap.Height * 4);
+            if (pb_Game.Image != null) {
+                pb_Game.Image.Dispose();
+            }
+            Bitmap bitmap = new Bitmap(tmp, tmp.Width * 4, tmp.Height * 4);
+            tmp.Dispose();
             pb_Game.Image = bitmap;
         }
 
@@ -82,12 +85,17 @@ namespace AntWars {
 
         private void timer_GameTick_Tick(object sender, EventArgs e) {
             game.nextTick();
-            try {
-                this.Invoke((MethodInvoker) delegate {
-                    calcGameStatistics();
-                    print();
-                });
-            } catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
+
+            // cloning, the print method get invoked in an other thread, therefore the BoardObject-Array could be change till that.
+            BoardObject[] objects = game.Board.BoardObjects.get().Clone() as BoardObject[];
+            System.Threading.Tasks.Task.Factory.StartNew(() => { 
+                try {
+                    this.Invoke((MethodInvoker) delegate {
+                        calcGameStatistics();
+                        print(objects);
+                    });
+                } catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
+            });
             checkWinningConditions();
         }
 
