@@ -138,6 +138,12 @@ namespace AntWars.Board {
             return true;
         }
 
+        /// <summary>
+        /// Greift das übergebene Objekt an und fügt Schaden in Höhe der Attackpower zu. Das Objekt muss unmittelbar neben der Ameise stehen.
+        /// Kann nur von Warrior-Ameisen benutzt werden.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public virtual bool fight(ControllableBoardObject target) {
             throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
         }
