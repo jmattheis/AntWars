@@ -134,7 +134,7 @@ namespace AntWars.Board.Ants {
             throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
         }
 
-        internal override void die() {
+        public override void die() {
             base.die();
             Owner.decreaseAnts(this);
         }
