@@ -13,14 +13,14 @@ namespace AntWars.AI {
     /// </summary>
     public abstract class AIAntBase : IAIAnt {
 
+        private static readonly Random RANDOM_INSTANCE = new Random();
+
         /// <summary>
         /// Die Ameise für die momentane AI instance.
         /// </summary>
         public Ant Ant { get; internal set; }
 
         internal Config Conf { get; set; }
-
-        private static readonly Random randomInstance = new Random();
 
         /// <summary>
         /// Die BoardWidth
@@ -40,9 +40,8 @@ namespace AntWars.AI {
         /// Gibt eine Instanz der Klasse Random zurück.
         /// </summary>
         /// <returns>Instanz der Random-Klasse</returns>
-        public Random getRandom()
-        {
-            return randomInstance;
+        public Random getRandom() {
+            return RANDOM_INSTANCE;
         }
     }
 }
