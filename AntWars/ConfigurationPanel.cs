@@ -126,7 +126,7 @@ namespace AntWars {
             if (config.isNeededPathGame()) {
                 String path = openSaveDialog();
                 if (path != null) {
-                    config.GamePath = path;
+                    config.ConfigFilePath = path;
                 } else {
                     return;
                 }

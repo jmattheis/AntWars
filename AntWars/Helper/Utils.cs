@@ -87,7 +87,7 @@ namespace AntWars.Helper {
         }
 
         public static void saveConfigToFile(Config config) {
-            FileStream file = new FileStream(config.GamePath, FileMode.Create);
+            FileStream file = new FileStream(config.ConfigFilePath, FileMode.Create);
             Utils.xmlSerializer.Serialize(file, config);
             file.Close();
         }
