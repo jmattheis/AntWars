@@ -132,8 +132,10 @@ namespace AntWars.Board.Ants {
         }
 
         public override void die() {
-            base.die();
-            Owner.decreaseAnts(this);
+            if (!TookAction) {
+                base.die();
+                Owner.decreaseAnts(this);
+            }
         }
 
         public bool isEnemy(Ant ant) {
