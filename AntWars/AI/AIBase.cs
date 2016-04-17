@@ -164,7 +164,7 @@ namespace AntWars.AI {
             }
         }
 
-        private Base getBase() {
+        public Base getBase() {
             if (Base == null)
                 Base = Game.Board.BoardObjects.getBase(Player);
 
