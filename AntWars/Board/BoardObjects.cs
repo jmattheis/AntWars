@@ -1,12 +1,7 @@
-﻿using System;
+﻿using AntWars.Board.Ants;
+using AntWars.Helper;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AntWars.Board.Ants;
-using AntWars.Helper;
-using AntWars;
 
 namespace AntWars.Board {
 
