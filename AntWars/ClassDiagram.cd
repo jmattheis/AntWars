@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="AntWars.AI.AIAntBase" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YACAAAAAAAAAAAAAAAAECAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>AI\AIAntBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AntWars.AI.AIBase" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAABABAAAUgQQAGAAAIIAIgCAAAAAEAAEQAAQAA=</HashCode>
+      <FileName>AI\AIBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="1.3" />
+  </Class>
+  <Class Name="AntWars.AI.AILoader" Collapsed="true">
+    <Position X="14" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAIAAgAAAEAAAAAAAAIAAAAAAAIAAAA=</HashCode>
+      <FileName>AI\AILoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Board.Ants.Ant" Collapsed="true">
+    <Position X="10.5" Y="4.25" Width="1.75" />
+    <InheritanceLine Type="AntWars.Board.ControllableBoardObject" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="11.312" Y="5.5" />
+        <Point X="11.312" Y="4.941" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>QQIAAACAACAAAEECAAAAEAABAIQAAABAAAAAAgAAQAA=</HashCode>
+      <FileName>Board\Ants\Ant.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AI" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AntWars.Board.Ants.Carry" Collapsed="true">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Board\Ants\Carry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Board.Ants.Scout" Collapsed="true">
+    <Position X="12.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Board\Ants\Scout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Board.Ants.Warrior" Collapsed="true">
+    <Position X="11" Y="3" Width="1.5" />
+    <InheritanceLine Type="AntWars.Board.Ants.Ant" ManuallyRouted="true">
+      <Path>
+        <Point X="11.375" Y="4.25" />
+        <Point X="11.375" Y="4.009" />
+        <Point X="11.75" Y="4.009" />
+        <Point X="11.75" Y="3.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Board\Ants\Warrior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Board.Base" Collapsed="true">
+    <Position X="12.5" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="AntWars.Board.BoardObject" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.5" Y="7" />
+        <Point X="13.5" Y="6.486" />
+        <Point X="13.125" Y="6.486" />
+        <Point X="13.125" Y="6.191" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAIAAAAAAAQAAAAA=</HashCode>
+      <FileName>Board\Base.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Board.Board" Collapsed="true">
+    <Position X="16.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAEAQEKAAAAIBgBAAAAAAAEAEAAAAgA=</HashCode>
+      <FileName>Board\Board.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="BoardObjects" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AntWars.Board.BoardObject" Collapsed="true">
+    <Position X="12.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAABAAAAAAAABAAAAAAAARABQAAAAAAAAAA=</HashCode>
+      <FileName>Board\BoardObject.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Coords" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AntWars.Board.BoardObjects" Collapsed="true">
+    <Position X="15.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgEEAEQAAAECGAAAAQAEsFAAAAAQAAAAAAMBCABA=</HashCode>
+      <FileName>Board\BoardObjects.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="boardObjects" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AntWars.Board.ControllableBoardObject" Collapsed="true">
+    <Position X="10.25" Y="5.5" Width="2" />
+    <InheritanceLine Type="AntWars.Board.BoardObject" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="13.5" Y="7" />
+        <Point X="13.5" Y="6.487" />
+        <Point X="11.375" Y="6.487" />
+        <Point X="11.375" Y="6.191" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAACAABACKgAACACAAACAAAQAABAACAIAAACEQAAAA=</HashCode>
+      <FileName>Board\ControllableBoardObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Board.Coordinates" Collapsed="true">
+    <Position X="10.75" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAQAAACAAAYAA=</HashCode>
+      <FileName>Board\Coordinates.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Board.Sugar" Collapsed="true">
+    <Position X="14.5" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="AntWars.Board.BoardObject" ManuallyRouted="true">
+      <Path>
+        <Point X="13.5" Y="7" />
+        <Point X="13.5" Y="6.467" />
+        <Point X="14.672" Y="6.467" />
+        <Point X="14.672" Y="6.191" />
+        <Point X="15.25" Y="6.191" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Board\Sugar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Exception.InvalidConfigurationException" Collapsed="true">
+    <Position X="5.25" Y="9.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception\InvalidConfigurationException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Exception.InvalidDLLFileException" Collapsed="true">
+    <Position X="5.5" Y="10.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception\InvalidDLLFile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.RuntimeException" Collapsed="true">
+    <Position X="7.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exception\RuntimeException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Config" Collapsed="true">
+    <Position X="20.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QACABAAAAAAAgABAAACAAAAAAIEAiAmAAAAAAAAAAAY=</HashCode>
+      <FileName>Config.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.ConfigurationPanel" Collapsed="true">
+    <Position X="22" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>TIFaIYAJAqQARAoKgACAAonmCAABgUcRAKjASAQBiAA=</HashCode>
+      <FileName>ConfigurationPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.CostCalculator" Collapsed="true">
+    <Position X="22" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAiAQAAIEyEhBARAAACAAEDSBIAUAAgAE9QCABAAFIA=</HashCode>
+      <FileName>CostCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Game" Collapsed="true">
+    <Position X="17.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAgwACEAAAAAAAAAAAAAAAAACAAQAA=</HashCode>
+      <FileName>Game.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Board" />
+      <Property Name="Player1" />
+      <Property Name="Player2" />
+      <Property Name="Conf" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AntWars.GamePanel" Collapsed="true">
+    <Position X="20" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAMJAALCARIAAggBCQAoSGkAo4AMgIE2qJgBQIBAU=</HashCode>
+      <FileName>GamePanel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="game" />
+      <Field Name="timer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AntWars.Player" Collapsed="true">
+    <Position X="14.25" Y="11.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Public" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>A4AQAAACAAAggAAAAAAAAAAAAACAAAAAAAIAAABAgAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AILoader" />
+      <Property Name="AI" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AntWars.Program" Collapsed="true">
+    <Position X="14.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Helper.ArrayUtils" Collapsed="true">
+    <Position X="7.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAEAAAACAAA=</HashCode>
+      <FileName>Helper\ArrayUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Helper.CircleCalculator" Collapsed="true">
+    <Position X="7.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAACgAAAAAAAA=</HashCode>
+      <FileName>Helper\CircleCalculator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Helper.Messages" Collapsed="true">
+    <Position X="6" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEIAAgICIUIAAEACAMAKEAAAAAAAACAAAAQJAAAxA=</HashCode>
+      <FileName>Helper\Messages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntWars.Helper.Utils" Collapsed="true">
+    <Position X="6" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgQAAAgAAAAAAAABAABAAAEAAAIARAgAAAAAA=</HashCode>
+      <FileName>Helper\Utils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Multimedia.Timer" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiIAgAAAEKYAgyLAAIIAQCIAAAogDCAAIQQAAgADQAY=</HashCode>
+      <FileName>Helper\Timer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Multimedia.TimerStartException" Collapsed="true">
+    <Position X="7.75" Y="10.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helper\Timer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerAI.AI" Collapsed="true">
+    <Position X="12" Y="9.25" Width="1.5" />
+    <InheritanceLine Type="AntWars.AI.AIBase" ManuallyRouted="true">
+      <Path>
+        <Point X="12" Y="10.5" />
+        <Point X="12" Y="10.208" />
+        <Point X="12.75" Y="10.208" />
+        <Point X="12.75" Y="9.941" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerAI.AIAnt" Collapsed="true">
+    <Position X="5.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>AI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="AntWars.AI.IAI" Collapsed="true">
+    <Position X="11.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AI\IAI.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntWars.AI.IAIAnt" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>AI\IAIAnt.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
