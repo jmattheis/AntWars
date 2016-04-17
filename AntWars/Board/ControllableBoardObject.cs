@@ -42,6 +42,11 @@ namespace AntWars.Board {
         /// </summary>
         public int MoveRange { get; protected set; }
 
+        /// <summary>
+        /// Ob die Ameise tot ist.
+        /// </summary>
+        public bool IsDead { get; protected set; }
+
         internal Board board;
 
         internal ControllableBoardObject(Board board, int viewRange, int moveRangeFactor, int hp, int attackPower) {
@@ -53,6 +58,7 @@ namespace AntWars.Board {
             TookAction = false;
             this.UnitsGone = 0;
             AttackPower = attackPower;
+            IsDead = false;
         }
 
         /// <summary>
@@ -150,9 +156,9 @@ namespace AntWars.Board {
         /// Lässt die Einheit sterben.
         /// </summary>
         public virtual void die() {
-            if(!TookAction) {
+            if(!IsDead) {
                 board.killBoardObject(this);
-                TookAction = true;
+                IsDead = true;
             }
         }
 

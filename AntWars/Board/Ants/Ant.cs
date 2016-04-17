@@ -132,7 +132,7 @@ namespace AntWars.Board.Ants {
         }
 
         public override void die() {
-            if (!TookAction) {
+            if (!IsDead) {
                 base.die();
                 Owner.decreaseAnts(this);
             }
