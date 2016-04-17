@@ -140,7 +140,7 @@ namespace AntWars.Board.Ants {
         }
 
         public bool isEnemy(Ant ant) {
-            return ant.Owner == Owner;
+            return !(ant.Owner == Owner);
         }
 
     }
