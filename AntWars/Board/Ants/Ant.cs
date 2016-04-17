@@ -139,6 +139,10 @@ namespace AntWars.Board.Ants {
             Owner.decreaseAnts(this);
         }
 
+        public bool isEnemy(Ant ant) {
+            return ant.Owner != Owner;
+        }
+
     }
 
 }

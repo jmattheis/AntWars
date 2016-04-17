@@ -30,14 +30,12 @@ namespace AntWars.Board {
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
         public int SugarAmount { get; private set; }
-        public List<ControllableBoardObject> DyingObjects { get; private set; }
         public int CurrentTick { get; internal set; }
 
         public Board(Config conf) {
             this.CurrentTick = 0;
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);
-            DyingObjects = new List<ControllableBoardObject>();
             Diagonal = Convert.ToInt32(Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2)));
         }
 
@@ -49,11 +47,12 @@ namespace AntWars.Board {
             foreach (Base playerbase in BoardObjects.getBases()) {
                 playerbase.Player.AI.nextTick();
             }
-            foreach (Ant ant in BoardObjects.getRandomAnts()) {
+            IList<Ant> antList = BoardObjects.getRandomAnts();
+            for (int i = 0;i < antList.Count;i++) {
+                Ant ant = antList[i];
                 ant.TookAction = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
-            resolveDeaths();
         }
 
         /// <summary>
@@ -128,7 +127,8 @@ namespace AntWars.Board {
         }
 
         private void merge(int x, int y, ref BoardObject[] result) {
-            if (!BoardObjects.isValidCoords(x, y)) return;
+            if (!BoardObjects.isValidCoords(x, y))
+                return;
             BoardObject[] boardObjectsFromCoords = BoardObjects.getBoardObjectsFromCoords(x, y);
             if (boardObjectsFromCoords.Length != 0) {
                 ArrayUtils.merge(ref result, boardObjectsFromCoords);
@@ -161,21 +161,15 @@ namespace AntWars.Board {
             }
         }
 
-        private void resolveDeaths() {
-
-            foreach (ControllableBoardObject obj in DyingObjects) {
-
-                Ant ant = (obj as Ant);
-                if (obj.isAnt() && ant.Inventory > 0) {
-                    Sugar s = new Sugar();
-                    s.Coords = ant.Coords;
-                    s.Amount = ant.Inventory;
-                    BoardObjects.add(s);
-                }
-                BoardObjects.remove(obj);
+        internal void killBoardObject(ControllableBoardObject obj) {
+            Ant ant = (obj as Ant);
+            if (obj.isAnt() && ant.Inventory > 0) {
+                Sugar s = new Sugar();
+                s.Coords = ant.Coords;
+                s.Amount = ant.Inventory;
+                BoardObjects.add(s);
             }
-
-            DyingObjects.Clear();
+            BoardObjects.remove(obj);
         }
     }
 }

@@ -138,8 +138,30 @@ namespace AntWars.Board {
             return true;
         }
 
-        public virtual bool fight() {
-            throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
+        /// <summary>
+        /// Greift das übergebene Objekt an und fügt Schaden in Höhe der Attackpower zu. Das Objekt muss unmittelbar neben der Ameise stehen.
+        /// Kann nur von Warrior-Ameisen benutzt werden.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public virtual bool fight(ControllableBoardObject target) {
+            throw new InvalidOperationException("Object isn't allowed to call the fight method.");
+        }
+
+        /// <summary>
+        /// Lässt die Einheit sterben.
+        /// </summary>
+        public virtual void die() {
+            board.killBoardObject(this);
+        }
+
+        internal bool takeDamage(int dmg) {
+            Health -= dmg;
+            if (Health <= 0) {
+                die();
+                return true;
+            }
+            return false;
         }
 
         private bool move(Coordinates to) {
@@ -151,14 +173,6 @@ namespace AntWars.Board {
                 return true;
             }
             return false;
-        }
-
-        /// <summary>
-        /// Die Einheit am Ende des Zuges sterben lassen.
-        /// </summary>
-        public virtual void die() {
-            if (!board.DyingObjects.Contains(this))
-                board.DyingObjects.Add(this);
         }
     }
 }
