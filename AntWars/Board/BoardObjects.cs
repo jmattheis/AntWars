@@ -227,7 +227,9 @@ namespace AntWars.Board {
         /// <param name="sugar">out den Zucker der gefunden wurde oder null</param>
         /// <returns>true wenn Zucker gefunden wurde</returns>
         public bool getSugar(Coordinates coords, out Sugar sugar) {
-            foreach (BoardObject boardObject in this.getBoardObjectsFromCoords(coords)) {
+            BoardObject[] objs = getBoardObjectsFromCoords(coords);
+            for (int i = 0; i < objs.Length; i++) {
+                BoardObject boardObject = objs[i];
                 if (boardObject.isSugar()) {
                     sugar = (Sugar) boardObject;
                     return true;
