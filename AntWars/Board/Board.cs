@@ -109,17 +109,18 @@ namespace AntWars.Board {
             int y1 = coords.Y;
             int y2 = Math.Abs(y1);
 
-
-            merge(x1 + current.X, y1 + current.Y, ref result); // upper left
             viewrange++;
-            if (coords.X == 0 && coords.Y == 0)
-                return; // on the ant
+            if (coords.X == 0 && coords.Y == 0) {
+                mergeWithoutAnt(x1 + current.X, y1 + current.Y, ref result); // middle
+                return;
+            }
+            merge(x1 + current.X, y1 + current.Y, ref result); // upper left
             if (coords.X == 0) {
-                merge(current.X, y2 + current.Y, ref result);
+                merge(current.X, y2 + current.Y, ref result); // middle horizontal
                 return;
             }
             if (coords.Y == 0) {
-                merge(x2 + current.X, current.Y, ref result);
+                merge(x2 + current.X, current.Y, ref result); // middle vertical
                 return;
             }
             merge(x2 + current.X, y1 + current.Y, ref result); // upper right
@@ -131,6 +132,20 @@ namespace AntWars.Board {
             if (!BoardObjects.isValidCoords(x, y)) return;
             BoardObject[] boardObjectsFromCoords = BoardObjects.getBoardObjectsFromCoords(x, y);
             if (boardObjectsFromCoords.Length != 0) {
+                ArrayUtils.merge(ref result, boardObjectsFromCoords);
+            }
+        }
+
+        private void mergeWithoutAnt(int x, int y, ref BoardObject[] result) {
+            BoardObject[] boardObjectsFromCoords = BoardObjects.getBoardObjectsFromCoords(x, y).Clone() as BoardObject[];
+            if (boardObjectsFromCoords.Length - 1 != 0) {
+                for (int i = 0;i < boardObjectsFromCoords.Length;i++) {
+                    BoardObject obj = boardObjectsFromCoords[i];
+                    if (obj.isAnt()) {
+                        ArrayUtils.remove(ref boardObjectsFromCoords, obj);
+                        break;
+                    }
+                }
                 ArrayUtils.merge(ref result, boardObjectsFromCoords);
             }
         }
