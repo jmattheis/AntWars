@@ -150,7 +150,10 @@ namespace AntWars.Board {
         /// Lässt die Einheit sterben.
         /// </summary>
         public virtual void die() {
-            board.killBoardObject(this);
+            if(!TookAction) {
+                board.killBoardObject(this);
+                TookAction = true;
+            }
         }
 
         internal bool takeDamage(int dmg) {
