@@ -9,6 +9,8 @@ namespace AntWars.AI {
     /// </summary>
     public abstract class AIAntBase : IAIAnt {
 
+        private static readonly Random RANDOM_INSTANCE = new Random();
+
         /// <summary>
         /// Die Ameise für die momentane AI instance.
         /// </summary>
@@ -29,5 +31,13 @@ namespace AntWars.AI {
         public abstract void antTick(BoardObject[] view);
 
         public abstract void notify(HashSet<Coordinates> coords);
+
+        /// <summary>
+        /// Gibt eine Instanz der Klasse Random zurück.
+        /// </summary>
+        /// <returns>Instanz der Random-Klasse</returns>
+        public Random getRandom() {
+            return RANDOM_INSTANCE;
+        }
     }
 }

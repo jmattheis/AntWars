@@ -15,7 +15,6 @@ namespace PlayerAI {
     }
 
     public class AIAnt : AIAntBase {
-        private Random rand = new Random();
         public override void antTick(BoardObject[] view) {
 
             if (Ant.isScout()) {
@@ -38,7 +37,8 @@ namespace PlayerAI {
             // Zucker aufheben Test
             Ant.pickUpSugar();
             // RANDOM FTW
-            switch (rand.Next(0, 7)) {
+            Random rand = getRandom();
+            switch (rand.Next(0, 8)) {
                 case 1:
                     Ant.moveDown();
                     break;
@@ -63,8 +63,6 @@ namespace PlayerAI {
                 case 7:
                     Ant.moveUpperRight();
                     break;
-
-
             }
         }
 
