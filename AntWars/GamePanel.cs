@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using AntWars.Board;
+﻿using AntWars.Board;
 using AntWars.Board.Ants;
 using AntWars.Helper;
+using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AntWars {
 

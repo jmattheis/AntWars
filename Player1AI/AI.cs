@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AntWars.AI;
 using AntWars.Board;
 using AntWars.Board.Ants;
-using AntWars.AI;
+using System;
+using System.Collections.Generic;
 
 namespace PlayerAI {
     public class AI : AIBase {
