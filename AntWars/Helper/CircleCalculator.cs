@@ -7,7 +7,7 @@ namespace AntWars.Helper {
     /// <summary>
     /// Eine Hilfsklasse für die Kreisberechnung.
     /// </summary>
-    class CircleCalculator {
+    static class CircleCalculator {
         private const int MAX_VIEWRANGE = 20;
 
         private static Coordinates[][] calculatedPartCircles = new Coordinates[MAX_VIEWRANGE + 1][];
