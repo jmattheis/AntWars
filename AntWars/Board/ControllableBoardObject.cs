@@ -155,11 +155,13 @@ namespace AntWars.Board {
             board.killBoardObject(this);
         }
 
-        internal void takeDamage(int dmg) {
+        internal bool takeDamage(int dmg) {
             Health -= dmg;
             if (Health <= 0) {
                 die();
+                return true;
             }
+            return false;
         }
 
         private bool move(Coordinates to) {

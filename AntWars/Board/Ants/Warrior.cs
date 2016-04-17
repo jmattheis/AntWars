@@ -14,7 +14,10 @@ namespace AntWars.Board.Ants {
         public override bool fight(ControllableBoardObject target) {
 
             if (!TookAction && target.Coords.isInRange(1, Coords)) {
-                target.takeDamage(AttackPower);
+                bool dead = target.takeDamage(AttackPower);
+                if (dead && target.isAnt() && isEnemy(target as Ant)) {
+                    Owner.Points++;
+                }
                 TookAction = true;
                 return true;
             }
