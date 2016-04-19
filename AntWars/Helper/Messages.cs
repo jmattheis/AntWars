@@ -93,28 +93,8 @@
         public static readonly string ERROR_INVALID_VALUE = "Der Wert {0} in {1} darf nicht kleiner als {2} oder größer als {3} sein!";
 
         /// <summary>
-        /// {0}!
-        /// </summary>
-        public static readonly string ERROR_INVALID_VALUE_PLAYER_CAPTION = "{0}!";
-
-        /// <summary>
         /// Sichtweite
         /// </summary>
         public static readonly string VIEWRANGE = "Sichtweite";
-
-        /// <summary>
-        /// Reichweite
-        /// </summary>
-        public static readonly string MOVERANGE = "Reichweite";
-
-        /// <summary>
-        /// Inventar
-        /// </summary>
-        public static readonly string INVENTORY = "Inventar";
-
-        /// <summary>
-        /// Kosten
-        /// </summary>
-        public static readonly string COST = "Kosten";
     }
 }
