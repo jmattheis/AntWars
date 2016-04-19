@@ -7,6 +7,8 @@ namespace AntWars.Helper {
 
     class CostCalculator {
 
+        public static readonly double LOWEST_COST_VALUE = getLowestCostValue();
+
         private const double VIEWRANGE_SCOUT_QUANTIFIER = 0.75;
         private const double VIEWRANGE_CARRY_QUANTIFIER = 1.25;
         private const double VIEWRANGE_WARRIOR_QUANTIFIER = 1;
@@ -110,6 +112,19 @@ namespace AntWars.Helper {
 
         private static double calculate(params double[] numbers) {
             return Math.Round((numbers.Sum() / 2), 2);
+        }
+
+        public static double getLowestCostValue()
+        {
+            double lowCarry = calculateCostCarry(1, 1, 1, 1, "");
+            double lowScout = calculateCostScout(1, 1, 1, 1, "");
+            double lowWarrior = calculateCostWarrior(1, 1, 1, 1, 1, "");
+            if (lowCarry <= lowScout && lowCarry <= lowWarrior)
+                return lowCarry;
+            else if (lowScout <= lowCarry && lowScout <= lowWarrior)
+                return lowScout;
+            else // if (lowWarrior < lowCarry && lowWarrior < lowScout), Auskommentiert da alle Codepfade einen Wert zurückgeben müssen.
+                return lowWarrior;
         }
     }
 }

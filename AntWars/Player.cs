@@ -44,6 +44,8 @@ namespace AntWars {
         /// </summary>
         public int CarryCount { get; private set; }
 
+        public int AntCount { get; private set; }
+
         /// <summary>
         /// Die Anzahl der gestorbenen Ameisen.
         /// </summary>
@@ -68,10 +70,13 @@ namespace AntWars {
         public void incrementAnts(Ant ant) {
             if (ant.isCarry()) {
                 CarryCount++;
+                AntCount++;
             } else if (ant.isScout()) {
                 ScoutCount++;
+                AntCount++;
             } else if (ant.isWarrior()) {
                 WarriorCount++;
+                AntCount++;
             } else {
                 throw new RuntimeException("Unknown ant type.");
             }
@@ -85,10 +90,13 @@ namespace AntWars {
             DeathCount++;
             if (ant.isCarry()) {
                 CarryCount--;
+                AntCount--;
             } else if (ant.isScout()) {
                 ScoutCount--;
+                AntCount--;
             } else if (ant.isWarrior()) {
                 WarriorCount--;
+                AntCount--;
             } else {
                 throw new RuntimeException("Unknown ant type.");
             }

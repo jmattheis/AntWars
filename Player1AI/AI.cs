@@ -10,7 +10,7 @@ namespace PlayerAI {
             get { return "Random"; }
         }
         public override void nextTick() {
-            buyWarrior(1, 10, 1, 3, 10);
+            buyWarrior(1, 1, 1, 1, 1);
         }
     }
 
