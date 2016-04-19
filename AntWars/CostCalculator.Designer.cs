@@ -263,20 +263,20 @@
             // lbl_scoutCost
             // 
             this.lbl_scoutCost.AutoSize = true;
-            this.lbl_scoutCost.Location = new System.Drawing.Point(216, 163);
+            this.lbl_scoutCost.Location = new System.Drawing.Point(201, 163);
             this.lbl_scoutCost.Name = "lbl_scoutCost";
-            this.lbl_scoutCost.Size = new System.Drawing.Size(13, 13);
+            this.lbl_scoutCost.Size = new System.Drawing.Size(28, 13);
             this.lbl_scoutCost.TabIndex = 27;
-            this.lbl_scoutCost.Text = "0";
+            this.lbl_scoutCost.Text = "0,00";
             // 
             // lbl_carryCost
             // 
             this.lbl_carryCost.AutoSize = true;
-            this.lbl_carryCost.Location = new System.Drawing.Point(259, 163);
+            this.lbl_carryCost.Location = new System.Drawing.Point(244, 163);
             this.lbl_carryCost.Name = "lbl_carryCost";
-            this.lbl_carryCost.Size = new System.Drawing.Size(13, 13);
+            this.lbl_carryCost.Size = new System.Drawing.Size(28, 13);
             this.lbl_carryCost.TabIndex = 28;
-            this.lbl_carryCost.Text = "0";
+            this.lbl_carryCost.Text = "0,00";
             // 
             // lbl_health
             // 
@@ -437,11 +437,11 @@
             // lbl_warriorCost
             // 
             this.lbl_warriorCost.AutoSize = true;
-            this.lbl_warriorCost.Location = new System.Drawing.Point(302, 163);
+            this.lbl_warriorCost.Location = new System.Drawing.Point(288, 163);
             this.lbl_warriorCost.Name = "lbl_warriorCost";
-            this.lbl_warriorCost.Size = new System.Drawing.Size(13, 13);
+            this.lbl_warriorCost.Size = new System.Drawing.Size(28, 13);
             this.lbl_warriorCost.TabIndex = 37;
-            this.lbl_warriorCost.Text = "0";
+            this.lbl_warriorCost.Text = "0,00";
             // 
             // lbl_attackPower
             // 
