@@ -120,7 +120,7 @@ namespace AntWars {
 
             // update player1
             lbl_player1PointsValue.Text = game.Player1.Points.ToString();
-            lbl_player1MoneyValue.Text = game.Player1.Money.ToString();
+            lbl_player1MoneyValue.Text = Convert.ToString(Math.Round(game.Player1.Money, 2));
             lbl_player1CarriesValue.Text = game.Player1.CarryCount.ToString();
             lbl_player1ScoutsValue.Text = game.Player1.ScoutCount.ToString();
             lbl_player1WarriorsValue.Text = game.Player1.WarriorCount.ToString();
@@ -130,7 +130,7 @@ namespace AntWars {
 
             // update player2
             lbl_player2PointsValue.Text = game.Player2.Points.ToString();
-            lbl_player2MoneyValue.Text = game.Player2.Money.ToString();
+            lbl_player2MoneyValue.Text = Convert.ToString(Math.Round(game.Player2.Money, 2));
             lbl_player2CarriesValue.Text = game.Player2.CarryCount.ToString();
             lbl_player2ScoutsValue.Text = game.Player2.ScoutCount.ToString();
             lbl_player2WarriorsValue.Text = game.Player2.WarriorCount.ToString();
