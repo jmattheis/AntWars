@@ -125,6 +125,8 @@ namespace AntWars {
             lbl_player1ScoutsValue.Text = game.Player1.ScoutCount.ToString();
             lbl_player1WarriorsValue.Text = game.Player1.WarriorCount.ToString();
             lbl_player1AntsValue.Text = Convert.ToString(game.Player1.ScoutCount + game.Player1.CarryCount + game.Player1.WarriorCount);
+            lbl_player1DeathsValue.Text = game.Player1.DeathCount.ToString();
+            lbl_player1KillsValue.Text = game.Player1.KillCount.ToString();
 
             // update player2
             lbl_player2PointsValue.Text = game.Player2.Points.ToString();
@@ -133,6 +135,8 @@ namespace AntWars {
             lbl_player2ScoutsValue.Text = game.Player2.ScoutCount.ToString();
             lbl_player2WarriorsValue.Text = game.Player2.WarriorCount.ToString();
             lbl_player2AntsValue.Text = Convert.ToString(game.Player2.ScoutCount + game.Player2.CarryCount + game.Player2.WarriorCount);
+            lbl_player2DeathsValue.Text = game.Player2.DeathCount.ToString();
+            lbl_player2KillsValue.Text = game.Player2.KillCount.ToString();
 
             // update sugar
             lbl_sugarValue.Text = game.Board.BoardObjects.getSugars().Count.ToString();
