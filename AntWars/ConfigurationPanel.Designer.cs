@@ -361,7 +361,12 @@
             // 
             this.nmc_ticks.Location = new System.Drawing.Point(153, 195);
             this.nmc_ticks.Maximum = new decimal(new int[] {
-            40,
+            60,
+            0,
+            0,
+            0});
+            this.nmc_ticks.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
