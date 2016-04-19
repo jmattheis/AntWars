@@ -10,10 +10,10 @@ namespace AntWars {
 
     partial class GamePanel : Form {
 
-        private static readonly Color COLOR_PLAYER1_CARRY = Color.Olive;
-        private static readonly Color COLOR_PLAYER1_SCOUT = Color.Green;
-        private static readonly Color COLOR_PLAYER1_WARRIOR = Color.Lime;
-        private static readonly Color COLOR_PLAYER1_BASE = Color.YellowGreen;
+        private static readonly Color COLOR_PLAYER1_CARRY = Color.DarkRed;
+        private static readonly Color COLOR_PLAYER1_SCOUT = Color.Red;
+        private static readonly Color COLOR_PLAYER1_WARRIOR = Color.DeepPink;
+        private static readonly Color COLOR_PLAYER1_BASE = Color.OrangeRed;
 
         private static readonly Color COLOR_PLAYER2_CARRY = Color.DarkCyan;
         private static readonly Color COLOR_PLAYER2_SCOUT = Color.Blue;
