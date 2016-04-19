@@ -71,15 +71,13 @@ namespace AntWars {
         /// </summary>
         /// <param name="ant">Die neue Ameise.</param>
         public void incrementAnts(Ant ant) {
+            AntCount++;
             if (ant.isCarry()) {
                 CarryCount++;
-                AntCount++;
             } else if (ant.isScout()) {
                 ScoutCount++;
-                AntCount++;
             } else if (ant.isWarrior()) {
                 WarriorCount++;
-                AntCount++;
             } else {
                 throw new RuntimeException("Unknown ant type.");
             }
@@ -91,15 +89,13 @@ namespace AntWars {
         /// <param name="ant">Die zu verringernde Ameise.</param>
         public void decreaseAnts(Ant ant) {
             DeathCount++;
+            AntCount--;
             if (ant.isCarry()) {
                 CarryCount--;
-                AntCount--;
             } else if (ant.isScout()) {
                 ScoutCount--;
-                AntCount--;
             } else if (ant.isWarrior()) {
                 WarriorCount--;
-                AntCount--;
             } else {
                 throw new RuntimeException("Unknown ant type.");
             }

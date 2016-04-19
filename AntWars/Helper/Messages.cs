@@ -98,8 +98,8 @@
         public static readonly string VIEWRANGE = "Sichtweite";
 
         /// <summary>
-        /// {0} hat gewonnen! {1} hat weder genügend Ameisen noch genügend Geld.
+        /// {0} hat gewonnen! {1} hat keine Ameisen mehr und kein Geld für Neue.
         /// </summary>
-        public static readonly string PLAYER_WON_OUT_OF_MONEY_AND_ANTS = "{0} hat gewonnen! {1} hat weder genügend Ameisen noch genügend Geld.";
+        public static readonly string PLAYER_WON_OUT_OF_MONEY_AND_ANTS = "{0} hat gewonnen! {1} hat keine Ameisen mehr und kein Geld für Neue.";
     }
 }
