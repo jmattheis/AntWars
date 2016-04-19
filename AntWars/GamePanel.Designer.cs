@@ -32,6 +32,8 @@
             this.pb_Game = new System.Windows.Forms.PictureBox();
             this.grp_stats = new System.Windows.Forms.GroupBox();
             this.grp_player2 = new System.Windows.Forms.GroupBox();
+            this.lbl_player2WarriorsValue = new System.Windows.Forms.Label();
+            this.lbl_player2Warrior = new System.Windows.Forms.Label();
             this.lbl_player2AntsValue = new System.Windows.Forms.Label();
             this.lbl_player2Ants = new System.Windows.Forms.Label();
             this.lbl_player2ScoutsValue = new System.Windows.Forms.Label();
@@ -43,6 +45,8 @@
             this.lbl_player2PointsValue = new System.Windows.Forms.Label();
             this.lbl_player2Points = new System.Windows.Forms.Label();
             this.grp_player1 = new System.Windows.Forms.GroupBox();
+            this.lbl_player1WarriorsValue = new System.Windows.Forms.Label();
+            this.lbl_player1Warrior = new System.Windows.Forms.Label();
             this.lbl_player1AntsValue = new System.Windows.Forms.Label();
             this.lbl_player1Ants = new System.Windows.Forms.Label();
             this.lbl_player1ScoutsValue = new System.Windows.Forms.Label();
@@ -58,10 +62,14 @@
             this.lbl_sugar = new System.Windows.Forms.Label();
             this.lbl_ticksValue = new System.Windows.Forms.Label();
             this.lbl_ticks = new System.Windows.Forms.Label();
-            this.lbl_player1Warrior = new System.Windows.Forms.Label();
-            this.lbl_player1WarriorsValue = new System.Windows.Forms.Label();
-            this.lbl_player2Warrior = new System.Windows.Forms.Label();
-            this.lbl_player2WarriorsValue = new System.Windows.Forms.Label();
+            this.lbl_player1Kills = new System.Windows.Forms.Label();
+            this.lbl_player1Deaths = new System.Windows.Forms.Label();
+            this.lbl_player1KillsValue = new System.Windows.Forms.Label();
+            this.lbl_player1DeathsValue = new System.Windows.Forms.Label();
+            this.lbl_player2Kills = new System.Windows.Forms.Label();
+            this.lbl_player2Deaths = new System.Windows.Forms.Label();
+            this.lbl_player2KillsValue = new System.Windows.Forms.Label();
+            this.lbl_player2DeathsValue = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pb_Game)).BeginInit();
             this.grp_stats.SuspendLayout();
             this.grp_player2.SuspendLayout();
@@ -95,6 +103,10 @@
             // 
             // grp_player2
             // 
+            this.grp_player2.Controls.Add(this.lbl_player2DeathsValue);
+            this.grp_player2.Controls.Add(this.lbl_player2KillsValue);
+            this.grp_player2.Controls.Add(this.lbl_player2Deaths);
+            this.grp_player2.Controls.Add(this.lbl_player2Kills);
             this.grp_player2.Controls.Add(this.lbl_player2WarriorsValue);
             this.grp_player2.Controls.Add(this.lbl_player2Warrior);
             this.grp_player2.Controls.Add(this.lbl_player2AntsValue);
@@ -108,12 +120,30 @@
             this.grp_player2.Controls.Add(this.lbl_player2PointsValue);
             this.grp_player2.Controls.Add(this.lbl_player2Points);
             this.grp_player2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.grp_player2.Location = new System.Drawing.Point(7, 192);
+            this.grp_player2.Location = new System.Drawing.Point(7, 206);
             this.grp_player2.Name = "grp_player2";
-            this.grp_player2.Size = new System.Drawing.Size(135, 100);
+            this.grp_player2.Size = new System.Drawing.Size(135, 123);
             this.grp_player2.TabIndex = 4;
             this.grp_player2.TabStop = false;
             this.grp_player2.Text = "Player 2";
+            // 
+            // lbl_player2WarriorsValue
+            // 
+            this.lbl_player2WarriorsValue.AutoSize = true;
+            this.lbl_player2WarriorsValue.Location = new System.Drawing.Point(92, 68);
+            this.lbl_player2WarriorsValue.Name = "lbl_player2WarriorsValue";
+            this.lbl_player2WarriorsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player2WarriorsValue.TabIndex = 11;
+            this.lbl_player2WarriorsValue.Text = "99999";
+            // 
+            // lbl_player2Warrior
+            // 
+            this.lbl_player2Warrior.AutoSize = true;
+            this.lbl_player2Warrior.Location = new System.Drawing.Point(7, 68);
+            this.lbl_player2Warrior.Name = "lbl_player2Warrior";
+            this.lbl_player2Warrior.Size = new System.Drawing.Size(41, 13);
+            this.lbl_player2Warrior.TabIndex = 10;
+            this.lbl_player2Warrior.Text = "Warrior";
             // 
             // lbl_player2AntsValue
             // 
@@ -209,6 +239,10 @@
             // 
             // grp_player1
             // 
+            this.grp_player1.Controls.Add(this.lbl_player1DeathsValue);
+            this.grp_player1.Controls.Add(this.lbl_player1KillsValue);
+            this.grp_player1.Controls.Add(this.lbl_player1Deaths);
+            this.grp_player1.Controls.Add(this.lbl_player1Kills);
             this.grp_player1.Controls.Add(this.lbl_player1WarriorsValue);
             this.grp_player1.Controls.Add(this.lbl_player1Warrior);
             this.grp_player1.Controls.Add(this.lbl_player1AntsValue);
@@ -224,10 +258,29 @@
             this.grp_player1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.grp_player1.Location = new System.Drawing.Point(7, 75);
             this.grp_player1.Name = "grp_player1";
-            this.grp_player1.Size = new System.Drawing.Size(135, 100);
+            this.grp_player1.Size = new System.Drawing.Size(135, 125);
             this.grp_player1.TabIndex = 1;
             this.grp_player1.TabStop = false;
             this.grp_player1.Text = "Player 1";
+            // 
+            // lbl_player1WarriorsValue
+            // 
+            this.lbl_player1WarriorsValue.AutoSize = true;
+            this.lbl_player1WarriorsValue.Location = new System.Drawing.Point(92, 68);
+            this.lbl_player1WarriorsValue.Name = "lbl_player1WarriorsValue";
+            this.lbl_player1WarriorsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player1WarriorsValue.TabIndex = 11;
+            this.lbl_player1WarriorsValue.Text = "99999";
+            // 
+            // lbl_player1Warrior
+            // 
+            this.lbl_player1Warrior.AutoSize = true;
+            this.lbl_player1Warrior.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.lbl_player1Warrior.Location = new System.Drawing.Point(7, 68);
+            this.lbl_player1Warrior.Name = "lbl_player1Warrior";
+            this.lbl_player1Warrior.Size = new System.Drawing.Size(46, 13);
+            this.lbl_player1Warrior.TabIndex = 10;
+            this.lbl_player1Warrior.Text = "Warriors";
             // 
             // lbl_player1AntsValue
             // 
@@ -370,42 +423,77 @@
             this.lbl_ticks.TabIndex = 0;
             this.lbl_ticks.Text = "Ticks";
             // 
-            // lbl_player1Warrior
+            // lbl_player1Kills
             // 
-            this.lbl_player1Warrior.AutoSize = true;
-            this.lbl_player1Warrior.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.lbl_player1Warrior.Location = new System.Drawing.Point(7, 68);
-            this.lbl_player1Warrior.Name = "lbl_player1Warrior";
-            this.lbl_player1Warrior.Size = new System.Drawing.Size(46, 13);
-            this.lbl_player1Warrior.TabIndex = 10;
-            this.lbl_player1Warrior.Text = "Warriors";
+            this.lbl_player1Kills.AutoSize = true;
+            this.lbl_player1Kills.Location = new System.Drawing.Point(7, 94);
+            this.lbl_player1Kills.Name = "lbl_player1Kills";
+            this.lbl_player1Kills.Size = new System.Drawing.Size(25, 13);
+            this.lbl_player1Kills.TabIndex = 12;
+            this.lbl_player1Kills.Text = "Kills";
             // 
-            // lbl_player1WarriorsValue
+            // lbl_player1Deaths
             // 
-            this.lbl_player1WarriorsValue.AutoSize = true;
-            this.lbl_player1WarriorsValue.Location = new System.Drawing.Point(92, 68);
-            this.lbl_player1WarriorsValue.Name = "lbl_player1WarriorsValue";
-            this.lbl_player1WarriorsValue.Size = new System.Drawing.Size(37, 13);
-            this.lbl_player1WarriorsValue.TabIndex = 11;
-            this.lbl_player1WarriorsValue.Text = "99999";
+            this.lbl_player1Deaths.AutoSize = true;
+            this.lbl_player1Deaths.Location = new System.Drawing.Point(7, 107);
+            this.lbl_player1Deaths.Name = "lbl_player1Deaths";
+            this.lbl_player1Deaths.Size = new System.Drawing.Size(41, 13);
+            this.lbl_player1Deaths.TabIndex = 13;
+            this.lbl_player1Deaths.Text = "Deaths";
             // 
-            // lbl_player2Warrior
+            // lbl_player1KillsValue
             // 
-            this.lbl_player2Warrior.AutoSize = true;
-            this.lbl_player2Warrior.Location = new System.Drawing.Point(7, 68);
-            this.lbl_player2Warrior.Name = "lbl_player2Warrior";
-            this.lbl_player2Warrior.Size = new System.Drawing.Size(41, 13);
-            this.lbl_player2Warrior.TabIndex = 10;
-            this.lbl_player2Warrior.Text = "Warrior";
+            this.lbl_player1KillsValue.AutoSize = true;
+            this.lbl_player1KillsValue.Location = new System.Drawing.Point(92, 94);
+            this.lbl_player1KillsValue.Name = "lbl_player1KillsValue";
+            this.lbl_player1KillsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player1KillsValue.TabIndex = 14;
+            this.lbl_player1KillsValue.Text = "99999";
             // 
-            // lbl_player2WarriorsValue
+            // lbl_player1DeathsValue
             // 
-            this.lbl_player2WarriorsValue.AutoSize = true;
-            this.lbl_player2WarriorsValue.Location = new System.Drawing.Point(92, 68);
-            this.lbl_player2WarriorsValue.Name = "lbl_player2WarriorsValue";
-            this.lbl_player2WarriorsValue.Size = new System.Drawing.Size(37, 13);
-            this.lbl_player2WarriorsValue.TabIndex = 11;
-            this.lbl_player2WarriorsValue.Text = "99999";
+            this.lbl_player1DeathsValue.AutoSize = true;
+            this.lbl_player1DeathsValue.Location = new System.Drawing.Point(92, 107);
+            this.lbl_player1DeathsValue.Name = "lbl_player1DeathsValue";
+            this.lbl_player1DeathsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player1DeathsValue.TabIndex = 15;
+            this.lbl_player1DeathsValue.Text = "99999";
+            // 
+            // lbl_player2Kills
+            // 
+            this.lbl_player2Kills.AutoSize = true;
+            this.lbl_player2Kills.Location = new System.Drawing.Point(6, 94);
+            this.lbl_player2Kills.Name = "lbl_player2Kills";
+            this.lbl_player2Kills.Size = new System.Drawing.Size(25, 13);
+            this.lbl_player2Kills.TabIndex = 16;
+            this.lbl_player2Kills.Text = "Kills";
+            // 
+            // lbl_player2Deaths
+            // 
+            this.lbl_player2Deaths.AutoSize = true;
+            this.lbl_player2Deaths.Location = new System.Drawing.Point(6, 107);
+            this.lbl_player2Deaths.Name = "lbl_player2Deaths";
+            this.lbl_player2Deaths.Size = new System.Drawing.Size(41, 13);
+            this.lbl_player2Deaths.TabIndex = 16;
+            this.lbl_player2Deaths.Text = "Deaths";
+            // 
+            // lbl_player2KillsValue
+            // 
+            this.lbl_player2KillsValue.AutoSize = true;
+            this.lbl_player2KillsValue.Location = new System.Drawing.Point(92, 94);
+            this.lbl_player2KillsValue.Name = "lbl_player2KillsValue";
+            this.lbl_player2KillsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player2KillsValue.TabIndex = 17;
+            this.lbl_player2KillsValue.Text = "99999";
+            // 
+            // lbl_player2DeathsValue
+            // 
+            this.lbl_player2DeathsValue.AutoSize = true;
+            this.lbl_player2DeathsValue.Location = new System.Drawing.Point(92, 107);
+            this.lbl_player2DeathsValue.Name = "lbl_player2DeathsValue";
+            this.lbl_player2DeathsValue.Size = new System.Drawing.Size(37, 13);
+            this.lbl_player2DeathsValue.TabIndex = 18;
+            this.lbl_player2DeathsValue.Text = "99999";
             // 
             // GamePanel
             // 
@@ -466,5 +554,13 @@
         private System.Windows.Forms.Label lbl_player2WarriorsValue;
         private System.Windows.Forms.Label lbl_player2Warrior;
         private System.Windows.Forms.Label lbl_player1WarriorsValue;
+        private System.Windows.Forms.Label lbl_player2DeathsValue;
+        private System.Windows.Forms.Label lbl_player2KillsValue;
+        private System.Windows.Forms.Label lbl_player2Deaths;
+        private System.Windows.Forms.Label lbl_player2Kills;
+        private System.Windows.Forms.Label lbl_player1DeathsValue;
+        private System.Windows.Forms.Label lbl_player1KillsValue;
+        private System.Windows.Forms.Label lbl_player1Deaths;
+        private System.Windows.Forms.Label lbl_player1Kills;
     }
 }

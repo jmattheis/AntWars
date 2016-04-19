@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using AntWars.Board;
+﻿using AntWars.Board;
 using AntWars.Board.Ants;
 using AntWars.Helper;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace AntWars {
 
@@ -55,12 +54,11 @@ namespace AntWars {
             print(game.Board.BoardObjects.get());
         }
 
-        private void print(IList<BoardObject> boardObjects) {
-
+        private void print(BoardObject[] boardObjects) {
             Bitmap tmp = new Bitmap(game.Conf.BoardWidth, game.Conf.BoardHeight);
 
-            foreach (BoardObject obj in boardObjects) {
-                setColor(obj, tmp);
+            for(int i = 0; i < boardObjects.Length;i++) {
+                setColor(boardObjects[i], tmp);
             }
             if (pb_Game.Image != null) {
                 pb_Game.Image.Dispose();
@@ -94,12 +92,17 @@ namespace AntWars {
 
         private void timer_GameTick_Tick(object sender, EventArgs e) {
             game.nextTick();
-            try {
-                this.Invoke((MethodInvoker) delegate {
-                    calcGameStatistics();
-                    print();
-                });
-            } catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
+
+            // cloning, the print method get invoked in an other thread, therefore the BoardObject-Array could be change till that.
+            BoardObject[] objects = game.Board.BoardObjects.get().Clone() as BoardObject[];
+            System.Threading.Tasks.Task.Factory.StartNew(() => { 
+                try {
+                    this.Invoke((MethodInvoker) delegate {
+                        calcGameStatistics();
+                        print(objects);
+                    });
+                } catch (System.Exception) { } // passiert halt, da es in einem anderen thread ausgeführt wird und nicht mitbekommt das die form geschlossen wird.
+            });
             checkWinningConditions();
         }
 
@@ -132,6 +135,8 @@ namespace AntWars {
             lbl_player1ScoutsValue.Text = game.Player1.ScoutCount.ToString();
             lbl_player1WarriorsValue.Text = game.Player1.WarriorCount.ToString();
             lbl_player1AntsValue.Text = Convert.ToString(game.Player1.ScoutCount + game.Player1.CarryCount + game.Player1.WarriorCount);
+            lbl_player1DeathsValue.Text = game.Player1.DeathCount.ToString();
+            lbl_player1KillsValue.Text = game.Player1.KillCount.ToString();
 
             // update player2
             lbl_player2PointsValue.Text = game.Player2.Points.ToString();
@@ -140,6 +145,8 @@ namespace AntWars {
             lbl_player2ScoutsValue.Text = game.Player2.ScoutCount.ToString();
             lbl_player2WarriorsValue.Text = game.Player2.WarriorCount.ToString();
             lbl_player2AntsValue.Text = Convert.ToString(game.Player2.ScoutCount + game.Player2.CarryCount + game.Player2.WarriorCount);
+            lbl_player2DeathsValue.Text = game.Player2.DeathCount.ToString();
+            lbl_player2KillsValue.Text = game.Player2.KillCount.ToString();
 
             // update sugar
             lbl_sugarValue.Text = game.Board.BoardObjects.getSugars().Count.ToString();

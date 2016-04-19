@@ -1,12 +1,7 @@
-﻿using System;
+﻿using AntWars.Board.Ants;
+using AntWars.Helper;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AntWars.Board.Ants;
-using AntWars.Helper;
-using AntWars;
 
 namespace AntWars.Board {
 
@@ -15,7 +10,7 @@ namespace AntWars.Board {
     /// </summary>
     class BoardObjects {
 
-        private IList<BoardObject> boardObjects = new List<BoardObject>();
+        private BoardObject[] boardObjects = new BoardObject[0];
         private IList<Ant> ants = new List<Ant>();
         private IList<Base> bases = new List<Base>();
         private IList<Sugar> sugars = new List<Sugar>();
@@ -36,7 +31,8 @@ namespace AntWars.Board {
             if (!addToMap(boardObject)) {
                 return false;
             }
-            boardObjects.Add(boardObject);
+            
+            ArrayUtils.add(ref boardObjects, boardObject);
             if (boardObject.isAnt()) {
                 Ant ant = (Ant) boardObject;
                 ants.Add(ant);
@@ -52,8 +48,8 @@ namespace AntWars.Board {
         /// <summary>
         /// </summary>
         /// <returns>Alle BoardObjects</returns>
-        public IList<BoardObject> get() {
-            return new ReadOnlyCollection<BoardObject>(boardObjects);
+        public BoardObject[] get() {
+            return boardObjects;
         }
 
         /// <summary>
@@ -110,15 +106,20 @@ namespace AntWars.Board {
         /// <summary>
         /// Gibt die Boardobjects von einer bestimmten Koordinate wieder.
         /// </summary>
-        /// <param name="coords">Die Coordinaten</param>
+        /// <param name="x">Die X Koordinate</param>
+        /// <param name="y">Die Y Koordinate</param>
         /// <returns>Die BoardObjects von den Koordinaten</returns>
-        public BoardObject[] getBoardObjectsFromCoords(Coordinates coords) {
-            BoardObject[] objsInCoords = boardObjectList[coords.X, coords.Y];
+        public BoardObject[] getBoardObjectsFromCoords(int x, int y) {
+            BoardObject[] objsInCoords = boardObjectList[x, y];
             if (objsInCoords == null) {
                 objsInCoords = new BoardObject[0];
-                boardObjectList[coords.X, coords.Y] = objsInCoords;
+                boardObjectList[x, y] = objsInCoords;
             }
             return objsInCoords;
+        }
+
+        public BoardObject[] getBoardObjectsFromCoords(Coordinates coords) {
+            return getBoardObjectsFromCoords(coords.X, coords.Y);
         }
 
 
@@ -127,7 +128,7 @@ namespace AntWars.Board {
         /// </summary>
         /// <returns>true wenn das BoardObject gemoved wurde andernfalls false.</returns>
         public bool move(BoardObject obj, Coordinates coords) {
-            if (!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords), obj)) {
+            if (!isValidCoords(coords) || containsType(getBoardObjectsFromCoords(coords.X, coords.Y), obj)) {
                 return false;
             }
             removeFromMap(obj);
@@ -136,12 +137,14 @@ namespace AntWars.Board {
             return true;
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="coords"></param>
         /// <returns>true wenn die Koordinaten nicht außerhalb des Spielfeldes sind.</returns>
         public bool isValidCoords(Coordinates coords) {
-            return !(coords.X < 0 || coords.X > (conf.BoardWidth - 1) || coords.Y < 0 || coords.Y > (conf.BoardHeight - 1));
+            return isValidCoords(coords.X, coords.Y);
+        }
+
+        /// <returns>true wenn die Koordinaten nicht außerhalb des Spielfeldes sind.</returns>
+        public bool isValidCoords(int x, int y) {
+            return !(x < 0 || x > (conf.BoardWidth - 1) || y < 0 || y > (conf.BoardHeight - 1));
         }
 
         /// <summary>
@@ -149,7 +152,7 @@ namespace AntWars.Board {
         /// </summary>
         /// <param name="boardObject">Das Boardobject was gelöscht werden soll.</param>
         public void remove(BoardObject boardObject) {
-            boardObjects.Remove(boardObject);
+            ArrayUtils.remove(ref boardObjects, boardObject);
             if (boardObject.isAnt()) {
                 ants.Remove((Ant) boardObject);
             } else if (boardObject.isBase()) {
@@ -219,7 +222,9 @@ namespace AntWars.Board {
         /// <param name="sugar">out den Zucker der gefunden wurde oder null</param>
         /// <returns>true wenn Zucker gefunden wurde</returns>
         public bool getSugar(Coordinates coords, out Sugar sugar) {
-            foreach (BoardObject boardObject in this.getBoardObjectsFromCoords(coords)) {
+            BoardObject[] objs = getBoardObjectsFromCoords(coords);
+            for (int i = 0; i < objs.Length; i++) {
+                BoardObject boardObject = objs[i];
                 if (boardObject.isSugar()) {
                     sugar = (Sugar) boardObject;
                     return true;
@@ -229,18 +234,13 @@ namespace AntWars.Board {
             return false;
         }
 
-        private void add(ref BoardObject[] array, BoardObject obj) {
-            Array.Resize<BoardObject>(ref array, array.Length + 1);
-            array[array.Length - 1] = obj;
-        }
-
         private bool addToMap(BoardObject boardObject) {
             BoardObject[] objsInCoords = boardObjectList[boardObject.Coords.X, boardObject.Coords.Y];
             if (objsInCoords == null) {
                 objsInCoords = new BoardObject[0];
             }
             if (!containsType(objsInCoords, boardObject)) {
-                add(ref objsInCoords, boardObject);
+                ArrayUtils.add(ref objsInCoords, boardObject);
                 boardObjectList[boardObject.Coords.X, boardObject.Coords.Y] = objsInCoords;
                 return true;
             }
@@ -261,22 +261,9 @@ namespace AntWars.Board {
 
         private void removeFromMap(BoardObject boardObject) {
             BoardObject[] objsInCoords = boardObjectList[boardObject.Coords.X, boardObject.Coords.Y];
-            remove(ref objsInCoords, boardObject);
+            ArrayUtils.remove(ref objsInCoords, boardObject);
             boardObjectList[boardObject.Coords.X, boardObject.Coords.Y] = objsInCoords;
         }
 
-        private void remove(ref BoardObject[] objs, BoardObject remove) {
-            for (int i = 0;i < objs.Length;i++) {
-                if (objs[i] == remove) {
-                    objs[i] = null;
-                    if (i != objs.Length - 1) {
-                        BoardObject tmp = objs[objs.Length - 1];
-                        objs[i] = tmp;
-                    }
-                }
-            }
-            Array.Resize<BoardObject>(ref objs, objs.Length - 1);
-
-        }
     }
 }

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AntWars.Board;
+﻿using AntWars.Board;
 using AntWars.Board.Ants;
-using System.Security.Permissions;
+using System;
+using System.Collections.Generic;
 
 namespace AntWars.AI {
     /// <summary>
@@ -51,6 +47,13 @@ namespace AntWars.AI {
         /// </summary>
         protected int CurrentScoutScount {
             get { return Player.ScoutCount; }
+        }
+
+        /// <summary>
+        /// Anzahl deiner Scouts.
+        /// </summary>
+        protected int CurrentWarriorCount {
+            get { return Player.WarriorCount; }
         }
 
         /// <summary>
@@ -161,7 +164,7 @@ namespace AntWars.AI {
             }
         }
 
-        private Base getBase() {
+        public Base getBase() {
             if (Base == null)
                 Base = Game.Board.BoardObjects.getBase(Player);
 

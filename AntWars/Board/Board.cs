@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AntWars;
+﻿using AntWars.Board.Ants;
 using AntWars.Helper;
-using AntWars.Board.Ants;
-using System.Threading;
+using System;
+using System.Collections.Generic;
 
 namespace AntWars.Board {
 
@@ -25,21 +20,17 @@ namespace AntWars.Board {
         /// </summary>
         public int Diagonal { get; private set; }
         internal Config conf;
-        private CoordsInView[] coordsInViews = new CoordsInView[20];
 
         /// <summary>
         /// Die Anzahl von Zucker die generiert wurde.
         /// </summary>
         public int SugarAmount { get; private set; }
-        public List<ControllableBoardObject> DyingObjects { get; private set; }
         public int CurrentTick { get; internal set; }
-
 
         public Board(Config conf) {
             this.CurrentTick = 0;
             this.conf = conf;
             BoardObjects = new BoardObjects(conf);
-            DyingObjects = new List<ControllableBoardObject>();
             Diagonal = Convert.ToInt32(Math.Sqrt(Math.Pow(conf.BoardHeight, 2) + Math.Pow(conf.BoardWidth, 2)));
         }
 
@@ -51,11 +42,12 @@ namespace AntWars.Board {
             foreach (Base playerbase in BoardObjects.getBases()) {
                 playerbase.Player.AI.nextTick();
             }
-            foreach (Ant ant in BoardObjects.getRandomAnts()) {
+            IList<Ant> antList = BoardObjects.getRandomAnts();
+            for (int i = 0;i < antList.Count;i++) {
+                Ant ant = antList[i];
                 ant.TookAction = false;
                 ant.AI.antTick(getBoardObjectsInView(ant));
             }
-            resolveDeaths();
         }
 
         /// <summary>
@@ -96,34 +88,61 @@ namespace AntWars.Board {
 
         private BoardObject[] getBoardObjectsInView(Coordinates antCoords, int viewRange) {
             BoardObject[] result = new BoardObject[0];
-            Coordinates[] coords = getCoordsInView(viewRange).circle;
+            Coordinates[] coords = CircleCalculator.calculatePartCircle(viewRange);
             for (int i = 0;i < coords.Length;i++) {
-                Coordinates c = coords[i];
-                Coordinates toAdd = new Coordinates(c.X + antCoords.X, c.Y + antCoords.Y);
-                if (BoardObjects.isValidCoords(toAdd)) {
-                    BoardObject[] boardobjectsformcoords = BoardObjects.getBoardObjectsFromCoords(toAdd);
-                    if (boardobjectsformcoords.Length != 0) {
-                        merge(ref result, boardobjectsformcoords);
-                    }
-                }
+                addBoardObjectsToArrayForPartCoordinates(coords[i], antCoords, viewRange, ref result);
             }
 
             return result;
         }
 
-        private void merge(ref BoardObject[] result, BoardObject[] add) {
-            int array1OriginalLength = result.Length;
-            Array.Resize<BoardObject>(ref result, array1OriginalLength + add.Length);
-            Array.Copy(add, 0, result, array1OriginalLength, add.Length);
+        private void addBoardObjectsToArrayForPartCoordinates(Coordinates coords, Coordinates current, int viewrange, ref BoardObject[] result) {
+            int x1 = coords.X;
+            int x2 = Math.Abs(x1);
+
+            int y1 = coords.Y;
+            int y2 = Math.Abs(y1);
+
+            viewrange++;
+            if (coords.X == 0 && coords.Y == 0) {
+                mergeWithoutAnt(x1 + current.X, y1 + current.Y, ref result); // middle
+                return;
+            }
+            merge(x1 + current.X, y1 + current.Y, ref result); // upper left
+            if (coords.X == 0) {
+                merge(current.X, y2 + current.Y, ref result); // middle horizontal
+                return;
+            }
+            if (coords.Y == 0) {
+                merge(x2 + current.X, current.Y, ref result); // middle vertical
+                return;
+            }
+            merge(x2 + current.X, y1 + current.Y, ref result); // upper right
+            merge(x1 + current.X, y2 + current.Y, ref result); // lower left
+            merge(x2 + current.X, y2 + current.Y, ref result); // lower right
         }
 
-        private CoordsInView getCoordsInView(int range) {
-            CoordsInView coordsInView = coordsInViews[range];
-            if (coordsInView == null) {
-                coordsInView = new CoordsInView(range, BoardObjects);
-                coordsInViews[range] = coordsInView;
+        private void merge(int x, int y, ref BoardObject[] result) {
+            if (!BoardObjects.isValidCoords(x, y))
+                return;
+            BoardObject[] boardObjectsFromCoords = BoardObjects.getBoardObjectsFromCoords(x, y);
+            if (boardObjectsFromCoords.Length != 0) {
+                ArrayUtils.merge(ref result, boardObjectsFromCoords);
             }
-            return coordsInView;
+        }
+
+        private void mergeWithoutAnt(int x, int y, ref BoardObject[] result) {
+            BoardObject[] boardObjectsFromCoords = BoardObjects.getBoardObjectsFromCoords(x, y).Clone() as BoardObject[];
+            if (boardObjectsFromCoords.Length - 1 != 0) {
+                for (int i = 0;i < boardObjectsFromCoords.Length;i++) {
+                    BoardObject obj = boardObjectsFromCoords[i];
+                    if (obj.isAnt()) {
+                        ArrayUtils.remove(ref boardObjectsFromCoords, obj);
+                        break;
+                    }
+                }
+                ArrayUtils.merge(ref result, boardObjectsFromCoords);
+            }
         }
 
         private void nullTick(Player player, Coordinates baseCoords) {
@@ -152,21 +171,15 @@ namespace AntWars.Board {
             }
         }
 
-        private void resolveDeaths() {
-
-            foreach (ControllableBoardObject obj in DyingObjects) {
-
-                Ant ant = (obj as Ant);
-                if (obj.isAnt() && ant.Inventory > 0) {
-                    Sugar s = new Sugar();
-                    s.Coords = ant.Coords;
-                    s.Amount = ant.Inventory;
-                    BoardObjects.add(s);
-                }
-                BoardObjects.remove(obj);
+        internal void killBoardObject(ControllableBoardObject obj) {
+            Ant ant = (obj as Ant);
+            if (obj.isAnt() && ant.Inventory > 0) {
+                Sugar s = new Sugar();
+                s.Coords = ant.Coords;
+                s.Amount = ant.Inventory;
+                BoardObjects.add(s);
             }
-
-            DyingObjects.Clear();
+            BoardObjects.remove(obj);
         }
     }
 }

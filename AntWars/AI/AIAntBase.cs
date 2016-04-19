@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AntWars.Board;
+﻿using AntWars.Board;
 using AntWars.Board.Ants;
+using System;
+using System.Collections.Generic;
 
 namespace AntWars.AI {
 
@@ -12,6 +9,8 @@ namespace AntWars.AI {
     /// Die Basis für die KI der Ameise.
     /// </summary>
     public abstract class AIAntBase : IAIAnt {
+
+        private static readonly Random RANDOM_INSTANCE = new Random();
 
         /// <summary>
         /// Die Ameise für die momentane AI instance.
@@ -33,5 +32,13 @@ namespace AntWars.AI {
         public abstract void antTick(BoardObject[] view);
 
         public abstract void notify(HashSet<Coordinates> coords);
+
+        /// <summary>
+        /// Gibt eine Instanz der Klasse Random zurück.
+        /// </summary>
+        /// <returns>Instanz der Random-Klasse</returns>
+        public Random getRandom() {
+            return RANDOM_INSTANCE;
+        }
     }
 }
