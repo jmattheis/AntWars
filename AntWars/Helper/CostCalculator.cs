@@ -54,7 +54,7 @@ namespace AntWars.Helper {
         /// </summary>
         /// <param name="ant">Die Ameise</param>
         public static double calculateCost(Ant ant) {
-
+            checkViewRange(ant.ViewRange);
             if (ant.isCarry()) {
                 return calculateCostCarry(ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Health, ant.Owner.AI.Playername);
             } else if (ant.isScout()) {
@@ -116,30 +116,12 @@ namespace AntWars.Helper {
         }
 
         /// <summary>
-        /// Überprüft ob die Attribute der Ameise in dem vorgegebenem Bereich sind.
+        /// Überprüft ob die ViewRangs der Ameise in dem vorgegebenem Bereich sind.
         /// </summary>
         /// <param name="viewRange">Die Sichtweite der Ameise.</param>
-        /// <param name="moveRange">Die Reichweite der Ameise.</param>
-        /// <param name="inventory">Die Inventargröße der Ameise.</param>
-        public static void checkAttributes(int viewRange, int moveRange, int inventory, string playername) {
-            // TODO für Warrior umschreiben, wird momentan nirgends genutzt
+        public static void checkViewRange(int viewRange) {
             if (viewRange < VIEWRANGE_MIN || viewRange > VIEWRANGE_MAX) {
-                MessageBox.Show(String.Format(Messages.ERROR_INVALID_VALUE, viewRange, Messages.VIEWRANGE, VIEWRANGE_MIN, VIEWRANGE_MAX),
-                                String.Format(Messages.ERROR_INVALID_VALUE_PLAYER_CAPTION, playername),
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
-            if (moveRange < MOVERANGE_MIN || moveRange > MOVERANGE_MAX) {
-                MessageBox.Show(String.Format(Messages.ERROR_INVALID_VALUE, viewRange, Messages.VIEWRANGE, MOVERANGE_MIN, MOVERANGE_MAX),
-                                String.Format(Messages.ERROR_INVALID_VALUE_PLAYER_CAPTION, playername),
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
-            if (inventory < INVENTORY_MIN || inventory > INVENTORY_MAX) {
-                MessageBox.Show(String.Format(Messages.ERROR_INVALID_VALUE, viewRange, Messages.VIEWRANGE, INVENTORY_MIN, INVENTORY_MAX),
-                                String.Format(Messages.ERROR_INVALID_VALUE_PLAYER_CAPTION, playername),
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                throw new ArgumentException(String.Format(Messages.ERROR_INVALID_VALUE, viewRange, Messages.VIEWRANGE, VIEWRANGE_MIN, VIEWRANGE_MAX));
             }
         }
     }
