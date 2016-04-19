@@ -44,6 +44,9 @@ namespace AntWars {
         /// </summary>
         public int CarryCount { get; private set; }
 
+        /// <summary>
+        /// Die Anzahl aller Ameisen des Spielers auf dem Feld.
+        /// </summary>
         public int AntCount { get; private set; }
 
         /// <summary>
