@@ -27,12 +27,6 @@ namespace AntWars.Helper {
 
         private const int VIEWRANGE_MIN = 1;
         private const int VIEWRANGE_MAX = 10;
-        private const int MOVERANGE_MIN = 1;
-        private const int MOVERANGE_MAX = 10;
-        private const int INVENTORY_MIN = 1;
-        private const int INVENTORY_MAX = 10;
-        private const int ATTACKPOWER_MIN = 1;
-        private const int ATTACKPOWER_MAX = 10;
 
         private const int UPGRADE_MAX = 3;
         private const int UPGRADE_MULTIPLIER = 20;
@@ -54,7 +48,10 @@ namespace AntWars.Helper {
         /// </summary>
         /// <param name="ant">Die Ameise</param>
         public static double calculateCost(Ant ant) {
-            checkViewRange(ant.ViewRange);
+            if (ant.ViewRange < VIEWRANGE_MIN || ant.ViewRange > VIEWRANGE_MAX) {
+                throw new ArgumentException(String.Format(Messages.ERROR_INVALID_VALUE, ant.ViewRange, Messages.VIEWRANGE, VIEWRANGE_MIN, VIEWRANGE_MAX));
+            }
+
             if (ant.isCarry()) {
                 return calculateCostCarry(ant.ViewRange, ant.MoveRangeFactor, ant.MaxInventory, ant.Health, ant.Owner.AI.Playername);
             } else if (ant.isScout()) {
@@ -113,16 +110,6 @@ namespace AntWars.Helper {
 
         private static double calculate(params double[] numbers) {
             return Math.Round((numbers.Sum() / 2), 2);
-        }
-
-        /// <summary>
-        /// Überprüft ob die ViewRangs der Ameise in dem vorgegebenem Bereich sind.
-        /// </summary>
-        /// <param name="viewRange">Die Sichtweite der Ameise.</param>
-        public static void checkViewRange(int viewRange) {
-            if (viewRange < VIEWRANGE_MIN || viewRange > VIEWRANGE_MAX) {
-                throw new ArgumentException(String.Format(Messages.ERROR_INVALID_VALUE, viewRange, Messages.VIEWRANGE, VIEWRANGE_MIN, VIEWRANGE_MAX));
-            }
         }
     }
 }
