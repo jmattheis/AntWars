@@ -69,8 +69,8 @@ namespace AntWars {
             } else if (obj.isBase()) {
                 Base playerbase = obj as Base;
                 if (playerbase.RangeLevel > 0) {
-                    foreach (Coordinates coords in playerbase.Coords.getAdjacentCoordinates(playerbase.RangeLevel)) {
-                        setColor(bitmap, coords, Color.GreenYellow, Color.BlueViolet, playerbase.Player);
+                    for (int i = 0; i < playerbase.RangeCoords.Count; i++) {
+                        setColor(bitmap, playerbase.RangeCoords[i], Color.GreenYellow, Color.BlueViolet, playerbase.Player);
                     }
                 }
                 setColor(bitmap, playerbase.Coords, Color.GreenYellow, Color.BlueViolet, playerbase.Player);

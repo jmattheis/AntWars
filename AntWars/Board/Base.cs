@@ -1,4 +1,6 @@
-﻿namespace AntWars.Board {
+﻿using System.Collections.Generic;
+
+namespace AntWars.Board {
 
     /// <summary>
     /// Die Base hier "spawnen" die Ameisen, wird generell am Rand des Spielfeldes generiert.
@@ -12,6 +14,8 @@
         /// </summary>
         public int RangeLevel { get; internal set; }
 
+        public List<Coordinates> RangeCoords { get; internal set; }
+
         /// <summary>
         /// Das Level der Erholungrate gibt an um wieviel % sich die Ameise erholen kann. Rechnung: (level/10)%
         /// </summary>
@@ -21,6 +25,7 @@
             Player = p;
             RangeLevel = 0;
             RecoverLevel = 1;
+            RangeCoords = new List<Coordinates>();
         }
     }
 }
