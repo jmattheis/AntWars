@@ -117,18 +117,11 @@ namespace AntWars.Helper {
             return Math.Round((numbers.Sum() / 2), 2);
         }
 
-        private static double getLowestCostValue()
-        {
+        private static double getLowestCostValue() {
             double lowCarry = calculateCostCarry(1, 1, 1, 1, "");
             double lowScout = calculateCostScout(1, 1, 1, 1, "");
             double lowWarrior = calculateCostWarrior(1, 1, 1, 1, 1, "");
-            if (lowCarry <= lowScout && lowCarry <= lowWarrior) {
-                return lowCarry;
-            } else if (lowScout <= lowCarry && lowScout <= lowWarrior) {
-                return lowScout;
-            } else {
-                return lowWarrior;
-            }
+            return Math.Min(Math.Min(lowCarry, lowScout), lowWarrior);
         }
     }
 }
