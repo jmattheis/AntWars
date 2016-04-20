@@ -8,7 +8,7 @@ namespace AntWars.Helper {
     class CostCalculator {
 
         /// <summary>
-        /// Gibt die niedrigsten Kosten aller Ameisen an.
+        /// Gibt die Kosten der billigsten Ameise an.
         /// </summary>
         public static readonly double LOWEST_COST_VALUE = getLowestCostValue();
 
