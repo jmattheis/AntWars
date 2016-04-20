@@ -124,12 +124,7 @@ namespace AntWars.Helper {
             double lowWarrior = calculateCostWarrior(1, 1, 1, 1, 1, "");
             if (lowCarry <= lowScout && lowCarry <= lowWarrior) {
                 return lowCarry;
-<<<<<<< HEAD
-            }
-            else if (lowScout <= lowCarry && lowScout <= lowWarrior) {
-=======
             } else if (lowScout <= lowCarry && lowScout <= lowWarrior) {
->>>>>>> 0319985da1d5ba02b04d55d8b66ce07b01fb9199
                 return lowScout;
             } else {
                 return lowWarrior;
