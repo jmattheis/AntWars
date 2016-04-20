@@ -143,14 +143,18 @@ namespace AntWars {
         }
 
         private void checkWinningConditions() {
-            if (checkMoneyAndAnts())
+            if (checkMoneyAndAnts()) {
                 return;
-            if (checkTickPlayerPoints())
+            }
+            if (checkTickPlayerPoints()) {
                 return;
-            if (checkMaxPoints())
+            }
+            if (checkMaxPoints()) {
                 return;
-            if (checkSugarPlayerPoint())
+            }
+            if (checkSugarPlayerPoint()) {
                 return;
+            }
         }
 
         private bool checkSugarPlayerPoint() {
@@ -219,8 +223,7 @@ namespace AntWars {
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_OUT_OF_MONEY_AND_ANTS, game.Player2.AI.Playername, game.Player1.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
-            else
-                return false;
+            return;
         }
 
         private void setPlayernameInStatistic() {
