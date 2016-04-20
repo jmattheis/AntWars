@@ -105,9 +105,9 @@ namespace AntWars.Helper {
         /// <param name="inventory">Die Inventargröße der Ameise.</param>
         /// <returns>Die berechneten Kosten der Ameise.</returns>
         public static double calculateCostWarrior(int attackPower, int viewRange, int moveRangeFactor, int inventory, int health, string playername) {
-            double viewRangeWithQuantifier = viewRange * VIEWRANGE_SCOUT_QUANTIFIER;
-            double inventoryWithQuantifier = inventory * INVENTORY_SCOUT_QUANTIFIER;
-            double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_SCOUT_QUANTIFIER;
+            double viewRangeWithQuantifier = viewRange * VIEWRANGE_WARRIOR_QUANTIFIER;
+            double inventoryWithQuantifier = inventory * INVENTORY_WARRIOR_QUANTIFIER;
+            double moveRangeFactorWithQuantifier = moveRangeFactor * MOVERANGE_WARRIOR_QUANTIFIER;
             double attackPowerWithQuantifier = attackPower * ATTACKPOWER_WARRIOR_QUANTIFIER;
             double healthWithQuantifier = health * HEALTH_WARRIOR_QUANTIFIER;
             return calculate(viewRangeWithQuantifier, moveRangeFactorWithQuantifier, inventoryWithQuantifier, attackPowerWithQuantifier, healthWithQuantifier);
