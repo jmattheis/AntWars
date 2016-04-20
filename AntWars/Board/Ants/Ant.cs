@@ -1,9 +1,6 @@
 ﻿using AntWars.AI;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AntWars.Board.Ants {
 
@@ -137,6 +134,10 @@ namespace AntWars.Board.Ants {
         public override void die() {
             base.die();
             Owner.decreaseAnts(this);
+        }
+
+        public bool isEnemy(Ant ant) {
+            return ant.Owner != Owner;
         }
 
     }

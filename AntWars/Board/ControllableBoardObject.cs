@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AntWars.Board.Ants;
 
 namespace AntWars.Board {
 
+    /// <summary>
+    /// Oberklasse für alle Objekte, die durch eine AI auf dem Spielfeld gesteuert werden.
+    /// </summary>
     public class ControllableBoardObject : BoardObject {
 
         /// <summary>
-        /// Gibt an, ob die Ameise sich in diesem Tick schon bewegt hat. 
+        /// Gibt an, ob die Einheit in diesem Tick schon eine Aktion durchgeführt hat.. 
         /// </summary>
         public bool TookAction { get; internal set; }
 
@@ -20,27 +18,27 @@ namespace AntWars.Board {
         public int MoveRangeFactor { get; internal set; }
 
         /// <summary>
-        /// Wie weit die Ameise schon gegangen ist.
+        /// Wie weit die Einheit schon gegangen ist.
         /// </summary>
         public int UnitsGone { get; internal set; }
 
         /// <summary>
-        /// Wie weit die Ameise sehen kann.
+        /// Wie weit die Einheit sehen kann.
         /// </summary>
         public int ViewRange { get; protected set; }
 
         /// <summary>
-        /// Lebenspunkte der Ameise.
+        /// Lebenspunkte der Einheit.
         /// </summary>
         public int Health { get; protected set; }
 
         /// <summary>
-        /// Angriffstärke der Ameise.
+        /// Angriffstärke der Einheit.
         /// </summary>
         public int AttackPower { get; protected set; }
 
         /// <summary>
-        /// Wie weit die Ameise gehen kann. 
+        /// Wie weit die Einheit gehen kann. 
         /// </summary>
         public int MoveRange { get; protected set; }
 
@@ -58,7 +56,7 @@ namespace AntWars.Board {
         }
 
         /// <summary>
-        /// Lässt die Ameise nach links bewegen.
+        /// Lässt die Einheit nach links bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveLeft() {
@@ -66,7 +64,7 @@ namespace AntWars.Board {
             return move(newCoords);
         }
         /// <summary>
-        /// Lässt die Ameise diagonal nach links oben bewegen.
+        /// Lässt die Einheit diagonal nach links oben bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveUpperLeft() {
@@ -75,7 +73,7 @@ namespace AntWars.Board {
         }
 
         /// <summary>
-        /// Lässt die Ameise diagonal nach links unten bewegen.
+        /// Lässt die Einheit diagonal nach links unten bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveLowerLeft() {
@@ -84,7 +82,7 @@ namespace AntWars.Board {
         }
 
         /// <summary>
-        /// Lässt die Ameise nach rechts bewegen.
+        /// Lässt die Einheit nach rechts bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveRight() {
@@ -93,7 +91,7 @@ namespace AntWars.Board {
         }
 
         /// <summary>
-        /// Lässt die Ameise diagonal nach rechts oben bewegen.
+        /// Lässt die Einheit diagonal nach rechts oben bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveUpperRight() {
@@ -102,7 +100,7 @@ namespace AntWars.Board {
         }
 
         /// <summary>
-        /// Lässt die Ameise diagonal nach rechts unten bewegen.
+        /// Lässt die Einheit diagonal nach rechts unten bewegen.
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist.</returns>
         public bool moveLowerRight() {
@@ -111,7 +109,7 @@ namespace AntWars.Board {
         }
 
         /// <summary>
-        /// Lässt die Ameise nach oben bewegen
+        /// Lässt die Einheit nach oben bewegen
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveUp() {
@@ -120,7 +118,7 @@ namespace AntWars.Board {
         }
 
         /// <summary>
-        /// Lässt die Ameise nach unten bewegen
+        /// Lässt die Einheit nach unten bewegen
         /// </summary>
         /// <returns>true wenn das Bewegen erfolgreich war, false wenn etwas im Weg ist</returns>
         public bool moveDown() {
@@ -129,7 +127,7 @@ namespace AntWars.Board {
         }
 
         /// <summary>
-        /// Prüfen, ob die Ameise sich noch bewegen kann.
+        /// Prüfen, ob die Einheit sich noch bewegen kann.
         /// </summary>
         /// <returns>True wenn ja, False wenn nicht</returns>
         public bool canMove() {
@@ -138,8 +136,30 @@ namespace AntWars.Board {
             return true;
         }
 
-        public virtual bool fight() {
-            throw new NotImplementedException("Das Objekt darf die Methode nicht aufrufen.");
+        /// <summary>
+        /// Greift das übergebene Objekt an und fügt Schaden in Höhe der Attackpower zu. Das Objekt muss unmittelbar neben der Einheit stehen.
+        /// Kann nur von Warrior-Ameisen benutzt werden.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public virtual bool fight(ControllableBoardObject target) {
+            throw new InvalidOperationException("Object isn't allowed to call the fight method.");
+        }
+
+        /// <summary>
+        /// Lässt die Einheit sterben.
+        /// </summary>
+        public virtual void die() {
+            board.killBoardObject(this);
+        }
+
+        internal bool takeDamage(int dmg) {
+            Health -= dmg;
+            if (Health <= 0) {
+                die();
+                return true;
+            }
+            return false;
         }
 
         private bool move(Coordinates to) {
@@ -151,14 +171,6 @@ namespace AntWars.Board {
                 return true;
             }
             return false;
-        }
-
-        /// <summary>
-        /// Die Einheit am Ende des Zuges sterben lassen.
-        /// </summary>
-        public virtual void die() {
-            if (!board.DyingObjects.Contains(this))
-                board.DyingObjects.Add(this);
         }
     }
 }

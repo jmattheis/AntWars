@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AntWars.AI;
 using AntWars.Board;
 using AntWars.Board.Ants;
-using AntWars.AI;
+using System;
+using System.Collections.Generic;
 
 namespace PlayerAI {
     public class AI : AIBase {
@@ -21,7 +18,6 @@ namespace PlayerAI {
     }
 
     public class AIAnt : AIAntBase {
-        private Random rand = new Random();
         public override void antTick(BoardObject[] view) {
 
             if (Ant.isScout()) {
@@ -31,10 +27,21 @@ namespace PlayerAI {
                 Ant.notifyOtherAnts(set);
             }
 
+            if (Ant.isWarrior()) {
+                for (int i = 0; i < view.Length; i++) {
+                    BoardObject bObject = view[i];
+                    if (bObject != Ant && bObject.isAnt() && bObject.Coords.isInRange(1, Ant.Coords)) {
+                        Ant.fight(bObject as Ant);
+                        break;
+                    }
+                }
+            }
+
             // Zucker aufheben Test
             Ant.pickUpSugar();
             // RANDOM FTW
-            switch (rand.Next(0, 7)) {
+            Random rand = getRandom();
+            switch (rand.Next(0, 8)) {
                 case 1:
                     Ant.moveDown();
                     break;
@@ -59,8 +66,6 @@ namespace PlayerAI {
                 case 7:
                     Ant.moveUpperRight();
                     break;
-
-
             }
         }
 

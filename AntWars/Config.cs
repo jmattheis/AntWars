@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using AntWars.Helper;
+using System;
 using System.Xml.Serialization;
-using System.IO;
-using System.Reflection;
-using AntWars.Exception;
-using AntWars.Helper;
 
 namespace AntWars {
 
@@ -78,7 +70,7 @@ namespace AntWars {
         /// Pfad zur gesicherten Config
         /// </summary>
         [XmlIgnore]
-        public String GamePath { get; set; }
+        public String ConfigFilePath { get; set; }
 
         public Config() {
             // set sizes to a quarter of screen resolution
@@ -96,11 +88,13 @@ namespace AntWars {
         }
 
         public static Config loadConfig(String path) {
-            return Utils.deserializeConfig(path);
+            Config config = Utils.deserializeConfig(path);
+            config.ConfigFilePath = path;
+            return config;
         }
 
         public bool isNeededPathGame() {
-            return GamePath == null;
+            return ConfigFilePath == null;
         }
 
         public void saveConfig() {

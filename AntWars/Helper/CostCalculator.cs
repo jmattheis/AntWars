@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using AntWars.Board.Ants;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AntWars.Board.Ants;
 using System.Windows.Forms;
 
 namespace AntWars.Helper {
