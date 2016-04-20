@@ -33,6 +33,11 @@ namespace AntWars.Board {
         public int Health { get; protected set; }
 
         /// <summary>
+        /// Die maximalen Lebenspunkte der Einheit.
+        /// </summary>
+        public int MaxHealth { get; protected set; }
+
+        /// <summary>
         /// Angriffstärke der Einheit.
         /// </summary>
         public int AttackPower { get; protected set; }
@@ -55,6 +60,7 @@ namespace AntWars.Board {
             MoveRangeFactor = moveRangeFactor;
             MoveRange = MoveRangeFactor * board.Diagonal;
             Health = hp;
+            MaxHealth = hp;
             TookAction = false;
             this.UnitsGone = 0;
             AttackPower = attackPower;

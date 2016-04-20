@@ -75,7 +75,8 @@ namespace AntWars.Board.Ants {
         public bool recover() {
             if (!TookAction && isInBase()) {
                 UnitsGone = Convert.ToInt32(Math.Ceiling(UnitsGone * (1d - (getBase().RecoverLevel / 10d))));
-                // TODO: Nach Implementierung von Health, hier Health regenerieren.
+                int afterRecoverhp = Convert.ToInt32(Math.Ceiling(Health * (1 + getBase().RecoverLevel / 10d)));
+                Health = afterRecoverhp >= MaxHealth ? MaxHealth : afterRecoverhp;
                 TookAction = true;
                 return true;
             }
