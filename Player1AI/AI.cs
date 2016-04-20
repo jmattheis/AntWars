@@ -11,6 +11,12 @@ namespace PlayerAI {
         }
         public override void nextTick() {
             buyWarrior(1, 1, 1, 1, 1);
+<<<<<<< HEAD
+=======
+            buyScout(1, 1, 1, 1);
+            buyCarrier(1, 1, 1, 1);
+            upgradeRange();
+>>>>>>> master
         }
     }
 
