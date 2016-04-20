@@ -63,7 +63,7 @@ namespace AntWars {
             if (pb_Game.Image != null) {
                 pb_Game.Image.Dispose();
             }
-            Bitmap bitmap = new Bitmap(tmp, tmp.Width * 4, tmp.Height * 4);
+            Bitmap bitmap = new Bitmap(tmp, tmp.Width, tmp.Height);
             tmp.Dispose();
             pb_Game.Image = bitmap;
         }
@@ -113,11 +113,11 @@ namespace AntWars {
         }
 
         public void setFormSize(Config config) {
-            this.pb_Game.Width = config.BoardWidth * 4;
-            this.pb_Game.Height = config.BoardHeight * 4;
-            Point statsLocation = new Point(config.BoardWidth * 4, 0);
+            this.pb_Game.Width = config.BoardWidth;
+            this.pb_Game.Height = config.BoardHeight;
+            Point statsLocation = new Point(config.BoardWidth, 0);
             this.grp_stats.Location = statsLocation;
-            this.ClientSize = new Size(config.BoardWidth * 4 + this.grp_stats.Width, config.BoardHeight * 4);
+            this.ClientSize = new Size(config.BoardWidth + this.grp_stats.Width, config.BoardHeight);
         }
 
         private void calcGameStatistics() {

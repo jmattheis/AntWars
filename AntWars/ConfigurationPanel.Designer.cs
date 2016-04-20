@@ -240,18 +240,18 @@
             this.lbl_boardHeigth.AutoSize = true;
             this.lbl_boardHeigth.Location = new System.Drawing.Point(6, 145);
             this.lbl_boardHeigth.Name = "lbl_boardHeigth";
-            this.lbl_boardHeigth.Size = new System.Drawing.Size(89, 13);
+            this.lbl_boardHeigth.Size = new System.Drawing.Size(54, 13);
             this.lbl_boardHeigth.TabIndex = 19;
-            this.lbl_boardHeigth.Text = "Spielhöhe in px*4";
+            this.lbl_boardHeigth.Text = "Spielhöhe";
             // 
             // lbl_boardWidth
             // 
             this.lbl_boardWidth.AutoSize = true;
             this.lbl_boardWidth.Location = new System.Drawing.Point(6, 119);
             this.lbl_boardWidth.Name = "lbl_boardWidth";
-            this.lbl_boardWidth.Size = new System.Drawing.Size(91, 13);
+            this.lbl_boardWidth.Size = new System.Drawing.Size(56, 13);
             this.lbl_boardWidth.TabIndex = 18;
-            this.lbl_boardWidth.Text = "Spielbreite in px*4";
+            this.lbl_boardWidth.Text = "Spielbreite";
             // 
             // lbl_sugarAmountMax
             // 
@@ -316,9 +316,19 @@
             0,
             0,
             0});
+            this.nmc_boardWidth.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.nmc_boardWidth.Name = "nmc_boardWidth";
             this.nmc_boardWidth.Size = new System.Drawing.Size(44, 20);
             this.nmc_boardWidth.TabIndex = 21;
+            this.nmc_boardWidth.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.nmc_boardWidth.ValueChanged += new System.EventHandler(this.numeric_gameConfigBoardWidth_ValueChanged);
             // 
             // nmc_points
@@ -388,9 +398,19 @@
             0,
             0,
             0});
+            this.nmc_boardHeigth.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.nmc_boardHeigth.Name = "nmc_boardHeigth";
             this.nmc_boardHeigth.Size = new System.Drawing.Size(44, 20);
             this.nmc_boardHeigth.TabIndex = 22;
+            this.nmc_boardHeigth.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.nmc_boardHeigth.ValueChanged += new System.EventHandler(this.numeric_gameConfigBoardHeigth_ValueChanged);
             // 
             // lbl_sugarAmountMin

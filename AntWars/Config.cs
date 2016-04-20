@@ -74,8 +74,8 @@ namespace AntWars {
 
         public Config() {
             // set sizes to a quarter of screen resolution
-            BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
-            BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
+            BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 2;
+            BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 2;
             // set standard values
             SugarMin = 5;
             SugarMax = 20;
