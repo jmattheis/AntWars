@@ -402,15 +402,15 @@
             this.lbl_sugarMax.AutoSize = true;
             this.lbl_sugarMax.Location = new System.Drawing.Point(6, 41);
             this.lbl_sugarMax.Name = "lbl_sugarMax";
-            this.lbl_sugarMax.Size = new System.Drawing.Size(67, 13);
+            this.lbl_sugarMax.Size = new System.Drawing.Size(117, 13);
             this.lbl_sugarMax.TabIndex = 5;
-            this.lbl_sugarMax.Text = "Max. Zucker";
+            this.lbl_sugarMax.Text = "Max. Zucker in Prozent";
             // 
             // nmc_sugarMin
             // 
             this.nmc_sugarMin.Location = new System.Drawing.Point(153, 11);
             this.nmc_sugarMin.Maximum = new decimal(new int[] {
-            300,
+            95,
             0,
             0,
             0});
@@ -433,7 +433,7 @@
             // 
             this.nmc_sugarMax.Location = new System.Drawing.Point(153, 38);
             this.nmc_sugarMax.Maximum = new decimal(new int[] {
-            300,
+            95,
             0,
             0,
             0});
@@ -457,9 +457,9 @@
             this.lbl_sugarMin.AutoSize = true;
             this.lbl_sugarMin.Location = new System.Drawing.Point(6, 14);
             this.lbl_sugarMin.Name = "lbl_sugarMin";
-            this.lbl_sugarMin.Size = new System.Drawing.Size(70, 13);
+            this.lbl_sugarMin.Size = new System.Drawing.Size(120, 13);
             this.lbl_sugarMin.TabIndex = 3;
-            this.lbl_sugarMin.Text = "Mind. Zucker";
+            this.lbl_sugarMin.Text = "Mind. Zucker in Prozent";
             // 
             // btn_save
             // 

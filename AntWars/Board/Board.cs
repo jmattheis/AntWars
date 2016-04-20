@@ -157,7 +157,9 @@ namespace AntWars.Board {
 
         private void generateSugar(int min, int max) {
             Random rand = new Random();
-            int count = rand.Next(min, max + 1);
+            int boardArea = conf.BoardHeight * conf.BoardWidth;
+            double factor = Convert.ToDouble(rand.Next(min, max + 1)) / 100;
+            int count = Convert.ToInt32(Math.Round(boardArea * factor));
             for (int i = 0;i < count;i++) {
                 Sugar s = new Sugar();
                 s.Coords = Utils.generateCoords(conf.BoardWidth, conf.BoardHeight);
