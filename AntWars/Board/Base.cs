@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace AntWars.Board {
 
@@ -14,7 +14,10 @@ namespace AntWars.Board {
         /// </summary>
         public int RangeLevel { get; internal set; }
 
-        public List<Coordinates> RangeCoords { get; internal set; }
+        /// <summary>
+        /// Alle Coordinates innerhalb des RangeLevel
+        /// </summary>
+        public ReadOnlyCollection<Coordinates> RangeCoords { get; internal set; }
 
         /// <summary>
         /// Das Level der Erholungrate gibt an um wieviel % sich die Ameise erholen kann. Rechnung: (level/10)%
@@ -25,7 +28,6 @@ namespace AntWars.Board {
             Player = p;
             RangeLevel = 0;
             RecoverLevel = 1;
-            RangeCoords = new List<Coordinates>();
         }
     }
 }
