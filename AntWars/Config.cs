@@ -77,8 +77,8 @@ namespace AntWars {
             BoardHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height / 8;
             BoardWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width / 8;
             // set standard values
-            SugarMin = 5;
-            SugarMax = 20;
+            SugarMin = 1;
+            SugarMax = 5;
             SugarAmountMin = 1;
             SugarAmountMax = 5;
             StartMoney = 20;

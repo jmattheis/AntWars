@@ -129,11 +129,7 @@ namespace AntWars {
         }
 
         private bool checkGameConfig() {
-            if (!checkMinMax(config.SugarMin, config.SugarMax))
-                return false;
-            if (!checkMinMax(config.SugarAmountMin, config.SugarAmountMax))
-                return false;
-            return true;
+            return checkMinMax(config.SugarMin, config.SugarMax) || checkMinMax(config.SugarAmountMin, config.SugarAmountMax);
         }
 
         private bool checkMinMax(int min, int max) {
