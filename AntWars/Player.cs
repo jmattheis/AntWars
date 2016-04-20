@@ -59,6 +59,8 @@ namespace AntWars {
             Money = money;
             ScoutCount = 0;
             CarryCount = 0;
+            KillCount = 0;
+            DeathCount = 0;
         }
 
         /// <summary>
