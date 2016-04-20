@@ -45,6 +45,11 @@ namespace AntWars {
         public int CarryCount { get; private set; }
 
         /// <summary>
+        /// Die Anzahl aller Ameisen des Spielers auf dem Feld.
+        /// </summary>
+        public int AntCount { get; private set; }
+
+        /// <summary>
         /// Die Anzahl der gestorbenen Ameisen.
         /// </summary>
         public int DeathCount { get; private set; }
@@ -66,6 +71,7 @@ namespace AntWars {
         /// </summary>
         /// <param name="ant">Die neue Ameise.</param>
         public void incrementAnts(Ant ant) {
+            AntCount++;
             if (ant.isCarry()) {
                 CarryCount++;
             } else if (ant.isScout()) {
@@ -83,6 +89,7 @@ namespace AntWars {
         /// <param name="ant">Die zu verringernde Ameise.</param>
         public void decreaseAnts(Ant ant) {
             DeathCount++;
+            AntCount--;
             if (ant.isCarry()) {
                 CarryCount--;
             } else if (ant.isScout()) {

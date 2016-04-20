@@ -53,7 +53,7 @@ namespace AntWars {
         }
 
         private void calcWarrior() {
-            lbl_warriorCost.Text = Convert.ToString(Helper.CostCalculator.calculateCostWarrior(0, // TODO Attackpower in Form hinzufügen
+            lbl_warriorCost.Text = Convert.ToString(Helper.CostCalculator.calculateCostWarrior(Convert.ToInt32(nmc_warriorAttackPower.Value), 
                                                                                              Convert.ToInt32(nmc_warriorViewRange.Value),
                                                                                              Convert.ToInt32(nmc_warriorMoveRange.Value),
                                                                                              Convert.ToInt32(nmc_warriorInventory.Value),

@@ -51,6 +51,8 @@
             this.nmc_warriorMoveRange = new System.Windows.Forms.NumericUpDown();
             this.nmc_warriorInventory = new System.Windows.Forms.NumericUpDown();
             this.lbl_warriorCost = new System.Windows.Forms.Label();
+            this.lbl_attackPower = new System.Windows.Forms.Label();
+            this.nmc_warriorAttackPower = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_scoutViewRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryViewRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_carryMoveRange)).BeginInit();
@@ -63,6 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorViewRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorMoveRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorInventory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorAttackPower)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_viewrange
@@ -95,7 +98,7 @@
             // lbl_costs
             // 
             this.lbl_costs.AutoSize = true;
-            this.lbl_costs.Location = new System.Drawing.Point(4, 142);
+            this.lbl_costs.Location = new System.Drawing.Point(4, 163);
             this.lbl_costs.Name = "lbl_costs";
             this.lbl_costs.Size = new System.Drawing.Size(40, 13);
             this.lbl_costs.TabIndex = 4;
@@ -260,20 +263,20 @@
             // lbl_scoutCost
             // 
             this.lbl_scoutCost.AutoSize = true;
-            this.lbl_scoutCost.Location = new System.Drawing.Point(216, 142);
+            this.lbl_scoutCost.Location = new System.Drawing.Point(201, 163);
             this.lbl_scoutCost.Name = "lbl_scoutCost";
-            this.lbl_scoutCost.Size = new System.Drawing.Size(13, 13);
+            this.lbl_scoutCost.Size = new System.Drawing.Size(28, 13);
             this.lbl_scoutCost.TabIndex = 27;
-            this.lbl_scoutCost.Text = "0";
+            this.lbl_scoutCost.Text = "0,00";
             // 
             // lbl_carryCost
             // 
             this.lbl_carryCost.AutoSize = true;
-            this.lbl_carryCost.Location = new System.Drawing.Point(259, 142);
+            this.lbl_carryCost.Location = new System.Drawing.Point(244, 163);
             this.lbl_carryCost.Name = "lbl_carryCost";
-            this.lbl_carryCost.Size = new System.Drawing.Size(13, 13);
+            this.lbl_carryCost.Size = new System.Drawing.Size(28, 13);
             this.lbl_carryCost.TabIndex = 28;
-            this.lbl_carryCost.Text = "0";
+            this.lbl_carryCost.Text = "0,00";
             // 
             // lbl_health
             // 
@@ -434,17 +437,50 @@
             // lbl_warriorCost
             // 
             this.lbl_warriorCost.AutoSize = true;
-            this.lbl_warriorCost.Location = new System.Drawing.Point(302, 142);
+            this.lbl_warriorCost.Location = new System.Drawing.Point(288, 163);
             this.lbl_warriorCost.Name = "lbl_warriorCost";
-            this.lbl_warriorCost.Size = new System.Drawing.Size(13, 13);
+            this.lbl_warriorCost.Size = new System.Drawing.Size(28, 13);
             this.lbl_warriorCost.TabIndex = 37;
-            this.lbl_warriorCost.Text = "0";
+            this.lbl_warriorCost.Text = "0,00";
+            // 
+            // lbl_attackPower
+            // 
+            this.lbl_attackPower.AutoSize = true;
+            this.lbl_attackPower.Location = new System.Drawing.Point(4, 138);
+            this.lbl_attackPower.Name = "lbl_attackPower";
+            this.lbl_attackPower.Size = new System.Drawing.Size(71, 13);
+            this.lbl_attackPower.TabIndex = 38;
+            this.lbl_attackPower.Text = "Angriffsstärke";
+            // 
+            // nmc_warriorAttackPower
+            // 
+            this.nmc_warriorAttackPower.Location = new System.Drawing.Point(278, 136);
+            this.nmc_warriorAttackPower.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nmc_warriorAttackPower.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nmc_warriorAttackPower.Name = "nmc_warriorAttackPower";
+            this.nmc_warriorAttackPower.Size = new System.Drawing.Size(37, 20);
+            this.nmc_warriorAttackPower.TabIndex = 39;
+            this.nmc_warriorAttackPower.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // CostCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 164);
+            this.ClientSize = new System.Drawing.Size(351, 197);
+            this.Controls.Add(this.nmc_warriorAttackPower);
+            this.Controls.Add(this.lbl_attackPower);
             this.Controls.Add(this.lbl_warriorCost);
             this.Controls.Add(this.nmc_warriorInventory);
             this.Controls.Add(this.nmc_warriorMoveRange);
@@ -482,6 +518,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorViewRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorMoveRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorInventory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmc_warriorAttackPower)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,5 +549,7 @@
         private System.Windows.Forms.NumericUpDown nmc_warriorMoveRange;
         private System.Windows.Forms.NumericUpDown nmc_warriorInventory;
         private System.Windows.Forms.Label lbl_warriorCost;
+        private System.Windows.Forms.Label lbl_attackPower;
+        private System.Windows.Forms.NumericUpDown nmc_warriorAttackPower;
     }
 }
