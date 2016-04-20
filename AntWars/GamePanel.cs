@@ -79,7 +79,7 @@ namespace AntWars {
                 Base playerbase = obj as Base;
                 if (playerbase.RangeLevel > 0) {
                     for (int i = 0;i < playerbase.RangeCoords.Count;i++) {
-                        setColor(bitmap, playerbase.RangeCoords[i], Color.GreenYellow, Color.BlueViolet, playerbase.Player);
+                        setColor(bitmap, playerbase.RangeCoords[i], COLOR_PLAYER1_BASE, COLOR_PLAYER2_BASE, playerbase.Player);
                     }
                 }
                 setColor(bitmap, obj.Coords, COLOR_PLAYER1_BASE, COLOR_PLAYER2_BASE, (obj as Base).Player);
