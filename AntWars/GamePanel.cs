@@ -183,16 +183,11 @@ namespace AntWars {
         }
 
         private bool checkPlayerPoints() {
-            if (checkPlayerPointsByPlayer(game.Player1)) {
-                return true;
-            } else if (checkPlayerPointsByPlayer(game.Player2)) {
-                return true;
-            }
-            return false;
+            return checkPlayerPointsByPlayer(game.Player1, game.Player2) || checkPlayerPointsByPlayer(game.Player2, game.Player1);
         }
 
-        private bool checkPlayerPointsByPlayer(Player player) {
-            if (player.Points > getOtherPlayer(player).Points)
+        private bool checkPlayerPointsByPlayer(Player player, Player otherPlayer) {
+            if (player.Points > otherPlayer.Points)
             {
                 stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT,
@@ -203,12 +198,7 @@ namespace AntWars {
         }
 
         private bool checkMaxPoints() {
-            if (checkMaxPointsByPlayer(game.Player1)) {
-                return true;
-            } else if (checkMaxPointsByPlayer(game.Player2)) {
-                return true;
-            }
-            return false;
+            return checkMaxPointsByPlayer(game.Player1) || checkMaxPointsByPlayer(game.Player2);
         }
 
         private bool checkMaxPointsByPlayer(Player player) {
@@ -222,31 +212,17 @@ namespace AntWars {
         }
 
         private bool checkMoneyAndAnts() {
-            if (checkMoneyAndAntsByPlayer(game.Player1)) {
-                return true;
-            } else if (checkMoneyAndAntsByPlayer(game.Player2)) {
-                return true;
-            }
-            return false;
+            return checkMoneyAndAntsByPlayer(game.Player1, game.Player2) || checkMoneyAndAntsByPlayer(game.Player2, game.Player1));
         }
 
-        private bool checkMoneyAndAntsByPlayer(Player player) {
+        private bool checkMoneyAndAntsByPlayer(Player player, Player otherPlayer) {
             if (player.Money < Helper.CostCalculator.LOWEST_COST_VALUE && player.AntCount == 0)
             {
                 stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_OUT_OF_MONEY_AND_ANTS, player.AI.Playername, getOtherPlayer(player).AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_OUT_OF_MONEY_AND_ANTS, player.AI.Playername, otherPlayer.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             return false;
-        }
-
-        private Player getOtherPlayer(Player actualPlayer) {
-            if (actualPlayer.Equals(game.Player1)) {
-                return game.Player2;
-            } 
-            else {
-                return game.Player1;
-            }
         }
 
         private void setPlayernameInStatistic() {
