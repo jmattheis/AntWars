@@ -11,6 +11,7 @@
                 bool dead = target.takeDamage(AttackPower);
                 if (dead && target.isAnt() && isEnemy(target as Ant)) {
                     Owner.Points++;
+                    Owner.KillCount++;
                 }
                 TookAction = true;
                 return true;

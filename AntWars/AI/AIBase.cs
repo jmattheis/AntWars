@@ -50,6 +50,13 @@ namespace AntWars.AI {
         }
 
         /// <summary>
+        /// Anzahl deiner Scouts.
+        /// </summary>
+        protected int CurrentWarriorCount {
+            get { return Player.WarriorCount; }
+        }
+
+        /// <summary>
         /// Kauft einen Scout.
         /// Zur Berechnung der Bewegungsreichweite einer Ameise wird die Diagonale des Spielfeldes mit dem gewählten moveRangeFactor multipliziert.
         /// (Eine Umrundung des Spielfeldes benötigt mindestens einen moveRangeFactor von Drei.)
@@ -159,7 +166,7 @@ namespace AntWars.AI {
             }
         }
 
-        private Base getBase() {
+        public Base getBase() {
             if (Base == null)
                 Base = Game.Board.BoardObjects.getBase(Player);
 

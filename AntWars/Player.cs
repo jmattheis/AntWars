@@ -32,17 +32,27 @@ namespace AntWars {
         /// <summary>
         /// Die Anzahl von Scount auf dem Feld.
         /// </summary>
-        public int ScoutCount { get; set; }
+        public int ScoutCount { get; private set; }
 
         /// <summary>
         /// Die Anzahl der Warriors auf dem Feld.
         /// </summary>
-        public int WarriorCount { get; set; }
+        public int WarriorCount { get; private set; }
 
         /// <summary>
         /// Die Anzahl von Carries auf dem Feld.
         /// </summary>
-        public int CarryCount { get; set; }
+        public int CarryCount { get; private set; }
+
+        /// <summary>
+        /// Die Anzahl der gestorbenen Ameisen.
+        /// </summary>
+        public int DeathCount { get; private set; }
+
+        /// <summary>
+        /// Die Anzahl der getöteten Ameisen.
+        /// </summary>
+        public int KillCount { get; set; }
 
         public Player(AILoader aiLoader, double money) {
             AILoader = aiLoader;
@@ -72,6 +82,7 @@ namespace AntWars {
         /// </summary>
         /// <param name="ant">Die zu verringernde Ameise.</param>
         public void decreaseAnts(Ant ant) {
+            DeathCount++;
             if (ant.isCarry()) {
                 CarryCount--;
             } else if (ant.isScout()) {
