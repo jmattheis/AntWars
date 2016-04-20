@@ -57,7 +57,7 @@ namespace AntWars {
         private void print(BoardObject[] boardObjects) {
             Bitmap tmp = new Bitmap(game.Conf.BoardWidth, game.Conf.BoardHeight);
 
-            for(int i = 0; i < boardObjects.Length;i++) {
+            for (int i = 0;i < boardObjects.Length;i++) {
                 setColor(boardObjects[i], tmp);
             }
             if (pb_Game.Image != null) {
@@ -101,7 +101,7 @@ namespace AntWars {
 
             // cloning, the print method get invoked in an other thread, therefore the BoardObject-Array could be change till that.
             BoardObject[] objects = game.Board.BoardObjects.get().Clone() as BoardObject[];
-            System.Threading.Tasks.Task.Factory.StartNew(() => { 
+            System.Threading.Tasks.Task.Factory.StartNew(() => {
                 try {
                     this.Invoke((MethodInvoker) delegate {
                         calcGameStatistics();
@@ -203,8 +203,7 @@ namespace AntWars {
         }
 
         private bool checkPlayerPointsByPlayer(Player player, Player otherPlayer) {
-            if (player.Points > otherPlayer.Points)
-            {
+            if (player.Points > otherPlayer.Points) {
                 stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT,
                                 player.AI.Playername, player.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -218,8 +217,7 @@ namespace AntWars {
         }
 
         private bool checkMaxPointsByPlayer(Player player) {
-            if (player.Points >= game.Conf.Points)
-            {
+            if (player.Points >= game.Conf.Points) {
                 stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, player.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -232,8 +230,7 @@ namespace AntWars {
         }
 
         private bool checkMoneyAndAntsByPlayer(Player player, Player otherPlayer) {
-            if (player.Money < Helper.CostCalculator.LOWEST_COST_VALUE && player.AntCount == 0)
-            {
+            if (player.Money < Helper.CostCalculator.LOWEST_COST_VALUE && player.AntCount == 0) {
                 stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_OUT_OF_MONEY_AND_ANTS, player.AI.Playername, otherPlayer.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
