@@ -143,14 +143,18 @@ namespace AntWars {
         }
 
         private void checkWinningConditions() {
-            if (checkMoneyAndAnts())
+            if (checkMoneyAndAnts()) {
                 return;
-            if (checkTickPlayerPoints())
+            }
+            if (checkTickPlayerPoints()) {
                 return;
-            if (checkMaxPoints())
+            }
+            if (checkMaxPoints()) {
                 return;
-            if (checkSugarPlayerPoint())
+            }
+            if (checkSugarPlayerPoint()) {
                 return;
+            }
         }
 
         private bool checkSugarPlayerPoint() {
@@ -179,48 +183,70 @@ namespace AntWars {
         }
 
         private bool checkPlayerPoints() {
-            if (game.Player1.Points > game.Player2.Points) {
-                stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT,
-                                game.Player1.AI.Playername, game.Player1.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (checkPlayerPointsByPlayer(game.Player1)) {
                 return true;
-            } else if (game.Player1.Points < game.Player2.Points) {
+            } else if (checkPlayerPointsByPlayer(game.Player2)) {
+                return true;
+            }
+            return false;
+        }
+
+        private bool checkPlayerPointsByPlayer(Player player) {
+            if (player.Points > getOtherPlayer(player).Points)
+            {
                 stop();
                 MessageBox.Show(String.Format(Messages.PLAYER_WON_TIME_OUT,
-                                    game.Player2.AI.Playername, game.Player2.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                player.AI.Playername, player.Points), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             return false;
         }
 
         private bool checkMaxPoints() {
-            if (game.Player1.Points >= game.Conf.Points) {
-                stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Player1.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (checkMaxPointsByPlayer(game.Player1)) {
                 return true;
-            } else if (game.Player2.Points >= game.Conf.Points) {
+            } else if (checkMaxPointsByPlayer(game.Player2)) {
+                return true;
+            }
+            return false;
+        }
+
+        private bool checkMaxPointsByPlayer(Player player) {
+            if (player.Points >= game.Conf.Points)
+            {
                 stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, game.Player2.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_MAX_POINTS, player.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
             return false;
         }
 
         private bool checkMoneyAndAnts() {
-            if (game.Player1.Money < Helper.CostCalculator.LOWEST_COST_VALUE && game.Player1.AntCount == 0)
-            {
-                stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_OUT_OF_MONEY_AND_ANTS, game.Player1.AI.Playername, game.Player2.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (checkMoneyAndAntsByPlayer(game.Player1)) {
+                return true;
+            } else if (checkMoneyAndAntsByPlayer(game.Player2)) {
                 return true;
             }
-            else if (game.Player2.Money < Helper.CostCalculator.LOWEST_COST_VALUE && game.Player2.AntCount == 0)
+            return false;
+        }
+
+        private bool checkMoneyAndAntsByPlayer(Player player) {
+            if (player.Money < Helper.CostCalculator.LOWEST_COST_VALUE && player.AntCount == 0)
             {
                 stop();
-                MessageBox.Show(String.Format(Messages.PLAYER_WON_OUT_OF_MONEY_AND_ANTS, game.Player2.AI.Playername, game.Player1.AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(String.Format(Messages.PLAYER_WON_OUT_OF_MONEY_AND_ANTS, player.AI.Playername, getOtherPlayer(player).AI.Playername), Messages.PLAYER_WON_CAPTION, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
             }
-            else
-                return false;
+            return false;
+        }
+
+        private Player getOtherPlayer(Player actualPlayer) {
+            if (actualPlayer.Equals(game.Player1)) {
+                return game.Player2;
+            } 
+            else {
+                return game.Player1;
+            }
         }
 
         private void setPlayernameInStatistic() {

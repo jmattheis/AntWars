@@ -8,7 +8,7 @@ namespace AntWars.Helper {
     class CostCalculator {
 
         /// <summary>
-        /// Gibt die niedrigsten Kosten aller Ameisen an.
+        /// Gibt die Kosten der billigsten Ameise an.
         /// </summary>
         public static readonly double LOWEST_COST_VALUE = getLowestCostValue();
 
@@ -122,12 +122,14 @@ namespace AntWars.Helper {
             double lowCarry = calculateCostCarry(1, 1, 1, 1, "");
             double lowScout = calculateCostScout(1, 1, 1, 1, "");
             double lowWarrior = calculateCostWarrior(1, 1, 1, 1, 1, "");
-            if (lowCarry <= lowScout && lowCarry <= lowWarrior)
+            if (lowCarry <= lowScout && lowCarry <= lowWarrior) {
                 return lowCarry;
-            else if (lowScout <= lowCarry && lowScout <= lowWarrior)
+            }
+            else if (lowScout <= lowCarry && lowScout <= lowWarrior) {
                 return lowScout;
-            else
+            } else {
                 return lowWarrior;
+            }
         }
     }
 }
