@@ -410,7 +410,7 @@
             // 
             this.nmc_sugarMin.Location = new System.Drawing.Point(153, 11);
             this.nmc_sugarMin.Maximum = new decimal(new int[] {
-            70,
+            50,
             0,
             0,
             0});
@@ -433,7 +433,7 @@
             // 
             this.nmc_sugarMax.Location = new System.Drawing.Point(153, 38);
             this.nmc_sugarMax.Maximum = new decimal(new int[] {
-            70,
+            50,
             0,
             0,
             0});
