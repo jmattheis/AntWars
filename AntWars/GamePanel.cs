@@ -70,23 +70,29 @@ namespace AntWars {
 
         private void setColor(BoardObject obj, Bitmap bitmap) {
             if (obj.isCarry()) {
-                setColor(bitmap, obj, COLOR_PLAYER1_CARRY, COLOR_PLAYER2_CARRY, (obj as Ant).Owner);
+                setColor(bitmap, obj.Coords, COLOR_PLAYER1_CARRY, COLOR_PLAYER2_CARRY, (obj as Ant).Owner);
             } else if (obj.isScout()) {
-                setColor(bitmap, obj, COLOR_PLAYER1_SCOUT, COLOR_PLAYER2_SCOUT, (obj as Ant).Owner);
+                setColor(bitmap, obj.Coords, COLOR_PLAYER1_SCOUT, COLOR_PLAYER2_SCOUT, (obj as Ant).Owner);
             } else if (obj.isWarrior()) {
-                setColor(bitmap, obj, COLOR_PLAYER1_WARRIOR, COLOR_PLAYER2_WARRIOR, (obj as Ant).Owner);
+                setColor(bitmap, obj.Coords, COLOR_PLAYER1_WARRIOR, COLOR_PLAYER2_WARRIOR, (obj as Ant).Owner);
             } else if (obj.isBase()) {
-                setColor(bitmap, obj, COLOR_PLAYER1_BASE, COLOR_PLAYER2_BASE, (obj as Base).Player);
+                Base playerbase = obj as Base;
+                if (playerbase.RangeLevel > 0) {
+                    for (int i = 0;i < playerbase.RangeCoords.Count;i++) {
+                        setColor(bitmap, playerbase.RangeCoords[i], COLOR_PLAYER1_BASE, COLOR_PLAYER2_BASE, playerbase.Player);
+                    }
+                }
+                setColor(bitmap, obj.Coords, COLOR_PLAYER1_BASE, COLOR_PLAYER2_BASE, (obj as Base).Player);
             } else if (obj.isSugar()) {
-                setColor(bitmap, obj, COLOR_GAME_SUGAR, Color.Transparent, null);
+                setColor(bitmap, obj.Coords, COLOR_GAME_SUGAR, Color.Transparent, null);
             }
         }
 
-        private void setColor(Bitmap bitmap, BoardObject obj, Color player1Color, Color player2Color, Player player1) {
+        private void setColor(Bitmap bitmap, Coordinates coords, Color player1Color, Color player2Color, Player player1) {
             if (player1 == null || player1 == game.Player1) {
-                bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, player1Color);
+                bitmap.SetPixel(coords.X, coords.Y, player1Color);
             } else {
-                bitmap.SetPixel(obj.Coords.X, obj.Coords.Y, player2Color);
+                bitmap.SetPixel(coords.X, coords.Y, player2Color);
             }
         }
 

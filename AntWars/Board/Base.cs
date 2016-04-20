@@ -1,4 +1,6 @@
-﻿namespace AntWars.Board {
+﻿using System.Collections.ObjectModel;
+
+namespace AntWars.Board {
 
     /// <summary>
     /// Die Base hier "spawnen" die Ameisen, wird generell am Rand des Spielfeldes generiert.
@@ -11,6 +13,11 @@
         /// Das Level der Reichweite, gibt an mit wieviel Feldern abstand die Ameise Zucker ablegen/sich erholen kann.
         /// </summary>
         public int RangeLevel { get; internal set; }
+
+        /// <summary>
+        /// Alle Coordinates innerhalb des RangeLevel
+        /// </summary>
+        public ReadOnlyCollection<Coordinates> RangeCoords { get; internal set; }
 
         /// <summary>
         /// Das Level der Erholungrate gibt an um wieviel % sich die Ameise erholen kann. Rechnung: (level/10)%

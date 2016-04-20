@@ -2,6 +2,7 @@
 using AntWars.Board.Ants;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace AntWars.AI {
     /// <summary>
@@ -107,8 +108,10 @@ namespace AntWars.AI {
         /// </summary>
         /// <returns>false wenn man zuwenig Geld hat oder das Upgrade schon die höhste Stufe hat</returns>
         public bool upgradeRange() {
-            if (payUpgrade(getBase().RangeLevel)) {
-                getBase().RangeLevel++;
+            Base pbase = getBase();
+            if (payUpgrade(pbase.RangeLevel)) {
+                pbase.RangeLevel++;
+                pbase.RangeCoords = new ReadOnlyCollection<Coordinates>(pbase.Coords.getAdjacentCoordinates(pbase.RangeLevel));
                 return true;
             }
             return false;
